@@ -1,0 +1,86 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {% from "back-link/macro.njk" import govukBackLink %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/index"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">What’s the risk of fraud to your service?</h1>
+
+      <p>
+        This is used to give recommendations for making your service as secure as it needs to be.
+      </p><br>
+
+      <form action="/overview" method="post" novalidate>
+
+        {% from "radios/macro.njk" import govukRadios %}
+
+        {{ govukRadios({
+          idPrefix: "user-risk-level",
+          name: "user-risk-level",
+          fieldset: {
+            legend: {
+              text: "",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--l"
+          }
+        },
+          items: [
+            {
+              value: "none",
+              text: "None",
+              hint: {
+                text: "You need to know the person is the same person."
+              }
+            },
+            {
+              value: "low",
+              text: "Low risk",
+              hint: {
+                text: "Your service does not give users money or benefits and do not provide access to sensitive information, such as a user’s criminal records."
+              }
+            },
+            {
+              value: "medium",
+              text: "Medium risk",
+              hint: {
+                text: "Your service lets users update information about themselves or access sensitive information, such as criminal records."
+              }
+            },
+            {
+              value: "high",
+              text: "High risk",
+              hint: {
+                text: "Your service gives users money or benefits"
+              }
+            },
+            {
+              divider: "or"
+            },
+            {
+              value: "dont-know",
+              text: "I don‘t know"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

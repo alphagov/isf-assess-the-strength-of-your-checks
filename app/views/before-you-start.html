@@ -1,0 +1,77 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Before you start
+{% endblock %}
+
+{% block beforeContent %}
+  {% from "breadcrumbs/macro.njk" import govukBreadcrumbs %}
+
+  {{ govukBreadcrumbs({
+  items: [
+    {
+      text: "Identity standard",
+      href: "/index"
+    },
+    {
+      text: "Assess how your identity service meets the standard"
+    }
+  ]
+  }) }}
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">
+        Assess the strength of your identity checks
+      </h1>
+
+      <p>
+        Use this service to find out:
+      </p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>how well your current process checks users' identities</li>
+        <li>if your current process is at risk of identity fraud</li>
+      </ul>
+      <p>
+        This service is based on the UK government's Identity Standards, which help organisations decide the best way to check identity.
+      </p>
+
+      <h2 class="govuk-heading-m">Before you start</h2>
+
+      <p>
+        You should have already checked:
+
+        <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-6">
+          <li>how likely your current process is to be targeted by identity fraud</li>
+          <li>what impact identity fraud would have on your process</li>
+        </ul>
+      </p>
+
+      <p>
+        You’ll be asked some questions about how you check users’ identities.
+        You’ll need to know what documents your process collects and how it makes sure if they’re genuine or valid.
+      </p>
+
+      <p>
+        You’ll also need to know if your service checks:
+      </p>
+
+      <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-9">
+        <li>the user’s identity has existed over time</li>
+        <li>the user’s identity hasn’t been stolen or used fraudulently</li>
+        <li>the identity shown on any documents your service collects belongs to the same person that claims to have it</li>
+      </ul>
+
+      <a href="your-risk" class="govuk-button">
+        Start assessment
+      </a>
+    </div>
+  </div>
+
+{% endblock %}

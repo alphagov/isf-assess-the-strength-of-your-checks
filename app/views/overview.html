@@ -1,0 +1,115 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Overview
+{% endblock %}
+
+{% block beforeContent %}
+  {% from "breadcrumbs/macro.njk" import govukBreadcrumbs %}
+  {{ govukBreadcrumbs({
+  items: [
+    {
+      text: "Identity standard",
+      href: "/index"
+    },{
+      text: "Assess how your identity service meets the standard",
+      href: "/before-you-start"
+    },
+    {
+      text: "Overview"
+    }
+  ]
+  }) }}
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">
+        Overview
+      </h1>
+
+      {% if complete == "True" %}
+        <h2 class="govuk-heading-m">Scores for your checks</h2>
+        <p>
+          You get a score for each part of the identity checking process you do. The highest score you can get is 4.
+        </p>
+        <p>
+          The scores add up to tell you how confident you can be that you’ve proved that person’s identity.
+        </p>
+        <p>
+          How confident you can be depends on how many pieces of evidence you collect and what score they get for each part of the identity checking process.
+        </p>
+      {% endif %}
+
+    </div>
+
+    <div class="govuk-grid-column-full">
+      <h2 class="govuk-heading-m govuk-!-margin-bottom-0">Your risk</h2>
+      <table class="govuk-table govuk-table govuk-!-margin-bottom-7 govuk-!-margin-top-0">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th class="govuk-table__header" scope="col"></th>
+            <th class="govuk-table__header" scope="col"></th>
+            <th class="govuk-table__header" scope="col"></th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell" scope="row">The level of risk to your service</td>
+            <td class="govuk-table__cell">{{data['user-risk-level'] | capitalize }}</td>
+            <td class="govuk-table__cell edit"><a href="/your-risk">Change</a></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2 class="govuk-heading-m govuk-!-margin-0">Evidence checks</h2>
+
+
+
+      <table class="govuk-table govuk-!-margin-bottom-7 govuk-!-margin-top-0">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th class="govuk-table__header" scope="col"></th>
+            <th class="govuk-table__header" scope="col"></th>
+            <th class="govuk-table__header" scope="col"></th>
+            <th class="govuk-table__header" scope="col"></th>
+          </tr>
+        </thead>
+
+        <tbody class="govuk-table__body">
+          {% if data['testevidence'] %}
+            {% for item in data['testevidence'] %}
+              {% if item.chosen %}
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell" scope="row">{{item.name | capitalize }}</td>
+                  <td class="govuk-table__cell" scope="row">{{item.strength}}</td>
+                  <td class="govuk-table__cell" scope="row">{{item.validity}}</td>
+                  <td class="govuk-table__cell edit" scope="row"><a href="">Change</a></td>
+                </tr>
+              {% endif %}
+            {% endfor %}
+          {% else %}
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell hint" scope="row">You haven’t added any evidence yet</td>
+              <td class="govuk-table__cell" scope="row"></td>
+              <td class="govuk-table__cell" scope="row"></td>
+              <td class="govuk-table__cell" scope="row"></td>
+            </tr>
+          {% endif %}
+        </tbody>
+      </table>
+      <p class="table-link"><a href="/evidence/choose-evidence">Add evidence</a></p>
+
+      <br>
+
+      <a href="result" class="govuk-button">
+        Continue
+      </a>
+
+    </div>
+  </div>
+
+{% endblock %}

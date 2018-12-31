@@ -14,3 +14,18 @@ $govuk-global-styles: true;
 @import "components/cookie-banner";
 
 // Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you
+
+td.govuk-table__cell:first-child{
+  width: 33.33%;
+}
+
+td.govuk-table__cell.edit{
+  text-align: right;
+}
+.table-link{
+  margin-top: -25px;
+}
+
+.hint{
+  color:  $govuk-secondary-text-colour;
+}
