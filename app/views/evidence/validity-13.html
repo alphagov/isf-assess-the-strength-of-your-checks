@@ -28,7 +28,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-l">
-        {{ data['thisEvidence'] | capitalize }} validity 13
+        Who do you check the person's {{ data['thisEvidence'] | capitalize }} details with?
       </h1>
 
       <form action="/validity-13-answer" method="post" novalidate>
@@ -50,15 +50,15 @@
           items: [
             {
               value: "1",
-              text: "Answer"
+              text: "The organisation that issued the document"
             },
             {
               value: "2",
-              text: "Answer"
+              text: "Another authoritative source"
             },
             {
               value: "3",
-              text: "Answer"
+              text: "Neither"
             }
           ]
         }) }}
@@ -67,6 +67,17 @@
           text: "Continue"
         }) }}
       </form>
+      {% from "details/macro.njk" import govukDetails %}
+
+      {{ govukDetails({
+        summaryText: "How you can tell if a source is authoritative",
+        text: "To be authoritative, the source must have data about either:
+
+        the identity
+        the identity evidence
+
+        They must have received the data about the evidence from the organisation that issued it, either directly, or from another authoritative source. They’ll need to know enough about the identity or evidence to be able to confirm if the data you have is right. They’ll also need to make sure the data is up to date and hasn’t been tampered with."
+      }) }}
     </div>
   </div>
 

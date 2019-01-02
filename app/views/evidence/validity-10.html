@@ -28,9 +28,15 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-l">
-        {{ data['thisEvidence'] | capitalize }} validity 10
+        Have other organisations worked with the person or system checking the {{ data['thisEvidence'] | capitalize }} before? 
       </h1>
-
+      <p>This includes:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>Home Office</li>
+        <li>National Document Fraud Unit</li>
+        <li>Centre for the Protection of National Infrastructure (CPNI)</li>
+        <li>another equivalent specialist organisation that can tell genuine documents apart from forgeries or counterfeits</li>
+      </ul>
       <form action="/validity-10-answer" method="post" novalidate>
 
         {% from "radios/macro.njk" import govukRadios %}
@@ -50,11 +56,11 @@
           items: [
             {
               value: "1",
-              text: "Answer"
+              text: "Yes"
             },
             {
               value: "2",
-              text: "Answer"
+              text: "No"
             }
           ]
         }) }}
