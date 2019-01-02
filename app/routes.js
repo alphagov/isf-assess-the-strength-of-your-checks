@@ -31,7 +31,43 @@ router.post('/choose-evidence-answer', function (req, res) {
     }
     res.redirect('evidence/verification-start')
   }
-
 })
+
+
+
+router.post('/validity-0-answer', function (req, res) {
+
+  let evidence = req.session.data['evidence']
+  let thisEvidence = evidence
+  req.session.data['thisEvidence'] = thisEvidence
+
+  res.redirect('evidence/validity-1')
+})
+
+router.post('/validity-1-answer', function (req, res) {
+
+  let evidence = req.session.data['evidence']
+  let thisEvidence = evidence
+  req.session.data['thisEvidence'] = thisEvidence
+
+  let answer = req.session.data['validity-1']
+
+  if (answer.includes('1')) {
+    res.redirect('evidence/validity-2')
+  }
+  else if (answer.includes('2')) {
+    res.redirect('evidence/validity-12')
+  }
+  else if (answer.includes('3')) {
+    res.redirect('evidence/validity-13')
+  }
+  else if (answer.includes('4')) {
+    res.redirect('evidence/validity-14')
+  }
+  else if (answer.includes('5')) {
+    res.redirect('overview')
+  }
+})
+
 
 module.exports = router
