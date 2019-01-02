@@ -28,16 +28,16 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-l">
-        {{ data['thisEvidence'] | capitalize }} validity 12
+        How do you check the cryptographic security features of the {{ data['thisEvidence'] | capitalize }} are genuine?
       </h1>
 
       <form action="/validity-13-answer" method="post" novalidate>
 
-        {% from "radios/macro.njk" import govukRadios %}
+        {% from "checkboxes/macro.njk" import govukCheckboxes %}
 
-        {{ govukRadios({
+        {{ govukCheckboxes({
           idPrefix: "validity-12",
-          name: "validity-12",
+          name: "validity-1",
           fieldset: {
             legend: {
               text: "",
@@ -50,19 +50,30 @@
           items: [
             {
               value: "1",
-              text: "Answer"
+              text: "Read the encrypted data with a compatible reader or decryption process"
             },
             {
               value: "2",
-              text: "Answer"
+              text: "Provide the required access or decryption key"
             },
             {
               value: "3",
-              text: "Answer"
+              text: "Check the digital signature is correct"
+            },
+            {
+              value: "4",
+              text: "Check the signing key is the correct type for that evidence"
+            },
+            {
+              value: "5",
+              text: "Check the signing key has not been revoked"
+            },
+            {
+              value: "6",
+              text: "We don't check any of these things"
             }
           ]
         }) }}
-
         {{ govukButton({
           text: "Continue"
         }) }}
