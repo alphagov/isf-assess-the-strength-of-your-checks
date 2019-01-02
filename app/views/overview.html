@@ -80,7 +80,7 @@
         </thead>
 
         <tbody class="govuk-table__body">
-          {% if data['testevidence'] %}
+          {% if data['testevidence'] != "" %}
             {% for item in data['testevidence'] %}
               {% if item.chosen %}
                 <tr class="govuk-table__row">

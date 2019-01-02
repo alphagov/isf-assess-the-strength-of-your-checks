@@ -19,53 +19,40 @@
     <div class="govuk-grid-column-two-thirds">
       <!-- <span class="govuk-caption-l">Evidence</span> -->
       <form action="/choose-evidence-answer" method="post" novalidate>
-        <h1 class="govuk-heading-l">What evidence do you collect?</h1>
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="how-contacted-conditional-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+              <h1 class="govuk-fieldset__heading">
+                What evidence do you collect?
+              </h1>
+            </legend>
 
-
-        {% from "radios/macro.njk" import govukRadios %}
-        {% from "textarea/macro.njk" import govukTextarea %}
-
-        {% set otherHTML %}
-        {{ govukTextarea({
-          id: "other-count",
-          name: "other-count",
-          label: {
-            text: "Tell us about the other evidence you collect"
-          }
-        }) }}
-        {% endset -%}
-
-        {{ govukRadios({
-          idPrefix: "choose-evidence",
-          name: "evidence",
-          fieldset: {
-            legend: {
-              text: "",
-              isPageHeading: false,
-              classes: "govuk-fieldset__legend--l"
-            }
-          },
-          hint: {
-            text: ""
-          },
-          items: [
-            {
-              value: "passport",
-              text: "UK passport"
-            },
-            {
-              value: "driving licence",
-              text: "UK driving licence"
-            },
-            {
-              value: "other",
-              text: "Evidence not listed above",
-              conditional: {
-                html: otherHTML
-              }
-            }
-          ]
-        }) }}
+            <div class="govuk-radios govuk-radios--conditional" data-module="radios">
+              {% for item in data['testevidence'] %}
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="evidence" name="evidence" type="radio" value="{{item.name}}">
+                  <label class="govuk-label govuk-radios__label" for="how-contacted-conditional-2">
+                    {{item.name}}
+                  </label>
+                </div>
+              {% endfor %}
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="evidence-other" name="evidence" type="radio" value="" data-aria-controls="conditional-other">
+                <label class="govuk-label govuk-radios__label" for="evidence-other">
+                  Evidence not listed above
+                </label>
+              </div>
+              <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-other">
+                <div class="govuk-form-group">
+                  <label class="govuk-label" for="evidence-other">
+                    Tell us about the other evidence you collect
+                  </label>
+                  <input class="govuk-input govuk-!-width-one-third" id="evidence-other" name="evidence-other-details">
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </div>
 
         {{ govukButton({
           text: "Continue"

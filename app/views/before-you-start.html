@@ -68,9 +68,11 @@
         <li>the identity shown on any documents your service collects belongs to the same person that claims to have it</li>
       </ul>
 
-      <a href="your-risk" class="govuk-button">
-        Start assessment
-      </a>
+      <form action="/set-choose-evidence-variables" method="post" novalidate>
+        {{ govukButton({
+          text: "Start assessment"
+        }) }}
+      </form>
     </div>
   </div>
 
