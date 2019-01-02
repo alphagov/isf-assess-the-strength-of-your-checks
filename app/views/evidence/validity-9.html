@@ -28,8 +28,16 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-l">
-        {{ data['thisEvidence'] | capitalize }} validity 9
+        Is the person or system supervised when the {{ data['thisEvidence'] | capitalize }} is checked?
       </h1>
+      <p>
+        The supervisor should have been trained by one of the following organisations (or an equivalent specialist trainer):
+      </p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>Home Office</li>
+        <li>National Document Fraud Unit</li>
+        <li>Centre for the Protection of National Infrastructure (CPNI)</li>
+      </ul>
 
       <form action="/validity-9-answer" method="post" novalidate>
 
@@ -50,11 +58,11 @@
           items: [
             {
               value: "1",
-              text: "Answer"
+              text: "Yes"
             },
             {
               value: "2",
-              text: "Answer"
+              text: "No"
             }
           ]
         }) }}

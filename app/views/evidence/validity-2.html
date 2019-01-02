@@ -28,7 +28,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-l">
-        {{ data['thisEvidence'] | capitalize }} validity 2
+        How is the {{ data['thisEvidence'] | capitalize }} checked?
       </h1>
 
       <form action="/validity-2-answer" method="post" novalidate>
@@ -50,11 +50,11 @@
           items: [
             {
               value: "1",
-              text: "Answer"
+              text: "In person"
             },
             {
               value: "2",
-              text: "Answer"
+              text: "Remotely"
             }
           ]
         }) }}

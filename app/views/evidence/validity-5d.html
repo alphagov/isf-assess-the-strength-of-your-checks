@@ -28,8 +28,9 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-l">
-        {{ data['thisEvidence'] | capitalize }} validity 5d
+        What resolution is the {{ data['thisEvidence'] | capitalize }} image that the system uses?
       </h1>
+      <p>The image should be clear enough for the system to be able to examine the document's security features. The document should take up at least 95% of the image.</p>
 
       <form action="/validity-5d-answer" method="post" novalidate>
 
@@ -50,15 +51,15 @@
           items: [
             {
               value: "1",
-              text: "Answer"
+              text: "At least 3 megapixels (or 300 DPI)"
             },
             {
               value: "2",
-              text: "Answer"
+              text: "At least 6 megapixels (or 600 DPI)"
             },
             {
               value: "3",
-              text: "Answer"
+              text: "Less than 3 megapixels"
             }
           ]
         }) }}

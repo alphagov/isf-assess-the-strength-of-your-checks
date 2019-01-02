@@ -28,8 +28,9 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-l">
-        {{ data['thisEvidence'] | capitalize }} validity 4
+        Is the {{ data['thisEvidence'] | capitalize }} checked by a person or a system?
       </h1>
+      <p>A system could be something like an identity document checking app or an identity document reader.</p>
 
       <form action="/validity-4-answer" method="post" novalidate>
 
@@ -50,11 +51,11 @@
           items: [
             {
               value: "1",
-              text: "Answer"
+              text: "By a person"
             },
             {
               value: "2",
-              text: "Answer"
+              text: "By a system"
             }
           ]
         }) }}
