@@ -31,13 +31,13 @@
         {{ data['thisEvidence'] | capitalize }} validity 5c - this is a prog disco on 5b
       </h1>
 
-      <form action="/validity-5b-answer" method="post" novalidate>
+      <form action="/validity-5c-answer" method="post" novalidate>
 
         {% from "radios/macro.njk" import govukRadios %}
 
         {{ govukRadios({
-          idPrefix: "validity-5b",
-          name: "validity-5b",
+          idPrefix: "validity-5c",
+          name: "validity-5c",
           fieldset: {
             legend: {
               text: "",

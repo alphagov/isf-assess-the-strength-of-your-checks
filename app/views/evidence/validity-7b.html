@@ -33,9 +33,9 @@
 
       <form action="/validity-7b-answer" method="post" novalidate>
 
-        {% from "radios/macro.njk" import govukRadios %}
+        {% from "checkboxes/macro.njk" import govukCheckboxes %}
 
-        {{ govukRadios({
+        {{ govukCheckboxes({
           idPrefix: "validity-7b",
           name: "validity-7b",
           fieldset: {
