@@ -25,6 +25,8 @@
 
 {% block content %}
 
+{% set evidenceExists = "false" %}
+
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-l">
@@ -80,18 +82,19 @@
         </thead>
 
         <tbody class="govuk-table__body">
-          {% if data['testevidence'] != "" %}
-            {% for item in data['testevidence'] %}
-              {% if item.chosen %}
-                <tr class="govuk-table__row">
-                  <td class="govuk-table__cell" scope="row">{{item.name | capitalize }}</td>
-                  <td class="govuk-table__cell" scope="row">{{item.strength}}</td>
-                  <td class="govuk-table__cell" scope="row">{{item.validity}}</td>
-                  <td class="govuk-table__cell edit" scope="row"><a href="">Change</a></td>
-                </tr>
-              {% endif %}
-            {% endfor %}
-          {% else %}
+          {% for item in data['testevidence'] %}
+            {% if item.chosen %}
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell" scope="row">{{item.name | capitalize }}</td>
+                <td class="govuk-table__cell" scope="row">{{item.strength}}</td>
+                <td class="govuk-table__cell" scope="row">{{item.validity}}</td>
+                <td class="govuk-table__cell edit" scope="row"><a href="">Change</a></td>
+              </tr>
+              {% set evidenceExists = "true" %}
+            {% endif %}
+          {% endfor %}
+
+          {% if evidenceExists == "false" %}
             <tr class="govuk-table__row">
               <td class="govuk-table__cell hint" scope="row">You haven’t added any evidence yet</td>
               <td class="govuk-table__cell" scope="row"></td>
@@ -99,6 +102,7 @@
               <td class="govuk-table__cell" scope="row"></td>
             </tr>
           {% endif %}
+          
         </tbody>
       </table>
       <p class="table-link"><a href="/evidence/choose-evidence">Add evidence</a></p>

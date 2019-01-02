@@ -89,7 +89,7 @@ router.post('/validity-1-answer', function (req, res) {
   else if (answer.includes('4')) {
     res.redirect('evidence/validity-14')
   }
-  else if (answer.includes('5')) {
+  else{
     res.redirect('overview')
   }
 })
@@ -127,7 +127,7 @@ router.post('/validity-3-answer', function (req, res) {
   else if (validityanswer.includes('4')) {
     res.redirect('evidence/validity-14')
   }
-  else if (validityanswer.includes('5')) {
+  else{
     res.redirect('overview')
   }
 })
@@ -174,7 +174,7 @@ router.post('/validity-5a-answer', function (req, res) {
   else if (validityanswer.includes('4')) {
     res.redirect('evidence/validity-14')
   }
-  else if (validityanswer.includes('5')) {
+  else{
     res.redirect('overview')
   }
 })
@@ -198,7 +198,7 @@ router.post('/validity-5b-answer', function (req, res) {
   else if (validityanswer.includes('4')) {
     res.redirect('evidence/validity-14')
   }
-  else if (validityanswer.includes('5')) {
+  else{
     res.redirect('overview')
   }
 })
@@ -225,7 +225,7 @@ router.post('/validity-5c-answer', function (req, res) {
   else if (validityanswer.includes('4')) {
     res.redirect('evidence/validity-14')
   }
-  else if (validityanswer.includes('5')) {
+  else{
     res.redirect('overview')
   }
 })
@@ -252,7 +252,7 @@ router.post('/validity-5d-answer', function (req, res) {
   else if (validityanswer.includes('4')) {
     res.redirect('evidence/validity-14')
   }
-  else if (validityanswer.includes('5')) {
+  else{
     res.redirect('overview')
   }
 })
@@ -276,7 +276,7 @@ router.post('/validity-5e-answer', function (req, res) {
   else if (validityanswer.includes('4')) {
     res.redirect('evidence/validity-14')
   }
-  else if (validityanswer.includes('5')) {
+  else{
     res.redirect('overview')
   }
 })
@@ -300,7 +300,7 @@ router.post('/validity-5f-answer', function (req, res) {
   else if (validityanswer.includes('4')) {
     res.redirect('evidence/validity-14')
   }
-  else if (validityanswer.includes('5')) {
+  else{
     res.redirect('overview')
   }
 })
@@ -327,7 +327,7 @@ router.post('/validity-5g-answer', function (req, res) {
   else if (validityanswer.includes('4')) {
     res.redirect('evidence/validity-14')
   }
-  else if (validityanswer.includes('5')) {
+  else{
     res.redirect('overview')
   }
 })
@@ -351,7 +351,7 @@ router.post('/validity-6-answer', function (req, res) {
   else if (validityanswer.includes('4')) {
     res.redirect('evidence/validity-14')
   }
-  else if (validityanswer.includes('5')) {
+  else {
     res.redirect('overview')
   }
 })
@@ -379,6 +379,14 @@ router.post('/validity-7b-answer', function (req, res) {
   let answer = req.session.data['validity-7b']
   if (answer.includes('1') + answer.includes('2')) {
     res.redirect('evidence/validity-8')
+
+    // set validity to 2
+    for (i = 0; i < testevidence.length; i++) {
+      if (thisEvidence.includes(testevidence[i].name)) {
+          req.session.data['testevidence'][i].validity = 2
+      }
+    }
+
   }
   else if (validityanswer.includes('2')) {
     res.redirect('evidence/validity-12')
@@ -389,7 +397,7 @@ router.post('/validity-7b-answer', function (req, res) {
   else if (validityanswer.includes('4')) {
     res.redirect('evidence/validity-14')
   }
-  else if (validityanswer.includes('5')) {
+  else{
     res.redirect('overview')
   }
 })
@@ -403,6 +411,12 @@ router.post('/validity-7c-answer', function (req, res) {
   let answer = req.session.data['validity-7c']
   if (answer.includes('1') + answer.includes('2')) {
     res.redirect('evidence/validity-8')
+    // set validity to 2
+    for (i = 0; i < testevidence.length; i++) {
+      if (thisEvidence.includes(testevidence[i].name)) {
+          req.session.data['testevidence'][i].validity = 2
+      }
+    }
   }
   else if (validityanswer.includes('2')) {
     res.redirect('evidence/validity-12')
@@ -413,7 +427,7 @@ router.post('/validity-7c-answer', function (req, res) {
   else if (validityanswer.includes('4')) {
     res.redirect('evidence/validity-14')
   }
-  else if (validityanswer.includes('5')) {
+  else {
     res.redirect('overview')
   }
 })
@@ -424,11 +438,7 @@ router.post('/validity-8-answer', function (req, res) {
   req.session.data['thisEvidence'] = thisEvidence
   let validityanswer = req.session.data['validity-1']
 
-  let answer = req.session.data['validity-8']
-  if (answer.includes('1')) {
-    res.redirect('evidence/validity-9')
-  }
-  else if (validityanswer.includes('2')) {
+  if (validityanswer.includes('2')) {
     res.redirect('evidence/validity-12')
   }
   else if (validityanswer.includes('3')) {
@@ -437,7 +447,7 @@ router.post('/validity-8-answer', function (req, res) {
   else if (validityanswer.includes('4')) {
     res.redirect('evidence/validity-14')
   }
-  else if (validityanswer.includes('5')) {
+  else {
     res.redirect('overview')
   }
 })
@@ -461,7 +471,7 @@ router.post('/validity-9-answer', function (req, res) {
   else if (validityanswer.includes('4')) {
     res.redirect('evidence/validity-14')
   }
-  else if (validityanswer.includes('5')) {
+  else {
     res.redirect('overview')
   }
 })
@@ -485,7 +495,7 @@ router.post('/validity-10-answer', function (req, res) {
   else if (validityanswer.includes('4')) {
     res.redirect('evidence/validity-14')
   }
-  else if (validityanswer.includes('5')) {
+  else {
     res.redirect('overview')
   }
 })
@@ -509,7 +519,7 @@ router.post('/validity-11-answer', function (req, res) {
   else if (validityanswer.includes('4')) {
     res.redirect('evidence/validity-14')
   }
-  else if (validityanswer.includes('5')) {
+  else {
     res.redirect('overview')
   }
 })
@@ -521,13 +531,23 @@ router.post('/validity-12-answer', function (req, res) {
   let validityanswer = req.session.data['validity-1']
 
   let answer = req.session.data['validity-12']
+
+  if (answer.includes('1') + answer.includes('2') + answer.includes('3') + answer.includes('4') + answer.includes('5')) {
+    // set validity to 2
+    for (i = 0; i < testevidence.length; i++) {
+      if (thisEvidence.includes(testevidence[i].name)) {
+          req.session.data['testevidence'][i].validity = 2
+      }
+    }
+  }
+
   if (validityanswer.includes('3')) {
     res.redirect('evidence/validity-13')
   }
   else if (validityanswer.includes('4')) {
     res.redirect('evidence/validity-14')
   }
-  else if (validityanswer.includes('5')) {
+  else {
     res.redirect('overview')
   }
 })
@@ -539,6 +559,24 @@ router.post('/validity-13-answer', function (req, res) {
   let validityanswer = req.session.data['validity-1']
 
   let answer = req.session.data['validity-13']
+
+  if (answer.includes('1')) {
+    // set validity to 2
+    for (i = 0; i < testevidence.length; i++) {
+      if (thisEvidence.includes(testevidence[i].name)) {
+          req.session.data['testevidence'][i].validity = 2
+      }
+    }
+  }
+  if (answer.includes('2')) {
+    // set validity to 2
+    for (i = 0; i < testevidence.length; i++) {
+      if (thisEvidence.includes(testevidence[i].name)) {
+          req.session.data['testevidence'][i].validity = 2
+      }
+    }
+  }
+
   if (validityanswer.includes('4')) {
     res.redirect('evidence/validity-14')
   }
@@ -551,6 +589,26 @@ router.post('/validity-14-answer', function (req, res) {
   let evidence = req.session.data['evidence']
   let thisEvidence = evidence
   req.session.data['thisEvidence'] = thisEvidence
+  let answer = req.session.data['validity-13']
+
+  // if preset in presets is this evidence update validity
+  var i;
+  for (i = 0; i < testevidence.length; i++) {
+    if (thisEvidence.includes(testevidence[i].name)) {
+      if (answer.includes('1')) {
+        req.session.data['testevidence'][i].validity = 1
+      }
+      else if (answer.includes('2')) {
+        req.session.data['testevidence'][i].validity = 2
+      }
+      else if (answer.includes('3')) {
+        req.session.data['testevidence'][i].validity = 3
+      }
+      else if (answer.includes('4')) {
+        req.session.data['testevidence'][i].validity = 4
+      }
+    }
+  }
 
   res.redirect('overview')
 })
