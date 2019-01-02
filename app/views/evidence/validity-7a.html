@@ -28,8 +28,9 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-l">
-        {{ data['thisEvidence'] | capitalize }} validity 7a
+        Do they use different light sources to check the {{ data['thisEvidence'] | capitalize }}?
       </h1>
+      <p>A light source could be something like an ultraviolet light ('black light').</p>
 
       <form action="/validity-7a-answer" method="post" novalidate>
 
@@ -50,11 +51,11 @@
           items: [
             {
               value: "1",
-              text: "Answer"
+              text: "Yes"
             },
             {
               value: "2",
-              text: "Answer"
+              text: "No"
             }
           ]
         }) }}

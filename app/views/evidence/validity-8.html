@@ -28,8 +28,16 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-l">
-        {{ data['thisEvidence'] | capitalize }} validity 8
+        Can the person identify specific features on the {{ data['thisEvidence'] | capitalize }}?
       </h1>
+      <p>
+        They should be able to use an ultraviolet desktop light, magnification tool or other inspection equipment to identify:
+      </p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>intaglio (raised) ink</li>
+        <li>laser etching</li>
+        <li>if features on certain parts of the document are consistent and correct</li>
+      </ul>
 
       <form action="/validity-8-answer" method="post" novalidate>
 
@@ -50,11 +58,11 @@
           items: [
             {
               value: "1",
-              text: "Answer"
+              text: "Yes"
             },
             {
               value: "2",
-              text: "Answer"
+              text: "No"
             }
           ]
         }) }}

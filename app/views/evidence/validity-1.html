@@ -27,9 +27,15 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-xl">Validity</span>
       <h1 class="govuk-heading-l">
-        {{ data['thisEvidence'] | capitalize }} validity 1
+        How do you check if the {{ data['thisEvidence'] | capitalize }} is genuine or valid?
       </h1>
+      <p>Tell us what you do to make sure a piece of evidence is:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>genuine</li>
+        <li>valid (which means it hasn't expired, been cancelled or been reported as lost or stolen)</li>
+      </ul>
 
       <form action="/validity-1-answer" method="post" novalidate>
 
@@ -50,23 +56,23 @@
           items: [
             {
               value: "1",
-              text: "Answer"
+              text: "Check any physical security features (such as a hologram or specialist inks) it has are genuine"
             },
             {
               value: "2",
-              text: "Answer"
+              text: "Check any cryptographic security features (such as a cryptographic key on a chip) it has are genuine"
             },
             {
               value: "3",
-              text: "Answer"
+              text: "Make sure the person's details on the evidence match the details from another source"
             },
             {
               value: "4",
-              text: "Answer"
+              text: "Check some other way"
             },
             {
               value: "5",
-              text: "Answer"
+              text: "We don't check this"
             }
           ]
         }) }}

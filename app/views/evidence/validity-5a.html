@@ -28,16 +28,16 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-l">
-        {{ data['thisEvidence'] | capitalize }} validity 5a
+        What experience does the person checking the {{ data['thisEvidence'] | capitalize }} have?
       </h1>
 
       <form action="/validity-5a-answer" method="post" novalidate>
 
-        {% from "radios/macro.njk" import govukRadios %}
+      {% from "checkboxes/macro.njk" import govukCheckboxes %}
 
-        {{ govukRadios({
+        {{ govukCheckboxes({
           idPrefix: "validity-5a",
-          name: "validity-5a",
+          name: "validity-1",
           fieldset: {
             legend: {
               text: "",
@@ -50,11 +50,23 @@
           items: [
             {
               value: "1",
-              text: "Answer"
+              text: "They know how to use a magnifier "
             },
             {
               value: "2",
-              text: "Answer"
+              text: "They're aware that document fraud takes place"
+            },
+            {
+              value: "3",
+              text: " They can spot errors (such as wrong paper type, spelling mistakes or missing pages) in the document"
+            },
+            {
+              value: "4",
+              text: "They can tell if the details, layout or alignment of the document look wrong"
+            },
+            {
+              value: "5",
+              text: "They have not done any these things before"
             }
           ]
         }) }}
@@ -62,6 +74,7 @@
         {{ govukButton({
           text: "Continue"
         }) }}
+        
       </form>
     </div>
   </div>

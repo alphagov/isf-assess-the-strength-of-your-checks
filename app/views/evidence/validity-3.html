@@ -28,7 +28,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-l">
-        {{ data['thisEvidence'] | capitalize }} validity 3
+        Do you check the original {{ data['thisEvidence'] | capitalize }} or a copy? 
       </h1>
 
       <form action="/validity-3-answer" method="post" novalidate>
@@ -50,11 +50,11 @@
           items: [
             {
               value: "1",
-              text: "Answer"
+              text: "Check the original"
             },
             {
               value: "2",
-              text: "Answer"
+              text: "Check a copy"
             }
           ]
         }) }}
