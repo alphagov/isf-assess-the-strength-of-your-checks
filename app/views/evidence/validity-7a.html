@@ -35,6 +35,37 @@
       <form action="/validity-7a-answer" method="post" novalidate>
 
         {% from "radios/macro.njk" import govukRadios %}
+        {% from "checkboxes/macro.njk" import govukCheckboxes %}
+
+        {% set conditional %}
+          {{ govukCheckboxes({
+            idPrefix: "validity-7b",
+            name: "validity-7b",
+            fieldset: {
+              legend: {
+                text: "What do you use the light source to check?",
+                classes: "govuk-fieldset__legend--s"
+              }
+            },
+            hint: {
+              text: ""
+            },
+            items: [
+              {
+                value: "1",
+                text: "Check the paper the document is printed on looks the way it should"
+              },
+              {
+                value: "2",
+                text: "Check any fluorescent features on the document look the way they should"
+              },
+              {
+                value: "3",
+                text: "We don't check either of these things"
+              }
+            ]
+          }) }}
+        {% endset -%}
 
         {{ govukRadios({
           idPrefix: "validity-7a",
@@ -51,7 +82,10 @@
           items: [
             {
               value: "1",
-              text: "Yes"
+              text: "Yes",
+              conditional: {
+                html: conditional
+              }
             },
             {
               value: "2",

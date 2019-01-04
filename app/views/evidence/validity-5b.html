@@ -28,7 +28,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-l">
-        Has the person checking the {{ data['thisEvidence'] | capitalize }} been taught how to detect false documents? 
+        Has the person checking the {{ data['thisEvidence'] | capitalize }} been taught how to detect false documents?
       </h1>
 
       <p>They might have been trained by one of the following organisations (or an equivalent specialist trainer):</p>
@@ -41,6 +41,36 @@
       <form action="/validity-5b-answer" method="post" novalidate>
 
         {% from "radios/macro.njk" import govukRadios %}
+
+        {% set conditional %}
+        {{ govukRadios({
+          idPrefix: "validity-5c",
+          name: "validity-5c",
+          fieldset: {
+            legend: {
+              text: "How often is their training refreshed?",
+              classes: "govuk-fieldset__legend--s"
+            }
+          },
+          hint: {
+            text: ""
+          },
+          items: [
+            {
+              value: "1",
+              text: "Every year"
+            },
+            {
+              value: "2",
+              text: "Every 3 years"
+            },
+            {
+              value: "3",
+              text: "They do not refresh their training"
+            }
+          ]
+        }) }}
+        {% endset -%}
 
         {{ govukRadios({
           idPrefix: "validity-5b",
@@ -57,7 +87,10 @@
           items: [
             {
               value: "1",
-              text: "Yes"
+              text: "Yes",
+              conditional: {
+                html: conditional
+              }
             },
             {
               value: "2",
