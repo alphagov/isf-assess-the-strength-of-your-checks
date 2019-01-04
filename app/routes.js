@@ -21,8 +21,7 @@ const testevidence =
     {'name':'Bank savings account','strength':'3','validity':'0','chosen':false},
     {'name':'Mortgage account','strength':'3','validity':'0','chosen':false},
     {'name':'Biometric passports that meet the ICAO specifications for e-passports','strength':'3','validity':'0','chosen':false},
-    {'name':'Identity cards','strength':'3','validity':'0','chosen':false},
-    {'name':'Biometric residence permit','strength':'3','validity':'0','chosen':false},
+    {'name':'Biometric residence permit','strength':'3','validity':'0','chosen':false}
   ]
 
 const thisEvidence = []

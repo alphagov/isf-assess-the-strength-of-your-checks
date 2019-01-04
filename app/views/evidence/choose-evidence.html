@@ -30,8 +30,8 @@
             <div class="govuk-radios govuk-radios--conditional" data-module="radios">
               {% for item in data['testevidence'] %}
                 <div class="govuk-radios__item">
-                  <input class="govuk-radios__input" id="evidence" name="evidence" type="radio" value="{{item.name}}">
-                  <label class="govuk-label govuk-radios__label" for="how-contacted-conditional-2">
+                  <input class="govuk-radios__input" id="{{item.name}}" name="evidence" type="radio" value="{{item.name}}">
+                  <label class="govuk-label govuk-radios__label" for="{{item.name}}">
                     {{item.name}}
                   </label>
                 </div>
