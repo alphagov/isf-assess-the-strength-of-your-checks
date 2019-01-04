@@ -1,0 +1,127 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Overview
+{% endblock %}
+
+{% block beforeContent %}
+  {% from "breadcrumbs/macro.njk" import govukBreadcrumbs %}
+  {{ govukBreadcrumbs({
+  items: [
+    {
+      text: "Identity standard",
+      href: "/index"
+    },{
+      text: "Assess how your identity service meets the standard",
+      href: "/before-you-start"
+    },{
+      text: "Overview",
+      href: "/overview"
+    },
+    {
+      text: "Activity history"
+    }
+  ]
+  }) }}
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">
+        Did the org (or yourself) check their ID?
+      </h1>
+
+      <form action="/activity-1-answer" method="post" novalidate>
+        {% from "radios/macro.njk" import govukRadios %}
+
+
+        {% set conditional %}
+          {{ govukRadios({
+            idPrefix: "validity-1b",
+            name: "validity-1b",
+            fieldset: {
+              legend: {
+                text: "How many interactions?",
+                classes: "govuk-fieldset__legend--s"
+              }
+            },
+            hint: {
+              text: ""
+            },
+            items: [
+              {
+                value: "1",
+                text: "3 months"
+              },
+              {
+                value: "2",
+                text: "6 months"
+              },
+              {
+                value: "3",
+                text: "1 year"
+              },
+              {
+                value: "4",
+                text: "3 years"
+              }
+            ]
+          }) }}
+        {% endset -%}
+
+        {{ govukRadios({
+          idPrefix: "activity-1",
+          name: "activity-1",
+          fieldset: {
+            legend: {
+              text: "",
+              classes: "govuk-fieldset__legend--s"
+            }
+          },
+          hint: {
+            text: ""
+          },
+          items: [
+            {
+              value: "1",
+              text: "Their own process",
+              conditional: {
+                html: conditional
+              }
+            },
+            {
+              value: "2",
+              text: "Their own thorough process",
+              conditional: {
+                html: conditional
+              }
+            },
+            {
+              value: "3",
+              text: "They followed MLR regulations",
+              conditional: {
+                html: conditional
+              }
+            },
+            {
+              value: "4",
+              text: "They followed MLR and did physical comparison",
+              conditional: {
+                html: conditional
+              }
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

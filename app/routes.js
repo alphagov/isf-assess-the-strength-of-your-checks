@@ -625,8 +625,35 @@ router.post('/validity-14-answer', function (req, res) {
       }
     }
   }
+})
 
-  res.redirect('overview')
+router.post('/activity-0-answer', function (req, res) {
+  let answer = req.session.data['activity-0']
+  if (answer.includes('1')) {
+    res.redirect('activity/activity-1')
+  }
+  else {
+    req.session.data['activityScore'] = '0'
+    res.redirect('overview')
+  }
+})
+
+router.post('/activity-1-answer', function (req, res) {
+  let answer = req.session.data['activity-1']
+  let conditionalAnswer = req.session.data['activity-1b']
+
+  if (answer.includes('1')) {
+    res.redirect('overview')
+  }
+  else if (conditionalAnswer.includes('1')) {
+    res.redirect('activity/activity-1')
+  }
+  else if (answer.includes('1')) {
+    res.redirect('activity/activity-1')
+  }
+  else if (answer.includes('1')) {
+    res.redirect('activity/activity-1')
+  }
 })
 
 module.exports = router
