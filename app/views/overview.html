@@ -83,9 +83,23 @@
           {% for item in data['testevidence'] %}
             {% if item.chosen %}
               <tr class="govuk-table__row">
-                <td class="govuk-table__cell" scope="row">{{item.name | capitalize }}</td>
-                <td class="govuk-table__cell" scope="row">{{item.strength}}</td>
-                <td class="govuk-table__cell" scope="row">{{item.validity}}</td>
+                <td class="govuk-table__cell" scope="row">{{item.name}}</td>
+                <td class="govuk-table__cell" scope="row">
+                  Score: {{item.strength}}
+                  {% for explanation in data['explanations'] %}
+                    {% if explanation.element == "strength" and explanation.score == item.strength %}
+                      {{explanation.text}}
+                    {% endif %}
+                  {% endfor %}
+                </td>
+                <td class="govuk-table__cell" scope="row">
+                  Score: {{item.validity}}
+                  {% for explanation in data['explanations'] %}
+                    {% if explanation.element == "validity" and explanation.score == item.validity %}
+                      {{explanation.text}}
+                    {% endif %}
+                  {% endfor %}
+                </td>
                 <td class="govuk-table__cell edit" scope="row"><a href="">Change</a></td>
               </tr>
               {% set evidenceExists = "true" %}
@@ -125,6 +139,11 @@
             <td class="govuk-table__cell" scope="row">
               {% if data['activityScore'] %}
                 {{data['activityScore']}}
+                {% for item in data['explanations'] %}
+                  {% if item.element == "activity" and item.score == data['activityScore'] %}
+                    {{item.text}}
+                  {% endif %}
+                {% endfor %}
               {% else %}
                 <a href="/activity/activity-start">Answer required</a>
               {% endif %}
@@ -142,7 +161,12 @@
             </td>
             <td class="govuk-table__cell" scope="row">
               {% if data['fraudScore'] %}
-                {{data['fraudScore']}}
+                Score: {{data['fraudScore']}}
+                {% for item in data['explanations'] %}
+                  {% if item.element == "fraud" and item.score == data['fraudScore'] %}
+                    {{item.text}}
+                  {% endif %}
+                {% endfor %}
               {% else %}
                 <a href="/fraud/fraud-start">Answer required</a>
               {% endif %}
@@ -159,7 +183,12 @@
             </td>
             <td class="govuk-table__cell" scope="row">
               {% if data['verificationScore'] %}
-                {{data['verificationScore']}}
+                Score: {{data['verificationScore']}}
+                {% for item in data['explanations'] %}
+                  {% if item.element == "verification" and item.score == data['verificationScore'] %}
+                    {{item.text}}
+                  {% endif %}
+                {% endfor %}
               {% else %}
                 <a href="/verification/verification-start">Answer required</a>
               {% endif %}

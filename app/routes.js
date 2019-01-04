@@ -24,6 +24,39 @@ const testevidence =
     {'name':'Biometric residence permit','strength':'3','validity':'0','chosen':false}
   ]
 
+const explanations =
+  [
+    {'element':'strength','score':'0','text':'The evidence is not strong enough to give you confidence in the person’s identity.'},
+    {'element':'strength','score':'1','text':'You collect evidence that includes some basic information about the person.'},
+    {'element':'strength','score':'2','text':'You know the person needed to prove their identity to get the evidence. You also know that any digital information the evidence contains is protected by cryptographic security features.'},
+    {'element':'strength','score':'3','text':'You know the organisation made sure the evidence was received by the same person who applied for it.'},
+    {'element':'strength','score':'4','text':'You know the organisation made sure the person matches an image they had from a trusted source.'},
+
+    {'element':'validity','score':'0','text':'You don’t check the details of the evidence.'},
+    {'element':'validity','score':'1','text':'You’ve checked the person’s details match the details held by the organisation that issued the evidence.'},
+    {'element':'validity','score':'2','text':'You’ve checked details of the evidence (such as its reference number or expiry date) match the details held by the organisation that issued it.'},
+    {'element':'validity','score':'3','text':'You’ve checked that any security features on the evidence are genuine.'},
+    {'element':'validity','score':'4','text':'You’ve checked the chip on the passport is genuine.'},
+
+    {'element':'activity','score':'0','text':'You don’t check the history of the identity.'},
+    {'element':'activity','score':'1','text':'You know the identity has interacted with other organisations or individuals over the past 3 months.'},
+    {'element':'activity','score':'2','text':'You know the identity has interacted with other organisations or individuals over the past 6 months.'},
+    {'element':'activity','score':'3','text':'You know the identity has interacted with other organisations or individuals over the past 1 year.'},
+    {'element':'activity','score':'4','text':'You know the identity has interacted with other organisations or individuals over the past 3 years.'},
+
+    {'element':'fraud','score':'0','text':'You don’t check if the identity has been stolen or used fraudulently.'},
+    {'element':'fraud','score':'1','text':'You’ve checked with a reliable and authoritative data source that the identity hasn’t been stolen or used fraudulently.'},
+    {'element':'fraud','score':'2','text':'You’ve checked with a reliable and authoritative data source that the identity doesn’t belong to someone who’s died.'},
+    {'element':'fraud','score':'3','text':'You’ve checked with at least one independent, reliable and authoritative data source that the identity hasn’t been stolen or used fraudulently.'},
+    {'element':'fraud','score':'4','text':''},
+
+    {'element':'verification','score':'0','text':"You don’t check if the person is the person they’re claiming to be."},
+    {'element':'verification','score':'1','text':"You’ve checked the person knows some things about the person they’re claiming to be."},
+    {'element':'verification','score':'2','text':"You’ve checked they match the photo or biometric information on the evidence."},
+    {'element':'verification','score':'3','text':"You’ve checked the person can complete tasks that only the person they’re claiming to be can do."},
+    {'element':'verification','score':'4','text':"You’ve checked that their biometric information matches what’s on the evidence."}
+  ]
+
 const thisEvidence = []
 
 // Add your routes here - above the module.exports line
@@ -31,6 +64,7 @@ const thisEvidence = []
 
 router.post('/set-choose-evidence-variables', function (req, res) {
   req.session.data['testevidence'] = testevidence
+  req.session.data['explanations'] = explanations
   res.redirect('your-risk')
 })
 
