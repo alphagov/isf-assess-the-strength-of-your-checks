@@ -1,0 +1,77 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Overview
+{% endblock %}
+
+{% block beforeContent %}
+  {% from "breadcrumbs/macro.njk" import govukBreadcrumbs %}
+  {{ govukBreadcrumbs({
+  items: [
+    {
+      text: "Identity standard",
+      href: "/index"
+    },{
+      text: "Assess how your identity service meets the standard",
+      href: "/before-you-start"
+    },
+    {
+      text: "Overview"
+    }
+  ]
+  }) }}
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">Verification checks</span>
+      <h1 class="govuk-heading-l">Do you ask any questions that only the person should know the answer to?</h1>
+
+      <p>
+        You might ask the person questions that only the person they’re claiming to be would know the answer to. The questions should be about things that you can also find the answer to, like the person’s financial activity.
+      </p>
+
+      <div class="govuk-inset-text govuk-!-margin-bottom-9">
+        <p>
+          <span style="font-weight:bold">Example</span><br>
+          You could ask the person how much their monthly mortgage payments are. To be able to answer this, they'll need a mortgage (they would have had to prove their identity to get one) and have bills that were sent to their address.
+        </p>
+      </div>
+
+      <form action="/verification-0-answer" method="post" novalidate>
+
+        {% from "radios/macro.njk" import govukRadios %}
+
+        {{ govukRadios({
+          idPrefix: "verification-0",
+          name: "verification-0",
+          fieldset: {
+            legend: {
+              text: "",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+          {
+            value: "1",
+            text: "Yes"
+          },
+          {
+            value: "2",
+            text: "No"
+          }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

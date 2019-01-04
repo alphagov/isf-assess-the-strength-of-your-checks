@@ -1,0 +1,111 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Overview
+{% endblock %}
+
+{% block beforeContent %}
+  {% from "breadcrumbs/macro.njk" import govukBreadcrumbs %}
+  {{ govukBreadcrumbs({
+  items: [
+    {
+      text: "Identity standard",
+      href: "/index"
+    },{
+      text: "Assess how your identity service meets the standard",
+      href: "/before-you-start"
+    },
+    {
+      text: "Overview"
+    }
+  ]
+  }) }}
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">History checks</span>
+      <h1 class="govuk-heading-l">Do you check if the identity has existed over time?</h1>
+      <p>
+        Some examples of interactions that can prove if the identity has been active over a period of time include:
+        <ul class="govuk-list govuk-list--bullet">
+          <li>credit card transactions</li>
+          <li>student loan repayments</li>
+          <li>mortgage payments</li>
+          <li>gas or electricity account payments</li>
+          <li>posts on social media</li>
+        </ul>
+      </p>
+      <form action="/activity-0-answer" method="post" novalidate>
+
+        {% from "radios/macro.njk" import govukRadios %}
+
+        {% set timeperiod %}
+        {{ govukRadios({
+          idPrefix: "validity-0b",
+          name: "validity-0b",
+          fieldset: {
+            legend: {
+              text: "Over what period of time do you look for interactions?",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--s"
+            }
+          },
+          items: [
+            {
+              value: "1",
+              text: "3 months"
+            },
+            {
+              value: "2",
+              text: "6 months"
+            },
+            {
+              value: "3",
+              text: "1 year"
+            },
+            {
+              value: "4",
+              text: "3 years"
+            }
+          ]
+        }) }}
+
+        {% endset -%}
+
+
+        {{ govukRadios({
+          idPrefix: "validity-0a",
+          name: "validity-0a",
+          fieldset: {
+            legend: {
+              text: "",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            {
+              value: "yes",
+              text: "Yes",
+              conditional: {
+                html: timeperiod
+              }
+            },{
+              value: "n/a",
+              text: "No"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

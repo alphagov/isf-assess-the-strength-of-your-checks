@@ -1,0 +1,96 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Overview
+{% endblock %}
+
+{% block beforeContent %}
+  {% from "breadcrumbs/macro.njk" import govukBreadcrumbs %}
+  {{ govukBreadcrumbs({
+  items: [
+    {
+      text: "Identity standard",
+      href: "/index"
+    },{
+      text: "Assess how your identity service meets the standard",
+      href: "/before-you-start"
+    },
+    {
+      text: "Overview"
+    }
+  ]
+  }) }}
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">Fraud checks</span>
+      <h1 class="govuk-heading-l">Has the person been impersonated?</h1>
+
+      <p>
+        Your current process must check all of the following about the person:
+        <ul class="govuk-list govuk-list--bullet">
+          <li>their details don’t belong to someone who has died</li>
+          <li>they’re known by an organisation that should have a record of that person (for example an Electoral Registration Office in a local authority)</li>
+          <li>they’re not at a high risk of being impersonated (for example if they’re a public figure that’s currently in the news)</li>
+        </ul>
+      </p>
+      <p class="govuk-!-margin-bottom-6">
+        You must check this with an authoritative data source.
+      </p>
+
+      <details class="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Find out more about authoritative data sources
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          <p>
+            To be authoritative, a source must have data about the identity or evidence.
+          </p>
+
+          <p>
+            The data about the evidence must be from the organisation that issued it. They’ll need to know enough about the identity or evidence to be able to confirm if the details you have are right. They'll also need to make sure the information is up to date and hasn't been tampered with.
+          </p>
+        </div>
+      </details>
+
+
+      <form action="/fraud-1-answer" method="post" novalidate>
+
+        {% from "radios/macro.njk" import govukRadios %}
+
+        {{ govukRadios({
+          idPrefix: "fraud-1",
+          name: "fraud-1",
+          fieldset: {
+            legend: {
+              text: "",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "1",
+              text: "Yes"
+            },
+            {
+              value: "2",
+              text: "No"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

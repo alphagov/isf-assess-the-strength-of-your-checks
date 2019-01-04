@@ -629,4 +629,94 @@ router.post('/validity-14-answer', function (req, res) {
   res.redirect('overview')
 })
 
+router.post('/activity-0-answer', function (req, res) {
+
+  let answer = req.session.data['validity-0a']
+  let conditionalAnswer = req.session.data['validity-0b']
+
+  if (answer.includes('2')) {
+    req.session.data['activityScore'] = "N/A"
+  }
+  else if (conditionalAnswer.includes('1')) {
+    req.session.data['activityScore'] = "1"
+  }
+  else if (conditionalAnswer.includes('2')) {
+    req.session.data['activityScore'] = "2"
+  }
+  else if (conditionalAnswer.includes('3')) {
+    req.session.data['activityScore'] = "3"
+  }
+  else if (conditionalAnswer.includes('4')) {
+    req.session.data['activityScore'] = "4"
+  }
+  res.redirect('/fraud/fraud-start')
+})
+
+router.post('/fraud-0-answer', function (req, res) {
+  let answer = req.session.data['fraud-0']
+
+  if (answer.includes('1')) {
+    res.redirect('/fraud/fraud-1')
+  }
+  else if (answer.includes('2')) {
+    req.session.data['fraudScore'] = "0"
+    res.redirect('/verification/verification-start')
+  }
+})
+
+router.post('/fraud-1-answer', function (req, res) {
+  let answer = req.session.data['fraud-1']
+
+  if (answer.includes('1')) {
+    res.redirect('/fraud/fraud-2')
+  }
+  else if (answer.includes('2')) {
+    req.session.data['fraudScore'] = "1"
+    res.redirect('/verification/verification-start')
+  }
+})
+
+router.post('/fraud-2-answer', function (req, res) {
+  let answer = req.session.data['fraud-2']
+
+  if (answer.includes('1')) {
+    req.session.data['fraudScore'] = "3"
+    res.redirect('/verification/verification-start')
+  }
+  else if (answer.includes('2')) {
+    req.session.data['fraudScore'] = "4"
+    res.redirect('/verification/verification-start')
+  }
+})
+
+router.post('/verification-0-answer', function (req, res) {
+  let answer = req.session.data['verification-0']
+
+  if (answer.includes('1')) {
+    res.redirect('/verification/verification-1')
+  }
+  else if (answer.includes('2')) {
+    req.session.data['verificationScore'] = "0"
+    res.redirect('/overview')
+  }
+})
+
+router.post('/verification-1-answer', function (req, res) {
+  let answer = req.session.data['verification-1a']
+  let conditionalAnswer = req.session.data['verification-1b']
+
+  if (answer.includes('1')) {
+    if ((conditionalAnswer.includes('1') || conditionalAnswer.includes('2')) && conditionalAnswer.includes('3') ) {
+      req.session.data['verificationScore'] = "3"
+    }
+    else if (conditionalAnswer.includes('1') || conditionalAnswer.includes('2') || conditionalAnswer.includes('3') ) {
+      req.session.data['verificationScore'] = "2"
+    }
+  }
+  else {
+    req.session.data['verificationScore'] = "0"
+  }
+  res.redirect('/overview')
+})
+
 module.exports = router

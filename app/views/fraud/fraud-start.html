@@ -1,0 +1,97 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Overview
+{% endblock %}
+
+{% block beforeContent %}
+  {% from "breadcrumbs/macro.njk" import govukBreadcrumbs %}
+  {{ govukBreadcrumbs({
+  items: [
+    {
+      text: "Identity standard",
+      href: "/index"
+    },{
+      text: "Assess how your identity service meets the standard",
+      href: "/before-you-start"
+    },
+    {
+      text: "Overview"
+    }
+  ]
+  }) }}
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">Fraud checks</span>
+      <h1 class="govuk-heading-l">Do you check if the identity has been stolen or used fraudulently?</h1>
+
+      <p>
+        Your current process must check all of the following about the person:
+        <ul class="govuk-list govuk-list--bullet">
+          <li>they’ve not had their details stolen (even if those details have not been used fraudulently yet)</li>
+          <li>they’ve not been a victim of identity theft</li>
+          <li>they’re not a known fraudulent identity</li>
+          <li>they’ve not had any information unique to a piece of evidence they have (such as a reference number) stolen and used fraudulently</li>
+        </ul>
+      </p>
+
+      <p class="govuk-!-margin-bottom-6">
+        You must check this with an authoritative data source.
+      </p>
+
+      <details class="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Find out more about authoritative data sources
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          <p>
+            To be authoritative, a source must have data about the identity or evidence.
+          </p>
+
+          <p>
+            The data about the evidence must be from the organisation that issued it. They’ll need to know enough about the identity or evidence to be able to confirm if the details you have are right. They'll also need to make sure the information is up to date and hasn't been tampered with.
+          </p>
+        </div>
+      </details>
+
+      <form action="/fraud-0-answer" method="post" novalidate>
+
+        {% from "radios/macro.njk" import govukRadios %}
+
+        {{ govukRadios({
+          idPrefix: "fraud-0",
+          name: "fraud-0",
+          fieldset: {
+            legend: {
+              text: "",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+          {
+            value: "1",
+            text: "Yes"
+          },
+          {
+            value: "2",
+            text: "No"
+          }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
