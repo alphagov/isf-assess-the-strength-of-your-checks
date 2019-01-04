@@ -30,7 +30,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-l">
-        Overview
+        Your checks
       </h1>
 
       {% if complete == "True" %}
@@ -69,8 +69,6 @@
 
       <h2 class="govuk-heading-m govuk-!-margin-0">Evidence checks</h2>
 
-
-
       <table class="govuk-table govuk-!-margin-bottom-7 govuk-!-margin-top-0">
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">
@@ -106,6 +104,75 @@
         </tbody>
       </table>
       <p class="table-link"><a href="/evidence/choose-evidence">Add evidence</a></p>
+
+      <h2 class="govuk-heading-m govuk-!-margin-0">Other identity checks</h2>
+
+      <table class="govuk-table govuk-!-margin-bottom-7 govuk-!-margin-top-0">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th class="govuk-table__header" scope="col"></th>
+            <th class="govuk-table__header" scope="col"></th>
+            <th class="govuk-table__header" scope="col"></th>
+            <th class="govuk-table__header" scope="col"></th>
+          </tr>
+        </thead>
+
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell" scope="row">
+              Activity history
+            </td>
+            <td class="govuk-table__cell" scope="row">
+              {% if data['activityScore'] %}
+                {{data['activityScore']}}
+              {% else %}
+                <a href="/activity/activity-start">Answer required</a>
+              {% endif %}
+            </td>
+            <td class="govuk-table__cell" scope="row"></td>
+            <td class="govuk-table__cell edit" scope="row">
+              {% if data['activityScore'] %}
+                <a href="/activity/activity-start">Change</a>
+              {% endif %}
+            </td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell" scope="row">
+              Fraud checks
+            </td>
+            <td class="govuk-table__cell" scope="row">
+              {% if data['fraudScore'] %}
+                {{data['fraudScore']}}
+              {% else %}
+                <a href="/fraud/fraud-start">Answer required</a>
+              {% endif %}
+            </td>
+            <td class="govuk-table__cell" scope="row"></td>
+            <td class="govuk-table__cell edit" scope="row">
+              {% if data['fraudScore'] %}
+                <a href="/fraud/fraud-start">Change</a>
+              {% endif %}
+            </td>          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell" scope="row">
+              Verification
+            </td>
+            <td class="govuk-table__cell" scope="row">
+              {% if data['verificationScore'] %}
+                {{data['verificationScore']}}
+              {% else %}
+                <a href="/verification/verification-start">Answer required</a>
+              {% endif %}
+            </td>
+            <td class="govuk-table__cell" scope="row"></td>
+            <td class="govuk-table__cell edit" scope="row">
+              {% if data['activityScore'] %}
+                <a href="/verification/verification-start">verification</a>
+              {% endif %}
+            </td>
+          </tr>
+        </tbody>
+      </table>
 
       <br>
 
