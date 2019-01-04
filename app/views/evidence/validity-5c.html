@@ -28,7 +28,8 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-l">
-        {{ data['thisEvidence'] | capitalize }} validity 5c - this is a prog disco on 5b
+        How often does the person checking the {{ data['thisEvidence'] }} refresh their training?
+        (validity 5c - this is a prog disco on 5b)
       </h1>
 
       <form action="/validity-5c-answer" method="post" novalidate>
@@ -50,15 +51,15 @@
           items: [
             {
               value: "1",
-              text: "Answer"
+              text: "Every year"
             },
             {
               value: "2",
-              text: "Answer"
+              text: "Every 3 years"
             },
             {
               value: "3",
-              text: "Answer"
+              text: "They do not refresh their training"
             }
           ]
         }) }}

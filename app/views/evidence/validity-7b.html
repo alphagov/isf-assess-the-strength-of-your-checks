@@ -28,7 +28,8 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-l">
-        {{ data['thisEvidence'] | capitalize }} validity 7b - PROG DISCO ON 7A
+        What do you use the light source to check the {{ data['thisEvidence'] }}?
+        validity 7b - PROG DISCO ON 7A
       </h1>
 
       <form action="/validity-7b-answer" method="post" novalidate>
@@ -50,11 +51,15 @@
           items: [
             {
               value: "1",
-              text: "Answer"
+              text: "Check the paper the document is printed on looks the way it should"
             },
             {
               value: "2",
-              text: "Answer"
+              text: "Check any fluorescent features on the document look the way they should"
+            },
+            {
+              value: "3",
+              text: "We don't check either of these things"
             }
           ]
         }) }}
