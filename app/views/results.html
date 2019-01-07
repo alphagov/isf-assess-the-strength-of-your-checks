@@ -33,7 +33,6 @@
       <div class="banner">
         <div class="banner-message">
           <p class="banner-message">
-            {{data['printme']}}
             {{data['result-message']}}
           </p>
         </div>
@@ -63,27 +62,28 @@
     <div class="govuk-grid-column-one-quarter">
       <h3 class="visually-hidden">Stolen identity</h3>
       <p class="govuk-heading-m govuk-!-margin-bottom-2">
+        {{ data['stolen-evidence-message'] }}
       </p>
       <p>against someone using evidence that doesn't belong to them.</p>
     </div>
     <div class="govuk-grid-column-one-quarter">
       <h3 class="visually-hidden">Protection against stolen information</h3>
       <p class="govuk-heading-m govuk-!-margin-bottom-2">
-
+        {{ data['stolen-information-message'] }}
       </p>
       <p>against someone using information that doesn't belong to them.</p>
     </div>
     <div class="govuk-grid-column-one-quarter">
       <h3 class="visually-hidden">Protection against synthetic evidence</h3>
       <p class="govuk-heading-m govuk-!-margin-bottom-2">
-
+        {{ data['created-evidence-message'] }}
       </p>
       <p>against someone using evidence they’ve created for an existing person.</p>
     </div>
     <div class="govuk-grid-column-one-quarter">
       <h3 class="visually-hidden">Protection against manipulated evidence</h3>
       <p class="govuk-heading-m govuk-!-margin-bottom-2">
-
+        {{ data['tampered-evidence-message'] }}
       </p>
       <p>against someone using genuine evidence which has been tampered with.</p>
     </div>

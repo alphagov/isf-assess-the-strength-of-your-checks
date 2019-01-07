@@ -792,57 +792,59 @@ router.post('/overview-answer', function (req, res) {
   // if true in testevidence.strength
   // let testevidence = req.session.data['testevidence']
 
+  req.session.data['testevidence'].forEach(evidence => {
+    if (verificationScore >= 4){
+      req.session.data['stolen-evidence-message'] = "Very high protection"
+    } else if ((evidence.chosen && evidence.validity >= 2) || fraudScore >= 3 || verificationScore >= 3 ){
+      req.session.data['stolen-evidence-message'] = "High protection"
+    } else if (fraudScore >= 2 || verificationScore >= 2 ){
+      req.session.data['stolen-evidence-message'] = "Medium protection"
+    } else if (fraudScore >= 1 ){
+      req.session.data['stolen-evidence-message'] = "Low protection"
+    } else {
+      req.session.data['stolen-evidence-message'] = "No protection"
+    }
+
+    if (verificationScore >= 4){
+      req.session.data['stolen-information-message'] = "Very high protection"
+    } else if (fraudScore >= 3 || verificationScore >= 3 ){
+      req.session.data['stolen-information-message'] = "High protection"
+    } else if (fraudScore >= 2 || verificationScore >= 2 ){
+      req.session.data['stolen-information-message'] = "Medium protection"
+    } else if (fraudScore >= 1 || verificationScore >= 1 ){
+      req.session.data['stolen-information-message'] = "Low protection"
+    } else {
+      req.session.data['stolen-information-message'] = "No protection"
+    }
+
+    if ((evidence.chosen && evidence.validity >= 4) || activityScore >= 4){
+      req.session.data['created-evidence-message'] = "Very high protection"
+    } else if ((evidence.chosen && evidence.strength >= 3) || (evidence.chosen && evidence.strength >= 3) || fraudScore >= 3 || verificationScore >= 4) {
+      req.session.data['created-evidence-message'] = "High protection"
+    } else if ((evidence.chosen && evidence.validity >= 2) || activityScore >= 2 || fraudScore >= 1){
+      req.session.data['created-evidence-message'] = "Medium protection"
+    } else if ((evidence.chosen && evidence.validity >= 1) || activityScore >= 1 || fraudScore >= 1 || verificationScore >= 3){
+      req.session.data['created-evidence-message'] = "Low protection"
+    } else {
+      req.session.data['created-evidence-message'] = "No protection"
+    }
+
+    if ((evidence.chosen && evidence.validity >= 4)){
+      req.session.data['tampered-evidence-message'] = "Very high protection"
+    } else if ((evidence.chosen && evidence.validity >= 3) || verificationScore >= 4) {
+      req.session.data['tampered-evidence-message'] = "High protection"
+    } else if ((evidence.chosen && evidence.validity >= 2) || verificationScore >= 2){
+      req.session.data['tampered-evidence-message'] = "Medium protection"
+    } else if ((evidence.chosen && evidence.validity >= 1) || fraudScore >= 1 || verificationScore >= 1){
+      req.session.data['tampered-evidence-message'] = "Low protection"
+    } else {
+      req.session.data['tampered-evidence-message'] = "No protection"
+    }
+
+
+  })
+
   res.redirect('/results')
-
-
-  // {% if verificationScore == 4 %}
-  //   req.session.data['stolen-evidence-message'] = "Very high protection"
-  // {% elif 3 in combinedEvidence.strength %}
-  // {% elif elementBPassportScore == 2 or elementBPassportScore == 3 or elementBPassportScore == 4 or elementBDrivingLicenceScore == 2 or elementBDrivingLicenceScore == 3 or elementBDrivingLicenceScore == 4 or elementDScore == 3 or elementDScore == 4 or verificationScore == 3 %}
-  //   req.session.data['stolen-evidence-message'] = "High protection"
-  // {% elif elementDScore == 2 or verificationScore == 2 %}
-  //   req.session.data['stolen-evidence-message'] = "Medium protection"
-  // {% elif elementDScore == 1 %}
-  //   req.session.data['stolen-evidence-message'] = "Low protection"
-  // {% else %}
-  //   req.session.data['stolen-evidence-message'] = "No protection"
-  // {% endif %}
-
-  // {% if verificationScore == 4 %}
-  //   Very high protection
-  // {% elif elementDScore == 3 or elementDScore == 4 or verificationScore == 3 %}
-  //   High protection
-  // {% elif elementDScore == 2 or verificationScore == 2 %}
-  //   Medium protection
-  // {% elif elementDScore == 1 or verificationScore == 1 %}
-  //   Low protection
-  // {% else %}
-  //   No protection
-  // {% endif %}
-  //
-  // {% if elementBPassportScore == 4 or elementBDrivingLicenceScore == 4 or data['elementEScore'] == 4 %}
-  //   Very high protection
-  // {% elif data['evidence'].includes('Passport') or data['evidence'].includes('Driving licence') or elementBPassportScore == 3 or elementBDrivingLicenceScore == 3 or data['elementEScore'] == 3 or elementDScore == 3  or verificationScore == 4 %}
-  //   High protection
-  // {% elif elementBPassportScore == 2 or elementBDrivingLicenceScore == 2 or data['elementEScore'] == 2 or elementDScore == 2 %}
-  //   Medium protection
-  // {% elif elementBPassportScore == 1 or elementBDrivingLicenceScore == 1 or data['elementEScore'] == 1 or elementDScore == 1 or verificationScore == 3 %}
-  //   Low protection
-  // {% else %}
-  //   No protection
-  // {% endif %}
-  //
-  // {% if  elementBPassportScore == 4  or elementBDrivingLicenceScore == 4 %}
-  //   Very high protection
-  // {% elif elementBPassportScore == 3 or elementBDrivingLicenceScore == 3 or verificationScore == 4 %}
-  //   High protection
-  // {% elif elementBPassportScore == 2 or elementBDrivingLicenceScore == 2 or verificationScore == 2 or verificationScore == 3 %}
-  //   Medium protection
-  // {% elif elementBPassportScore == 1 or  elementBDrivingLicenceScore == 1 or elementDScore == 1 or elementDScore == 2 or elementDScore == 3 or elementDScore == 4 or verificationScore == 1 %}
-  //   Low protection
-  // {% else %}
-  //   No protection
-  // {% endif %}
 
 
 
