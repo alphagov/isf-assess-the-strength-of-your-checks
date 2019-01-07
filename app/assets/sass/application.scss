@@ -29,3 +29,39 @@ td.govuk-table__cell.edit{
 .hint{
   color:  $govuk-secondary-text-colour;
 }
+
+
+.banner{
+  color: #005ea5;
+  text-transform: none;
+  padding: 20px;
+  margin-top: 0px;
+  border-width: 5px;
+  border-style: solid;
+}
+
+.banner-message{
+  color: #005ea5;
+  font-family: "nta";
+  -webkit-font-smoothing: antialiased;
+  font-size: 24px;
+  line-height: 1.25;
+  font-weight: 600;
+  margin: 0;
+}
+
+.govuk-grid-column-one-quarter{
+  padding-left: 0;
+}
+
+.level-of-protection{
+  margin: 50px 0;
+}
+
+.visually-hidden{
+  display: none;
+}
+
+#recommendations .govuk-list--bullet{
+  margin-top: -10px;
+}

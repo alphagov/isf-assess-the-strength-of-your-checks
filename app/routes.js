@@ -3,8 +3,8 @@ const router = express.Router()
 
 const testevidence =
   [
-    {'name':'gas or electric bill','strength':'1', 'validity':'0','chosen':false},
-    {'name':'letter from a local authority','strength':'1', 'validity':'0','chosen':false},
+    {'name':'Gas or electric bill','strength':'1', 'validity':'0','chosen':false},
+    {'name':'Letter from a local authority','strength':'1', 'validity':'0','chosen':false},
 
     {'name':'Birth or adoption certificate','strength':'2','validity':'0','chosen':false},
     {'name':'Older person’s bus pass','strength':'2','validity':'0','chosen':false},
@@ -58,6 +58,8 @@ const explanations =
   ]
 
 const thisEvidence = []
+
+const highStrengthScore = []
 
 // Add your routes here - above the module.exports line
 
@@ -431,6 +433,7 @@ router.post('/validity-7b-answer', function (req, res) {
   let answer = req.session.data['validity-7b']
   if (answer.includes('1') && answer.includes('2')) {
     // set validity to 2
+    var i;
     for (i = 0; i < testevidence.length; i++) {
       if (thisEvidence.includes(testevidence[i].name)) {
           req.session.data['testevidence'][i].validity = 2
@@ -464,6 +467,7 @@ router.post('/validity-7c-answer', function (req, res) {
   let answer = req.session.data['validity-7c']
   if (answer.includes('1') && answer.includes('2')) {
     // set validity to 2
+    var i;
     for (i = 0; i < testevidence.length; i++) {
       if (thisEvidence.includes(testevidence[i].name)) {
           req.session.data['testevidence'][i].validity = 2
@@ -751,6 +755,107 @@ router.post('/verification-1-answer', function (req, res) {
     req.session.data['verificationScore'] = "0"
   }
   res.redirect('/overview')
+})
+
+router.post('/overview-answer', function (req, res) {
+  // validation to go here
+  req.session.data['result-message'] = "Your checks do not protect against your service’s risk of fraud."
+
+
+  // Group strength and validity combo
+  // if true in testevidence.strength
+  let testevidence = req.session.data['testevidence']
+  let combinedEvidence = []
+
+  for (var item in testevidence) {
+    if (testevidence[item].chosen == true){
+      combinedEvidence.push({
+        strength: testevidence[item].strength,
+        validity: testevidence[item].validity
+      });
+    }
+  }
+
+  // Find highest strength
+  // if true in testevidence.strength
+  let strength1 = []
+  let strength2 = []
+  let strength3 = []
+  let strength4 = []
+
+  for (var item in testevidence) {
+    if (testevidence[item].chosen == false){
+      if (testevidence[item].strength = '4'){
+        strength4.push(testevidence[item].strength)
+      }
+      else if (testevidence[item].strength = '3'){
+        strength3.push(testevidence[item].strength)
+      }
+      else if (testevidence[item].strength = '2'){
+        strength2.push(testevidence[item].strength)
+      }
+      else if (testevidence[item].strength = '1'){
+        strength1.push('1')
+      }
+    }
+  }
+
+  req.session.data['printme'] = strength1
+
+  res.redirect('/results')
+
+
+  // {% if verificationScore == 4 %}
+  //   req.session.data['stolen-evidence-message'] = "Very high protection"
+  // {% elif 3 in combinedEvidence.strength %}
+  // {% elif elementBPassportScore == 2 or elementBPassportScore == 3 or elementBPassportScore == 4 or elementBDrivingLicenceScore == 2 or elementBDrivingLicenceScore == 3 or elementBDrivingLicenceScore == 4 or elementDScore == 3 or elementDScore == 4 or verificationScore == 3 %}
+  //   req.session.data['stolen-evidence-message'] = "High protection"
+  // {% elif elementDScore == 2 or verificationScore == 2 %}
+  //   req.session.data['stolen-evidence-message'] = "Medium protection"
+  // {% elif elementDScore == 1 %}
+  //   req.session.data['stolen-evidence-message'] = "Low protection"
+  // {% else %}
+  //   req.session.data['stolen-evidence-message'] = "No protection"
+  // {% endif %}
+
+  // {% if verificationScore == 4 %}
+  //   Very high protection
+  // {% elif elementDScore == 3 or elementDScore == 4 or verificationScore == 3 %}
+  //   High protection
+  // {% elif elementDScore == 2 or verificationScore == 2 %}
+  //   Medium protection
+  // {% elif elementDScore == 1 or verificationScore == 1 %}
+  //   Low protection
+  // {% else %}
+  //   No protection
+  // {% endif %}
+  //
+  // {% if elementBPassportScore == 4 or elementBDrivingLicenceScore == 4 or data['elementEScore'] == 4 %}
+  //   Very high protection
+  // {% elif data['evidence'].includes('Passport') or data['evidence'].includes('Driving licence') or elementBPassportScore == 3 or elementBDrivingLicenceScore == 3 or data['elementEScore'] == 3 or elementDScore == 3  or verificationScore == 4 %}
+  //   High protection
+  // {% elif elementBPassportScore == 2 or elementBDrivingLicenceScore == 2 or data['elementEScore'] == 2 or elementDScore == 2 %}
+  //   Medium protection
+  // {% elif elementBPassportScore == 1 or elementBDrivingLicenceScore == 1 or data['elementEScore'] == 1 or elementDScore == 1 or verificationScore == 3 %}
+  //   Low protection
+  // {% else %}
+  //   No protection
+  // {% endif %}
+  //
+  // {% if  elementBPassportScore == 4  or elementBDrivingLicenceScore == 4 %}
+  //   Very high protection
+  // {% elif elementBPassportScore == 3 or elementBDrivingLicenceScore == 3 or verificationScore == 4 %}
+  //   High protection
+  // {% elif elementBPassportScore == 2 or elementBDrivingLicenceScore == 2 or verificationScore == 2 or verificationScore == 3 %}
+  //   Medium protection
+  // {% elif elementBPassportScore == 1 or  elementBDrivingLicenceScore == 1 or elementDScore == 1 or elementDScore == 2 or elementDScore == 3 or elementDScore == 4 or verificationScore == 1 %}
+  //   Low protection
+  // {% else %}
+  //   No protection
+  // {% endif %}
+
+
+
 })
 
 module.exports = router

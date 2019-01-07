@@ -138,7 +138,7 @@
             </td>
             <td class="govuk-table__cell" scope="row">
               {% if data['activityScore'] %}
-                {{data['activityScore']}}
+                Score: {{data['activityScore']}}
                 {% for item in data['explanations'] %}
                   {% if item.element == "activity" and item.score == data['activityScore'] %}
                     {{item.text}}
@@ -204,10 +204,11 @@
       </table>
 
       <br>
-
-      <a href="result" class="govuk-button">
-        Continue
-      </a>
+      <form action="/overview-answer" method="post" novalidate>
+        {{ govukButton({
+          text: "Continue to results"
+        }) }}
+      </form>
 
     </div>
   </div>
