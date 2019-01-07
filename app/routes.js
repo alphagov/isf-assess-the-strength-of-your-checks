@@ -772,6 +772,7 @@ router.post('/overview-answer', function (req, res) {
   })
   evidenceProfiles['cEvidence'] = profileCEvidenceCount >= 3 ? true : false
 
+
   // 1 or multiple pieces of evidence
   let fraudScore = req.session.data['fraudScore']
   let verificationScore = req.session.data['verificationScore']
@@ -779,14 +780,23 @@ router.post('/overview-answer', function (req, res) {
 
   // 1 piece of evidence
   var not = 'do not';
-  if (
-      (evidenceProfiles['aEvidence'] && verificationScore >= 1 && fraudScore >= 2) ||
-      (evidenceProfiles['bEvidence'] && verificationScore >= 3) ||
-      (evidenceProfiles['cEvidence'] && verificationScore >= 2 && fraudScore >= 2 && activityScore >= 3)
-    ) {
-    not = '';
+  var riskLevel = req.session.data['user-risk-level']
+
+  if (riskLevel == "low"){
+    if (
+        (evidenceProfiles['aEvidence'] && verificationScore >= 1 && fraudScore >= 2) ||
+        (evidenceProfiles['bEvidence'] && verificationScore >= 3) ||
+        (evidenceProfiles['cEvidence'] && verificationScore >= 2 && fraudScore >= 2 && activityScore >= 3)
+      ) {
+      not = '';
+    }
   }
-  req.session.data['result-message'] = "Your checks " + not + " protect against your service’s risk of fraud."
+  // Push evidence result to view for the Recommendations
+  req.session.data['aEvidenceRecommendation'] = evidenceProfiles['aEvidence']
+  req.session.data['bEvidenceRecommendation'] = evidenceProfiles['bEvidence']
+  req.session.data['cEvidenceRecommendation'] = evidenceProfiles['cEvidence']
+
+  req.session.data['result-message'] = "Your checks " + not + " protect against your service’s " + riskLevel + " risk of fraud."
 
   // Group strength and validity combo
   // if true in testevidence.strength

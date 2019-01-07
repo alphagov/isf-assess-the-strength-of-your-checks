@@ -111,22 +111,24 @@
 
       <h3 class="govuk-heading-m govuk-!-margin-top-7">Identity profiles for your level of risk</h3>
 
-      {% if risklevel == "low" %}
+      {% if data['user-risk-level'] == "low" %}
         <h4 class="govuk-heading-s">Profile A</h4>
 
         <p>
           To this profile you need to:
           <ul class="govuk-list govuk-list--bullet">
-            <!-- <li>collect 1 piece of evidence with a strength score of at least 2 and a validitiy score of at least 2</li> -->
-            <!-- {% if data['elementEScore'] < "0" %}
+            {% if data['aEvidenceRecommendation'] == false %}
+              <li>collect 1 piece of evidence with a strength score of at least 2 and a validitiy score of at least 2</li>
+            {% endif %}
+            {% if data['activityScore'] < "0" %}
               <li>achieve a history check score of 0</li>
             {% endif %}
-            {% if elementDScore < "2" %}
+            {% if data['fraudScore'] < "2" %}
               <li>achieve a verification score of 2</li>
             {% endif %}
-            {% if verificationScore < "2" %}
+            {% if data['verificationScore'] < "2" %}
               <li>achieve a fraud check score of 2</li>
-            {% endif %} -->
+            {% endif %}
           </ul>
         </p>
 
@@ -135,10 +137,12 @@
         <p>
           To this profile you need to:
           <ul class="govuk-list govuk-list--bullet">
-            <!-- <li>collect 1 piece of evidence with a strength score of at least 3 and a validitiy score of at least 2</li>
-            {% if verificationScore < '3' %}
+            {% if data['bEvidenceRecommendation'] == false %}
+              <li>collect 1 piece of evidence with a strength score of at least 3 and a validitiy score of at least 2</li>
+            {% endif %}
+            {% if data['verificationScore'] < '3' %}
               <li>achieve a verification score of 3</li>
-            {% endif %} -->
+            {% endif %}
           </ul>
         </p>
 
@@ -147,16 +151,18 @@
         <p>
           To this profile you need to:
           <ul class="govuk-list govuk-list--bullet">
-            <li>collect 3 pieces of evidence with a strength score of at least 1 and a validitiy score of at least 1</li>
-            <!-- {% if data['elementEScore'] < "3" %}
+            {% if data['bEvidenceRecommendation'] == false %}
+              <li>collect 3 pieces of evidence with a strength score of at least 1 and a validitiy score of at least 1</li>
+            {% endif %}
+            {% if data['activityScore'] < "3" %}
               <li>achieve a history check score of 3</li>
             {% endif %}
-            {% if elementDScore < "3" %}
+            {% if data['fraudScore'] < "3" %}
               <li>achieve a fraud check score of 3</li>
             {% endif %}
-            {% if verificationScore < "2" %}
+            {% if data['verificationScore'] < "2" %}
               <li>achieve a verification score of 2</li>
-            {% endif %} -->
+            {% endif %}
           </ul>
         </p>
       {% endif %}
