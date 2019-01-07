@@ -5,6 +5,7 @@ const testevidence =
   [
     {'name':'Gas or electric bill','strength':'1', 'validity':'0','chosen':false},
     {'name':'Letter from a local authority','strength':'1', 'validity':'0','chosen':false},
+    {'name':'Letter from Santa','strength':'1', 'validity':'0','chosen':false},
 
     {'name':'Birth or adoption certificate','strength':'2','validity':'0','chosen':false},
     {'name':'Older person’s bus pass','strength':'2','validity':'0','chosen':false},
@@ -759,48 +760,37 @@ router.post('/verification-1-answer', function (req, res) {
 
 router.post('/overview-answer', function (req, res) {
   // validation to go here
-  req.session.data['result-message'] = "Your checks do not protect against your service’s risk of fraud."
+  // 1 piece of evidence
+  let evidenceProfiles = {};
+  let profileCEvidenceCount = 0;
+  req.session.data['testevidence'].forEach(evidence => {
+    evidenceProfiles['bEvidence'] = (evidence.chosen && evidence.strength >= 3 && evidence.validity >= 2) ? true : false
+    evidenceProfiles['aEvidence'] = (evidence.chosen && evidence.strength >= 2 && evidence.validity >= 2) ? true : false
+    if (evidence.chosen && evidence.strength >= 1 && evidence.validity >= 1) {
+      profileCEvidenceCount++
+    }
+  })
+  evidenceProfiles['cEvidence'] = profileCEvidenceCount >= 3 ? true : false
 
+  // 1 or multiple pieces of evidence
+  let fraudScore = req.session.data['fraudScore']
+  let verificationScore = req.session.data['verificationScore']
+  let activityScore = req.session.data['activityScore']
+
+  // 1 piece of evidence
+  var not = 'do not';
+  if (
+      (evidenceProfiles['aEvidence'] && verificationScore >= 1 && fraudScore >= 2) ||
+      (evidenceProfiles['bEvidence'] && verificationScore >= 3) ||
+      (evidenceProfiles['cEvidence'] && verificationScore >= 2 && fraudScore >= 2 && activityScore >= 3)
+    ) {
+    not = '';
+  }
+  req.session.data['result-message'] = "Your checks " + not + " protect against your service’s risk of fraud."
 
   // Group strength and validity combo
   // if true in testevidence.strength
-  let testevidence = req.session.data['testevidence']
-  let combinedEvidence = []
-
-  for (var item in testevidence) {
-    if (testevidence[item].chosen == true){
-      combinedEvidence.push({
-        strength: testevidence[item].strength,
-        validity: testevidence[item].validity
-      });
-    }
-  }
-
-  // Find highest strength
-  // if true in testevidence.strength
-  let strength1 = []
-  let strength2 = []
-  let strength3 = []
-  let strength4 = []
-
-  for (var item in testevidence) {
-    if (testevidence[item].chosen == false){
-      if (testevidence[item].strength = '4'){
-        strength4.push(testevidence[item].strength)
-      }
-      else if (testevidence[item].strength = '3'){
-        strength3.push(testevidence[item].strength)
-      }
-      else if (testevidence[item].strength = '2'){
-        strength2.push(testevidence[item].strength)
-      }
-      else if (testevidence[item].strength = '1'){
-        strength1.push('1')
-      }
-    }
-  }
-
-  req.session.data['printme'] = strength1
+  // let testevidence = req.session.data['testevidence']
 
   res.redirect('/results')
 
