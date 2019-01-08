@@ -765,8 +765,12 @@ router.post('/overview-answer', function (req, res) {
   let fraudScore = req.session.data['fraudScore']
   let activityScore = req.session.data['activityScore']
 
-  var not = responseValidator.validateResponse(userRiskLevel, evidence, verificationScore, fraudScore, activityScore) ? '' : 'do not'
+  let validationResults = responseValidator.validateResponse(userRiskLevel, evidence, verificationScore, fraudScore, activityScore)
+
+  let not = validationResults.validated ? '' : 'do not'
+
   req.session.data['result-message'] = "Your checks " + not + " protect against your service’s " + userRiskLevel + " risk of fraud."
+  req.session.data['profile-results'] = validationResults.profileResults
 
   req.session.data['testevidence'].forEach(evidence => {
     if (verificationScore >= 4){
