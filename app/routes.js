@@ -1,11 +1,11 @@
 const express = require('express')
 const router = express.Router()
+const responseValidator = require('../lib/response_validator.js')
 
 const testevidence =
   [
-    {'name':'Gas or electric bill','strength':'1', 'validity':'1','chosen':true},
-    {'name':'Letter from a local authority','strength':'1', 'validity':'1','chosen':true},
-    {'name':'Letter from Santa','strength':'1', 'validity':'1','chosen':true},
+    {'name':'Gas or electric bill','strength':'1', 'validity':'0','chosen':false},
+    {'name':'Letter from a local authority','strength':'1', 'validity':'0','chosen':false},
 
     {'name':'Birth or adoption certificate','strength':'2','validity':'0','chosen':false},
     {'name':'Older person’s bus pass','strength':'2','validity':'0','chosen':false},
@@ -63,7 +63,6 @@ const thisEvidence = []
 const highStrengthScore = []
 
 // Add your routes here - above the module.exports line
-
 
 router.post('/set-choose-evidence-variables', function (req, res) {
   req.session.data['testevidence'] = testevidence
@@ -759,33 +758,14 @@ router.post('/verification-1-answer', function (req, res) {
 })
 
 router.post('/overview-answer', function (req, res) {
-  // validation to go here
-  // 1 piece of evidence
-  let evidenceProfiles = {};
-  let profileCEvidenceCount = 0;
-  req.session.data['testevidence'].forEach(evidence => {
-    evidenceProfiles['bEvidence'] = (evidence.chosen && evidence.strength >= 3 && evidence.validity >= 2) ? true : false
-    evidenceProfiles['aEvidence'] = (evidence.chosen && evidence.strength >= 2 && evidence.validity >= 2) ? true : false
-    if (evidence.chosen && evidence.strength >= 1 && evidence.validity >= 1) {
-      profileCEvidenceCount++
-    }
-  })
-  evidenceProfiles['cEvidence'] = profileCEvidenceCount >= 3 ? true : false
-
-  // 1 or multiple pieces of evidence
-  let fraudScore = req.session.data['fraudScore']
+  let userRiskLevel = req.session.data['user-risk-level'];
+  let evidence = req.session.data['testevidence'];
   let verificationScore = req.session.data['verificationScore']
+  let fraudScore = req.session.data['fraudScore']
   let activityScore = req.session.data['activityScore']
 
-  // 1 piece of evidence
-  var not = 'do not';
-  if (
-      (evidenceProfiles['aEvidence'] && verificationScore >= 1 && fraudScore >= 2) ||
-      (evidenceProfiles['bEvidence'] && verificationScore >= 3) ||
-      (evidenceProfiles['cEvidence'] && verificationScore >= 2 && fraudScore >= 2 && activityScore >= 3)
-    ) {
-    not = '';
-  }
+  var not = responseValidator.validateResponse(userRiskLevel, evidence, verificationScore, fraudScore, activityScore) ? '' : 'do not'
+
   req.session.data['result-message'] = "Your checks " + not + " protect against your service’s risk of fraud."
 
   // Group strength and validity combo
