@@ -35,10 +35,17 @@ td{
   color:  $govuk-secondary-text-colour;
 }
 
-.multi-question-heading{
-  display: block;
-  margin-bottom: 5px;
+td.multi-question{
+  .multi-question-heading{
+    display: block;
+    margin: 15px 0 5px 0;
+  }
+  span:first-child{
+    margin-top: 0px;
+  }
 }
+
+
 
 
 .banner{

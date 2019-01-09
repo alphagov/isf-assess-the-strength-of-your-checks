@@ -77,7 +77,6 @@
             <th class="govuk-table__header" scope="col"></th>
             <th class="govuk-table__header" scope="col"></th>
             <th class="govuk-table__header" scope="col"></th>
-            <th class="govuk-table__header" scope="col"></th>
           </tr>
         </thead>
 
@@ -86,15 +85,14 @@
             {% if item.chosen %}
               <tr class="govuk-table__row">
                 <td class="govuk-table__cell" scope="row">{{item.name}}</td>
-                <td class="govuk-table__cell" scope="row">
+                <td class="govuk-table__cell multi-question" scope="row">
                   <span class="multi-question-heading">Strength score: {{item.strength}}</span>
                   {% for explanation in data['explanations'] %}
                     {% if explanation.element == "strength" and explanation.score == item.strength %}
                       {{explanation.text}}
                     {% endif %}
                   {% endfor %}
-                </td>
-                <td class="govuk-table__cell" scope="row">
+
                   <span class="multi-question-heading">Validity score: {{item.validity}}</span>
                   {% for explanation in data['explanations'] %}
                     {% if explanation.element == "validity" and explanation.score == item.validity %}
@@ -111,7 +109,6 @@
           {% if evidenceExists == "false" %}
             <tr class="govuk-table__row">
               <td class="govuk-table__cell hint" scope="row">You haven’t added any evidence yet</td>
-              <td class="govuk-table__cell" scope="row"></td>
               <td class="govuk-table__cell" scope="row"></td>
               <td class="govuk-table__cell" scope="row"></td>
             </tr>
@@ -138,7 +135,7 @@
             <td class="govuk-table__cell" scope="row">
               Activity history
             </td>
-            <td class="govuk-table__cell" scope="row">
+            <td class="govuk-table__cell multi-question" scope="row">
               {% if data['activityScore'] %}
                 {% if data['activityScore'] != '0' %}
                   <span class="multi-question-heading">Activity history score: {{data['activityScore']}}</span>
@@ -163,7 +160,7 @@
             <td class="govuk-table__cell" scope="row">
               Fraud checks
             </td>
-            <td class="govuk-table__cell" scope="row">
+            <td class="govuk-table__cell multi-question" scope="row">
               {% if data['fraudScore'] %}
                 {% if data['fraudScore'] != '0' %}
                   <span class="multi-question-heading">Fraud check score: {{data['fraudScore']}}</span>
@@ -187,7 +184,7 @@
             <td class="govuk-table__cell" scope="row">
               Verification
             </td>
-            <td class="govuk-table__cell" scope="row">
+            <td class="govuk-table__cell multi-question" scope="row">
               {% if data['verificationScore'] %}
                 {% if data['verificationScore'] != '0' %}
                   <span class="multi-question-heading"> Verification score: {{data['verificationScore']}}</span>
