@@ -89,14 +89,14 @@
                   <span class="multi-question-heading">Strength score: {{item.strength}}</span>
                   {% for explanation in data['explanations'] %}
                     {% if explanation.element == "strength" and explanation.score == item.strength %}
-                      {{explanation.text}}
+                      <span class="multi-question-answer">{{explanation.text}}</span>
                     {% endif %}
                   {% endfor %}
 
                   <span class="multi-question-heading">Validity score: {{item.validity}}</span>
                   {% for explanation in data['explanations'] %}
                     {% if explanation.element == "validity" and explanation.score == item.validity %}
-                      {{explanation.text}}
+                      <span class="multi-question-answer">{{explanation.text}}</span>
                     {% endif %}
                   {% endfor %}
                 </td>
@@ -142,7 +142,7 @@
                 {% endif %}
                 {% for item in data['explanations'] %}
                   {% if item.element == "activity" and item.score == data['activityScore'] %}
-                    {{item.text}}
+                    <span class="multi-question-answer">{{item.text}}</span>
                   {% endif %}
                 {% endfor %}
               {% else %}
@@ -167,7 +167,7 @@
                 {% endif %}
                 {% for item in data['explanations'] %}
                   {% if item.element == "fraud" and item.score == data['fraudScore'] %}
-                    {{item.text}}
+                    <span class="multi-question-answer">{{item.text}}</span>
                   {% endif %}
                 {% endfor %}
               {% else %}
@@ -191,7 +191,7 @@
                 {% endif %}
                 {% for item in data['explanations'] %}
                   {% if item.element == "verification" and item.score == data['verificationScore'] %}
-                    {{item.text}}
+                    <span class="multi-question-answer">{{item.text}}</span>
                   {% endif %}
                 {% endfor %}
               {% else %}
