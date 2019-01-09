@@ -208,10 +208,26 @@ router.post('/validity-5b-answer', function (req, res) {
   req.session.data['thisEvidence'] = thisEvidence
   let validityanswer = req.session.data['validity-1']
 
-  let answer = req.session.data['validity-5c']
+  let answer = req.session.data['validity-5b']
+  let conditionalAnswer = req.session.data['validity-5c']
 
-  if (answer.includes('1') || answer.includes('2') ) {
+  if (answer.includes('1')) {
     res.redirect('evidence/validity-6')
+    if (answer.includes('1') || answer.includes('2') ) {
+      res.redirect('evidence/validity-6')
+    }
+    else if (validityanswer.includes('2')) {
+      res.redirect('evidence/validity-12')
+    }
+    else if (validityanswer.includes('3')) {
+      res.redirect('evidence/validity-13')
+    }
+    else if (validityanswer.includes('4')) {
+      res.redirect('evidence/validity-14')
+    }
+    else{
+      res.redirect('overview')
+    }
   }
   else if (validityanswer.includes('2')) {
     res.redirect('evidence/validity-12')
@@ -225,6 +241,7 @@ router.post('/validity-5b-answer', function (req, res) {
   else{
     res.redirect('overview')
   }
+
 })
 
 router.post('/validity-5c-answer', function (req, res) {
