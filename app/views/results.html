@@ -95,29 +95,28 @@
     <div class="govuk-grid-column-two-thirds">
       <h2 class="govuk-heading-l">Recommendations</h2>
       <p>
-        How much confidence you have in the identity dependd on how much evidence you collect and how thoroughly you do each part of the identity checking process. This makes up an identity profile.
+        The confidence you have in the identity depends on how much evidence you collect and how thoroughly you do each part of the identity checking process. This makes up an identity profile.
       </p>
       <p>
         To have confidence in the identity you must meet an identity profile.
       </p>
-      <p>
+      <!-- <p>
         You need:
         <ul class="govuk-list govuk-list--bullet">
-          <!-- <li>a passport validity score of 3, you scored 2</li>
-          <li>a driving licence validity score of 3, you scored 1</li> -->
+          <li>a passport validity score of 3, you scored 2</li>
+          <li>a driving licence validity score of 3, you scored 1</li>
           <li>to meet at least 1 of the identity profiles</li>
         </ul>
-      </p>
-
-      <h3 class="govuk-heading-m govuk-!-margin-top-7">Identity profiles for your level of risk</h3>
+      </p> -->
+      <h3 class="govuk-heading-m govuk-!-margin-top-7 ">Identity profiles for your level of risk</h3>
 
 
       {% for profile in data['profile-results'] %}
         <h4 class="govuk-heading-s">Profile {{ profile.name }}</h4>
-        <p>You {% if not profile.overallResult %}do not{% endif %} meet this profile</p>
+        <!-- <p style="font-weight: bold">You {% if not profile.overallResult %}do not{% endif %} meet this profile</p> -->
         <p>
           To meet this profile you need to:
-          <ul class="govuk-list govuk-list--bullet">
+          <ul class="govuk-list">
             <li>{% if profile.evidenceResult %}✅{% else %}❌{% endif %} collect {{ profile.humanEvidence }}</li>
             {% if profile.activityThreshold %}
               <li>{% if profile.activityResult %}✅{% else %}❌{% endif %} achieve a history check score of {{ profile.activityThreshold }}</li>
@@ -131,7 +130,7 @@
           </ul>
         </p>
       {% endfor %}
-      
+
       <br>
       <p><a href="">Read the guidance on scoring evidence</a></p>
 
