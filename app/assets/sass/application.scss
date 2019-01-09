@@ -22,12 +22,22 @@ td.govuk-table__cell:first-child{
 td.govuk-table__cell.edit{
   text-align: right;
 }
+
+td{
+  vertical-align: text-top;
+}
+
 .table-link{
   margin-top: -25px;
 }
 
 .hint{
   color:  $govuk-secondary-text-colour;
+}
+
+.multi-question-heading{
+  display: block;
+  margin-bottom: 5px;
 }
 
 

@@ -88,19 +88,8 @@ router.post('/choose-evidence-answer', function (req, res) {
         req.session.data['testevidence'][i].chosen = true
       }
     }
-    res.redirect('evidence/verification-start')
+    res.redirect('evidence/validity-1')
   }
-})
-
-
-
-router.post('/validity-0-answer', function (req, res) {
-
-  let evidence = req.session.data['evidence']
-  let thisEvidence = evidence
-  req.session.data['thisEvidence'] = thisEvidence
-
-  res.redirect('evidence/validity-1')
 })
 
 router.post('/validity-1-answer', function (req, res) {
@@ -674,7 +663,7 @@ router.post('/activity-0-answer', function (req, res) {
   let conditionalAnswer = req.session.data['validity-0b']
 
   if (answer.includes('2')) {
-    req.session.data['activityScore'] = "N/A"
+    req.session.data['activityScore'] = "0"
   }
   else if (conditionalAnswer.includes('1')) {
     req.session.data['activityScore'] = "1"

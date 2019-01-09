@@ -33,6 +33,8 @@
         Your checks
       </h1>
 
+      <!-- <p>Tell us about how you check identities</p> -->
+
       {% if complete == "True" %}
         <h2 class="govuk-heading-m">Scores for your checks</h2>
         <p>
@@ -49,7 +51,7 @@
     </div>
 
     <div class="govuk-grid-column-full">
-      <h2 class="govuk-heading-m govuk-!-margin-bottom-0">Your risk</h2>
+      <h2 class="govuk-heading-m govuk-!-margin-bottom-0">Risk assessment</h2>
       <table class="govuk-table govuk-table govuk-!-margin-bottom-7 govuk-!-margin-top-0">
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">
@@ -60,14 +62,14 @@
         </thead>
         <tbody class="govuk-table__body">
           <tr class="govuk-table__row">
-            <td class="govuk-table__cell" scope="row">The level of risk to your service</td>
+            <td class="govuk-table__cell" scope="row">What’s the risk of fraud to your service?</td>
             <td class="govuk-table__cell">{{data['user-risk-level'] | capitalize }}</td>
             <td class="govuk-table__cell edit"><a href="/your-risk">Change</a></td>
           </tr>
         </tbody>
       </table>
 
-      <h2 class="govuk-heading-m govuk-!-margin-0">Evidence checks</h2>
+      <h2 class="govuk-heading-m govuk-!-margin-0">Your evidence checks</h2>
 
       <table class="govuk-table govuk-!-margin-bottom-7 govuk-!-margin-top-0">
         <thead class="govuk-table__head">
@@ -85,7 +87,7 @@
               <tr class="govuk-table__row">
                 <td class="govuk-table__cell" scope="row">{{item.name}}</td>
                 <td class="govuk-table__cell" scope="row">
-                  Score: {{item.strength}}
+                  <span class="multi-question-heading">Strength score: {{item.strength}}</span>
                   {% for explanation in data['explanations'] %}
                     {% if explanation.element == "strength" and explanation.score == item.strength %}
                       {{explanation.text}}
@@ -93,7 +95,7 @@
                   {% endfor %}
                 </td>
                 <td class="govuk-table__cell" scope="row">
-                  Score: {{item.validity}}
+                  <span class="multi-question-heading">Validity score: {{item.validity}}</span>
                   {% for explanation in data['explanations'] %}
                     {% if explanation.element == "validity" and explanation.score == item.validity %}
                       {{explanation.text}}
@@ -138,7 +140,9 @@
             </td>
             <td class="govuk-table__cell" scope="row">
               {% if data['activityScore'] %}
-                Score: {{data['activityScore']}}
+                {% if data['activityScore'] != '0' %}
+                  <span class="multi-question-heading">Activity history score: {{data['activityScore']}}</span>
+                {% endif %}
                 {% for item in data['explanations'] %}
                   {% if item.element == "activity" and item.score == data['activityScore'] %}
                     {{item.text}}
@@ -161,7 +165,9 @@
             </td>
             <td class="govuk-table__cell" scope="row">
               {% if data['fraudScore'] %}
-                Score: {{data['fraudScore']}}
+                {% if data['fraudScore'] != '0' %}
+                  <span class="multi-question-heading">Fraud check score: {{data['fraudScore']}}</span>
+                {% endif %}
                 {% for item in data['explanations'] %}
                   {% if item.element == "fraud" and item.score == data['fraudScore'] %}
                     {{item.text}}
@@ -183,7 +189,9 @@
             </td>
             <td class="govuk-table__cell" scope="row">
               {% if data['verificationScore'] %}
-                Score: {{data['verificationScore']}}
+                {% if data['verificationScore'] != '0' %}
+                  <span class="multi-question-heading"> Verification score: {{data['verificationScore']}}</span>
+                {% endif %}
                 {% for item in data['explanations'] %}
                   {% if item.element == "verification" and item.score == data['verificationScore'] %}
                     {{item.text}}
