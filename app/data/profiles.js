@@ -1,5 +1,4 @@
 module.exports.profiles = {
-  "none": [],
   "low": {
     1: [
       {
@@ -185,6 +184,5 @@ module.exports.profiles = {
         "activity": 3
       }
     ]
-  },
-  "dont-know": []
+  }
 }
