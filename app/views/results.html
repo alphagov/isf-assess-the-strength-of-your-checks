@@ -108,29 +108,55 @@
           <li>to meet at least 1 of the identity profiles</li>
         </ul>
       </p> -->
-      <h3 class="govuk-heading-m govuk-!-margin-top-7 ">Identity profiles for your level of risk</h3>
 
+      {% if data['user-risk-level'] == 'dont-know' %}
+        <h3 class="govuk-heading-m govuk-!-margin-top-7">How the evidence you collect meets identity profiles for different levels of risk</h3>
+        {% for levelData in data['profile-results'] %}
+          <h3 class="govuk-heading-m">Risk level {{ levelData.level }}</h3>
+          {% for profile in levelData.results.profileResults %}
+            <h4 class="govuk-heading-s">Profile {{ profile.name }}</h4>
+            <!-- <p>You {% if not profile.overallResult %}do not{% endif %} meet this profile</p> -->
+            <p>
+              To meet this profile you need to:
+              <ul class="govuk-list govuk-list--bullet">
+                <li>{% if profile.evidenceResult %}✅{% else %}❌{% endif %} collect {{ profile.humanEvidence }}</li>
+                {% if profile.activityThreshold %}
+                  <li>{% if profile.activityResult %}✅{% else %}❌{% endif %} achieve a history check score of {{ profile.activityThreshold }}</li>
+                {% endif %}
+                {% if profile.verificationThreshold %}
+                  <li>{% if profile.verificationResult %}✅{% else %}❌{% endif %} achieve a verification score of {{ profile.verificationThreshold }}</li>
+                {% endif %}
+                {% if profile.fraudThreshold %}
+                  <li>{% if profile.fraudResult %}✅{% else %}❌{% endif %} achieve a fraud check score of {{ profile.fraudThreshold }}</li>
+                {% endif %}
+              </ul>
+            </p>
+          {% endfor %}
+        {% endfor %}
+      {% else %}
+        <h3 class="govuk-heading-m govuk-!-margin-top-7">Identity profiles for your level of risk</h3>
 
-      {% for profile in data['profile-results'] %}
-        <h4 class="govuk-heading-s">Profile {{ profile.name }}</h4>
-        <!-- <p style="font-weight: bold">You {% if not profile.overallResult %}do not{% endif %} meet this profile</p> -->
-        <p>
-          To meet this profile you need to:
-          <ul class="govuk-list">
-            <li>{% if profile.evidenceResult %}✅{% else %}❌{% endif %} collect {{ profile.humanEvidence }}</li>
-            {% if profile.activityThreshold %}
-              <li>{% if profile.activityResult %}✅{% else %}❌{% endif %} achieve a history check score of {{ profile.activityThreshold }}</li>
-            {% endif %}
-            {% if profile.verificationThreshold %}
-              <li>{% if profile.verificationResult %}✅{% else %}❌{% endif %} achieve a verification score of {{ profile.verificationThreshold }}</li>
-            {% endif %}
-            {% if profile.fraudThreshold %}
-              <li>{% if profile.fraudResult %}✅{% else %}❌{% endif %} achieve a fraud check score of {{ profile.fraudThreshold }}</li>
-            {% endif %}
-          </ul>
-        </p>
-      {% endfor %}
+        {% for profile in data['profile-results'] %}
+          <h4 class="govuk-heading-s">Profile {{ profile.name }}</h4>
+          <!-- <p>You {% if not profile.overallResult %}do not{% endif %} meet this profile</p> -->
+          <p>
+            To meet this profile you need to:
+            <ul class="govuk-list govuk-list--bullet">
+              <li>{% if profile.evidenceResult %}✅{% else %}❌{% endif %} collect {{ profile.humanEvidence }}</li>
+              {% if profile.activityThreshold %}
+                <li>{% if profile.activityResult %}✅{% else %}❌{% endif %} achieve a history check score of {{ profile.activityThreshold }}</li>
+              {% endif %}
+              {% if profile.verificationThreshold %}
+                <li>{% if profile.verificationResult %}✅{% else %}❌{% endif %} achieve a verification score of {{ profile.verificationThreshold }}</li>
+              {% endif %}
+              {% if profile.fraudThreshold %}
+                <li>{% if profile.fraudResult %}✅{% else %}❌{% endif %} achieve a fraud check score of {{ profile.fraudThreshold }}</li>
+              {% endif %}
+            </ul>
+          </p>
+        {% endfor %}
 
+      {% endif %}
       <br>
       <p><a href="">Read the guidance on scoring evidence</a></p>
 

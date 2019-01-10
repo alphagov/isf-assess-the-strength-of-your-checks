@@ -771,12 +771,18 @@ router.post('/overview-answer', function (req, res) {
   let fraudScore = req.session.data['fraudScore']
   let activityScore = req.session.data['activityScore']
 
-  let validationResults = responseValidator.validateResponse(userRiskLevel, evidence, verificationScore, fraudScore, activityScore)
-
-  let not = validationResults.validated ? '' : 'do not'
-
-  req.session.data['result-message'] = "Your checks " + not + " protect against your service’s " + userRiskLevel + " risk of fraud."
-  req.session.data['profile-results'] = validationResults.profileResults
+  if (userRiskLevel == "dont-know") {
+    let validationResults = responseValidator.determineHighestConfidenceAchievable(evidence, verificationScore, fraudScore, activityScore)
+    req.session.data['result-message'] = validationResults.highestConfidenceAvailable
+      ? "Your checks protect your service with a " + validationResults.highestConfidenceAvailable.level + " level of confidence."
+      : "Your checks do not protect your service with any level of confidence."
+    req.session.data['profile-results'] = validationResults.allResults
+  } else {
+    let validationResults = responseValidator.validateResponse(userRiskLevel, evidence, verificationScore, fraudScore, activityScore)
+    let not = validationResults.validated ? '' : 'do not'
+    req.session.data['result-message'] = "Your checks " + not + " protect against your service’s " + userRiskLevel + " risk of fraud."
+    req.session.data['profile-results'] = validationResults.profileResults
+  }
 
   req.session.data['testevidence'].forEach(evidence => {
     if (verificationScore >= 4){
