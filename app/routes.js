@@ -4,26 +4,42 @@ const responseValidator = require('../lib/response_validator.js')
 
 const testevidence =
   [
-    {'name':'Gas or electric bill','strength':'1', 'validity':'0','chosen':false},
-    {'name':'Letter from a local authority','strength':'1', 'validity':'0','chosen':false},
-    {'name':'Letter from Santa','strength':'1', 'validity':'0','chosen':false},
+    {'name':'UK passport','shortname':'UK passport','group':'1','strength':'4','validity':'0','chosen':false},
+    {'name':'A passport that meets the International Civil Aviation Organisation (ICAO) specifications for machine-readable travel documents (9303)','shortname':'passport','group':'1','strength':'3','validity':'0','chosen':false},
+    {'name':'Biometric passports that meet the ICAO specifications for e-passports','shortname':'biometric passport','group':'1','strength':'4','validity':'0','chosen':false},
+    {'name':'US passport card','shortname':'US passport','group':'1','strength':'3','validity':'0','chosen':false},
+    {'name':'Home Office travel document','shortname':'Home Office travel document','group':'1','strength':'2','validity':'0','chosen':false},
 
-    {'name':'Birth or adoption certificate','strength':'2','validity':'0','chosen':false},
-    {'name':'Older person’s bus pass','strength':'2','validity':'0','chosen':false},
-    {'name':'Education certificate from a regulated and recognised educational institution','strength':'2','validity':'0','chosen':false},
-    {'name':'Rental or purchase agreement for a residential property','strength':'2','validity':'0','chosen':false},
-    {'name':'Proof of age card with a Proof of Age Standards Scheme (PASS) hologram','strength':'2','validity':'0','chosen':false},
-    {'name':'Marriage certificate','strength':'2','validity':'0','chosen':false},
-    {'name':'Building, contents or vehicle insurance','strength':'2','validity':'0','chosen':false},
+    {'name':'UK driving licence','shortname':'UK driving licence','group':'2','strength':'3','validity':'0','chosen':false},
+    {'name':'EU or EEA driving licence','shortname':'EU or EEA driving licence','group':'2','strength':'3','validity':'0','chosen':false},
+    {'name':'Digital tachograph driver smart card','shortname':'smart card','group':'2','strength':'3','validity':'0','chosen':false},
 
-    {'name':'UK or European passport','strength':'3','validity':'0','chosen':false},
-    {'name':'Identity cards','strength':'3','validity':'0','chosen':false},
-    {'name':'EU or EEA driving licences','strength':'3','validity':'0','chosen':false},
-    {'name':'Bank, building society or credit union current account','strength':'3','validity':'0','chosen':false},
-    {'name':'Bank savings account','strength':'3','validity':'0','chosen':false},
-    {'name':'Mortgage account','strength':'3','validity':'0','chosen':false},
-    {'name':'Biometric passports that meet the ICAO specifications for e-passports','strength':'3','validity':'0','chosen':false},
-    {'name':'Biometric residence permit','strength':'3','validity':'0','chosen':false}
+    {'name':'Armed forces identity card','shortname':'armed forces identity card','group':'3','strength':'3','validity':'0','chosen':false},
+    {'name':'Biometric residence permit','shortname':'biometric residence permit','group':'3','strength':'3','validity':'0','chosen':false},
+    {'name':'An identity card from an EU or European Economic Area (EEA) country that meets the Council Regulation (EC) No 2252/2004 standards','shortname':'EU or EEA identity card','group':'3','strength':'3','validity':'0','chosen':false},
+    {'name':'An identity card from an EU or EEA country that meets the Council Regulation (EC) No 2252/2004 standards and contains biometric information','shortname':'EU or EEA biometric identity card','group':'3','strength':'4','validity':'0','chosen':false},
+    {'name':'Proof of age card with a Proof of Age Standards Scheme (PASS) hologram','shortname':'proof of age card','group':'3','strength':'4','validity':'0','chosen':false},
+    {'name':'Northern Ireland electoral identity card','shortname':'NI electoral identity card','group':'3','strength':'3','validity':'0','chosen':false},
+
+    {'name':'Gas or electric bill','shortname':'gas or electric bill','group':'4','strength':'1', 'validity':'0','chosen':false},
+    {'name':'Bank, building society or credit union current account','shortname':'bank, building society or credit union current account','group':'4','strength':'3','validity':'0','chosen':false},
+    {'name':'Bank savings account','shortname':'savings account','group':'4','strength':'3','validity':'0','chosen':false},
+    {'name':'Letter from Santa','shortname':'letter from Santa','group':'4','strength':'1','validity':'0','chosen':false},
+    {'name':'Credit account','shortname':'credit account','group':'4','strength':'3','validity':'0','chosen':false},
+    {'name':'Mortgage account','shortname':'mortgage account','group':'4','strength':'3','validity':'0','chosen':false},
+    {'name':'Secured loan account','shortname':'secured loan account','group':'4','strength':'3','validity':'0','chosen':false},
+    {'name':'Building, contents or vehicle insurance','shortname':'insurance document','group':'4','strength':'2','validity':'0','chosen':false},
+    {'name':'Rental or purchase agreement for a residential property','shortname':'rental or purchace agreement','group':'4','strength':'2','validity':'0','chosen':false},
+
+    {'name':'Birth or adoption certificate','shortname':'birth or adoption certificate','group':'5','strength':'2','validity':'0','chosen':false},
+    {'name':'Marriage certificate','shortname':'marriage certificate','group':'5','strength':'2','validity':'0','chosen':false},
+    {'name':'Education certificate from a regulated and recognised educational institution','shortname':'education certificate','group':'5','strength':'2','validity':'0','chosen':false},
+    {'name':'Firearm certificate','shortname':'firearm certificate','group':'5','strength':'2','validity':'0','chosen':false},
+
+    {'name':'Older person’s bus pass','shortname':'bus pass','group':'6','strength':'2','validity':'0','chosen':false},
+    {'name':'Freedom pass','shortname':'freedom pass','group':'6','strength':'2','validity':'0','chosen':false},
+    {'name':'Letter from a local authority','shortname':'letter from a local authority','group':'6','strength':'1', 'validity':'0','chosen':false},
+
   ]
 
 const explanations =
@@ -71,11 +87,23 @@ router.post('/set-choose-evidence-variables', function (req, res) {
   res.redirect('your-risk')
 })
 
+router.post('/choose-evidence-group-answer', function (req, res) {
+  res.redirect('evidence/choose-evidence-2')
+})
+
 router.post('/choose-evidence-answer', function (req, res) {
 
   let evidence = req.session.data['evidence']
   let thisEvidence = evidence
   req.session.data['thisEvidence'] = thisEvidence
+
+  var i;
+  for (i = 0; i < testevidence.length; i++) {
+    if (thisEvidence.includes(testevidence[i].name)) {
+      req.session.data['evidenceName'] = testevidence[i].shortname
+    }
+  }
+
 
   if (evidence.includes('other')) {
     res.redirect('overview')

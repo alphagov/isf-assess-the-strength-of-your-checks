@@ -84,7 +84,7 @@
           {% for item in data['testevidence'] %}
             {% if item.chosen %}
               <tr class="govuk-table__row">
-                <td class="govuk-table__cell" scope="row">{{item.name}}</td>
+                <td class="govuk-table__cell" scope="row">{{item.shortname | capitalize}}</td>
                 <td class="govuk-table__cell multi-question" scope="row">
                   <span class="multi-question-heading">Strength score: {{item.strength}}</span>
                   {% for explanation in data['explanations'] %}
