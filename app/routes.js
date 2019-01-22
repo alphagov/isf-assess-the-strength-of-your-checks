@@ -807,8 +807,8 @@ router.post('/overview-answer', function (req, res) {
     req.session.data['profile-results'] = validationResults.allResults
   } else {
     let validationResults = responseValidator.validateResponse(userRiskLevel, evidence, verificationScore, fraudScore, activityScore)
-    let not = validationResults.validated ? '' : 'do not'
-    req.session.data['result-message'] = "Your checks " + not + " protect against your service’s " + userRiskLevel + " risk of fraud."
+    let not = validationResults.validated ? '' : 'not'
+    req.session.data['result-message'] = "You are " + not + " protected against your " + userRiskLevel + " risk of fraud."
     req.session.data['profile-results'] = validationResults.profileResults
   }
 
