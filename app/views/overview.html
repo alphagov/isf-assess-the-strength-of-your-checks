@@ -32,8 +32,10 @@
       <h1 class="govuk-heading-l">
         Your checks
       </h1>
-
-      <!-- <p>Tell us about how you check identities</p> -->
+      <!--
+      <p>
+        Describe what checks you do and identify the strengths and weaknesses and how to address them.
+      </p> -->
 
       {% if complete == "True" %}
         <h2 class="govuk-heading-m">Scores for your checks</h2>
@@ -51,7 +53,7 @@
     </div>
 
     <div class="govuk-grid-column-full">
-      <h2 class="govuk-heading-m govuk-!-margin-bottom-0">Risk assessment</h2>
+      <h2 class="govuk-heading-m govuk-!-margin-bottom-0">Your service</h2>
       <table class="govuk-table govuk-table govuk-!-margin-bottom-7 govuk-!-margin-top-0">
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">
@@ -69,13 +71,25 @@
         </tbody>
       </table>
 
-      <h2 class="govuk-heading-m govuk-!-margin-0">Your evidence checks</h2>
+      <h2 class="govuk-heading-m govuk-!-margin-bottom-0">Evidence checks</h2>
 
       <table class="govuk-table govuk-!-margin-bottom-7 govuk-!-margin-top-0">
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">
-            <th class="govuk-table__header" scope="col"></th>
-            <th class="govuk-table__header" scope="col"></th>
+            {% for item in data['testevidence'] %}
+              {% if item.chosen %}
+                {% set evidenceExists = "true" %}
+              {% endif %}
+            {% endfor %}
+            {% if evidenceExists == "true" %}
+              <th class="govuk-table__header" scope="col">Evidence</th>
+              <th class="govuk-table__header" scope="col">Strength score</th>
+              <th class="govuk-table__header" scope="col">Validity score</th>
+            {% else %}
+              <th class="govuk-table__header" scope="col"></th>
+              <th class="govuk-table__header" scope="col"></th>
+              <th class="govuk-table__header" scope="col"></th>
+            {% endif %}
             <th class="govuk-table__header" scope="col"></th>
           </tr>
         </thead>
@@ -84,25 +98,15 @@
           {% for item in data['testevidence'] %}
             {% if item.chosen %}
               <tr class="govuk-table__row">
-                <td class="govuk-table__cell" scope="row">{{item.shortname | capitalize}}</td>
-                <td class="govuk-table__cell multi-question" scope="row">
-                  <span class="multi-question-heading">Strength score: {{item.strength}}</span>
-                  {% for explanation in data['explanations'] %}
-                    {% if explanation.element == "strength" and explanation.score == item.strength %}
-                      <span class="multi-question-answer">{{explanation.text}}</span>
-                    {% endif %}
-                  {% endfor %}
-
-                  <span class="multi-question-heading">Validity score: {{item.validity}}</span>
-                  {% for explanation in data['explanations'] %}
-                    {% if explanation.element == "validity" and explanation.score == item.validity %}
-                      <span class="multi-question-answer">{{explanation.text}}</span>
-                    {% endif %}
-                  {% endfor %}
+                <td class="govuk-table__cell" scope="row">{{item.shortname}}</td>
+                <td class="govuk-table__cell" scope="row">
+                  {{item.strength}}
+                </td>
+                <td class="govuk-table__cell" scope="row">
+                  {{item.validity}}
                 </td>
                 <td class="govuk-table__cell edit" scope="row"><a href="">Change</a></td>
               </tr>
-              {% set evidenceExists = "true" %}
             {% endif %}
           {% endfor %}
 
@@ -118,13 +122,18 @@
       </table>
       <p class="table-link"><a href="/evidence/choose-evidence">Add evidence</a></p>
 
-      <h2 class="govuk-heading-m govuk-!-margin-0">Other identity checks</h2>
+      <h2 class="govuk-heading-m govuk-!-margin-bottom-0">Other checks</h2>
 
       <table class="govuk-table govuk-!-margin-bottom-7 govuk-!-margin-top-0">
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">
-            <th class="govuk-table__header" scope="col"></th>
-            <th class="govuk-table__header" scope="col"></th>
+            {% if data['activityScore'] or data['fraudScore'] or data['verificationScore'] %}
+              <th class="govuk-table__header" scope="col">Check</th>
+              <th class="govuk-table__header" scope="col">Score</th>
+            {% else %}
+              <th class="govuk-table__header" scope="col"></th>
+              <th class="govuk-table__header" scope="col"></th>
+            {% endif %}
             <th class="govuk-table__header" scope="col"></th>
             <th class="govuk-table__header" scope="col"></th>
           </tr>
@@ -135,16 +144,13 @@
             <td class="govuk-table__cell" scope="row">
               Activity history
             </td>
-            <td class="govuk-table__cell multi-question" scope="row">
+            <td class="govuk-table__cell" scope="row">
               {% if data['activityScore'] %}
                 {% if data['activityScore'] != '0' %}
-                  <span class="multi-question-heading">Activity history score: {{data['activityScore']}}</span>
+                  {{data['activityScore']}}
+                {% else %}
+                  You don’t check this
                 {% endif %}
-                {% for item in data['explanations'] %}
-                  {% if item.element == "activity" and item.score == data['activityScore'] %}
-                    <span class="multi-question-answer">{{item.text}}</span>
-                  {% endif %}
-                {% endfor %}
               {% else %}
                 <a href="/activity/activity-start">Answer required</a>
               {% endif %}
@@ -158,18 +164,15 @@
           </tr>
           <tr class="govuk-table__row">
             <td class="govuk-table__cell" scope="row">
-              Fraud checks
+              Fraud
             </td>
             <td class="govuk-table__cell multi-question" scope="row">
               {% if data['fraudScore'] %}
                 {% if data['fraudScore'] != '0' %}
-                  <span class="multi-question-heading">Fraud check score: {{data['fraudScore']}}</span>
+                  {{data['fraudScore']}}
+                {% else %}
+                  You don’t check this
                 {% endif %}
-                {% for item in data['explanations'] %}
-                  {% if item.element == "fraud" and item.score == data['fraudScore'] %}
-                    <span class="multi-question-answer">{{item.text}}</span>
-                  {% endif %}
-                {% endfor %}
               {% else %}
                 <a href="/fraud/fraud-start">Answer required</a>
               {% endif %}
@@ -187,13 +190,10 @@
             <td class="govuk-table__cell multi-question" scope="row">
               {% if data['verificationScore'] %}
                 {% if data['verificationScore'] != '0' %}
-                  <span class="multi-question-heading"> Verification score: {{data['verificationScore']}}</span>
+                  {{data['verificationScore']}}
+                {% else %}
+                  You don’t check this
                 {% endif %}
-                {% for item in data['explanations'] %}
-                  {% if item.element == "verification" and item.score == data['verificationScore'] %}
-                    <span class="multi-question-answer">{{item.text}}</span>
-                  {% endif %}
-                {% endfor %}
               {% else %}
                 <a href="/verification/verification-start">Answer required</a>
               {% endif %}
@@ -212,9 +212,6 @@
     </div>
     <div class="govuk-grid-column-two-thirds">
       <form action="/overview-answer" method="post" novalidate>
-        <p>
-          Find out the strength of your checks and get recommendations for how you be confident your users are who they say they are.
-        </p>
         {{ govukButton({
           text: "Continue"
         }) }}

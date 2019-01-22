@@ -2,7 +2,7 @@ module.exports.profiles = {
   "low": {
     1: [
       {
-        "name": "A",
+        "name": "1",
         "evidence": [
           {"strength": 2, "validity": 2}
         ],
@@ -11,7 +11,7 @@ module.exports.profiles = {
         "fraud": 2
       },
       {
-        "name": "B",
+        "name": "2",
         "evidence": [
           {"strength": 3, "validity": 2}
         ],
@@ -21,7 +21,7 @@ module.exports.profiles = {
     ],
     3: [
       {
-        "name": "C",
+        "name": "3",
         "evidence": [
           {"strength": 1, "validity": 1},
           {"strength": 1, "validity": 1},
@@ -37,7 +37,7 @@ module.exports.profiles = {
   "medium": {
     1: [
       {
-        "name": "A",
+        "name": "1",
         "evidence": [
           {"strength": 4, "validity": 3}
         ],
@@ -46,7 +46,7 @@ module.exports.profiles = {
         "fraud": 1
       },
       {
-        "name": "B",
+        "name": "2",
         "evidence": [
           {"strength": 3, "validity": 3}
         ],
@@ -58,7 +58,7 @@ module.exports.profiles = {
     ],
     2: [
       {
-        "name": "C",
+        "name": "3",
         "evidence": [
           {"strength": 2, "validity": 2},
           {"strength": 2, "validity": 2}
@@ -69,7 +69,7 @@ module.exports.profiles = {
         "activity": 3
       },
       {
-        "name": "D",
+        "name": "4",
         "evidence": [
           {"strength": 3, "validity": 3},
           {"strength": 2, "validity": 2}
@@ -80,7 +80,7 @@ module.exports.profiles = {
         "activity": 2
       },
       {
-        "name": "E",
+        "name": "5",
         "evidence": [
           {"strength": 3, "validity": 3},
           {"strength": 2, "validity": 2}
@@ -91,7 +91,7 @@ module.exports.profiles = {
         "activity": 1
       },
       {
-        "name": "F",
+        "name": "6",
         "evidence": [
           {"strength": 4, "validity": 3},
           {"strength": 3, "validity": 2}
@@ -103,7 +103,7 @@ module.exports.profiles = {
     ],
     3: [
       {
-        "name": "G",
+        "name": "7",
         "evidence": [
           {"strength": 2, "validity": 2},
           {"strength": 2, "validity": 2},
@@ -119,7 +119,7 @@ module.exports.profiles = {
   "high": {
     1: [
       {
-        "name": "A",
+        "name": "1",
         "evidence": [
           {"strength": 4, "validity": 3}
         ],
@@ -128,7 +128,7 @@ module.exports.profiles = {
         "fraud": 3
       },
       {
-        "name": "B",
+        "name": "2",
         "evidence": [
           {"strength": 4, "validity": 4}
         ],
@@ -138,7 +138,7 @@ module.exports.profiles = {
     ],
     2: [
       {
-        "name": "C",
+        "name": "3",
         "evidence": [
           {"strength": 3, "validity": 3},
           {"strength": 3, "validity": 3}
@@ -149,7 +149,7 @@ module.exports.profiles = {
         "activity": 3
       },
       {
-        "name": "D",
+        "name": "4",
         "evidence": [
           {"strength": 4, "validity": 3},
           {"strength": 3, "validity": 3}
@@ -159,7 +159,7 @@ module.exports.profiles = {
         "fraud": 2
       },
       {
-        "name": "E",
+        "name": "5",
         "evidence": [
           {"strength": 4, "validity": 3},
           {"strength": 2, "validity": 2}
@@ -172,7 +172,7 @@ module.exports.profiles = {
     ],
     3: [
       {
-        "name": "F",
+        "name": "6",
         "evidence": [
           {"strength": 3, "validity": 3},
           {"strength": 2, "validity": 2},

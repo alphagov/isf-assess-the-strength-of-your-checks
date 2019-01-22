@@ -138,7 +138,7 @@ router.post('/risk-answer', function (req, res) {
   }
   else if (answer.includes('4')) {
     req.session.data['user-risk-level'] = "low"
-    req.session.data['user-risk-answer'] = "It doesn't do any of these things"
+    req.session.data['user-risk-answer'] = "Something else"
   }
   else{
     req.session.data['user-risk-level'] = "dont-know"
@@ -835,58 +835,58 @@ router.post('/overview-answer', function (req, res) {
     req.session.data['profile-results'] = validationResults.allResults
   } else {
     let validationResults = responseValidator.validateResponse(userRiskLevel, evidence, verificationScore, fraudScore, activityScore)
-    let not = validationResults.validated ? '' : 'not'
-    req.session.data['result-message'] = "You are " + not + " protected against your " + userRiskLevel + " risk of fraud."
+    let not = validationResults.validated ? 'look like they are' : 'might not be'
+    req.session.data['result-message'] = "Your checks " + not + " appropriate for what your service does."
     req.session.data['profile-results'] = validationResults.profileResults
   }
 
   req.session.data['testevidence'].forEach(evidence => {
     if (verificationScore >= 4){
-      req.session.data['stolen-evidence-message'] = "Very high protection"
+      req.session.data['stolen-evidence-message'] = "very high protection"
     } else if ((evidence.chosen && evidence.validity >= 2) || fraudScore >= 3 || verificationScore >= 3 ){
-      req.session.data['stolen-evidence-message'] = "High protection"
+      req.session.data['stolen-evidence-message'] = "high protection"
     } else if (fraudScore >= 2 || verificationScore >= 2 ){
-      req.session.data['stolen-evidence-message'] = "Medium protection"
+      req.session.data['stolen-evidence-message'] = "medium protection"
     } else if (fraudScore >= 1 ){
-      req.session.data['stolen-evidence-message'] = "Low protection"
+      req.session.data['stolen-evidence-message'] = "low protection"
     } else {
-      req.session.data['stolen-evidence-message'] = "No protection"
+      req.session.data['stolen-evidence-message'] = "no protection"
     }
 
     if (verificationScore >= 4){
-      req.session.data['stolen-information-message'] = "Very high protection"
+      req.session.data['stolen-information-message'] = "very high protection"
     } else if (fraudScore >= 3 || verificationScore >= 3 ){
-      req.session.data['stolen-information-message'] = "High protection"
+      req.session.data['stolen-information-message'] = "high protection"
     } else if (fraudScore >= 2 || verificationScore >= 2 ){
-      req.session.data['stolen-information-message'] = "Medium protection"
+      req.session.data['stolen-information-message'] = "medium protection"
     } else if (fraudScore >= 1 || verificationScore >= 1 ){
-      req.session.data['stolen-information-message'] = "Low protection"
+      req.session.data['stolen-information-message'] = "low protection"
     } else {
-      req.session.data['stolen-information-message'] = "No protection"
+      req.session.data['stolen-information-message'] = "no protection"
     }
 
     if ((evidence.chosen && evidence.validity >= 4) || activityScore >= 4){
-      req.session.data['created-evidence-message'] = "Very high protection"
+      req.session.data['created-evidence-message'] = "very high protection"
     } else if ((evidence.chosen && evidence.strength >= 3) || (evidence.chosen && evidence.strength >= 3) || fraudScore >= 3 || verificationScore >= 4) {
-      req.session.data['created-evidence-message'] = "High protection"
+      req.session.data['created-evidence-message'] = "high protection"
     } else if ((evidence.chosen && evidence.validity >= 2) || activityScore >= 2 || fraudScore >= 1){
-      req.session.data['created-evidence-message'] = "Medium protection"
+      req.session.data['created-evidence-message'] = "medium protection"
     } else if ((evidence.chosen && evidence.validity >= 1) || activityScore >= 1 || fraudScore >= 1 || verificationScore >= 3){
-      req.session.data['created-evidence-message'] = "Low protection"
+      req.session.data['created-evidence-message'] = "low protection"
     } else {
-      req.session.data['created-evidence-message'] = "No protection"
+      req.session.data['created-evidence-message'] = "no protection"
     }
 
     if ((evidence.chosen && evidence.validity >= 4)){
-      req.session.data['tampered-evidence-message'] = "Very high protection"
+      req.session.data['tampered-evidence-message'] = "very high protection"
     } else if ((evidence.chosen && evidence.validity >= 3) || verificationScore >= 4) {
-      req.session.data['tampered-evidence-message'] = "High protection"
+      req.session.data['tampered-evidence-message'] = "high protection"
     } else if ((evidence.chosen && evidence.validity >= 2) || verificationScore >= 2){
-      req.session.data['tampered-evidence-message'] = "Medium protection"
+      req.session.data['tampered-evidence-message'] = "medium protection"
     } else if ((evidence.chosen && evidence.validity >= 1) || fraudScore >= 1 || verificationScore >= 1){
-      req.session.data['tampered-evidence-message'] = "Low protection"
+      req.session.data['tampered-evidence-message'] = "low protection"
     } else {
-      req.session.data['tampered-evidence-message'] = "No protection"
+      req.session.data['tampered-evidence-message'] = "no protection"
     }
 
 
