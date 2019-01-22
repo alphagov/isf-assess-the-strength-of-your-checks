@@ -17,19 +17,23 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-l">What’s the risk of fraud to your service?</h1>
+      <h1 class="govuk-heading-l">What does your service let users do?</h1>
 
       <p>
-        This is used to give recommendations for making your service as secure as it needs to be.
-      </p><br>
+        How confident you need to be that someone is who they say they are depends on what your service does.
+      </p>
 
-      <form action="/overview" method="post" novalidate>
+      <p>
+        You'll usually need to be more confident if your service gives users something valuable, like money or benefits. This is because your service is more likely to be targeted by users pretending to be someone else to get something they shouldn't.
+      </p>
+
+      <form action="/risk-answer" method="post" novalidate>
 
         {% from "radios/macro.njk" import govukRadios %}
 
         {{ govukRadios({
-          idPrefix: "user-risk-level",
-          name: "user-risk-level",
+          idPrefix: "risk-question",
+          name: "risk-question",
           fieldset: {
             legend: {
               text: "",
@@ -39,38 +43,26 @@
         },
           items: [
             {
-              value: "none",
-              text: "None",
-              hint: {
-                text: "You need to know the person is the same person."
-              }
+              value: "1",
+              text: "It lets users update information about themselves"
             },
             {
-              value: "low",
-              text: "Low risk",
-              hint: {
-                text: "Your service does not give users money or benefits and do not provide access to sensitive information, such as a user’s criminal records."
-              }
+              value: "2",
+              text: "It gives users access to sensitive information"
             },
             {
-              value: "medium",
-              text: "Medium risk",
-              hint: {
-                text: "Your service lets users update information about themselves or access sensitive information, such as criminal records."
-              }
+              value: "3",
+              text: "It gives users money, benefits or something else valuable"
             },
             {
-              value: "high",
-              text: "High risk",
-              hint: {
-                text: "Your service gives users money or benefits"
-              }
+              value: "4",
+              text: "It doesn't do any of these things"
             },
             {
               divider: "or"
             },
             {
-              value: "dont-know",
+              value: "dont know",
               text: "I don‘t know"
             }
           ]

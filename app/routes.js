@@ -120,6 +120,34 @@ router.post('/choose-evidence-answer', function (req, res) {
   }
 })
 
+router.post('/risk-answer', function (req, res) {
+
+  let answer = req.session.data['risk-question']
+
+  if (answer.includes('1')) {
+    req.session.data['user-risk-level'] = "medium"
+    req.session.data['user-risk-answer'] = "It lets users update information about themselves"
+  }
+  else if (answer.includes('2')) {
+    req.session.data['user-risk-level'] = "medium"
+    req.session.data['user-risk-answer'] = "It gives users access to sensitive information"
+  }
+  else if (answer.includes('3')) {
+    req.session.data['user-risk-level'] = "high"
+    req.session.data['user-risk-answer'] = "It gives users money, benefits or something else valuable"
+  }
+  else if (answer.includes('4')) {
+    req.session.data['user-risk-level'] = "low"
+    req.session.data['user-risk-answer'] = "It doesn't do any of these things"
+  }
+  else{
+    req.session.data['user-risk-level'] = "dont-know"
+    req.session.data['user-risk-answer'] = "I don’t know"
+  }
+  res.redirect('overview')
+})
+
+
 router.post('/validity-1-answer', function (req, res) {
 
   let evidence = req.session.data['evidence']

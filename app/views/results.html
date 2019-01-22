@@ -201,15 +201,18 @@
             <p>
               To meet this profile you need to:
               <ul class="govuk-list govuk-list--bullet">
-                <li>{% if profile.evidenceResult %}✅{% else %}❌{% endif %} collect {{ profile.humanEvidence }}</li>
+                {% if profile.evidenceResult == false %}<li>collect {{ profile.humanEvidence }}</li>{% endif %}
+
                 {% if profile.activityThreshold %}
-                  <li>{% if profile.activityResult %}✅{% else %}❌{% endif %} achieve a history check score of {{ profile.activityThreshold }}</li>
+                  {% if profile.activityResult == false %}<li>achieve a history check score of {{ profile.activityThreshold }}</li>{% endif %}
                 {% endif %}
+
                 {% if profile.verificationThreshold %}
-                  <li>{% if profile.verificationResult %}✅{% else %}❌{% endif %} achieve a verification score of {{ profile.verificationThreshold }}</li>
+                  {% if profile.verificationResult == false %}<li>achieve a verification score of {{ profile.verificationThreshold }}</li>{% endif %}
                 {% endif %}
+
                 {% if profile.fraudThreshold %}
-                  <li>{% if profile.fraudResult %}✅{% else %}❌{% endif %} achieve a fraud check score of {{ profile.fraudThreshold }}</li>
+                  {% if profile.fraudResult == false %}<li>achieve a fraud check score of {{ profile.fraudThreshold }}</li>{% endif %}
                 {% endif %}
               </ul>
             </p>
