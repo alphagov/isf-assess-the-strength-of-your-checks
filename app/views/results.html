@@ -41,7 +41,7 @@
   </div>
 
   <div class="govuk-grid-row level-of-protection">
-    <h2 class="govuk-heading-m govuk-!-margin-bottom-6">Risks you protect against</h2>
+    <h2 class="govuk-heading-m govuk-!-margin-bottom-6">Risks you’re protected against</h2>
 
     <div class="govuk-grid-column-one-quarter">
       <h3 class="govuk-heading-s govuk-!-margin-bottom-2">Stolen identity</h3>
@@ -101,7 +101,7 @@
                   <tr class="govuk-table__row">
                     <td class="govuk-table__cell" scope="row">{{item.shortname | capitalize}}</td>
                     <td class="govuk-table__cell multi-question" scope="row">
-                      {{item.strength}}</span>
+                      {{item.strength}}
                     </td>
                     <td class="govuk-table__cell" scope="row">
                       {{item.validity}}
@@ -180,7 +180,7 @@
         {% for levelData in data['profile-results'] %}
           <h3 class="govuk-heading-m">Risk level {{ levelData.level }}</h3>
           {% for profile in levelData.results.profileResults %}
-            <h4 class="govuk-heading-s">Profile {{ profile.name }}</h4>
+            <h4 class="govuk-heading-s govuk-!-margin-bottom-2">Profile {{ profile.name }}</h4>
             <!-- <p>You {% if not profile.overallResult %}do not{% endif %} meet this profile</p> -->
             <p>
               To meet this profile you need:
@@ -205,10 +205,10 @@
 
       {% else %}
 
-        <!-- <h3 class="govuk-heading-m govuk-!-margin-top-7">Identity profiles for your level of risk</h3> -->
+        <h3 class="govuk-heading-m govuk-!-margin-top-2">Identity profiles for a {{data['user-risk-level']}} level of confidence</h3>
 
         {% for profile in data['profile-results'] %}
-          <h3 class="govuk-heading-m">Profile {{ profile.name }}</h3>
+          <h4 class="govuk-heading-s govuk-!-margin-bottom-2">Profile {{ profile.name }}</h4>
           {% if not profile.overallResult %}
 
             <p>
@@ -235,7 +235,7 @@
         {% endfor %}
 
       {% endif %}
-      
+
 
     </div>
   </div>

@@ -116,7 +116,7 @@ router.post('/choose-evidence-answer', function (req, res) {
         req.session.data['testevidence'][i].chosen = true
       }
     }
-    res.redirect('evidence/validity-1')
+    res.redirect('evidence/validity-start')
   }
 })
 
@@ -125,20 +125,20 @@ router.post('/risk-answer', function (req, res) {
   let answer = req.session.data['risk-question']
 
   if (answer.includes('1')) {
-    req.session.data['user-risk-level'] = "medium"
-    req.session.data['user-risk-answer'] = "It lets users update information about themselves"
+    req.session.data['user-risk-level'] = "none"
+    req.session.data['user-risk-answer'] = "None"
   }
   else if (answer.includes('2')) {
-    req.session.data['user-risk-level'] = "medium"
-    req.session.data['user-risk-answer'] = "It gives users access to sensitive information"
+    req.session.data['user-risk-level'] = "low"
+    req.session.data['user-risk-answer'] = "Low"
   }
   else if (answer.includes('3')) {
-    req.session.data['user-risk-level'] = "high"
-    req.session.data['user-risk-answer'] = "It gives users money, benefits or something else valuable"
+    req.session.data['user-risk-level'] = "medium"
+    req.session.data['user-risk-answer'] = "Medium"
   }
   else if (answer.includes('4')) {
-    req.session.data['user-risk-level'] = "low"
-    req.session.data['user-risk-answer'] = "Something else"
+    req.session.data['user-risk-level'] = "high"
+    req.session.data['user-risk-answer'] = "High"
   }
   else{
     req.session.data['user-risk-level'] = "dont-know"
@@ -147,6 +147,22 @@ router.post('/risk-answer', function (req, res) {
   res.redirect('overview')
 })
 
+
+router.post('/validity-0-answer', function (req, res) {
+
+  let evidence = req.session.data['evidence']
+  let thisEvidence = evidence
+  req.session.data['thisEvidence'] = thisEvidence
+
+  let answer = req.session.data['validity-0']
+
+  if (answer.includes('1')) {
+    res.redirect('evidence/validity-1')
+  }
+  else{
+    res.redirect('overview')
+  }
+})
 
 router.post('/validity-1-answer', function (req, res) {
 
@@ -836,7 +852,7 @@ router.post('/overview-answer', function (req, res) {
   } else {
     let validationResults = responseValidator.validateResponse(userRiskLevel, evidence, verificationScore, fraudScore, activityScore)
     let not = validationResults.validated ? 'look like they are' : 'might not be'
-    req.session.data['result-message'] = "Your checks " + not + " appropriate for what your service does."
+    req.session.data['result-message'] = "Your checks " + not + " appropriate for your level of confidence."
     req.session.data['profile-results'] = validationResults.profileResults
   }
 
