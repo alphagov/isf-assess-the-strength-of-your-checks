@@ -30,11 +30,11 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-l">
-        Tell us about your identity checks
+        Your scores
       </h1>
 
       <p>
-        Find out what scores you get for each part of the process.
+        Find out what scores you’ll get for each part of the identity checking process.
       </p>
 
       {% if complete == "True" %}
@@ -138,7 +138,7 @@
         <tbody class="govuk-table__body">
           <tr class="govuk-table__row">
             <td class="govuk-table__cell" scope="row">
-              Activity history
+              Activity
             </td>
             <td class="govuk-table__cell" scope="row">
               {% if data['activityScore'] %}
@@ -178,7 +178,8 @@
               {% if data['fraudScore'] %}
                 <a href="/fraud/fraud-start">Change</a>
               {% endif %}
-            </td>          </tr>
+            </td>
+          </tr>
           <tr class="govuk-table__row">
             <td class="govuk-table__cell" scope="row">
               Verification
