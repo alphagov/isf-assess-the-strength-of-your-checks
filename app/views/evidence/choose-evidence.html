@@ -17,7 +17,16 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <!-- <span class="govuk-caption-l">Evidence</span> -->
+      <h1 class="govuk-heading-l">
+        What type of evidence do you have of the person’s identity?
+      </h1>
+      <p>
+        Some pieces of evidence can be faked or copied more easily than others. This depends on things like what information is on the evidence and how it was designed and issued.
+      </p>
+      <p>
+        The highest score you can get for this check is 4.
+      </p>
+      <br>
       <form action="/choose-evidence-group-answer" method="post" novalidate>
         {% from "radios/macro.njk" import govukRadios %}
 
@@ -26,8 +35,8 @@
           name: "choose-evidence-1",
           fieldset: {
             legend: {
-              text: "What type of evidence is it?",
-              isPageHeading: true,
+              text: "",
+              isPageHeading: false,
               classes: "govuk-fieldset__legend--l"
             }
           },
