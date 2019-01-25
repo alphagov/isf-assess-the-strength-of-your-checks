@@ -1,0 +1,209 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {% from "breadcrumbs/macro.njk" import govukBreadcrumbs %}
+
+  {{ govukBreadcrumbs({
+  items: [
+    {
+      text: "Identity standard",
+      href: "/standards-landing-page"
+    },{
+      text: "Assess how your identity service meets the standard",
+      href: "/index"
+    },
+    {
+      text: "How confident you can be in the person’s identity"
+    }
+  ]
+  }) }}
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">How to improve your checks</h1>
+
+      <p>
+        The confidence you have in the identity depends on how much evidence you collect and how thoroughly you do each part of the identity checking process. This makes up an identity profile.
+      </p>
+      <p>
+        To have confidence in the identity you must meet an identity profile.
+      </p>
+
+    </div>
+    <div class="govuk-grid-column-full">
+
+      <details class="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Show your identity profile
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+
+          <h2 class="govuk-heading-m visually-hidden">Your evidence checks</h2>
+
+          <table class="govuk-table govuk-!-margin-bottom-7 govuk-!-margin-top-0">
+            <thead class="govuk-table__head">
+              <tr class="govuk-table__row">
+                <th class="govuk-table__header" scope="col">Evidence checks</th>
+                <th class="govuk-table__header" scope="col">Strength score</th>
+                <th class="govuk-table__header" scope="col">Validity score</th>
+                <th class="govuk-table__header" scope="col"></th>
+              </tr>
+            </thead>
+
+            <tbody class="govuk-table__body">
+              {% for item in data['testevidence'] %}
+                {% if item.chosen %}
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell" scope="row">{{item.shortname | capitalize}}</td>
+                    <td class="govuk-table__cell multi-question" scope="row">
+                      {{item.strength}}
+                    </td>
+                    <td class="govuk-table__cell" scope="row">
+                      {{item.validity}}
+                    </td>
+                    <td class="govuk-table__cell edit" scope="row">
+                      <a href="/activity/activity-start">How to change score</a>
+                    </td>
+                  </tr>
+                {% endif %}
+              {% endfor %}
+
+              {% if evidenceExists == "false" %}
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell hint" scope="row">You haven’t added any evidence</td>
+                  <td class="govuk-table__cell" scope="row"></td>
+                  <td class="govuk-table__cell" scope="row"></td>
+                </tr>
+              {% endif %}
+
+            </tbody>
+          </table>
+
+          <h2 class="govuk-heading-m visually-hidden">Other identity checks</h2>
+
+          <table class="govuk-table govuk-!-margin-bottom-7 govuk-!-margin-top-0">
+            <thead class="govuk-table__head">
+              <tr class="govuk-table__row">
+                <th class="govuk-table__header" scope="col">Other checks</th>
+                <th class="govuk-table__header" scope="col">Score</th>
+                <th class="govuk-table__header" scope="col"></th>
+              </tr>
+            </thead>
+
+            <tbody class="govuk-table__body">
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell" scope="row">
+                  Activity history
+                </td>
+                <td class="govuk-table__cell" scope="row">
+                  {{data['activityScore']}}
+                </td>
+                <td class="govuk-table__cell edit" scope="row">
+                  <a href="/activity/activity-start">How to change score</a>
+                </td>
+              </tr>
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell" scope="row">
+                  Fraud
+                </td>
+                <td class="govuk-table__cell" scope="row">
+                  {{data['fraudScore']}}
+                </td>
+                <td class="govuk-table__cell edit" scope="row">
+                  <a href="/fraud/fraud-start">How to change score</a>
+                </td>          </tr>
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell" scope="row">
+                  Verification
+                </td>
+                <td class="govuk-table__cell multi-question" scope="row">
+                  {{data['verificationScore']}}
+                </td>
+                <td class="govuk-table__cell edit" scope="row">
+                  <a href="/verification/verification-start">How to change score</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
+    </div>
+    <div class="govuk-grid-column-two-thirds">
+
+      {% if data['user-risk-level'] == 'dont-know' %}
+        <h3 class="govuk-heading-m govuk-!-margin-top-7">How the evidence you collect meets identity profiles for different levels of risk</h3>
+        {% for levelData in data['profile-results'] %}
+          <h3 class="govuk-heading-m">Risk level {{ levelData.level }}</h3>
+          {% for profile in levelData.results.profileResults %}
+            <h4 class="govuk-heading-s govuk-!-margin-bottom-2">Profile {{ profile.name }}</h4>
+            <!-- <p>You {% if not profile.overallResult %}do not{% endif %} meet this profile</p> -->
+            <p>
+              To meet this profile you need:
+              <ul class="govuk-list govuk-list--bullet">
+                {% if profile.evidenceResult == false %}<li>collect {{ profile.humanEvidence }}</li>{% endif %}
+
+                {% if profile.activityThreshold %}
+                  {% if profile.activityResult == false %}<li>achieve a history check score of {{ profile.activityThreshold }}</li>{% endif %}
+                {% endif %}
+
+                {% if profile.verificationThreshold %}
+                  {% if profile.verificationResult == false %}<li>achieve a verification score of {{ profile.verificationThreshold }}</li>{% endif %}
+                {% endif %}
+
+                {% if profile.fraudThreshold %}
+                  {% if profile.fraudResult == false %}<li>achieve a fraud check score of {{ profile.fraudThreshold }}</li>{% endif %}
+                {% endif %}
+              </ul>
+            </p>
+          {% endfor %}
+        {% endfor %}
+
+      {% else %}
+
+        <h3 class="govuk-heading-m govuk-!-margin-top-2">Identity profiles for a {{data['user-risk-level']}} level of confidence</h3>
+
+        {% for profile in data['profile-results'] %}
+          <h4 class="govuk-heading-s govuk-!-margin-bottom-2">Profile {{ profile.name }}</h4>
+          {% if not profile.overallResult %}
+
+            <p>
+              To meet this profile you need:
+              <ul class="govuk-list govuk-list--bullet">
+                {% if profile.evidenceResult == false %}<li>{{ profile.humanEvidence }}</li>{% endif %}
+
+                {% if profile.activityThreshold %}
+                  {% if profile.activityResult == false %}<li>a history check score of {{ profile.activityThreshold }}</li>{% endif %}
+                {% endif %}
+
+                {% if profile.verificationThreshold %}
+                  {% if profile.verificationResult == false %}<li>a verification score of {{ profile.verificationThreshold }}</li>{% endif %}
+                {% endif %}
+
+                {% if profile.fraudThreshold %}
+                  {% if profile.fraudResult == false %}<li>a fraud check score of {{ profile.fraudThreshold }}</li>{% endif %}
+                {% endif %}
+              </ul>
+            </p>
+          {% else %}
+            <p>You meet this profile.</p>
+          {% endif %}
+        {% endfor %}
+
+      {% endif %}
+
+
+    </div>
+  </div>
+
+{% endblock %}
