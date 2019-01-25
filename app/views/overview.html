@@ -53,7 +53,7 @@
     </div>
 
     <div class="govuk-grid-column-full">
-      <h2 class="govuk-heading-m govuk-!-margin-bottom-0">Your service</h2>
+      <h2 class="govuk-heading-m govuk-!-margin-bottom-0 visually-hidden">Your service</h2>
       <table class="govuk-table govuk-table govuk-!-margin-bottom-7 govuk-!-margin-top-0">
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">
@@ -64,14 +64,14 @@
         </thead>
         <tbody class="govuk-table__body">
           <tr class="govuk-table__row">
-            <td class="govuk-table__cell" scope="row">What level of confidence do you need that the user is who they say they are?</td>
+            <td class="govuk-table__cell" scope="row">What level of confidence you need</td>
             <td class="govuk-table__cell">{{data['user-risk-answer'] }}</td>
             <td class="govuk-table__cell edit"><a href="/your-risk">Change</a></td>
           </tr>
         </tbody>
       </table>
 
-      <h2 class="govuk-heading-m govuk-!-margin-bottom-0">Evidence checks</h2>
+      <h2 class="govuk-heading-m govuk-!-margin-bottom-0 visually-hidden">Evidence checks</h2>
 
       <table class="govuk-table govuk-!-margin-bottom-7 govuk-!-margin-top-0">
         <thead class="govuk-table__head">
@@ -81,14 +81,10 @@
                 {% set evidenceExists = "true" %}
               {% endif %}
             {% endfor %}
+            <th class="govuk-table__header" scope="col">Evidence checks</th>
             {% if evidenceExists == "true" %}
-              <th class="govuk-table__header" scope="col">Evidence</th>
               <th class="govuk-table__header" scope="col">Strength score</th>
               <th class="govuk-table__header" scope="col">Validity score</th>
-            {% else %}
-              <th class="govuk-table__header" scope="col"></th>
-              <th class="govuk-table__header" scope="col"></th>
-              <th class="govuk-table__header" scope="col"></th>
             {% endif %}
             <th class="govuk-table__header" scope="col"></th>
           </tr>
@@ -113,26 +109,26 @@
           {% if evidenceExists == "false" %}
             <tr class="govuk-table__row">
               <td class="govuk-table__cell hint" scope="row">You haven’t added any evidence yet</td>
-              <td class="govuk-table__cell" scope="row"></td>
+              <td class="govuk-table__cell" scope="row">
+                <a href="/evidence/choose-evidence">Add evidence</a>
+              </td>
               <td class="govuk-table__cell" scope="row"></td>
             </tr>
           {% endif %}
 
         </tbody>
       </table>
-      <p class="table-link"><a href="/evidence/choose-evidence">Add evidence</a></p>
-
-      <h2 class="govuk-heading-m govuk-!-margin-bottom-0">Other checks</h2>
+      {% if evidenceExists == "true" %}
+        <p class="table-link"><a href="/evidence/choose-evidence">Add evidence</a></p>
+      {% endif %}
+      <h2 class="govuk-heading-m govuk-!-margin-bottom-0 visually-hidden">Other checks</h2>
 
       <table class="govuk-table govuk-!-margin-bottom-7 govuk-!-margin-top-0">
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">
+            <th class="govuk-table__header" scope="col">Other checks</th>
             {% if data['activityScore'] or data['fraudScore'] or data['verificationScore'] %}
-              <th class="govuk-table__header" scope="col">Check</th>
               <th class="govuk-table__header" scope="col">Score</th>
-            {% else %}
-              <th class="govuk-table__header" scope="col"></th>
-              <th class="govuk-table__header" scope="col"></th>
             {% endif %}
             <th class="govuk-table__header" scope="col"></th>
             <th class="govuk-table__header" scope="col"></th>
@@ -213,7 +209,7 @@
     <div class="govuk-grid-column-two-thirds">
       <form action="/overview-answer" method="post" novalidate>
         {{ govukButton({
-          text: "Continue"
+          text: "Continue to results"
         }) }}
       </form>
 

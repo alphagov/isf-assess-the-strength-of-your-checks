@@ -766,7 +766,7 @@ router.post('/activity-0-answer', function (req, res) {
   else if (conditionalAnswer.includes('4')) {
     req.session.data['activityScore'] = "4"
   }
-  res.redirect('/fraud/fraud-start')
+  res.redirect('overview')
 })
 
 router.post('/fraud-0-answer', function (req, res) {
@@ -777,7 +777,7 @@ router.post('/fraud-0-answer', function (req, res) {
   }
   else if (answer.includes('2')) {
     req.session.data['fraudScore'] = "0"
-    res.redirect('/verification/verification-start')
+    res.redirect('overview')
   }
 })
 
@@ -789,7 +789,7 @@ router.post('/fraud-1-answer', function (req, res) {
   }
   else if (answer.includes('2')) {
     req.session.data['fraudScore'] = "1"
-    res.redirect('/verification/verification-start')
+    res.redirect('overview')
   }
 })
 
@@ -798,12 +798,11 @@ router.post('/fraud-2-answer', function (req, res) {
 
   if (answer.includes('1')) {
     req.session.data['fraudScore'] = "3"
-    res.redirect('/verification/verification-start')
   }
   else if (answer.includes('2')) {
     req.session.data['fraudScore'] = "4"
-    res.redirect('/verification/verification-start')
   }
+  res.redirect('overview')
 })
 
 router.post('/verification-0-answer', function (req, res) {
