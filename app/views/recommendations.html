@@ -198,6 +198,25 @@
                 {% endif %}
               </ul>
             </p>
+
+            <p>
+              By meeting this profile, you will:
+              <ul class="govuk-list govuk-list--bullet">
+                {% for benefit in profile['benefits'] %}
+                  <li>{{ data['benefits'][benefit] }}</li>
+                {% endfor %}
+              </ul>
+            </p>
+
+            <p>
+              This means you'll know that:
+              <ul class="govuk-list govuk-list--bullet">
+                {% for description in profile['descriptions'] %}
+                  <li>{{ data['descriptions'][description] }}</li>
+                {% endfor %}
+              </ul>
+            </p>
+
           {% else %}
             <p>You meet this profile.</p>
           {% endif %}

@@ -79,11 +79,84 @@ const thisEvidence = []
 
 const highStrengthScore = []
 
+const benefits = {
+  1: "know that evidence of the claimed identity exists",
+  2: "know if the evidence is genuine or valid",
+  3: "know that the claimed identity is not known to be fraudulent or at a higher than usual risk of being impersonated",
+  4: "be confident the person knows some things that only the claimed identity should know",
+  5: "be confident the person matches either the photo or biometric information that's shown on the evidence",
+  6: "trust each piece of evidence exists",
+  7: "know each piece of evidence appears to be genuine",
+  8: "be confident that the claimed identity exists in the real world",
+  9: "have checked the person matches the photo or biometric information that's shown on the evidence, or know they can complete challenges that only the claimed identity should be able to do",
+  10: "know that very strong evidence of the claimed identity exists",
+  11: "know the evidence is genuine and valid",
+  12: "have checked the claimed identity exists in the real world",
+  13: "have checked the claimed identity is not known to be fraudulent",
+  14: "have strong evidence that shows the claimed identity exists",
+  15: "have records that the claimed identity exists in the real world",
+  16: "have more than one piece of evidence that shows the claimed identity exists",
+  17: "know one piece of evidence is genuine",
+  18: "know the other piece of evidence is genuine or valid",
+  19: "",
+  20: "be confident the person matches either the photo or biometric information that's shown on the genuine evidence",
+  21: "have another piece of evidence that shows the claimed identity exists",
+  22: "know the evidence is genuine, valid or both",
+  23: "know that the claimed identity is not known to be fraudulent or or at higher than usual risk of being impersonated",
+  24: "know the person probably matches the photo or biometric information that's shown on the evidence, or know they can complete challenges that only the claimed identity should be able to do",
+  25: "know both pieces of evidence are genuine, valid or both",
+  26: "have very strong evidence that shows the claimed identity exists",
+  27: "know that the claimed identity is not known to be fraudulent or at higher than usual risk of being impersonated",
+  28: "have multiple pieces of evidence that show the claimed identity exists",
+  29: "know each piece of evidence is genuine or valid",
+  30: "be very confident the claimed identity is not known to be fraudulent or at higher than usual risk of being impersonated",
+  31: "have more than one piece of strong evidence that shows the claimed identity exists",
+  32: "know both pieces of evidence are genuine and valid",
+  33: "have another piece of strong evidence that shows the claimed identity exists",
+  34: "have more than one other piece of evidence that shows the claimed identity exists",
+  35: "be very confident that the claimed identity is not known to be fraudulent or at higher than usual risk of being impersonated",
+  36: "know that strong evidence of the claimed identity exists",
+  37: "know each piece of evidence appears to be genuine",
+  38: "be confident that the claimed identity exists in the real world",
+  39: "",
+  40: ""
+}
+
+const descriptions = {
+  1: "the organisation that issued the evidence did basic checks to make sure the claimed identity exists in the real world (so you won't need to do an activity check)",
+  2: "the claimed identity is not at significant risk of being targeted for identity fraud (so you only need a low score for the verification check)",
+  3: "the person going through the identity checking process has been matched to the claimed identity through a physical or biometric comparison (as it's unlikely they're someone else, you won't need to do an identity fraud check)",
+  4: "the evidence you have does not have many security features that stop it from being copied (so you’ll need to collect multiple pieces of evidence)",
+  5: "the organisation that issued the evidence didn’t do many checks that the claimed identity exists in the real world (so you’ll also need to do an activity check)",
+  6: "it's unlikely that someone will pretend to be the claimed identity (so you do not have to do a physical or biometric comparison)",
+  7: "the organisation that issued the evidence did multiple thorough checks to make sure the claimed identity exists in the real world (so you'll only need a low score for the activity check)",
+  8: "the organisation that issued the evidence did multiple checks to make sure the claimed identity exists in the real world (you’ll also need to do an activity check)",
+  9: "the organisation that issued the evidence only did basic checks to make sure the claimed identity exists in the real world (so you’ll also need to do an activity check)",
+  10: "the organisation that issued the evidence checked the claimed identity exists in the real world (you’ll also need to do an activity check)",
+  11: "the claimed identity is not at high risk of being targeted for identity fraud (so you only need a low score for the verification check)",
+  12: "the organisation that issued one of the pieces of evidence did multiple thorough checks to make sure the claimed identity exists in the real world",
+  13: "the organisation that issued the other piece of evidence only did basic checks to make sure that the claimed identity exists in the real world (so you'll need to do an activity check)",
+  14: "the organisation that issued the evidence only did basic checks to make sure the claimed identity exists in the real world (so you’ll need to do an activity check)",
+  15: "the claimed identity is definitely not at high risk of being targeted for identity fraud",
+  16: "the person going through the identity checking process is unlikely to be someone else because they've been matched to the claimed identity through a physical or biometric comparison",
+  17: "the evidence is also almost definitely genuine and valid",
+  18: "it’s possible the claimed identity could be targeted for identity fraud (so you need more than one piece of evidence)",
+  19: "the organisation that issued the evidence did multiple thorough checks to make sure the claimed identity exists in the real world (so you do not need to do an activity check)",
+  20: "the organisation that issued one of the pieces of evidence did multiple checks to make sure the claimed identity exists in the real world",
+  21: "the organisation that issued the other pieces of evidence only checked the claimed identity exists in the real world (so you’ll need to do an activity check)",
+  22: "the claimed identity is definitely not at high risk of being targeted for identity fraud (so you can accept weaker types of evidence)",
+  23: "the organisation that issued the evidence did multiple checks to make sure the claimed identity exists in the real world (so you won't need to do an activity check)",
+  24: ""
+}
+
 // Add your routes here - above the module.exports line
 
 router.post('/set-choose-evidence-variables', function (req, res) {
   req.session.data['testevidence'] = testevidence
   req.session.data['explanations'] = explanations
+  req.session.data['benefits'] = benefits
+  req.session.data['descriptions'] = descriptions
+
   res.redirect('your-risk')
 })
 
@@ -748,25 +821,30 @@ router.post('/validity-14-answer', function (req, res) {
 
 router.post('/activity-0-answer', function (req, res) {
 
-  let answer = req.session.data['validity-0a']
-  let conditionalAnswer = req.session.data['validity-0b']
+  let answer = req.session.data['validity-0']
+
+  if (answer.includes('1')) {
+    res.redirect('/activity/activity-1')
+  }
+  else {
+    req.session.data['activityScore'] = "0"
+    res.redirect('overview')
+  }
+
+})
+
+router.post('/activity-1-answer', function (req, res) {
+
+  let answer = req.session.data['validity-1a']
+  let conditionalAnswer = req.session.data['validity-1b']
 
   if (answer.includes('2')) {
     req.session.data['activityScore'] = "0"
+    res.redirect('overview')
   }
-  else if (conditionalAnswer.includes('1')) {
-    req.session.data['activityScore'] = "1"
+  else {
+    res.redirect('/activity/activity-2')
   }
-  else if (conditionalAnswer.includes('2')) {
-    req.session.data['activityScore'] = "2"
-  }
-  else if (conditionalAnswer.includes('3')) {
-    req.session.data['activityScore'] = "3"
-  }
-  else if (conditionalAnswer.includes('4')) {
-    req.session.data['activityScore'] = "4"
-  }
-  res.redirect('overview')
 })
 
 router.post('/fraud-0-answer', function (req, res) {

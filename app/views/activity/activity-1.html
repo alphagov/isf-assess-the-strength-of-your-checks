@@ -1,0 +1,101 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Overview
+{% endblock %}
+
+{% block beforeContent %}
+  {% from "breadcrumbs/macro.njk" import govukBreadcrumbs %}
+  {{ govukBreadcrumbs({
+  items: [
+    {
+      text: "Identity standard",
+      href: "/index"
+    },{
+      text: "Assess how your identity service meets the standard",
+      href: "/before-you-start"
+    },
+    {
+      text: "Overview"
+    }
+  ]
+  }) }}
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">Activity checks</span>
+
+      <form action="/activity-1-answer" method="post" novalidate>
+
+        {% from "radios/macro.njk" import govukRadios %}
+
+
+        {% set conditionalAnswer %}
+        {{ govukRadios({
+          idPrefix: "validity-1b",
+          name: "validity-1b",
+          fieldset: {
+            legend: {
+              text: "How did the organisation do this?",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--s"
+            }
+          },
+          items: [
+            {
+              value: "1",
+              text: "Using their own identity checking process"
+            },
+            {
+              value: "2",
+              text: "Using a process that means they can be reasonably sure the person is who they say they are"
+            },
+            {
+              value: "3",
+              text: "Using a process that meets the requirements in the Money Laundering Regulations 2017"
+            },
+            {
+              value: "4",
+              text: "By physically comparing them to an image of the person they're claiming to be from an authoritative source"
+            }
+          ]
+        }) }}
+
+        {% endset -%}
+
+        {{ govukRadios({
+          idPrefix: "validity-1a",
+          name: "validity-1a",
+          fieldset: {
+            legend: {
+              text: "Did the organisation the person interacted with check their identity at any point?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "1",
+              text: "Yes",
+              conditional: {
+                html: conditionalAnswer
+              }
+            },{
+              value: "2",
+              text: "No"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

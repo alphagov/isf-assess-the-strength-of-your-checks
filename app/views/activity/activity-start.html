@@ -27,73 +27,50 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <span class="govuk-caption-l">History checks</span>
-      <h1 class="govuk-heading-l">Do you check if the identity has existed over time?</h1>
+      <span class="govuk-caption-l">Activity checks</span>
+      <h1 class="govuk-heading-l">Check the identity has existed over time</h1>
+      <p>You should check if the person has interacted with other organisations over time.</p>
+      <p>This will help you to be sure that the identity you're checking is real. 'Synthetic' (or made up) identities are unlikely to have records in the real world.</p>
+
       <p>
-        Some examples of interactions that can prove if the identity has been active over a period of time include:
+        Some examples of interactions that can prove someone's identity include:
         <ul class="govuk-list govuk-list--bullet">
           <li>credit card transactions</li>
           <li>student loan repayments</li>
           <li>mortgage payments</li>
           <li>gas or electricity account payments</li>
-          <li>posts on social media</li>
         </ul>
       </p>
+
+      <p>
+        You can also check if any records exist that show if the person has been known by other organisations over time, such as their:
+        <ul class="govuk-list govuk-list--bullet">
+          <li>health records</li>
+          <li>employment records</li>
+          <li>school records</li>
+        </ul>
+      </p>
+
+      <p>The highest score you can get for this check is 4.</p>
+
       <form action="/activity-0-answer" method="post" novalidate>
 
         {% from "radios/macro.njk" import govukRadios %}
 
-        {% set timeperiod %}
         {{ govukRadios({
-          idPrefix: "validity-0b",
-          name: "validity-0b",
+          idPrefix: "validity-0",
+          name: "validity-0",
           fieldset: {
             legend: {
-              text: "Over what period of time do you look for interactions?",
-              isPageHeading: false,
-              classes: "govuk-fieldset__legend--s"
-            }
-          },
-          items: [
-            {
-              value: "1",
-              text: "3 months"
-            },
-            {
-              value: "2",
-              text: "6 months"
-            },
-            {
-              value: "3",
-              text: "1 year"
-            },
-            {
-              value: "4",
-              text: "3 years"
-            }
-          ]
-        }) }}
-
-        {% endset -%}
-
-
-        {{ govukRadios({
-          idPrefix: "validity-0a",
-          name: "validity-0a",
-          fieldset: {
-            legend: {
-              text: "",
+              text: "Do you check if the identity has existed over time?",
               isPageHeading: false,
               classes: "govuk-fieldset__legend--m"
             }
           },
           items: [
             {
-              value: "yes",
-              text: "Yes",
-              conditional: {
-                html: timeperiod
-              }
+              value: "1",
+              text: "Yes"
             },{
               value: "2",
               text: "No"
