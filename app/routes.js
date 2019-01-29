@@ -911,11 +911,20 @@ router.post('/fraud-0-answer', function (req, res) {
 router.post('/fraud-1-answer', function (req, res) {
   let answer = req.session.data['fraud-1']
 
-  if (answer.includes('1')) {
-    res.redirect('/fraud/fraud-2')
+  if (answer.includes('1') && answer.includes('2') && answer.includes('3') && answer.includes('4') && answer.includes('5') && answer.includes('6')) {
+    req.session.data['fraudScore'] = "2"
+    res.redirect('fraud/fraud-2')
   }
-  else if (answer.includes('2')) {
+  else if (answer.includes('4') && answer.includes('5') && answer.includes('6')) {
     req.session.data['fraudScore'] = "1"
+    res.redirect('overview')
+  }
+  else if (answer.includes('1') && answer.includes('2') && answer.includes('3')) {
+    req.session.data['fraudScore'] = "1"
+    res.redirect('/overview')
+  }
+  else {
+    req.session.data['fraudScore'] = "0"
     res.redirect('overview')
   }
 })
@@ -924,10 +933,22 @@ router.post('/fraud-2-answer', function (req, res) {
   let answer = req.session.data['fraud-2']
 
   if (answer.includes('1')) {
+    res.redirect('overview')
+  }
+  else if (answer.includes('2')) {
+    res.redirect('fraud/fraud-3')
+  }
+  res.redirect('overview')
+})
+
+router.post('/fraud-3-answer', function (req, res) {
+  let answer = req.session.data['fraud-3']
+
+  if (answer.includes('1')) {
     req.session.data['fraudScore'] = "3"
   }
   else if (answer.includes('2')) {
-    req.session.data['fraudScore'] = "4"
+    req.session.data['fraudScore'] = "2"
   }
   res.redirect('overview')
 })
