@@ -1,0 +1,385 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+About - GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+	{{ govukBreadcrumbs({
+	  items: [
+	    {
+	      text: "GOV.UK Prototype Kit",
+	      href: "/docs"
+	    }
+	  ]
+	}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">Scoring for strength and validity of evidence</h1>
+
+      <p>You’ll get a score for each part of the identity checking process you do. The highest score you can get is 4.</p>
+
+      <p>Changing how thoroughly you do each part of the identity checking process will give you different scores.</p>
+
+      <h2 id="getevidenceoftheiridentitystrength" class="govuk-heading-m">Get evidence of their identity ('strength')</h2>
+
+      <p>You'll need to get evidence of the person's identity and see how strong that evidence is. You can either: </p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>ask the person to provide evidence of their identity, like an identity document (such as a passport) or an account (which they can prove they own by giving you something like a bill or account number)</li>
+        <li>find some evidence of their identity yourself, for example by checking existing databases</li>
+      </ul>
+
+      <p>You must always make sure the person gives you at least one piece of evidence before you look for evidence of their identity yourself.</p>
+
+      <p>This was previously known as 'Element A'.</p>
+
+      <p>The strength of a piece of evidence does not change over time. If it expires, the score it has will stay the same.</p>
+
+      <p>The identity is sometimes shown as a synonym on different pieces of evidence. For example, it might say the person’s name is William on their passport, but Bill on their bank card.</p>
+
+      <p>If the names are different for any other reason (for example the person's surname is different on one piece of evidence) you should collect other pieces of evidence and do other checks to make sure both identities belong to the same person.</p>
+
+      <h3 id="score1" class="govuk-heading-s">Score 1</h3>
+
+      <p>The evidence will have a score of 1 if it contains the person’s name and information that's likely to be unique to either the identity or that piece of evidence. This could be:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>their address</li>
+        <li>their date or place of birth</li>
+        <li>their photo</li>
+        <li>a reference number</li>
+      </ul>
+
+      <p>The evidence should come from an organisation that checked the person's identity when they issued it. </p>
+
+      <p>The identity must not be able to influence the organisation that issued the evidence in any way. For example, the evidence can't be issued by a company that the person owns.</p>
+
+      <p>Some examples of evidence that will have a score of 1 include:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>a gas or electric bill</li>
+        <li>a letter from your local authority</li>
+      </ul>
+
+      <h3 id="score2" class="govuk-heading-s">Score 2</h3>
+
+      <p>The evidence will have a score of 2 if it has everything it needs to get a score of 1 and:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>it includes the person’s name instead of any pseudonyms or aliases</li>
+        <li>it includes information that's unique to either the identity or that piece of evidence</li>
+        <li>the organisation that issued the evidence checked the person’s identity in a way that means they're reasonably sure the person is who they say they are</li>
+        <li>if it's a physical document, it's protected by physical security features (such as a hologram, specialist inks or printing techniques) which stop it from being reproduced without specialist knowledge or information</li>
+        <li>if it has digital information, it's protected by cryptographic security features (such as a cryptographic key on a chip)</li>
+        <li>if it has any cryptographic security features, they're able to correctly identify the organisation that issued it </li>
+      </ul>
+
+      <p>Some examples of evidence that have a score of 2 include:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>a firearm certificate</li>
+        <li>a Home Office travel document (convention travel document, stateless person's document, one-way document or certificate of travel)</li>
+        <li>a birth or adoption certificate</li>
+        <li>an older person's bus pass</li>
+        <li>an education certificate from a regulated and recognised educational institution (such as an NVQ, GCSE, A level or degree certificate)</li>
+        <li>a rental or purchase agreement for a residential property</li>
+        <li>a proof of age card with a Proof of Age Standards Scheme (PASS) hologram</li>
+        <li>a Freedom Pass</li>
+        <li>a marriage certificate</li>
+        <li>building, contents or vehicle insurance</li>
+      </ul>
+
+      <h3 id="score3" class="govuk-heading-s">Score 3</h3>
+
+      <p>The evidence will have a score of 3 if it has everything it needs to get a score of 2 and:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>it includes the person’s full first and middle names instead of their initials</li>
+        <li>it includes information that's unique to both the identity and that piece of evidence</li>
+        <li>the organisation that issued the evidence made sure it was received by the same person who applied for it</li>
+        <li>the organisation that issued the evidence checked the person’s identity in a way that follows the <a href="http://www.legislation.gov.uk/uksi/2017/692/made">Money Laundering Regulations 2017</a> </li>
+        <li>if it's a physical document, it's protected by physical security features which stop it from being reproduced without specialist knowledge, information and equipment</li>
+      </ul>
+
+      <p>The evidence must also include one of the following:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>a photo of the person</li>
+        <li>biometric information that uses cryptographic security features to protect its integrity</li>
+        <li>cryptographic security features that can be used to identify the person who owns the evidence</li>
+      </ul>
+
+      <p>Some examples of evidence that will have a score of 3 include:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>passports that meet the <a href="https://www.icao.int/publications/pages/publication.aspx?docnum=9303">International Civil Aviation Organisation (ICAO) specifications for machine-readable travel documents</a> (9303)</li>
+        <li>identity cards from an EU or European Economic Area (EEA) country that follow the <a href="https://eur-lex.europa.eu/legal-content/EN/ALL/?uri=CELEX%3A32004R2252">Council Regulation (EC) No 2252/2004 standards</a></li>
+        <li>EU or EEA driving licences that follow the <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=celex%3A32006L0126">European Directive 2006/126/EC</a> </li>
+        <li>a Northern Ireland electoral identity card</li>
+        <li>a US passport card</li>
+        <li>a bank, building society or credit union current account</li>
+        <li>a student loan account</li>
+        <li>a credit account</li>
+        <li>a bank savings account</li>
+        <li>a mortgage account (including buy to let mortgage accounts)</li>
+        <li>a <a href="https://www.gov.uk/tachographs">digital tachograph</a> </li>
+        <li>an armed forces identity card</li>
+        <li>a proof of age card with a PASS hologram and a unique reference number</li>
+        <li>a secured loan account (this includes hire purchase accounts)</li>
+      </ul>
+
+      <h3 id="score4" class="govuk-heading-s">Score 4</h3>
+
+      <p>The evidence will have a score of 4 if it has everything it needs to get a score of 3 and:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>the evidence contains biometric and personal information that's protected by cryptographic security features</li>
+        <li>the organisation that issued the evidence proved the person’s identity by comparing and matching the person to an image of the claimed identity from an authoritative source </li>
+      </ul>
+
+      <p>Some examples of evidence that will have a score of 4 include:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>biometric passports that meet the <a href="https://www.icao.int/publications/pages/publication.aspx?docnum=9303">ICAO specifications for e-passports</a> </li>
+        <li>identity cards from an EU or EEA country that follow the <a href="https://eur-lex.europa.eu/legal-content/EN/ALL/?uri=CELEX%3A32004R2252">Council Regulation (EC) No 2252/2004 standards</a> and contain biometric information</li>
+        <li>a <a href="https://www.gov.uk/biometric-residence-permits">biometric residence permit</a> (BRP)</li>
+      </ul>
+
+      <h2 id="checktheevidenceisgenuineorvalidvalidity" class="govuk-heading-m">Check the evidence is genuine or valid ('validity')</h2>
+
+      <p>You can check if the evidence is genuine, valid or both. You can do this in person or remotely.</p>
+
+      <p>To be valid, the evidence must not have:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>expired</li>
+        <li>been reported as lost or stolen</li>
+        <li>been cancelled</li>
+      </ul>
+
+      <p>This was previously known as 'Element B'.</p>
+
+      <h3 id="score1-1" class="govuk-heading-s">Score 1</h3>
+
+      <p>The evidence will have a score of 1 if you can confirm the physical features of the evidence appear to be genuine. </p>
+
+      <p>The document will need to be checked by someone who:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>knows how to use a magnifier</li>
+        <li>is aware that document fraud takes place</li>
+        <li>can confirm there are no errors on the document, like wrong paper type, spelling mistakes or missing pages </li>
+        <li>can confirm the details, layout or alignment of the document look the way they should</li>
+      </ul>
+
+      <h3 id="score2-1">Score 2</h3>
+
+      <p>The evidence will have a score of 2 if you do one of the following:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>confirm it’s valid</li>
+        <li>make sure any physical security features are likely to be genuine</li>
+        <li>make sure any cryptographic security features are genuine</li>
+      </ul>
+
+      <h4 id="checkingtheevidenceisvalid" class="govuk-heading-s">Checking the evidence is valid</h4>
+
+      <p>You can confirm the evidence is valid by making sure the person’s details shown on it match those held by either:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>the organisation that issued it</li>
+        <li>another authoritative source</li>
+      </ul>
+
+      <h4 id="checkingthephysicalsecurityfeaturesaregenuine" class="govuk-heading-s">Checking the physical security features are genuine</h4>
+
+      <p>The person or system will need to make sure:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>the person has the document at the point it's checked (for example it shouldn't accept scans)</li>
+        <li>the document has been shared in a way that prevents it from being tampered with</li>
+      </ul>
+
+      <p>They'll need to check the following features of the document look correct:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>background printing</li>
+        <li>fonts and alignment</li>
+        <li>holograms and positioning</li>
+        <li>the way it's been laminated</li>
+        <li>any designs printed with optical variable ink (and check they look the way they should at certain angles)</li>
+      </ul>
+
+      <p>If the document is being checked by a person, they must:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>be trained by the Home Office, National Document Fraud Unit, Centre for the Protection of National Infrastructure (CPNI) or another equivalent specialist trainer in how to detect false documents</li>
+        <li>refresh their training at least every 3 years</li>
+      </ul>
+
+      <p>If the document is being checked by a system, you should make sure the system was built following good practice such as the Home Office's <a href="https://www.gov.uk/government/publications/identity-document-validation-technology/identification-document-validation-technology">guidance on identification document validation technology</a>.</p>
+
+      <p>It must:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>make use of official templates, such as the <a href="https://www.consilium.europa.eu/prado/en/search-by-document-country.html">Public Register of Authentic travel and identity Documents Online</a> (PRADO)</li>
+        <li>update those templates at least every 3 years</li>
+        <li>use an image that's at least 3 megapixels (or 300 DPI) in resolution</li>
+        <li>use an image that's clear enough for it to examine the security features (the document must take up at least 95% of the image)</li>
+      </ul>
+
+      <p>If the document is being checked using different light sources (such as ultraviolet light), the person or system will also need to be able to identify if:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>the paper the document is printed on looks the way it should</li>
+        <li>any fluorescent features on the document look the way they should</li>
+      </ul>
+
+      <p>If you can't use different light sources (for example because you're using a document capture software), the person or system will also need to be able to identify:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>any 'compound identifiers', such as a Driver and Vehicle Licensing Agency (DVLA) driver number, are formatted correctly</li>
+        <li>if any photographs have been positioned correctly on the document (they should not have been replaced or edited)</li>
+      </ul>
+
+      <h4 id="checkingthecryptographicsecurityfeaturesaregenuine" class="govuk-heading-s">Checking the cryptographic security features are genuine</h4>
+
+      <p>To make sure the cryptographic security features are genuine, the system that checks the evidence will need to:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>read the encrypted data with a compatible reader or decryption process</li>
+        <li>provide the required access or decryption key</li>
+        <li>check the digital signature is correct</li>
+        <li>check the signing key is the correct type for that evidence</li>
+        <li>check the signing key has not been revoked</li>
+      </ul>
+
+      <h3 id="score3-1" class="govuk-heading-s">Score 3</h3>
+
+      <p>The evidence will have a score of 3 if you check either:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>its physical features are probably genuine</li>
+        <li>its cryptographic security features are probably genuine</li>
+      </ul>
+
+      <p>You must also confirm if the evidence is valid. To do this, you should make sure the person’s details shown on it match those held by either:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>the organisation that issued it</li>
+        <li>another authoritative source</li>
+      </ul>
+
+      <h4 id="checkingthephysicalsecurityfeaturesaregenuine-1" class="govuk-heading-s">Checking the physical security features are genuine</h4>
+
+      <p>The person or system will need to do the same checks needed to get a score of 2. </p>
+
+      <p>They'll also need to:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>use evidence that's been shared in a way that prevents it from being 'replayed' (intercepted and reused)</li>
+        <li>use an image that's at least 6 megapixels (or 600 DPI) in resolution </li>
+        <li>make sure any shadows or glare do not stop its security features from being examined</li>
+        <li>make use of official templates, such as those from the PRADO</li>
+        <li>update these templates every year</li>
+      </ul>
+
+      <p>If the checks are being done by a person, they'll need to refresh their training in how to detect false documents every year.</p>
+
+      <p>They must also need to be able to identify:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>intaglio (raised) ink </li>
+        <li>laser etching</li>
+        <li>if features on certain parts of the document are consistent and correct </li>
+      </ul>
+
+      <div class="govuk-inset-text">
+        <strong>Example</strong><br>
+        In a UK passport, there should be a passport number on the page with the person's details on it. You should also check if this number is the same as the number punched on the other pages in the passport.
+      </div>
+
+      <p>To check this, they must use one of the following:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>an ultraviolet desktop light</li>
+        <li>a magnification tool (such as a magnifier)</li>
+        <li>other inspection equipment used to identify forged or counterfeit documents</li>
+      </ul>
+
+      <h4 id="checkingthecryptographicsecurityfeaturesaregenuine-1">Checking the cryptographic security features are genuine</h4>
+
+      <p>The system will need to do the same checks needed to get a score of 2. </p>
+
+      <h3 id="score4-1" class="govuk-heading-s">Score 4</h3>
+
+      <p>The evidence will have a score of 4 if you can confirm:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>its physical features are genuine</li>
+        <li>its cryptographic security features are genuine</li>
+      </ul>
+
+      <p>You must also confirm if the evidence is valid. To do this, you should make sure the person’s details shown on it match those held by either:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>the organisation that issued it</li>
+        <li>another authoritative source</li>
+      </ul>
+
+      <h4 id="checkingthephysicalsecurityfeaturesaregenuine-2" class="govuk-heading-s">Checking the physical security features are genuine</h4>
+
+      <p>The person or system will need to do the same checks needed to get a score of 3.</p>
+
+      <p>They'll also need to:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>be supervised by someone who's trained by the Home Office, National Document Fraud Unit, CPNI or another equivalent specialist trainer when they examine the document</li>
+        <li>examine the document under 'controlled' light conditions (which means the lights create the best possible environment for examining the document's security features)</li>
+      </ul>
+
+      <p>The person or system doing the checks will also need to have previously worked with or be used by: </p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>the Home Office</li>
+        <li>National Document Fraud Unit</li>
+        <li>the CPNI </li>
+        <li>another equivalent specialist identity unit to identify genuine documents from forgeries or counterfeits</li>
+      </ul>
+
+      <p>They'll need to check the following features of the document look correct:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>watermarks</li>
+        <li>ultraviolet security features</li>
+        <li>security fibres</li>
+        <li>consistency across the whole document</li>
+      </ul>
+
+      <div class="govuk-inset-text">
+        <strong>Example</strong><br>
+        In the latest UK passport, there should be a secondary ('ghost') image of the person on the 'observations' page. You should check if the surname and date of birth in the image is the same as the person’s details.
+      </div>
+
+      <p>To check this, they must use:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>an ultraviolet desktop light</li>
+        <li>a magnification tool (such as a magnifier)</li>
+        <li>other inspection equipment to identify forged or counterfeit documents</li>
+        <li>an oblique light</li>
+      </ul>
+
+      <h4 id="checkingthecryptographicsecurityfeaturesaregenuine-2" class="govuk-heading-s">Checking the cryptographic security features are genuine</h4>
+
+      <p>The system will need to do the same checks needed to get a score of 2.</p>
+
+  </div>
+</div>
+{% endblock %}
