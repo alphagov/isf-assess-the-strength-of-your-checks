@@ -1,0 +1,81 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Overview
+{% endblock %}
+
+{% block beforeContent %}
+  {% from "breadcrumbs/macro.njk" import govukBreadcrumbs %}
+  {{ govukBreadcrumbs({
+  items: [
+    {
+      text: "Identity standard",
+      href: "/index"
+    },{
+      text: "Assess how your identity service meets the standard",
+      href: "/before-you-start"
+    },
+    {
+      text: "Overview"
+    }
+  ]
+  }) }}
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">Verification checks</span>
+      <h1 class="govuk-heading-l">What's the 'false match rate' and 'false non-match rate' for your process?</h1>
+
+      <p>
+        The 'false match rate' explains how secure your process is. The 'false non-match rate' is about how easy it is for people to successfully use your process.
+      </p>
+
+      <form action="/verification-11c-answer" method="post" novalidate>
+
+        {% from "checkboxes/macro.njk" import govukCheckboxes %}
+        {% from "radios/macro.njk" import govukRadios %}
+
+        {% from "checkboxes/macro.njk" import govukCheckboxes %}
+
+        {{ govukCheckboxes({
+          idPrefix: "verification-11c",
+          name: "verification-11c",
+          fieldset: {
+            legend: {
+              text: "",
+              isPageHeading: false
+            }
+          },
+          hint: {
+            text: ""
+          },
+          items: [
+            {
+              value: "1",
+              text: "The false match rate and false non-match rate are appropriate for your service"
+            },
+            {
+              value: "2",
+              text: "The false match rate is lower than the false non-match rate"
+            },
+            {
+              value: "3",
+              text: "The false match rate is significantly lower than its false non-match rate"
+            }
+          ]
+        }) }}
+
+
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

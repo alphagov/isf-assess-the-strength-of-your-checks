@@ -1,0 +1,76 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Overview
+{% endblock %}
+
+{% block beforeContent %}
+  {% from "breadcrumbs/macro.njk" import govukBreadcrumbs %}
+  {{ govukBreadcrumbs({
+  items: [
+    {
+      text: "Identity standard",
+      href: "/index"
+    },{
+      text: "Assess how your identity service meets the standard",
+      href: "/before-you-start"
+    },
+    {
+      text: "Overview"
+    }
+  ]
+  }) }}
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">Verification checks</span>
+      <h1 class="govuk-heading-l">Is the biometric information captured under 'controlled conditions'?</h1>
+      <p>
+        TThis means:
+        <ul class="govuk-list govuk-list--bullet">
+          <li>any equipment you use has been designed in a way that makes it difficult to be tampered with or made to give an incorrect response</li>
+          <li>the biometric information is captured under the supervision of trained personnel</li>
+          <li>the area and equipment you’re using to capture the biometric information has been designed in a way to stop things affecting how well you can match it to the person</li>
+        </ul>
+      </p>
+      <form action="/verification-12a-answer" method="post" novalidate>
+
+        {% from "checkboxes/macro.njk" import govukCheckboxes %}
+        {% from "radios/macro.njk" import govukRadios %}
+
+        {{ govukRadios({
+          idPrefix: "verification-12a",
+          name: "verification-12a",
+          fieldset: {
+            legend: {
+              text: "",
+              isPageHeading: false
+            }
+          },
+          hint: {
+            text: ""
+          },
+          items: [
+            {
+              value: "1",
+              text: "Yes"
+            },
+            {
+              value: "2",
+              text: "No"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

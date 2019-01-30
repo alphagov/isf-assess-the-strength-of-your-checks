@@ -1,0 +1,87 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Overview
+{% endblock %}
+
+{% block beforeContent %}
+  {% from "breadcrumbs/macro.njk" import govukBreadcrumbs %}
+  {{ govukBreadcrumbs({
+  items: [
+    {
+      text: "Identity standard",
+      href: "/index"
+    },{
+      text: "Assess how your identity service meets the standard",
+      href: "/before-you-start"
+    },
+    {
+      text: "Overview"
+    }
+  ]
+  }) }}
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">Verification checks</span>
+
+      <form action="/verification-4d-answer" method="post" novalidate>
+
+        {% from "checkboxes/macro.njk" import govukCheckboxes %}
+        {% from "radios/macro.njk" import govukRadios %}
+
+        {{ govukCheckboxes({
+          idPrefix: "verification-4d",
+          name: "verification-4d",
+          fieldset: {
+            legend: {
+              text: "Where did the data the questions are based on come from?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            text: ""
+          },
+          items: [
+            {
+              value: "1",
+              text: "A source that did its own checks on the person's identity"
+            },
+            {
+              value: "2",
+              text: "A source that checked the person's identity in a way that follows the Money Laundering Regulations 2017"
+            },
+            {
+              value: "3",
+              text: "A source that makes sure the data can’t be accessed, modified or created by its employees"
+            },
+            {
+              value: "4",
+              text: "A source that’s separate to your organisation"
+            },
+            {
+              value: "5",
+              text: "A source that’s regulated by a statutory or independent body"
+            },
+            {
+              value: "6",
+              text: "A source that means it cannot be accessed by anyone apart from the person and their immediate family (and if someone else tries they'll be committing a civil or criminal offence)"
+            }
+          ]
+        }) }}
+
+
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

@@ -28,69 +28,20 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-l">Verification checks</span>
-      <h1 class="govuk-heading-l">Do you check the person is the same person that’s shown on the evidence?</h1>
 
       <form action="/verification-1-answer" method="post" novalidate>
 
         {% from "checkboxes/macro.njk" import govukCheckboxes %}
-
-        {% set checksHTML %}
-          {{ govukCheckboxes({
-            idPrefix: "verification-1b",
-            name: "verification-1b",
-            fieldset: {
-              legend: {
-                text: "What checks do you do?",
-                classes: "govuk-fieldset__legend--s"
-              }
-            },
-            hint: {
-              text: ""
-            },
-            items: [
-              {
-                value: "1",
-                text: "Check they physically match the photo on a genuine piece of evidence (you can do this either in person or remotely)"
-              },
-              {
-                value: "2",
-                text: "Check their biometric information matches what's on a genuine piece of evidence (you can do this with facial, fingerprint or iris recognition software)"
-              },
-              {
-                value: "3",
-                text: "Ask them to complete multiple 'knowledge-based verification' tasks"
-              }
-            ]
-          }) }}
-          <details class="govuk-details">
-            <summary class="govuk-details__summary">
-              <span class="govuk-details__summary-text">
-                Find out about knowledge-based verification tasks
-              </span>
-            </summary>
-            <div class="govuk-details__text">
-              <p>
-                A knowledge-based verification task is something that only whoever the person is claiming to be would know how to do.
-              </p>
-
-              <p>
-                You could make a small payment (such as 1p) into the person's bank account. They will need to sign in to their account and give you the code that's the reference for that payment. If they can give you the code, it will prove they have control of and access to that account.
-              </p>
-            </div>
-          </details>
-        {% endset -%}
-
-
-
         {% from "radios/macro.njk" import govukRadios %}
 
-        {{ govukRadios({
-          idPrefix: "verification-1a",
-          name: "verification-1a",
+        {{ govukCheckboxes({
+          idPrefix: "verification-1",
+          name: "verification-1",
           fieldset: {
             legend: {
-              text: "",
-              isPageHeading: false
+              text: "How do you check the person is the same person the evidence was issued to?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
             }
           },
           hint: {
@@ -99,14 +50,19 @@
           items: [
             {
               value: "1",
-              text: "Yes",
-              conditional: {
-                html: checksHTML
-              }
+              text: "Check the person physically matches the photo on the evidence"
             },
             {
               value: "2",
-              text: "No"
+              text: "Check the person's biometric information (such as their face or fingerprints) matches what's on the evidence"
+            },
+            {
+              value: "3",
+              text: "Ask them 'knowledge-based verification' (KBV)"
+            },
+            {
+              value: "4",
+              text: "You don't check this"
             }
           ]
         }) }}
@@ -116,6 +72,24 @@
           text: "Continue"
         }) }}
       </form>
+      <details class="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Find out more about knowledge-based verification
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          <p>
+            Knowledge-based verification (KBV) is when you ask someone questions that only the person they're claiming to be would know the answer to. The questions should be about things that you can also find the answer to.
+          </p>
+          <p>
+            For example, you could ask the person how much their monthly mortgage payments are. To be able to answer this, they'll need a mortgage (they would have had to prove their identity to get one) and have bills that were sent to their address.
+          </p>
+          <p>
+            You could also make a small payment (such as 1p) into the person's bank account. They will need to sign in to their account and give you the code that's the reference for that payment. If they can give you the code, it will prove they have control of and access to that account.
+          </p>
+        </div>
+      </details>
     </div>
   </div>
 

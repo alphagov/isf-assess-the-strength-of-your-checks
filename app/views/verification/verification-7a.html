@@ -28,35 +28,38 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-l">Verification checks</span>
-      <h1 class="govuk-heading-l">Do you check the person is the same person they’re claiming to be?</h1>
 
-      <p>
-        You should prove that the person going through your identity checking process is the same person they’re claiming to be
-      </p>
+      <form action="/verification-7a-answer" method="post" novalidate>
 
-      <form action="/verification-0-answer" method="post" novalidate>
-
+        {% from "checkboxes/macro.njk" import govukCheckboxes %}
         {% from "radios/macro.njk" import govukRadios %}
 
-        {{ govukRadios({
-          idPrefix: "verification-0",
-          name: "verification-0",
+        {{ govukCheckboxes({
+          idPrefix: "verification-7a",
+          name: "verification-7a",
           fieldset: {
             legend: {
-              text: "",
+              text: "How do you check the quality of the image?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
           },
-          items: [
-          {
-            value: "1",
-            text: "Yes"
+          hint: {
+            text: ""
           },
-          {
-            value: "2",
-            text: "No"
-          }
+          items: [
+            {
+              value: "1",
+              text: "You make sure the person is present when their image is taken (instead of using a scan or an upload from a photo feed)"
+            },
+            {
+              value: "2",
+              text: "You can tell if the image has been intercepted and reused ('replayed')"
+            },
+            {
+              value: "3",
+              text: "You make sure the image has been shared in a way that stops it from being tampered with (for example a 'man-in-the-middle' attack)"
+            }
           ]
         }) }}
 

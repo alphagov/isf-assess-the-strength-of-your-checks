@@ -1,0 +1,83 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Overview
+{% endblock %}
+
+{% block beforeContent %}
+  {% from "breadcrumbs/macro.njk" import govukBreadcrumbs %}
+  {{ govukBreadcrumbs({
+  items: [
+    {
+      text: "Identity standard",
+      href: "/index"
+    },{
+      text: "Assess how your identity service meets the standard",
+      href: "/before-you-start"
+    },
+    {
+      text: "Overview"
+    }
+  ]
+  }) }}
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">Verification checks</span>
+      <h1 class="govuk-heading-l">Has the person doing the check been taught how to detect impostors?</h1>
+      <p>
+        They must have been trained by one of the following organisations:
+        <ul class="govuk-list govuk-list--bullet">
+          <li>Home Office</li>
+          <li>National Document Fraud Unit</li>
+          <li>Centre for the Protection of National Infrastructure (CPNI)</li>
+        </ul>
+      </p>
+      <form action="/verification-8-answer" method="post" novalidate>
+
+        {% from "checkboxes/macro.njk" import govukCheckboxes %}
+        {% from "radios/macro.njk" import govukRadios %}
+
+        {{ govukRadios({
+          idPrefix: "verification-8",
+          name: "verification-8",
+          fieldset: {
+            legend: {
+              text: "",
+              isPageHeading: false
+            }
+          },
+          hint: {
+            text: ""
+          },
+          items: [
+            {
+              value: "1",
+              text: "Yes"
+            },
+            {
+              value: "2",
+              text: "No - they were trained by an equivalent specialist trainer"
+            },
+            {
+              divider: "or"
+            },
+            {
+              value: "3",
+              text: "They haven't had any training"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

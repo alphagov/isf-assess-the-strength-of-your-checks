@@ -28,35 +28,33 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-l">Verification checks</span>
-      <h1 class="govuk-heading-l">Do you check the person is the same person they’re claiming to be?</h1>
+      <form action="/verification-12b-answer" method="post" novalidate>
 
-      <p>
-        You should prove that the person going through your identity checking process is the same person they’re claiming to be
-      </p>
-
-      <form action="/verification-0-answer" method="post" novalidate>
-
+        {% from "checkboxes/macro.njk" import govukCheckboxes %}
         {% from "radios/macro.njk" import govukRadios %}
 
-        {{ govukRadios({
-          idPrefix: "verification-0",
-          name: "verification-0",
+        {{ govukCheckboxes({
+          idPrefix: "verification-12b",
+          name: "verification-12b",
           fieldset: {
             legend: {
-              text: "",
+              text: "What other checks do you do?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
           },
-          items: [
-          {
-            value: "1",
-            text: "Yes"
+          hint: {
+            text: ""
           },
-          {
-            value: "2",
-            text: "No"
-          }
+          items: [
+            {
+              value: "1",
+              text: "Check another, different piece of biometric information (for example if you have a fingerprint biometric, you also check a facial biometric)"
+            },
+            {
+              value: "2",
+              text: "Ask the person to complete multiple ‘dynamic’ KBV questions"
+            }
           ]
         }) }}
 

@@ -28,37 +28,42 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-l">Verification checks</span>
-      <h1 class="govuk-heading-l">Do you check the person is the same person they’re claiming to be?</h1>
 
-      <p>
-        You should prove that the person going through your identity checking process is the same person they’re claiming to be
-      </p>
+      <form action="/verification-4a-answer" method="post" novalidate>
 
-      <form action="/verification-0-answer" method="post" novalidate>
-
+        {% from "checkboxes/macro.njk" import govukCheckboxes %}
         {% from "radios/macro.njk" import govukRadios %}
 
-        {{ govukRadios({
-          idPrefix: "verification-0",
-          name: "verification-0",
+        {{ govukCheckboxes({
+          idPrefix: "verification-4a",
+          name: "verification-4a",
           fieldset: {
             legend: {
-              text: "",
+              text: "Tell us about the KBV questions you ask",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
           },
-          items: [
-          {
-            value: "1",
-            text: "Yes"
+          hint: {
+            text: ""
           },
-          {
-            value: "2",
-            text: "No"
-          }
+          items: [
+            {
+              value: "1",
+              text: "They're written in a clear and simple way"
+            },
+            {
+              value: "2",
+              text: "They're about something whoever the person is claiming to be would reasonably be expected to know"
+            },
+            {
+              value: "3",
+              text: "The data the questions are based on comes from a source that makes sure the data has not been altered or shared"
+            }
           ]
         }) }}
+
+
 
         {{ govukButton({
           text: "Continue"

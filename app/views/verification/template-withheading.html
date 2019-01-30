@@ -1,0 +1,162 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Overview
+{% endblock %}
+
+{% block beforeContent %}
+  {% from "breadcrumbs/macro.njk" import govukBreadcrumbs %}
+  {{ govukBreadcrumbs({
+  items: [
+    {
+      text: "Identity standard",
+      href: "/index"
+    },{
+      text: "Assess how your identity service meets the standard",
+      href: "/before-you-start"
+    },
+    {
+      text: "Overview"
+    }
+  ]
+  }) }}
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">Verification checks</span>
+      <h1 class="govuk-heading-l">Do you check the person is the same person that’s shown on the evidence?</h1>
+
+      <form action="/verification-x-answer" method="post" novalidate>
+
+        {% from "checkboxes/macro.njk" import govukCheckboxes %}
+        {% from "radios/macro.njk" import govukRadios %}
+
+        {% set checksHTML %}
+          {{ govukCheckboxes({
+            idPrefix: "verification-xb",
+            name: "verification-xb",
+            fieldset: {
+              legend: {
+                text: "What checks do you do?",
+                classes: "govuk-fieldset__legend--s"
+              }
+            },
+            hint: {
+              text: ""
+            },
+            items: [
+              {
+                value: "1",
+                text: "Check they physically match the photo on a genuine piece of evidence (you can do this either in person or remotely)"
+              },
+              {
+                value: "2",
+                text: "Check their biometric information matches what's on a genuine piece of evidence (you can do this with facial, fingerprint or iris recognition software)"
+              },
+              {
+                value: "3",
+                text: "Ask them to complete multiple 'knowledge-based verification' tasks"
+              }
+            ]
+          }) }}
+
+          {{ govukRadios({
+            idPrefix: "verification-xb",
+            name: "verification-xb",
+            fieldset: {
+              legend: {
+                text: "What checks do you do?",
+                classes: "govuk-fieldset__legend--s"
+              }
+            },
+            hint: {
+              text: ""
+            },
+            items: [
+              {
+                value: "1",
+                text: "Check they physically match the photo on a genuine piece of evidence (you can do this either in person or remotely)"
+              },
+              {
+                value: "2",
+                text: "Check their biometric information matches what's on a genuine piece of evidence (you can do this with facial, fingerprint or iris recognition software)"
+              },
+              {
+                value: "3",
+                text: "Ask them to complete multiple 'knowledge-based verification' tasks"
+              }
+            ]
+          }) }}
+        {% endset -%}
+
+
+        {{ govukRadios({
+          idPrefix: "verification-xa",
+          name: "verification-xa",
+          fieldset: {
+            legend: {
+              text: "",
+              isPageHeading: false
+            }
+          },
+          hint: {
+            text: ""
+          },
+          items: [
+            {
+              value: "1",
+              text: "Yes",
+              conditional: {
+                html: checksHTML
+              }
+            },
+            {
+              value: "2",
+              text: "No"
+            }
+          ]
+        }) }}
+
+        {% from "checkboxes/macro.njk" import govukCheckboxes %}
+
+        {{ govukCheckboxes({
+          idPrefix: "verification-xa",
+          name: "verification-xa",
+          fieldset: {
+            legend: {
+              text: "",
+              isPageHeading: false
+            }
+          },
+          hint: {
+            text: ""
+          },
+          items: [
+            {
+              value: "1",
+              text: "Yes",
+              conditional: {
+                html: checksHTML
+              }
+            },
+            {
+              value: "2",
+              text: "No"
+            }
+          ]
+        }) }}
+
+
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
