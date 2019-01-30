@@ -29,13 +29,13 @@
 
   <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-l">How to improve your checks</h1>
+      <h1 class="govuk-heading-l">Your recommendations</h1>
 
       <p>
-        The confidence you have in the identity depends on how much evidence you collect and how thoroughly you do each part of the identity checking process. This makes up an identity profile.
+        These are the identity profiles that will give you the level of confidence you need in someone's identity.
       </p>
       <p>
-        To have confidence in the identity you must meet an identity profile.
+        You'll need to do some parts of the identity checking process more thoroughly to meet these profiles.
       </p>
 
     </div>
@@ -49,7 +49,7 @@
         </summary>
         <div class="govuk-details__text"> -->
 
-      <br>
+      <!-- <br>
       <h2 class="govuk-heading-m">Your identity profile</h2>
 
       <h2 class="govuk-heading-m visually-hidden">Your evidence checks</h2>
@@ -174,9 +174,7 @@
 
       {% else %}
 
-        <h3 class="govuk-heading-l govuk-!-margin-top-2">Meeting {{data['user-risk-level']}} level of confidence identity profiles</h3>
-
-        {% for profile in data['profile-results'] %}
+      {% for profile in data['profile-results'] %}
           <h4 class="govuk-heading-m govuk-!-margin-bottom-2">Profile {{ profile.name }}</h4>
           <p>
             By meeting this profile, you will:
@@ -197,8 +195,12 @@
           </p>
           {% if not profile.overallResult %}
 
+          <p>
+            <b>What you need to do to meet this profile</b>
+          </p>
+
             <p>
-              To meet this profile you need:
+              You need:
               <ul class="govuk-list govuk-list--bullet">
                 {% if profile.evidenceResult == false %}<li>{{ profile.humanEvidence }}</li>{% endif %}
 
