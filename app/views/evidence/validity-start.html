@@ -28,16 +28,17 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-l">
-        Do you check the {{ data['evidenceName'] }} is genuine, valid or both?
+        Do you check the {{ data['evidenceName'] }} is genuine or valid?
       </h1>
 
+      <p>You should check if the evidence is either:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>genuine</li>
+        <li>valid (which means it hasn't expired, been cancelled or been reported as lost or stolen)</li>
+      </ul>
+
       <p>
-        To be valid, the evidence must not have:
-        <ul class="govuk-list govuk-list--bullet">
-          <li>expired</li>
-          <li>been reported as lost or stolen</li>
-          <li>been cancelled</li>
-        </ul>
+        You will get a higher score for this check if you make sure the evidence is both genuine and valid. The highest score you can get is 4.
       </p>
 
       <form action="/validity-0-answer" method="post" novalidate>
