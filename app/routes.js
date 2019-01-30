@@ -859,35 +859,30 @@ router.post('/activity-3-answer', function (req, res) {
   let answer = req.session.data['activity-3']
   let validity1Answer = req.session.data['activity-1b']
 
-  if (validity2Answer.includes('1')) {
+  if (validity2Answer.includes('1') && answer.includes('3') && validity1Answer.includes('4')) {
+    req.session.data['activityScore'] = "3"
+  }
+  else if (validity2Answer.includes('1') && answer.includes('2') && validity1Answer.includes('2')) {
+    req.session.data['activityScore'] = "2"
+  }
+  else if (validity2Answer.includes('1') && answer.includes('1') && validity1Answer.includes('1')) {
+    req.session.data['activityScore'] = "1"
+  }
+  else if (validity2Answer.includes('1')) {
+    req.session.data['activityScore'] = "0"
+  }
 
-    if (answer.includes('3') && validity1Answer.includes('4')) {
-      req.session.data['activityScore'] = "3"
-    }
-    else if (answer.includes('2') && validity1Answer.includes('2')) {
-      req.session.data['activityScore'] = "2"
-    }
-    else if (answer.includes('1') && validity1Answer.includes('1')) {
-      req.session.data['activityScore'] = "1"
-    }
-    else {
-      req.session.data['activityScore'] = "0"
-    }
-  } else {
-
-    if (answer.includes('3') && validity1Answer.includes('3') ) {
-      req.session.data['activityScore'] = "3"
-    }
-    else if (answer.includes('2') && validity1Answer.includes('2')) {
-      req.session.data['activityScore'] = "2"
-    }
-    else if (answer.includes('1') && validity1Answer.includes('1')) {
-      req.session.data['activityScore'] = "1"
-    }
-    else {
-      req.session.data['activityScore'] = "0"
-    }
-
+  else if (validity2Answer.includes('2') && answer.includes('3') && validity1Answer.includes('3') ) {
+    req.session.data['activityScore'] = "3"
+  }
+  else if (validity2Answer.includes('2') && answer.includes('2') && validity1Answer.includes('2')) {
+    req.session.data['activityScore'] = "2"
+  }
+  else if (validity2Answer.includes('2') && answer.includes('1') && validity1Answer.includes('1')) {
+    req.session.data['activityScore'] = "1"
+  }
+  else if (validity2Answer.includes('2')) {
+    req.session.data['activityScore'] = "0"
   }
 
   res.redirect('overview')
