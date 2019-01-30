@@ -174,10 +174,27 @@
 
       {% else %}
 
-        <h3 class="govuk-heading-m govuk-!-margin-top-2">Meeting {{data['user-risk-level']}} level of confidence identity profiles</h3>
+        <h3 class="govuk-heading-l govuk-!-margin-top-2">Meeting {{data['user-risk-level']}} level of confidence identity profiles</h3>
 
         {% for profile in data['profile-results'] %}
-          <h4 class="govuk-heading-s govuk-!-margin-bottom-2">Profile {{ profile.name }}</h4>
+          <h4 class="govuk-heading-m govuk-!-margin-bottom-2">Profile {{ profile.name }}</h4>
+          <p>
+            By meeting this profile, you will:
+            <ul class="govuk-list govuk-list--bullet">
+              {% for benefit in profile['benefits'] %}
+                <li>{{ data['benefits'][benefit] }}</li>
+              {% endfor %}
+            </ul>
+          </p>
+
+          <p>
+            This means you'll know that:
+            <ul class="govuk-list govuk-list--bullet">
+              {% for description in profile['descriptions'] %}
+                <li>{{ data['descriptions'][description] }}</li>
+              {% endfor %}
+            </ul>
+          </p>
           {% if not profile.overallResult %}
 
             <p>
@@ -198,25 +215,6 @@
                 {% endif %}
               </ul>
             </p>
-
-            <p>
-              By meeting this profile, you will:
-              <ul class="govuk-list govuk-list--bullet">
-                {% for benefit in profile['benefits'] %}
-                  <li>{{ data['benefits'][benefit] }}</li>
-                {% endfor %}
-              </ul>
-            </p>
-
-            <p>
-              This means you'll know that:
-              <ul class="govuk-list govuk-list--bullet">
-                {% for description in profile['descriptions'] %}
-                  <li>{{ data['descriptions'][description] }}</li>
-                {% endfor %}
-              </ul>
-            </p>
-
           {% else %}
             <p>You meet this profile.</p>
           {% endif %}
