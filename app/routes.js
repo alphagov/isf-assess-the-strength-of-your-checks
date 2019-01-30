@@ -849,46 +849,62 @@ router.post('/activity-1-answer', function (req, res) {
 
 router.post('/activity-2-answer', function (req, res) {
 
-  res.redirect('/activity/activity-3')
+  let answer = req.session.data['activity-2']
+  if (answer.includes('1')) {
+    res.redirect('/activity/activity-3')
+  }
+  else {
+    res.redirect('/activity/activity-4')
+  }
 
 })
 
 router.post('/activity-3-answer', function (req, res) {
 
-  let validity2Answer = req.session.data['activity-2']
   let answer = req.session.data['activity-3']
-  let validity1Answer = req.session.data['activity-1b']
+  let activity1Answer = req.session.data['activity-1b']
 
-  if (validity2Answer.includes('1') && answer.includes('3') && validity1Answer.includes('4')) {
+  if (answer.includes('3') && activity1Answer.includes('4')) {
+    req.session.data['activityScore'] = "4"
+  }
+  else if (answer.includes('3') && activity1Answer.includes('3')) {
     req.session.data['activityScore'] = "3"
   }
-  else if (validity2Answer.includes('1') && answer.includes('2') && validity1Answer.includes('2')) {
+  else if (answer.includes('2') && activity1Answer.includes('2')) {
     req.session.data['activityScore'] = "2"
   }
-  else if (validity2Answer.includes('1') && answer.includes('1') && validity1Answer.includes('1')) {
+  else if (answer.includes('1') && activity1Answer.includes('1')) {
     req.session.data['activityScore'] = "1"
   }
-  else if (validity2Answer.includes('1')) {
-    req.session.data['activityScore'] = "0"
-  }
-
-  else if (validity2Answer.includes('2') && answer.includes('3') && validity1Answer.includes('3') ) {
-    req.session.data['activityScore'] = "3"
-  }
-  else if (validity2Answer.includes('2') && answer.includes('2') && validity1Answer.includes('2')) {
-    req.session.data['activityScore'] = "2"
-  }
-  else if (validity2Answer.includes('2') && answer.includes('1') && validity1Answer.includes('1')) {
+  else {
     req.session.data['activityScore'] = "1"
-  }
-  else if (validity2Answer.includes('2')) {
-    req.session.data['activityScore'] = "0"
   }
 
   res.redirect('overview')
 
 })
 
+router.post('/activity-4-answer', function (req, res) {
+
+  let answer = req.session.data['activity-4']
+  let activity1Answer = req.session.data['activity-1b']
+
+  if (answer.includes('3') && activity1Answer.includes('3') ) {
+    req.session.data['activityScore'] = "3"
+  }
+  else if (answer.includes('2') && activity1Answer.includes('2')) {
+    req.session.data['activityScore'] = "2"
+  }
+  else if (answer.includes('1') && activity1Answer.includes('1')) {
+    req.session.data['activityScore'] = "1"
+  }
+  else {
+    req.session.data['activityScore'] = "1"
+  }
+
+  res.redirect('overview')
+
+})
 
 router.post('/fraud-0-answer', function (req, res) {
   let answer = req.session.data['fraud-0']
