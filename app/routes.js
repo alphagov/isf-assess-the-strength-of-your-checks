@@ -860,7 +860,6 @@ router.post('/activity-3-answer', function (req, res) {
   let validity1Answer = req.session.data['activity-1b']
 
   if (validity2Answer.includes('1')) {
-    res.redirect('/activity/activity-3')
 
     if (answer.includes('3') && validity1Answer.includes('4')) {
       req.session.data['activityScore'] = "3"
