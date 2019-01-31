@@ -5,23 +5,8 @@
 {% endblock %}
 
 {% block beforeContent %}
-  {% from "breadcrumbs/macro.njk" import govukBreadcrumbs %}
-  {{ govukBreadcrumbs({
-  items: [
-    {
-      text: "Identity standard",
-      href: "/index"
-    },{
-      text: "Assess how your identity service meets the standard",
-      href: "/before-you-start"
-    },
-    {
-      text: "Overview"
-    }
-  ]
-  }) }}
 
-{% endblock %}
+  <a href="javascript:history.back()" class="govuk-back-link">Back</a>
 
 {% block content %}
 

@@ -6,11 +6,9 @@
 {% endblock %}
 
 {% block beforeContent %}
-  {% from "back-link/macro.njk" import govukBackLink %}
-  {{ govukBackLink({
-    text: "Back",
-    href: "/your-risk"
-  }) }}
+
+  <a href="javascript:history.back()" class="govuk-back-link">Back</a>
+  
 {% endblock %}
 
 {% block content %}

@@ -5,21 +5,24 @@
 {% endblock %}
 
 {% block beforeContent %}
-  {% from "breadcrumbs/macro.njk" import govukBreadcrumbs %}
-  {{ govukBreadcrumbs({
-  items: [
-    {
-      text: "Identity standard",
-      href: "/index"
-    },{
-      text: "Assess how your identity service meets the standard",
-      href: "/before-you-start"
-    },
-    {
-      text: "Overview"
-    }
-  ]
-  }) }}
+{% from "breadcrumbs/macro.njk" import govukBreadcrumbs %}
+{{ govukBreadcrumbs({
+items: [
+  {
+    text: "Identity standard",
+    href: "/index"
+  },{
+    text: "Assess how your identity service meets the standard",
+    href: "/before-you-start"
+  },{
+    text: "Your scores",
+    href: "/overview"
+  },
+  {
+    text: "Verification"
+  }
+]
+}) }}
 
 {% endblock %}
 

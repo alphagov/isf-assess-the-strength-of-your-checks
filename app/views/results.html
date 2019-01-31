@@ -8,17 +8,21 @@
 {% block beforeContent %}
   {% from "breadcrumbs/macro.njk" import govukBreadcrumbs %}
 
+  {% from "breadcrumbs/macro.njk" import govukBreadcrumbs %}
   {{ govukBreadcrumbs({
   items: [
     {
       text: "Identity standard",
-      href: "/standards-landing-page"
+      href: "/index"
     },{
       text: "Assess how your identity service meets the standard",
-      href: "/index"
+      href: "/before-you-start"
+    },{
+      text: "Your scores",
+      href: "/overview"
     },
     {
-      text: "How confident you can be in the person’s identity"
+      text: "Results"
     }
   ]
   }) }}
