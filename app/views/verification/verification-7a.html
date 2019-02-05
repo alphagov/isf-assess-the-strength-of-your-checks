@@ -8,6 +8,8 @@
 
   <a href="javascript:history.back()" class="govuk-back-link">Back</a>
 
+{% endblock %}
+
 {% block content %}
 
   <div class="govuk-grid-row">
@@ -44,6 +46,10 @@
             {
               value: "3",
               text: "You make sure the image has been shared in a way that stops it from being tampered with (for example a 'man-in-the-middle' attack)"
+            },
+            {
+              value: "4",
+              text: "You do not do any of these checks"
             }
           ]
         }) }}

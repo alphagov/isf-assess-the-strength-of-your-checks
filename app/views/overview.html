@@ -73,7 +73,7 @@
         </tbody>
       </table>
 
-      <h2 class="govuk-heading-m govuk-!-margin-bottom-0 visually-hidden">Evidence checks</h2>
+      <h2 class="govuk-heading-m govuk-!-margin-bottom-0 visually-hidden">Evidence you collect</h2>
 
       <table class="govuk-table govuk-!-margin-bottom-7 govuk-!-margin-top-0">
         <thead class="govuk-table__head">
@@ -83,7 +83,7 @@
                 {% set evidenceExists = "true" %}
               {% endif %}
             {% endfor %}
-            <th class="govuk-table__header" scope="col">Evidence checks</th>
+            <th class="govuk-table__header" scope="col">Evidence you collect</th>
             {% if evidenceExists == "true" %}
               <th class="govuk-table__header" scope="col">Strength score</th>
               <th class="govuk-table__header" scope="col">Validity score</th>
@@ -128,7 +128,7 @@
       <table class="govuk-table govuk-!-margin-bottom-7 govuk-!-margin-top-0">
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">
-            <th class="govuk-table__header" scope="col">Other checks</th>
+            <th class="govuk-table__header" scope="col">Checks on the identity</th>
             {% if data['activityScore'] or data['fraudScore'] or data['verificationScore'] %}
               <th class="govuk-table__header" scope="col">Score</th>
             {% endif %}

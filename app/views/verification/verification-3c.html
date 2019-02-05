@@ -16,7 +16,7 @@
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-l">Verification checks</span>
 
-      <form action="/verification-4c-answer" method="post" novalidate>
+      <form action="/verification-3c-answer" method="post" novalidate>
 
         {% from "checkboxes/macro.njk" import govukCheckboxes %}
         {% from "radios/macro.njk" import govukRadios %}
@@ -24,8 +24,8 @@
         {% set checksHTML %}
 
           {{ govukRadios({
-            idPrefix: "verification-4cb",
-            name: "verification-4cb",
+            idPrefix: "verification-3cb",
+            name: "verification-3cb",
             fieldset: {
               legend: {
                 text: "Do you check it was sent to the same person whose identity you're checking?",
@@ -50,8 +50,8 @@
 
 
         {{ govukRadios({
-          idPrefix: "verification-4ca",
-          name: "verification-4ca",
+          idPrefix: "verification-3ca",
+          name: "verification-3ca",
           fieldset: {
             legend: {
               text: "Do you need to send the person a code by email or text?",

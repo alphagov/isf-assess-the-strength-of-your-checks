@@ -1,0 +1,137 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Overview
+{% endblock %}
+
+{% block beforeContent %}
+
+  <a href="javascript:history.back()" class="govuk-back-link">Back</a>
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">Verification checks</span>
+
+      <form action="/verification-4-answer" method="post" novalidate>
+
+        {% from "checkboxes/macro.njk" import govukCheckboxes %}
+        {% from "radios/macro.njk" import govukRadios %}
+
+        {% set multiple %}
+
+          {{ govukRadios({
+            idPrefix: "verification-4b",
+            name: "verification-4b",
+            fieldset: {
+              legend: {
+                text: "What checks do you do?",
+                classes: "govuk-fieldset__legend--s"
+              }
+            },
+            hint: {
+              text: ""
+            },
+            items: [
+              {
+                value: "1",
+                text: "1"
+              },
+              {
+                value: "2",
+                text: "2"
+              },
+              {
+                value: "3",
+                text: "3"
+              },
+              {
+                value: "4",
+                text: "4 to 7"
+              },
+              {
+                value: "5",
+                text: "8 or more"
+              }
+            ]
+          }) }}
+        {% endset -%}
+
+        {% set single %}
+
+          {{ govukRadios({
+            idPrefix: "verification-4b",
+            name: "verification-4b",
+            fieldset: {
+              legend: {
+                text: "What checks do you do?",
+                classes: "govuk-fieldset__legend--s"
+              }
+            },
+            hint: {
+              text: ""
+            },
+            items: [
+              {
+                value: "6",
+                text: "1"
+              },
+              {
+                value: "7",
+                text: "2"
+              },
+              {
+                value: "8",
+                text: "3"
+              },
+              {
+                value: "9",
+                text: "4 to 7"
+              }
+            ]
+          }) }}
+        {% endset -%}
+
+        {{ govukRadios({
+          idPrefix: "verification-4a",
+          name: "verification-4a",
+          fieldset: {
+            legend: {
+              text: "Do you ask multiple or single choice KBV questions?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            text: ""
+          },
+          items: [
+            {
+              value: "1",
+              text: "Multiple choice",
+              conditional: {
+                html: multiple
+              }
+            },
+            {
+              value: "2",
+              text: "Single choice",
+              conditional: {
+                html: single
+              }
+            }
+          ]
+        }) }}
+
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

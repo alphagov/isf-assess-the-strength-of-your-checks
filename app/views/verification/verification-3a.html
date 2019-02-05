@@ -8,33 +8,27 @@
 
   <a href="javascript:history.back()" class="govuk-back-link">Back</a>
 
+{% endblock %}
+
 {% block content %}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-l">Verification checks</span>
-      <h1 class="govuk-heading-l">Are the KBV questions 'static' or 'dynamic'?</h1>
 
-      <p>
-        A KBV question is 'static' if the information the person needs to answer it does not change over time. This could be something like their date of birth.
-      </p>
-
-      <p>
-        A KBV question is 'dynamic' if the answer does change over time, for example the amount on the person's monthly credit card statement. These sort of questions are harder to be answered by impostors using information from things like data breaches.
-      </p>
-
-      <form action="/verification-5-answer" method="post" novalidate>
+      <form action="/verification-3a-answer" method="post" novalidate>
 
         {% from "checkboxes/macro.njk" import govukCheckboxes %}
         {% from "radios/macro.njk" import govukRadios %}
 
-        {{ govukRadios({
-          idPrefix: "verification-5",
-          name: "verification-5",
+        {{ govukCheckboxes({
+          idPrefix: "verification-3a",
+          name: "verification-3a",
           fieldset: {
             legend: {
-              text: "",
-              isPageHeading: false
+              text: "Tell us about the KBV questions you ask",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
             }
           },
           hint: {
@@ -43,14 +37,24 @@
           items: [
             {
               value: "1",
-              text: "Static"
+              text: "They're written in a clear and simple way"
             },
             {
               value: "2",
-              text: "Dynamic"
+              text: "They're about something whoever the person is claiming to be would reasonably be expected to know"
+            },
+            {
+              value: "3",
+              text: "The data the questions are based on comes from a source that makes sure the data has not been altered or shared"
+            },
+            {
+              value: "4",
+              text: "None of the above"
             }
           ]
         }) }}
+
+
 
         {{ govukButton({
           text: "Continue"

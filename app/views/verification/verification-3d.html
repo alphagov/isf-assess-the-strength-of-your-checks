@@ -8,20 +8,22 @@
 
   <a href="javascript:history.back()" class="govuk-back-link">Back</a>
 
+{% endblock %}
+
 {% block content %}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-l">Verification checks</span>
 
-      <form action="/verification-4d-answer" method="post" novalidate>
+      <form action="/verification-3d-answer" method="post" novalidate>
 
         {% from "checkboxes/macro.njk" import govukCheckboxes %}
         {% from "radios/macro.njk" import govukRadios %}
 
         {{ govukCheckboxes({
-          idPrefix: "verification-4d",
-          name: "verification-4d",
+          idPrefix: "verification-3d",
+          name: "verification-3d",
           fieldset: {
             legend: {
               text: "Where did the data the questions are based on come from?",
@@ -56,6 +58,10 @@
             {
               value: "6",
               text: "A source that means it cannot be accessed by anyone apart from the person and their immediate family (and if someone else tries they'll be committing a civil or criminal offence)"
+            },
+            {
+              value: "7",
+              text: "You do not use any of these sources"
             }
           ]
         }) }}
