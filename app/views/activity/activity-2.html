@@ -15,6 +15,32 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-l">Activity checks</span>
+      <h1 class="govuk-heading-l">
+        Have you found interactions that you'd expect that person to have?
+      </h1>
+      <p>
+        You can expect some people to have more frequent interactions than others. This will usually depend on things like their age, financial situation and what they’re doing.
+      </p>
+
+      <p>
+        For example, person who’s been working for 20 years is more likely to have things like frequent credit card transactions, mortgage payments and payslips than someone who’s recently graduated from university.
+      </p>
+
+      <details class="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Find out when interactions might be unexpected
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          <p>
+            Sometimes the interactions the claimed identity has won’t be what you expect them to be. For example, a person might usually take the same train to work every morning and evening for 6 months, but over a year there could be some months when they travel only twice a week or not at all.
+          </p>
+          <p>
+            Over the year this is unexpected behaviour, but over 6 months it is expected behaviour. These interactions will show up on the person’s travel history if they use a contactless travelcard and you can use them as part of the check the claimed identity has existed over time.
+          </p>
+        </div>
+      </details>
 
       <form action="/activity-2-answer" method="post" novalidate>
 
@@ -25,8 +51,8 @@
           name: "activity-2",
           fieldset: {
             legend: {
-              text: "Have you found interactions that you'd expect that person to have?",
-              isPageHeading: true,
+              text: "",
+              isPageHeading: false,
               classes: "govuk-fieldset__legend--l"
             }
           },
@@ -45,24 +71,6 @@
           text: "Continue"
         }) }}
       </form>
-      <details class="govuk-details">
-        <summary class="govuk-details__summary">
-          <span class="govuk-details__summary-text">
-            Find out more about expected and unexpected interactions
-          </span>
-        </summary>
-        <div class="govuk-details__text">
-          <p>
-            You can expect some people to have more frequent interactions than others. This will usually depend on things like their age, financial situation and what they’re doing. For example, a person who’s been working for 20 years is more likely to have things like frequent credit card transactions, mortgage payments and payslips than someone who’s recently graduated from university.
-          </p>
-          <p>
-            Sometimes the interactions the claimed identity has won’t be what you expect them to be. For example, a person might usually take the same train to work every morning and evening for 6 months, but over a year there could be some months when they travel only twice a week or not at all.
-          </p>
-          <p>
-            Over the year this is unexpected behaviour, but over 6 months it is expected behaviour. These interactions will show up on the person’s travel history if they use a contactless travelcard and you can use them as part of the check the claimed identity has existed over time.
-          </p>
-        </div>
-      </details>
     </div>
   </div>
 

@@ -15,6 +15,10 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-l">Activity checks</span>
+      <h1 class="govuk-heading-l">
+        Did the person need to prove their identity at any point?
+      </h1>
+      <p>A person will sometimes need to prove they are who they say are when they interact with an organisation.</p>
 
       <form action="/activity-1-answer" method="post" novalidate>
 
@@ -27,7 +31,7 @@
           name: "activity-1b",
           fieldset: {
             legend: {
-              text: "How did the organisation do this?",
+              text: "How did the organisation check the person's identity?",
               isPageHeading: false,
               classes: "govuk-fieldset__legend--s"
             }
@@ -59,11 +63,12 @@
           name: "activity-1a",
           fieldset: {
             legend: {
-              text: "Did the organisation the person interacted with check their identity at any point?",
-              isPageHeading: true,
+              text: "",
+              isPageHeading: false,
               classes: "govuk-fieldset__legend--l"
             }
           },
+
           items: [
             {
               value: "1",
