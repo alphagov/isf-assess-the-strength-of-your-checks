@@ -17,25 +17,6 @@
       <span class="govuk-caption-l">Verification checks</span>
       <h1 class="govuk-heading-l">How do you check the person is the same person the evidence was issued to?</h1>
 
-
-      <details class="govuk-details">
-        <summary class="govuk-details__summary">
-          <span class="govuk-details__summary-text">
-            Find out more about knowledge-based verification
-          </span>
-        </summary>
-        <div class="govuk-details__text">
-          <p>
-            Knowledge-based verification (KBV) is when you ask someone questions that only the person they're claiming to be would know the answer to. The questions should be about things that you can also find the answer to.
-          </p>
-          <p>
-            For example, you could ask the person how much their monthly mortgage payments are. To be able to answer this, they'll need a mortgage (they would have had to prove their identity to get one) and have bills that were sent to their address.
-          </p>
-          <p>
-            You could also make a small payment (such as 1p) into the person's bank account. They will need to sign in to their account and give you the code that's the reference for that payment. If they can give you the code, it will prove they have control of and access to that account.
-          </p>
-        </div>
-      </details>
       <form action="/verification-1-answer" method="post" novalidate>
 
         {% from "checkboxes/macro.njk" import govukCheckboxes %}
@@ -66,6 +47,7 @@
               value: "3",
               text: "Ask them 'knowledge-based verification' (KBV)"
             },
+
             {
               value: "4",
               text: "You don't check this"
@@ -73,6 +55,24 @@
           ]
         }) }}
 
+        <details class="govuk-details">
+          <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">
+              Find out more about knowledge-based verification
+            </span>
+          </summary>
+          <div class="govuk-details__text">
+            <p>
+              Knowledge-based verification (KBV) is when you ask someone questions that only the person they're claiming to be would know the answer to. The questions should be about things that you can also find the answer to.
+            </p>
+            <p>
+              For example, you could ask the person how much their monthly mortgage payments are. To be able to answer this, they'll need a mortgage (they would have had to prove their identity to get one) and have bills that were sent to their address.
+            </p>
+            <p>
+              You could also make a small payment (such as 1p) into the person's bank account. They will need to sign in to their account and give you the code that's the reference for that payment. If they can give you the code, it will prove they have control of and access to that account.
+            </p>
+          </div>
+        </details>
 
         {{ govukButton({
           text: "Continue"
