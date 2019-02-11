@@ -144,11 +144,7 @@
             </td>
             <td class="govuk-table__cell" scope="row">
               {% if data['activityScore'] %}
-                {% if data['activityScore'] != '0' %}
-                  {{data['activityScore']}}
-                {% else %}
-                  You don’t check this
-                {% endif %}
+                {{data['activityScore']}}
               {% else %}
                 <a href="/activity/activity-start">Answer required</a>
               {% endif %}
@@ -166,11 +162,7 @@
             </td>
             <td class="govuk-table__cell multi-question" scope="row">
               {% if data['fraudScore'] %}
-                {% if data['fraudScore'] != '0' %}
-                  {{data['fraudScore']}}
-                {% else %}
-                  You don’t check this
-                {% endif %}
+                {{data['fraudScore']}}
               {% else %}
                 <a href="/fraud/fraud-start">Answer required</a>
               {% endif %}
@@ -188,11 +180,7 @@
             </td>
             <td class="govuk-table__cell multi-question" scope="row">
               {% if data['verificationScore'] %}
-                {% if data['verificationScore'] != '0' %}
-                  {{data['verificationScore']}}
-                {% else %}
-                  You don’t check this
-                {% endif %}
+                {{data['verificationScore']}}
               {% else %}
                 <a href="/verification/verification-start">Answer required</a>
               {% endif %}

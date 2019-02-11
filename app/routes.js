@@ -44,8 +44,8 @@ const testevidence =
 
 const explanations =
   [
-    {'element':'strength','score':'0','text':'The evidence is not strong enough to give you confidence in the person’s identity.'},
-    {'element':'strength','score':'1','text':'You collect evidence that includes some basic information about the person.'},
+    {'element':'strength','score':'0','text':'It is not strong enough to give you confidence in the person’s identity.'},
+    {'element':'strength','score':'1','text':'It includes some basic information about the person.'},
     {'element':'strength','score':'2','text':'You know the person needed to prove their identity to get the evidence. You also know that any digital information the evidence contains is protected by cryptographic security features.'},
     {'element':'strength','score':'3','text':'You know the organisation made sure the evidence was received by the same person who applied for it.'},
     {'element':'strength','score':'4','text':'You know the organisation made sure the person matches an image they had from a trusted source.'},
@@ -226,6 +226,7 @@ router.post('/validity-0-answer', function (req, res) {
   let evidence = req.session.data['evidence']
   let thisEvidence = evidence
   req.session.data['thisEvidence'] = thisEvidence
+  req.session.data['section-name'] = "evidence"
 
   let answer = req.session.data['validity-0']
 
@@ -233,7 +234,7 @@ router.post('/validity-0-answer', function (req, res) {
     res.redirect('evidence/validity-1')
   }
   else{
-    res.redirect('overview')
+    res.redirect('section-result')
   }
 })
 
@@ -258,7 +259,7 @@ router.post('/validity-1-answer', function (req, res) {
     res.redirect('evidence/validity-14')
   }
   else{
-    res.redirect('overview')
+    res.redirect('section-result')
   }
 })
 
@@ -296,7 +297,7 @@ router.post('/validity-3-answer', function (req, res) {
     res.redirect('evidence/validity-14')
   }
   else{
-    res.redirect('overview')
+    res.redirect('section-result')
   }
 })
 
@@ -343,7 +344,7 @@ router.post('/validity-5a-answer', function (req, res) {
     res.redirect('evidence/validity-14')
   }
   else{
-    res.redirect('overview')
+    res.redirect('section-result')
   }
 })
 
@@ -371,7 +372,7 @@ router.post('/validity-5b-answer', function (req, res) {
       res.redirect('evidence/validity-14')
     }
     else{
-      res.redirect('overview')
+      res.redirect('section-result')
     }
   }
   else if (validityanswer.includes('2')) {
@@ -384,7 +385,7 @@ router.post('/validity-5b-answer', function (req, res) {
     res.redirect('evidence/validity-14')
   }
   else{
-    res.redirect('overview')
+    res.redirect('section-result')
   }
 
 })
@@ -410,7 +411,7 @@ router.post('/validity-5c-answer', function (req, res) {
     res.redirect('evidence/validity-14')
   }
   else{
-    res.redirect('overview')
+    res.redirect('section-result')
   }
 })
 
@@ -437,7 +438,7 @@ router.post('/validity-5d-answer', function (req, res) {
     res.redirect('evidence/validity-14')
   }
   else{
-    res.redirect('overview')
+    res.redirect('section-result')
   }
 })
 
@@ -461,7 +462,7 @@ router.post('/validity-5e-answer', function (req, res) {
     res.redirect('evidence/validity-14')
   }
   else{
-    res.redirect('overview')
+    res.redirect('section-result')
   }
 })
 
@@ -485,7 +486,7 @@ router.post('/validity-5f-answer', function (req, res) {
     res.redirect('evidence/validity-14')
   }
   else{
-    res.redirect('overview')
+    res.redirect('section-result')
   }
 })
 
@@ -512,7 +513,7 @@ router.post('/validity-5g-answer', function (req, res) {
     res.redirect('evidence/validity-14')
   }
   else{
-    res.redirect('overview')
+    res.redirect('section-result')
   }
 })
 
@@ -536,7 +537,7 @@ router.post('/validity-6-answer', function (req, res) {
     res.redirect('evidence/validity-14')
   }
   else {
-    res.redirect('overview')
+    res.redirect('section-result')
   }
 })
 
@@ -571,7 +572,7 @@ router.post('/validity-7a-answer', function (req, res) {
     res.redirect('evidence/validity-14')
   }
   else{
-    res.redirect('overview')
+    res.redirect('section-result')
   }
 
 })
@@ -606,7 +607,7 @@ router.post('/validity-7b-answer', function (req, res) {
     res.redirect('evidence/validity-14')
   }
   else{
-    res.redirect('overview')
+    res.redirect('section-result')
   }
 })
 
@@ -637,7 +638,7 @@ router.post('/validity-7c-answer', function (req, res) {
     res.redirect('evidence/validity-14')
   }
   else {
-    res.redirect('overview')
+    res.redirect('section-result')
   }
 })
 
@@ -657,7 +658,7 @@ router.post('/validity-8-answer', function (req, res) {
     res.redirect('evidence/validity-14')
   }
   else {
-    res.redirect('overview')
+    res.redirect('section-result')
   }
 })
 
@@ -681,7 +682,7 @@ router.post('/validity-9-answer', function (req, res) {
     res.redirect('evidence/validity-14')
   }
   else {
-    res.redirect('overview')
+    res.redirect('section-result')
   }
 })
 
@@ -705,7 +706,7 @@ router.post('/validity-10-answer', function (req, res) {
     res.redirect('evidence/validity-14')
   }
   else {
-    res.redirect('overview')
+    res.redirect('section-result')
   }
 })
 
@@ -729,7 +730,7 @@ router.post('/validity-11-answer', function (req, res) {
     res.redirect('evidence/validity-14')
   }
   else {
-    res.redirect('overview')
+    res.redirect('section-result')
   }
 })
 
@@ -757,7 +758,7 @@ router.post('/validity-12-answer', function (req, res) {
     res.redirect('evidence/validity-14')
   }
   else {
-    res.redirect('overview')
+    res.redirect('section-result')
   }
 })
 
@@ -780,14 +781,14 @@ router.post('/validity-13-answer', function (req, res) {
       res.redirect('evidence/validity-14')
     }
     else {
-      res.redirect('overview')
+      res.redirect('section-result')
     }
   }
   else if (validityanswer.includes('4')) {
     res.redirect('evidence/validity-14')
   }
   else {
-    res.redirect('overview')
+    res.redirect('section-result')
   }
 })
 
@@ -816,19 +817,20 @@ router.post('/validity-14-answer', function (req, res) {
     }
   }
 
-  res.redirect('overview')
+  res.redirect('section-result')
 })
 
 router.post('/activity-0-answer', function (req, res) {
 
   let answer = req.session.data['validity-0']
+  req.session.data['section-name'] = "activity"
 
   if (answer.includes('1')) {
     res.redirect('/activity/activity-1')
   }
   else {
     req.session.data['activityScore'] = "0"
-    res.redirect('overview')
+    res.redirect('section-result')
   }
 
 })
@@ -840,7 +842,7 @@ router.post('/activity-1-answer', function (req, res) {
 
   if (answer.includes('2')) {
     req.session.data['activityScore'] = "0"
-    res.redirect('overview')
+    res.redirect('section-result')
   }
   else {
     res.redirect('/activity/activity-2')
@@ -880,7 +882,7 @@ router.post('/activity-3-answer', function (req, res) {
     req.session.data['activityScore'] = "1"
   }
 
-  res.redirect('overview')
+  res.redirect('section-result')
 
 })
 
@@ -902,19 +904,20 @@ router.post('/activity-4-answer', function (req, res) {
     req.session.data['activityScore'] = "1"
   }
 
-  res.redirect('overview')
+  res.redirect('section-result')
 
 })
 
 router.post('/fraud-0-answer', function (req, res) {
   let answer = req.session.data['fraud-0']
+  req.session.data['section-name'] = "fraud"
 
   if (answer.includes('1')) {
     res.redirect('/fraud/fraud-1')
   }
   else if (answer.includes('2')) {
     req.session.data['fraudScore'] = "0"
-    res.redirect('overview')
+    res.redirect('section-result')
   }
 })
 
@@ -927,15 +930,15 @@ router.post('/fraud-1-answer', function (req, res) {
   }
   else if (answer.includes('4') && answer.includes('5') && answer.includes('6')) {
     req.session.data['fraudScore'] = "1"
-    res.redirect('overview')
+    res.redirect('section-result')
   }
   else if (answer.includes('1') && answer.includes('2') && answer.includes('3')) {
     req.session.data['fraudScore'] = "1"
-    res.redirect('/overview')
+    res.redirect('/section-result')
   }
   else {
     req.session.data['fraudScore'] = "0"
-    res.redirect('overview')
+    res.redirect('section-result')
   }
 })
 
@@ -943,12 +946,12 @@ router.post('/fraud-2-answer', function (req, res) {
   let answer = req.session.data['fraud-2']
 
   if (answer.includes('1')) {
-    res.redirect('overview')
+    res.redirect('section-result')
   }
   else if (answer.includes('2')) {
     res.redirect('fraud/fraud-3')
   }
-  res.redirect('overview')
+  res.redirect('section-result')
 })
 
 router.post('/fraud-3-answer', function (req, res) {
@@ -960,18 +963,19 @@ router.post('/fraud-3-answer', function (req, res) {
   else if (answer.includes('2')) {
     req.session.data['fraudScore'] = "2"
   }
-  res.redirect('overview')
+  res.redirect('section-result')
 })
 
 router.post('/verification-0-answer', function (req, res) {
   let answer = req.session.data['verification-0']
+  req.session.data['section-name'] = "verification"
 
   if (answer.includes('1')) {
     res.redirect('/verification/verification-1')
   }
   else if (answer.includes('2')) {
     req.session.data['verificationScore'] = "0"
-    res.redirect('/overview')
+    res.redirect('/section-result')
   }
 })
 
@@ -988,7 +992,7 @@ router.post('/verification-1-answer', function (req, res) {
     res.redirect('/verification/verification-11a')
   }
   else {
-    res.redirect('/overview')
+    res.redirect('/section-result')
   }
 })
 
@@ -1010,7 +1014,7 @@ router.post('/verification-3a-answer', function (req, res) {
     res.redirect('/verification/verification-11a')
   }
   else {
-    res.redirect('/overview')
+    res.redirect('/section-result')
   }
 })
 
@@ -1029,7 +1033,7 @@ router.post('/verification-3b-answer', function (req, res) {
     res.redirect('/verification/verification-11a')
   }
   else {
-    res.redirect('/overview')
+    res.redirect('/section-result')
   }
 })
 
@@ -1071,7 +1075,7 @@ router.post('/verification-3d-answer', function (req, res) {
     }
     else {
       req.session.data['verificationLevel'] = "low"
-      res.redirect('/overview')
+      res.redirect('/section-result')
     }
   }
   res.redirect('/verification/verification-4')
@@ -1139,7 +1143,7 @@ router.post('/verification-7a-answer', function (req, res) {
       res.redirect('/verification/verification-11a')
     }
     else{
-      res.redirect('/overview')
+      res.redirect('/section-result')
     }
   }
 
@@ -1158,7 +1162,7 @@ router.post('/verification-7b-answer', function (req, res) {
     else{
       req.session.data['verificationScore'] = "0"
     }
-    res.redirect('/overview')
+    res.redirect('/section-result')
   }
 })
 
@@ -1180,7 +1184,7 @@ router.post('/verification-8-answer', function (req, res) {
       res.redirect('/verification/verification-11a')
     }
     else{
-      res.redirect('/overview')
+      res.redirect('/section-result')
     }
   }
 })
@@ -1198,7 +1202,7 @@ router.post('/verification-9-answer', function (req, res) {
       res.redirect('/verification/verification-11a')
     }
     else{
-      res.redirect('/overview')
+      res.redirect('/section-result')
     }
   }
 
@@ -1225,7 +1229,7 @@ router.post('/verification-10-answer', function (req, res) {
     res.redirect('/verification/verification-11a')
   }
   else{
-    res.redirect('/overview')
+    res.redirect('/section-result')
   }
 })
 
@@ -1258,7 +1262,7 @@ router.post('/verification-11c-answer', function (req, res) {
     res.redirect('/verification/verification-12a')
   }
   else {
-    res.redirect('/overview')
+    res.redirect('/section-result')
   }
 })
 
@@ -1270,7 +1274,7 @@ router.post('/verification-12a-answer', function (req, res) {
 
   if (answer.includes('1') && verification11bAnswer.includes('1') && verification11bAnswer.includes('2') && verification11cAnswer.includes('3')) {
     req.session.data['verificationScore'] = "4"
-    res.redirect('/overview')
+    res.redirect('/section-result')
   }
   else if (answer.includes('2')) {
     res.redirect('/verification/verification-12b')
@@ -1292,7 +1296,7 @@ router.post('/verification-12b-answer', function (req, res) {
   else {
     req.session.data['verificationScore'] = "3"
   }
-  res.redirect('/overview')
+  res.redirect('/section-result')
 })
 
 router.post('/overview-answer', function (req, res) {
