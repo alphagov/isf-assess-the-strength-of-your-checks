@@ -35,7 +35,7 @@
 
 {% block content %}
 
-  <div class="govuk-grid-row">
+<div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-l">Your recommendations</h1>
 
@@ -47,111 +47,7 @@
       </p>
 
     </div>
-    <div class="govuk-grid-column-full">
-
-      <!-- <details class="govuk-details">
-        <summary class="govuk-details__summary">
-          <span class="govuk-details__summary-text">
-            Show your identity profile
-          </span>
-        </summary>
-        <div class="govuk-details__text"> -->
-
-      <!-- <br>
-      <h2 class="govuk-heading-m">Your identity profile</h2>
-
-      <h2 class="govuk-heading-m visually-hidden">Your evidence checks</h2>
-
-      <table class="govuk-table govuk-!-margin-bottom-7 govuk-!-margin-top-0">
-        <thead class="govuk-table__head">
-          <tr class="govuk-table__row">
-            <th class="govuk-table__header" scope="col">Evidence checks</th>
-            <th class="govuk-table__header" scope="col">Strength score</th>
-            <th class="govuk-table__header" scope="col">Validity score</th>
-            <th class="govuk-table__header" scope="col"></th>
-          </tr>
-        </thead>
-
-        <tbody class="govuk-table__body">
-          {% for item in data['testevidence'] %}
-            {% if item.chosen %}
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell" scope="row">{{item.shortname | capitalize}}</td>
-                <td class="govuk-table__cell multi-question" scope="row">
-                  {{item.strength}}
-                </td>
-                <td class="govuk-table__cell" scope="row">
-                  {{item.validity}}
-                </td>
-                <td class="govuk-table__cell edit" scope="row">
-                  <a href="/strength_validity_scoring">Improve this score</a>
-                </td>
-              </tr>
-            {% endif %}
-          {% endfor %}
-
-          {% if evidenceExists == "false" %}
-            <tr class="govuk-table__row">
-              <td class="govuk-table__cell hint" scope="row">You haven’t added any evidence</td>
-              <td class="govuk-table__cell" scope="row"></td>
-              <td class="govuk-table__cell" scope="row"></td>
-            </tr>
-          {% endif %}
-
-        </tbody>
-      </table>
-
-      <h2 class="govuk-heading-m visually-hidden">Other identity checks</h2>
-
-      <table class="govuk-table govuk-!-margin-bottom-7 govuk-!-margin-top-0">
-        <thead class="govuk-table__head">
-          <tr class="govuk-table__row">
-            <th class="govuk-table__header" scope="col">Other checks</th>
-            <th class="govuk-table__header" scope="col">Score</th>
-            <th class="govuk-table__header" scope="col"></th>
-          </tr>
-        </thead>
-
-        <tbody class="govuk-table__body">
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell" scope="row">
-              Activity
-            </td>
-            <td class="govuk-table__cell" scope="row">
-              {{data['activityScore']}}
-            </td>
-            <td class="govuk-table__cell edit" scope="row">
-              <a href="/strength_validity_scoring">Improve this score</a>
-            </td>
-          </tr>
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell" scope="row">
-              Fraud
-            </td>
-            <td class="govuk-table__cell" scope="row">
-              {{data['fraudScore']}}
-            </td>
-            <td class="govuk-table__cell edit" scope="row">
-              <a href="strength_validity_scoring">Improve this score</a>
-            </td>          </tr>
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell" scope="row">
-              Verification
-            </td>
-            <td class="govuk-table__cell multi-question" scope="row">
-              {{data['verificationScore']}}
-            </td>
-            <td class="govuk-table__cell edit" scope="row">
-              <a href="/strength_validity_scoring">Improve this score</a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-      <!-- </details> -->
-    <!-- </div>
-
-    <div class="govuk-grid-column-two-thirds"> -->
+    <div class="govuk-grid-column-full four-column-table">
 
       {% if data['user-risk-level'] == 'dont-know' %}
         <br>
@@ -203,7 +99,6 @@
                     {% if profile.verificationThreshold %}
                       {% if profile.verificationResult == false %}<li>a verification score of {{ profile.verificationThreshold }} you have a score of {{ data['verificationScore'] }}</li>{% endif %}
                     {% endif %}
-
                   </ul>
                 </p>
               {% else %}
@@ -220,41 +115,220 @@
 
       {% for profile in data['profile-results'] %}
           <h2 class="govuk-heading-m govuk-!-margin-bottom-2 govuk-!-margin-top-8">Profile {{ profile.name }}</h2>
-          <p>
-            By meeting this profile, you will:
-            <ul class="govuk-list govuk-list--bullet">
-              {% for benefit in profile['benefits'] %}
-                <li>{{ data['benefits'][benefit] }}</li>
-              {% endfor %}
-            </ul>
-          </p>
 
-          <p>
-            This means you'll know that:
-            <ul class="govuk-list govuk-list--bullet">
-              {% for description in profile['descriptions'] %}
-                <li>{{ data['descriptions'][description] }}</li>
-              {% endfor %}
-            </ul>
-          </p>
           {% if not profile.overallResult %}
+            <table class="govuk-table govuk-!-margin-bottom-7 govuk-!-margin-top-0">
+              <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                  <th class="govuk-table__header" scope="col">Required evidence</th>
+                  <th class="govuk-table__header" scope="col">Strength score</th>
+                  <th class="govuk-table__header" scope="col">Validity score</th>
+                  <th class="govuk-table__header" scope="col"></th>
+                </tr>
+              </thead>
 
-          <h3 class="govuk-heading-s">What you need to do to meet profile {{ profile.name }}</h3>
+              <tbody class="govuk-table__body">
+                {% set evidenceCount = 0 %}
+                {% for evidence in profile.evidence %}
+                  {% set evidenceCount = evidenceCount + 1 %}
+
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell" scope="row">
+                      Evidence {{evidenceCount}}
+                    </td>
+                    <td class="govuk-table__cell" scope="row">
+                      {{ evidence.strength }}
+                    </td>
+                    <td class="govuk-table__cell" scope="row">
+                      {{ evidence.validity }}
+                    </td>
+                    <td class="govuk-table__cell" scope="row">
+                      {% if profile.evidenceResult == false %}Not met{% else %}Met{% endif %}
+                    </td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+
+            <details class="govuk-details" style="margin-top: -25px;">
+              <summary class="govuk-details__summary">
+                <span class="govuk-details__summary-text">
+                  Your evidence
+                </span>
+              </summary>
+              <div class="govuk-details__text">
+                <table class="govuk-table">
+                  <thead class="govuk-table__head">
+                    <tr class="govuk-table__row">
+                      <th class="govuk-table__header" scope="col">Evidence checks</th>
+                      <th class="govuk-table__header" scope="col">Strength score</th>
+                      <th class="govuk-table__header" scope="col">Validity score</th>
+                    </tr>
+                  </thead>
+
+                  <tbody class="govuk-table__body">
+                    {% for item in data['testevidence'] %}
+                      {% if item.chosen %}
+                        <tr class="govuk-table__row">
+                          <td class="govuk-table__cell" scope="row">{{item.shortname | capitalize}}</td>
+                          <td class="govuk-table__cell multi-question" scope="row">
+                            {{item.strength}}
+                          </td>
+                          <td class="govuk-table__cell" scope="row">
+                            {{item.validity}}
+                          </td>
+
+                        </tr>
+                      {% endif %}
+                    {% endfor %}
+                    {% if evidenceExists == "false" %}
+                      <tr class="govuk-table__row">
+                        <td class="govuk-table__cell hint" scope="row">You haven’t added any evidence</td>
+                        <td class="govuk-table__cell" scope="row"></td>
+                        <td class="govuk-table__cell" scope="row"></td>
+                      </tr>
+                    {% endif %}
+                  </tbody>
+                </table>
+
+              </div>
+            </details>
+
+            <table class="govuk-table govuk-!-margin-bottom-7 govuk-!-margin-top-0">
+              <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                  <th class="govuk-table__header" scope="col">Other checks</th>
+                  <th class="govuk-table__header" scope="col">Required score</th>
+                  <th class="govuk-table__header" scope="col">Your score</th>
+                  <th class="govuk-table__header" scope="col"></th>
+                </tr>
+              </thead>
+
+              <tbody class="govuk-table__body">
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell" scope="row">
+                    Activity
+                  </td>
+                  <td class="govuk-table__cell" scope="row">
+                    {% if profile.activityThreshold %}
+                      {{ profile.activityThreshold }}
+                    {% else %}
+                      Not required
+                    {% endif %}
+                  </td>
+                  <td class="govuk-table__cell" scope="row">
+                    {{data['activityScore']}}
+                  </td>
+                  <td class="govuk-table__cell" scope="row">
+                    {% if profile.activityThreshold %}
+                      {% if data['activityScore'] >= profile.activityThreshold %}
+                        Met
+                      {% else %}
+                        Not met
+                      {% endif %}
+                    {% else %}
+                      Met
+                    {% endif %}
+                  </td>
+
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell" scope="row">
+                    Fraud
+                  </td>
+                  <td class="govuk-table__cell" scope="row">
+                    {% if profile.fraudThreshold %}
+                      {{ profile.fraudThreshold }}
+                    {% else %}
+                      Not required
+                    {% endif %}
+                  </td>
+                  <td class="govuk-table__cell" scope="row">
+                    {{data['fraudScore']}}
+                  </td>
+                  <td class="govuk-table__cell" scope="row">
+                    {% if profile.fraudThreshold %}
+                      {% if data['fraudScore'] >= profile.fraudThreshold %}
+                        Met
+                      {% else %}
+                        Not met
+                      {% endif %}
+                    {% else %}
+                      Met
+                    {% endif %}
+                  </td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell" scope="row">
+                    Verification
+                  </td>
+                  <td class="govuk-table__cell multi-question" scope="row">
+                    {% if profile.verificationThreshold %}
+                      {{ profile.verificationThreshold }}
+                    {% else %}
+                      Not required
+                    {% endif %}
+                  </td>
+                  <td class="govuk-table__cell multi-question" scope="row">
+                    {{data['verificationScore']}}
+                  </td>
+                  <td class="govuk-table__cell multi-question" scope="row">
+                    {% if profile.verificationThreshold %}
+                      {% if data['verificationScore'] >= profile.verificationThreshold %}
+                        Met
+                      {% else %}
+                        Not met
+                      {% endif %}
+                    {% else %}
+                      Met
+                    {% endif %}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+
+
+            <!-- <h3 class="govuk-heading-s">What you need to do to meet profile {{ profile.name }}</h3> -->
             <p>
-              You need:
+              To meet profile {{ profile.name }} you need to:
               <ul class="govuk-list govuk-list--bullet">
-                {% if profile.evidenceResult == false %}<li>{{ profile.humanEvidence }}</li>{% endif %}
+                <li>
+                  {% if profile.evidenceResult == false %}
+                    <a href="">get {{ profile.humanEvidence }}</a>
+                  {% else %}
+                    <a href="">review the criteria for evidence validity</a>
+                  {% endif %}
+                </li>
 
                 {% if profile.activityThreshold %}
-                  {% if profile.activityResult == false %}<li>a history check score of {{ profile.activityThreshold }} you have a score of {{ data['activityScore'] }}</li>{% endif %}
+                  <li>
+                    {% if profile.activityResult == false %}
+                      <a href="">get a score of {{ profile.activityThreshold }} for activity</a>
+                    {% else %}
+                      <a href="">review the criteria for activity</a>
+                    {% endif %}
+                  </li>
                 {% endif %}
 
                 {% if profile.fraudThreshold %}
-                  {% if profile.fraudResult == false %}<li>a fraud check score of {{ profile.fraudThreshold }} you have a score of {{ data['fraudScore'] }}</li>{% endif %}
+                  <li>
+                    {% if profile.fraudResult == false %}
+                      <a href="">get a score of {{ profile.fraudThreshold }} for fraud</a>
+                    {% else %}
+                      <a href="">review the criteria for fraud</a>
+                    {% endif %}
+                  </li>
                 {% endif %}
 
                 {% if profile.verificationThreshold %}
-                  {% if profile.verificationResult == false %}<li>a verification score of {{ profile.verificationThreshold }} you have a score of {{ data['verificationScore'] }}</li>{% endif %}
+                  <li>
+                    {% if profile.verificationResult == false %}
+                      <a href="">get a score of {{ profile.verificationThreshold }} for verification</a>
+                    {% else %}
+                      <a href="">review the criteria for fraud</a>
+                    {% endif %}
+                  </li>
                 {% endif %}
 
               </ul>

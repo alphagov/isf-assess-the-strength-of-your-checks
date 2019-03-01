@@ -6,7 +6,7 @@ module.exports.profiles = {
         "evidence": [
           {"strength": 2, "validity": 2}
         ],
-        "humanEvidence": "1 piece of evidence with a strength score of 2 and a validitiy score of 2",
+        "humanEvidence": "1 piece of evidence with a strength score of 2 and a validity score of 2",
         "verification": 1,
         "fraud": 2,
         "benefits": [1, 2, 3, 4],
@@ -17,7 +17,7 @@ module.exports.profiles = {
         "evidence": [
           {"strength": 3, "validity": 2}
         ],
-        "humanEvidence": "1 piece of evidence with a strength score of 3 and a validitiy score of 2",
+        "humanEvidence": "1 piece of evidence with a strength score of 3 and a validity score of 2",
         "verification": 3,
         "benefits": [36, 2, 5],
         "descriptions": [23, 3]
@@ -31,7 +31,7 @@ module.exports.profiles = {
           {"strength": 1, "validity": 1},
           {"strength": 1, "validity": 1}
         ],
-        "humanEvidence": "3 pieces of evidence with a strength score of 1 and a validitiy score of 1",
+        "humanEvidence": "3 pieces of evidence with a strength score of 1 and a validity score of 1",
         "verification": 2,
         "fraud": 2,
         "activity": 3,
@@ -47,7 +47,7 @@ module.exports.profiles = {
         "evidence": [
           {"strength": 4, "validity": 3}
         ],
-        "humanEvidence": "1 piece of evidence with a strength score of 4 and a validitiy score of 3",
+        "humanEvidence": "1 piece of evidence with a strength score of 4 and a validity score of 3",
         "verification": 3,
         "fraud": 1,
         "benefits": [10, 11, 12, 13, 5],
@@ -58,7 +58,7 @@ module.exports.profiles = {
         "evidence": [
           {"strength": 3, "validity": 3}
         ],
-        "humanEvidence": "1 piece of evidence with a strength score of 3 and a validitiy score of 3",
+        "humanEvidence": "1 piece of evidence with a strength score of 3 and a validity score of 3",
         "verification": 3,
         "fraud": 1,
         "activity": 2,
@@ -73,7 +73,7 @@ module.exports.profiles = {
           {"strength": 2, "validity": 2},
           {"strength": 2, "validity": 2}
         ],
-        "humanEvidence": "2 pieces of evidence with a strength score of 2 and a validitiy score of 2",
+        "humanEvidence": "2 pieces of evidence with a strength score of 2 and a validity score of 2",
         "verification": 3,
         "fraud": 1,
         "activity": 3,
@@ -86,7 +86,7 @@ module.exports.profiles = {
           {"strength": 3, "validity": 3},
           {"strength": 2, "validity": 2}
         ],
-        "humanEvidence": "2 pieces of evidence, one with a strength score of 3 and a validitiy score of 3, and another with a strength score of at least 2 and a validitiy score of at least 2",
+        "humanEvidence": "2 pieces of evidence, one with a strength score of 3 and a validity score of 3, and another with a strength score of at least 2 and a validity score of at least 2",
         "verification": 2,
         "fraud": 2,
         "activity": 2,
@@ -99,7 +99,7 @@ module.exports.profiles = {
           {"strength": 3, "validity": 3},
           {"strength": 2, "validity": 2}
         ],
-        "humanEvidence": "2 pieces of evidence, one with a strength score of 3 and a validitiy score of 3, and another with a strength score of at least 2 and a validitiy score of at least 2",
+        "humanEvidence": "2 pieces of evidence, one with a strength score of 3 and a validity score of 3, and another with a strength score of at least 2 and a validity score of at least 2",
         "verification": 3,
         "fraud": 1,
         "activity": 1,
@@ -112,7 +112,7 @@ module.exports.profiles = {
           {"strength": 4, "validity": 3},
           {"strength": 3, "validity": 2}
         ],
-        "humanEvidence": "2 pieces of evidence, one with a strength score of 4 and a validitiy score of 3, and another with a strength score of at least 3 and a validitiy score of at least 2",
+        "humanEvidence": "2 pieces of evidence, one with a strength score of 4 and a validity score of 3, and another with a strength score of at least 3 and a validity score of at least 2",
         "activity": 1,
         "verification": 2,
         "fraud": 2,
@@ -128,7 +128,7 @@ module.exports.profiles = {
           {"strength": 2, "validity": 2},
           {"strength": 2, "validity": 2}
         ],
-        "humanEvidence": "3 pieces of evidence with a strength score of 2 and a validitiy score of 2",
+        "humanEvidence": "3 pieces of evidence with a strength score of 2 and a validity score of 2",
         "verification": 2,
         "fraud": 2,
         "activity": 2,
@@ -144,7 +144,7 @@ module.exports.profiles = {
         "evidence": [
           {"strength": 4, "validity": 3}
         ],
-        "humanEvidence": "1 piece of evidence with a strength score of 4 and a validitiy score of 3",
+        "humanEvidence": "1 piece of evidence with a strength score of 4 and a validity score of 3",
         "verification": 3,
         "fraud": 3,
         "benefits": [26, 11, 30, 5],
@@ -155,7 +155,7 @@ module.exports.profiles = {
         "evidence": [
           {"strength": 4, "validity": 4}
         ],
-        "humanEvidence": "1 piece of evidence with a strength score of 4 and a validitiy score of 4",
+        "humanEvidence": "1 piece of evidence with a strength score of 4 and a validity score of 4",
         "verification": 3,
         "benefits": [26, 11, 5],
         "descriptions": [16, 17, 7]
@@ -168,7 +168,7 @@ module.exports.profiles = {
           {"strength": 3, "validity": 3},
           {"strength": 3, "validity": 3}
         ],
-        "humanEvidence": "2 pieces of evidence with a strength score of 3 and a validitiy score of 3",
+        "humanEvidence": "2 pieces of evidence with a strength score of 3 and a validity score of 3",
         "verification": 3,
         "fraud": 2,
         "activity": 3,
@@ -181,7 +181,7 @@ module.exports.profiles = {
           {"strength": 4, "validity": 3},
           {"strength": 3, "validity": 3}
         ],
-        "humanEvidence": "2 pieces of evidence, one with a strength score of 4 and a validitiy score of 3, and another with a strength score of 3 and a validitiy score of at least 3",
+        "humanEvidence": "2 pieces of evidence, one with a strength score of 4 and a validity score of 3, and another with a strength score of 3 and a validity score of at least 3",
         "verification": 3,
         "fraud": 2,
         "benefits": [26, 33, 32, 27, 5],
@@ -193,7 +193,7 @@ module.exports.profiles = {
           {"strength": 4, "validity": 3},
           {"strength": 2, "validity": 2}
         ],
-        "humanEvidence": "2 pieces of evidence, one with a strength score of 4 and a validitiy score of 3, and another with a strength score of 2 and a validitiy score of at least 2",
+        "humanEvidence": "2 pieces of evidence, one with a strength score of 4 and a validity score of 3, and another with a strength score of 2 and a validity score of at least 2",
         "verification": 3,
         "fraud": 2,
         "activity": 3,
@@ -209,7 +209,7 @@ module.exports.profiles = {
           {"strength": 2, "validity": 2},
           {"strength": 2, "validity": 2}
         ],
-        "humanEvidence": "3 pieces of evidence, one with a strength score of 3 and a validitiy score of 3, and another two with a strength score of 2 and a validitiy score of at least 2",
+        "humanEvidence": "3 pieces of evidence, one with a strength score of 3 and a validity score of 3, and another two with a strength score of 2 and a validity score of at least 2",
         "verification": 3,
         "fraud": 3,
         "activity": 3,
