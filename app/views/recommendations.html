@@ -153,7 +153,7 @@
             <details class="govuk-details" style="margin-top: -25px;">
               <summary class="govuk-details__summary">
                 <span class="govuk-details__summary-text">
-                  Your evidence
+                  Show your evidence scores
                 </span>
               </summary>
               <div class="govuk-details__text">
@@ -295,18 +295,18 @@
               <ul class="govuk-list govuk-list--bullet">
                 <li>
                   {% if profile.evidenceResult == false %}
-                    <a href="">collect {{ profile.humanEvidence }}</a>
+                    <a href="https://docs.google.com/document/d/1B4CHMB6HWBQX4QrXtuTIIEmgVMOCuI_O2HFfapclvks/edit#bookmark=id.tt6wg8ju73yz">collect {{ profile.humanEvidence }}</a>
                   {% else %}
-                    <a href="">review the criteria for evidence validity</a>
+                    <a href="https://docs.google.com/document/d/1B4CHMB6HWBQX4QrXtuTIIEmgVMOCuI_O2HFfapclvks/edit#bookmark=id.tt6wg8ju73yz">review the criteria for evidence strength and validity</a>
                   {% endif %}
                 </li>
 
                 {% if profile.activityThreshold %}
                   <li>
                     {% if profile.activityResult == false %}
-                      <a href="">increase the strength of your activity checks to {{ profile.activityThreshold }}</a>
+                      <a href="https://docs.google.com/document/d/1B4CHMB6HWBQX4QrXtuTIIEmgVMOCuI_O2HFfapclvks/edit#bookmark=id.fr82pftz89xg">increase the strength of your activity checks to {{ profile.activityThreshold }}</a>
                     {% else %}
-                      <a href="">review the criteria for activity</a>
+                      <a href="https://docs.google.com/document/d/1B4CHMB6HWBQX4QrXtuTIIEmgVMOCuI_O2HFfapclvks/edit#bookmark=id.fr82pftz89xg">review the criteria for activity</a>
                     {% endif %}
                   </li>
                 {% endif %}
@@ -314,9 +314,9 @@
                 {% if profile.fraudThreshold %}
                   <li>
                     {% if profile.fraudResult == false %}
-                      <a href="">increase the strength of your fraud checks to {{ profile.fraudThreshold }}</a>
+                      <a href="https://docs.google.com/document/d/1B4CHMB6HWBQX4QrXtuTIIEmgVMOCuI_O2HFfapclvks/edit#bookmark=id.h91qmhza1q7c">increase the strength of your fraud checks to {{ profile.fraudThreshold }}</a>
                     {% else %}
-                      <a href="">review the criteria for fraud</a>
+                      <a href="https://docs.google.com/document/d/1B4CHMB6HWBQX4QrXtuTIIEmgVMOCuI_O2HFfapclvks/edit#bookmark=id.h91qmhza1q7c">review the criteria for fraud</a>
                     {% endif %}
                   </li>
                 {% endif %}
@@ -324,9 +324,9 @@
                 {% if profile.verificationThreshold %}
                   <li>
                     {% if profile.verificationResult == false %}
-                      <a href="">increase the strength of your verification checks to {{ profile.verificationThreshold }} </a>
+                      <a href="https://docs.google.com/document/d/1B4CHMB6HWBQX4QrXtuTIIEmgVMOCuI_O2HFfapclvks/edit#bookmark=id.oxbyx3jjz9j9">increase the strength of your verification checks to {{ profile.verificationThreshold }} </a>
                     {% else %}
-                      <a href="">review the criteria for fraud</a>
+                      <a href="https://docs.google.com/document/d/1B4CHMB6HWBQX4QrXtuTIIEmgVMOCuI_O2HFfapclvks/edit#bookmark=id.oxbyx3jjz9j9">review the criteria for fraud</a>
                     {% endif %}
                   </li>
                 {% endif %}
