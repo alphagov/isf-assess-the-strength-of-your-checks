@@ -295,7 +295,7 @@
               <ul class="govuk-list govuk-list--bullet">
                 <li>
                   {% if profile.evidenceResult == false %}
-                    <a href="">get {{ profile.humanEvidence }}</a>
+                    <a href="">collect {{ profile.humanEvidence }}</a>
                   {% else %}
                     <a href="">review the criteria for evidence validity</a>
                   {% endif %}
@@ -304,7 +304,7 @@
                 {% if profile.activityThreshold %}
                   <li>
                     {% if profile.activityResult == false %}
-                      <a href="">get a score of {{ profile.activityThreshold }} for activity</a>
+                      <a href="">increase the strength of your activity checks to {{ profile.activityThreshold }}</a>
                     {% else %}
                       <a href="">review the criteria for activity</a>
                     {% endif %}
@@ -314,7 +314,7 @@
                 {% if profile.fraudThreshold %}
                   <li>
                     {% if profile.fraudResult == false %}
-                      <a href="">get a score of {{ profile.fraudThreshold }} for fraud</a>
+                      <a href="">increase the strength of your fraud checks to {{ profile.fraudThreshold }}</a>
                     {% else %}
                       <a href="">review the criteria for fraud</a>
                     {% endif %}
@@ -324,7 +324,7 @@
                 {% if profile.verificationThreshold %}
                   <li>
                     {% if profile.verificationResult == false %}
-                      <a href="">get a score of {{ profile.verificationThreshold }} for verification</a>
+                      <a href="">increase the strength of your verification checks to {{ profile.verificationThreshold }} </a>
                     {% else %}
                       <a href="">review the criteria for fraud</a>
                     {% endif %}
