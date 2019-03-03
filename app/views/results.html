@@ -33,12 +33,19 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
-      <h1 class="govuk-heading-l">Your results </h1>
+      <h1 class="govuk-heading-l visually-hidden">Your results </h1>
       <div class="banner">
         <div class="banner-message">
-          <p class="banner-message">
+          <h1>
             {{data['result-message']}}
+          </h1>
+          <p>
+            {{data['result-message-content']}}
           </p>
+          <p>
+            <a href="/recommendations">{{data['result-message-link']}}</a></p>
+
+
         </div>
       </div>
     </div>

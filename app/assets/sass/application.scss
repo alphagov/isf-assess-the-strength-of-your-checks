@@ -62,18 +62,26 @@ td.multi-question{
   text-transform: none;
   padding: 20px;
   margin-top: 0px;
-  border-width: 5px;
+  border-width: 3px;
   border-style: solid;
 }
 
 .banner-message{
-  color: #005ea5;
   font-family: "nta";
-  -webkit-font-smoothing: antialiased;
+  margin-bottom: -15px;
+  margin-top: -15px;
+}
+
+.banner-message h1{
+  color: #005ea5;
   font-size: 24px;
   line-height: 1.25;
   font-weight: 600;
-  margin: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+.banner-message p{
+  width: 66.66%;
 }
 
 .govuk-grid-column-one-quarter{
