@@ -952,7 +952,7 @@ router.post('/overview-answer', function (req, res) {
     let validationResults = responseValidator.validateResponse(userRiskLevel, evidence, verificationScore, fraudScore, activityScore)
     let not = validationResults.validated ? 'do enough' : 'don’t do enough'
     let content = validationResults.validated ? '' : 'You might need to do some parts of the identity checking process more thoroughly to get the level of confidence you need.'
-    let link = validationResults.validated ? '' : 'Find out what you need to do'
+    let link = validationResults.validated ? '' : 'Find out how to improve your checks'
     req.session.data['result-message'] = "You "+ not +" checks to have a "+ userRiskLevel +" confidence in someone’s identity"
     req.session.data['result-message-content'] = content
     req.session.data['result-message-link'] = link
