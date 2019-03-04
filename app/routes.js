@@ -258,7 +258,7 @@ router.post('/validity-1-answer', function (req, res) {
         }
       }
     }
-    else if (conditionalAnswer.includes('1') && conditionalAnswer.includes('2') && (answer.includes('3') || answer.includes('4')) ) {
+    else if ( (conditionalAnswer.includes('1') && conditionalAnswer.includes('2') && answer.includes('4')) || answer.includes('3') ) {
       // set validity to 3
       var i;
       for (i = 0; i < testevidence.length; i++) {
@@ -267,7 +267,7 @@ router.post('/validity-1-answer', function (req, res) {
         }
       }
     }
-    else if ((conditionalAnswer.includes('2') || answer.includes('4')) && conditionalAnswer.includes('1') ) {
+    else if (conditionalAnswer.includes('1') || conditionalAnswer.includes('2') || answer.includes('4')) {
       // set validity to 2
       var i;
       for (i = 0; i < testevidence.length; i++) {
@@ -296,26 +296,6 @@ router.post('/validity-1-answer', function (req, res) {
     }
   }
   res.redirect('section-result')
-})
-
-router.post('/validity-8-answer', function (req, res) {
-  let evidence = req.session.data['evidence']
-  let thisEvidence = evidence
-  req.session.data['thisEvidence'] = thisEvidence
-  let validityanswer = req.session.data['validity-1']
-
-  if (validityanswer.includes('2')) {
-    res.redirect('evidence/validity-12')
-  }
-  else if (validityanswer.includes('3')) {
-    res.redirect('evidence/validity-13')
-  }
-  else if (validityanswer.includes('4')) {
-    res.redirect('evidence/validity-14')
-  }
-  else {
-    res.redirect('section-result')
-  }
 })
 
 router.post('/validity-9-answer', function (req, res) {
