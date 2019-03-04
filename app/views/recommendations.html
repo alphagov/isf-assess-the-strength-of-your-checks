@@ -100,50 +100,6 @@
                   </tbody>
                 </table>
 
-                <details class="govuk-details" style="margin-top: -25px;">
-                  <summary class="govuk-details__summary">
-                    <span class="govuk-details__summary-text">
-                      Show your evidence scores
-                    </span>
-                  </summary>
-                  <div class="govuk-details__text">
-                    <table class="govuk-table">
-                      <thead class="govuk-table__head">
-                        <tr class="govuk-table__row">
-                          <th class="govuk-table__header" scope="col">Evidence checks</th>
-                          <th class="govuk-table__header" scope="col">Strength score</th>
-                          <th class="govuk-table__header" scope="col">Validity score</th>
-                        </tr>
-                      </thead>
-
-                      <tbody class="govuk-table__body">
-                        {% for item in data['testevidence'] %}
-                          {% if item.chosen %}
-                            <tr class="govuk-table__row">
-                              <td class="govuk-table__cell" scope="row">{{item.shortname | capitalize}}</td>
-                              <td class="govuk-table__cell multi-question" scope="row">
-                                {{item.strength}}
-                              </td>
-                              <td class="govuk-table__cell" scope="row">
-                                {{item.validity}}
-                              </td>
-
-                            </tr>
-                          {% endif %}
-                        {% endfor %}
-                        {% if evidenceExists == "false" %}
-                          <tr class="govuk-table__row">
-                            <td class="govuk-table__cell hint" scope="row">You haven’t added any evidence</td>
-                            <td class="govuk-table__cell" scope="row"></td>
-                            <td class="govuk-table__cell" scope="row"></td>
-                          </tr>
-                        {% endif %}
-                      </tbody>
-                    </table>
-
-                  </div>
-                </details>
-
                 <table class="govuk-table govuk-!-margin-bottom-7 govuk-!-margin-top-0">
                   <thead class="govuk-table__head">
                     <tr class="govuk-table__row">
@@ -332,56 +288,12 @@
             </tbody>
           </table>
 
-          <details class="govuk-details" style="margin-top: -25px;">
-            <summary class="govuk-details__summary">
-              <span class="govuk-details__summary-text">
-                Show your evidence scores
-              </span>
-            </summary>
-            <div class="govuk-details__text">
-              <table class="govuk-table">
-                <thead class="govuk-table__head">
-                  <tr class="govuk-table__row">
-                    <th class="govuk-table__header" scope="col">Evidence checks</th>
-                    <th class="govuk-table__header" scope="col">Strength score</th>
-                    <th class="govuk-table__header" scope="col">Validity score</th>
-                  </tr>
-                </thead>
-
-                <tbody class="govuk-table__body">
-                  {% for item in data['testevidence'] %}
-                    {% if item.chosen %}
-                      <tr class="govuk-table__row">
-                        <td class="govuk-table__cell" scope="row">{{item.shortname | capitalize}}</td>
-                        <td class="govuk-table__cell multi-question" scope="row">
-                          {{item.strength}}
-                        </td>
-                        <td class="govuk-table__cell" scope="row">
-                          {{item.validity}}
-                        </td>
-
-                      </tr>
-                    {% endif %}
-                  {% endfor %}
-                  {% if evidenceExists == "false" %}
-                    <tr class="govuk-table__row">
-                      <td class="govuk-table__cell hint" scope="row">You haven’t added any evidence</td>
-                      <td class="govuk-table__cell" scope="row"></td>
-                      <td class="govuk-table__cell" scope="row"></td>
-                    </tr>
-                  {% endif %}
-                </tbody>
-              </table>
-
-            </div>
-          </details>
-
           <table class="govuk-table govuk-!-margin-bottom-7 govuk-!-margin-top-0">
             <thead class="govuk-table__head">
               <tr class="govuk-table__row">
                 <th class="govuk-table__header" scope="col">Other checks</th>
-                <th class="govuk-table__header" scope="col">Required score</th>
-                <th class="govuk-table__header" scope="col">Your score</th>
+                <th class="govuk-table__header" scope="col">Score</th>
+                <th class="govuk-table__header" scope="col"></th>
                 <th class="govuk-table__header" scope="col"></th>
               </tr>
             </thead>
@@ -399,7 +311,7 @@
                   {% endif %}
                 </td>
                 <td class="govuk-table__cell" scope="row">
-                  {{data['activityScore']}}
+                  <!-- {{data['activityScore']}} -->
                 </td>
                 <td class="govuk-table__cell" scope="row">
                   {% if profile.activityThreshold %}
@@ -426,7 +338,7 @@
                   {% endif %}
                 </td>
                 <td class="govuk-table__cell" scope="row">
-                  {{data['fraudScore']}}
+                  <!-- {{data['fraudScore']}} -->
                 </td>
                 <td class="govuk-table__cell" scope="row">
                   {% if profile.fraudThreshold %}
@@ -452,7 +364,7 @@
                   {% endif %}
                 </td>
                 <td class="govuk-table__cell multi-question" scope="row">
-                  {{data['verificationScore']}}
+                  <!-- {{data['verificationScore']}} -->
                 </td>
                 <td class="govuk-table__cell multi-question" scope="row">
                   {% if profile.verificationThreshold %}
@@ -486,7 +398,7 @@
               {% if profile.activityThreshold %}
                 <li>
                   {% if profile.activityResult == false %}
-                    <a href="https://docs.google.com/document/d/1B4CHMB6HWBQX4QrXtuTIIEmgVMOCuI_O2HFfapclvks/edit#bookmark=id.fr82pftz89xg" target="_blank">increase the strength of your activity checks to {{ profile.activityThreshold }}</a>
+                    <a href="https://docs.google.com/document/d/1B4CHMB6HWBQX4QrXtuTIIEmgVMOCuI_O2HFfapclvks/edit#bookmark=id.fr82pftz89xg" target="_blank">increase the strength of your activity checks to {{ profile.activityThreshold }} you currently score {{ data['activityScore'] }}</a>
                   {% else %}
                     <a href="https://docs.google.com/document/d/1B4CHMB6HWBQX4QrXtuTIIEmgVMOCuI_O2HFfapclvks/edit#bookmark=id.fr82pftz89xg" target="_blank">review the criteria for activity</a>
                   {% endif %}
@@ -496,7 +408,7 @@
               {% if profile.fraudThreshold %}
                 <li>
                   {% if profile.fraudResult == false %}
-                    <a href="https://docs.google.com/document/d/1B4CHMB6HWBQX4QrXtuTIIEmgVMOCuI_O2HFfapclvks/edit#bookmark=id.h91qmhza1q7c" target="_blank">increase the strength of your fraud checks to {{ profile.fraudThreshold }}</a>
+                    <a href="https://docs.google.com/document/d/1B4CHMB6HWBQX4QrXtuTIIEmgVMOCuI_O2HFfapclvks/edit#bookmark=id.h91qmhza1q7c" target="_blank">increase the strength of your fraud checks to {{ profile.fraudThreshold }} you currently score {{ data['fraudScore'] }}</a>
                   {% else %}
                     <a href="https://docs.google.com/document/d/1B4CHMB6HWBQX4QrXtuTIIEmgVMOCuI_O2HFfapclvks/edit#bookmark=id.h91qmhza1q7c" target="_blank">review the criteria for fraud</a>
                   {% endif %}
@@ -506,7 +418,7 @@
               {% if profile.verificationThreshold %}
                 <li>
                   {% if profile.verificationResult == false %}
-                    <a href="https://docs.google.com/document/d/1B4CHMB6HWBQX4QrXtuTIIEmgVMOCuI_O2HFfapclvks/edit#bookmark=id.oxbyx3jjz9j9" target="_blank">increase the strength of your verification checks to {{ profile.verificationThreshold }} </a>
+                    <a href="https://docs.google.com/document/d/1B4CHMB6HWBQX4QrXtuTIIEmgVMOCuI_O2HFfapclvks/edit#bookmark=id.oxbyx3jjz9j9" target="_blank">increase the strength of your verification checks to {{ profile.verificationThreshold }} you currently score {{ data['verificationScore'] }}</a>
                   {% else %}
                     <a href="https://docs.google.com/document/d/1B4CHMB6HWBQX4QrXtuTIIEmgVMOCuI_O2HFfapclvks/edit#bookmark=id.oxbyx3jjz9j9" target="_blank">review the criteria for verification</a>
                   {% endif %}
