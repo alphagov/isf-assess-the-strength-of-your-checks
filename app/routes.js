@@ -24,7 +24,6 @@ const testevidence =
     {'name':'Gas or electric bill','shortname':'gas or electric bill','group':'4','strength':'1', 'validity':'0','chosen':false},
     {'name':'Bank, building society or credit union current account','shortname':'bank, building society or credit union current account','group':'4','strength':'3','validity':'0','chosen':false},
     {'name':'Bank savings account','shortname':'savings account','group':'4','strength':'3','validity':'0','chosen':false},
-    {'name':'Letter from Santa','shortname':'letter from Santa','group':'4','strength':'1','validity':'0','chosen':false},
     {'name':'Credit account','shortname':'credit account','group':'4','strength':'3','validity':'0','chosen':false},
     {'name':'Mortgage account','shortname':'mortgage account','group':'4','strength':'3','validity':'0','chosen':false},
     {'name':'Secured loan account','shortname':'secured loan account','group':'4','strength':'3','validity':'0','chosen':false},

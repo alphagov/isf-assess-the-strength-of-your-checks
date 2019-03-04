@@ -33,9 +33,9 @@
       {% if data['section-name'] == "evidence" %}
 
           {% for item in data['testevidence'] %}
-            {% if item.chosen %}
+            {% if item.chosen and item.name == data['evidence'] %}
               <p>
-                 The {{data['evidence']}} has a strength score of {{item.strength}} out of 4.
+                 The {{item.shortname}} has a strength score of {{item.strength}} out of 4.
               {% for explanation in data['explanations'] %}
                 {% if explanation.element == "strength" and explanation.score == item.strength %}
                     {{explanation.text}}
@@ -43,7 +43,7 @@
                 {% endif %}
               {% endfor %}
               <p>
-                 The way you check the the {{data['evidence']}} achieved a validity score of {{item.validity}}.
+                 The way you check the the {{item.shortname}} achieved a validity score of {{item.validity}}.
               {% for explanation in data['explanations'] %}
                 {% if explanation.element == "validity" and explanation.score == item.validity %}
                     {{explanation.text}}
@@ -87,7 +87,7 @@
       <br>
       <form action="/overview" method="post" novalidate>
         {{ govukButton({
-          text: "Return to your scores"
+          text: "Continue"
         }) }}
       </form>
 
