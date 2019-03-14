@@ -1,0 +1,72 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Before you start
+{% endblock %}
+
+{% block beforeContent %}
+  {% from "breadcrumbs/macro.njk" import govukBreadcrumbs %}
+
+  {{ govukBreadcrumbs({
+  items: [
+    {
+      text: "Identity standard",
+      href: "/index"
+    },
+    {
+      text: "Assess how your identity service meets the standard"
+    }
+  ]
+  }) }}
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">
+        You might not need to check a user’s identity.
+      </h1>
+      <p>
+        You might not need to do checks if the service:
+      </p>
+      <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-6">
+        <li>
+          does not give access to any personal information about a user
+        </li>
+        <li>
+          does not give something valuable to a user, such as money or benefits
+        </li>
+        <li>
+          needs a user to physically go somewhere (such as a court or Post Office) to prove their identity
+        </li>
+      </ul>
+      <p>
+        If your service does not need to check a user’s identity but needs to let them access the service again to see or update their information, you can <a href="https://www.gov.uk/service-manual/design/user-accounts">let the user create an account</a> instead.
+      </p>
+
+      <div class="govuk-inset-text">
+        <h2 class="govuk-heading-s">
+          Example
+        </h3>
+        <p>
+          The Department for Work and Pensions (DWP) lets a user create an account for their <a href="https://www.gov.uk/jobsearch">Find a job</a> service. This is so the user can upload and update their CV and check on any job applications they’ve made.
+        </p>
+        <p>
+          The service does not need to use GOV.UK Verify, because it does not give users anything valuable, or allow them to see any personal information they have not provided themselves.
+        </p>
+      </div>
+
+      <br>
+
+      <form action="/overview" method="post" novalidate>
+        {{ govukButton({
+          text: "Continue to assess your checks"
+        }) }}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

@@ -199,6 +199,7 @@ router.post('/risk-answer', function (req, res) {
   if (answer.includes('1')) {
     req.session.data['user-risk-level'] = "none"
     req.session.data['user-risk-answer'] = "None"
+    res.redirect('no-risk')
   }
   else if (answer.includes('2')) {
     req.session.data['user-risk-level'] = "low"
@@ -942,7 +943,7 @@ router.post('/overview-answer', function (req, res) {
   let fraudScore = req.session.data['fraudScore']
   let activityScore = req.session.data['activityScore']
 
-  if (userRiskLevel == "dont-know") {
+  if (userRiskLevel == "dont-know" || userRiskLevel == "none") {
     let validationResults = responseValidator.determineHighestConfidenceAchievable(evidence, verificationScore, fraudScore, activityScore)
     req.session.data['result-message'] = validationResults.highestConfidenceAvailable
       ? "Your checks protect your service with a " + validationResults.highestConfidenceAvailable.level + " level of confidence."
