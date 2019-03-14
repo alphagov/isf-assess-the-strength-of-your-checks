@@ -49,48 +49,128 @@ items: [
       </p>
       <br>
       <form action="/choose-evidence-group-answer" method="post" novalidate>
-        {% from "radios/macro.njk" import govukRadios %}
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="how-contacted-conditional-hint">
+            <span id="how-contacted-conditional-hint" class="govuk-hint">
+              Select one option.
+            </span>
+            <div class="govuk-radios govuk-radios--conditional" data-module="radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="choose-evidence-1" name="choose-evidence" type="radio" value="email" data-aria-controls="conditional-choose-evidence-1">
+                <label class="govuk-label govuk-radios__label" for="choose-evidence-1">
+                  Passport or travel document
+                </label>
+              </div>
+              <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-choose-evidence-1">
+                {% for item in data['testevidence'] %}
+                  {% if item.group == '1' %}
+                    <div class="govuk-radios__item">
+                      <input class="govuk-radios__input" id="{{item.name}}" name="evidence" type="radio" value="{{item.name}}">
+                      <label class="govuk-label govuk-radios__label" for="{{item.name}}">
+                        {{item.name}}
+                      </label>
+                    </div>
+                  {% endif %}
+                {% endfor %}
+              </div>
 
-        {{ govukRadios({
-          idPrefix: "choose-evidence-1",
-          name: "choose-evidence-1",
-          fieldset: {
-            legend: {
-              text: "",
-              isPageHeading: false,
-              classes: "govuk-fieldset__legend--l"
-            }
-          },
-          hint: {
-            text: ""
-          },
-          items: [
-            {
-              value: "1",
-              text: "Passport or travel document"
-            },
-            {
-              value: "2",
-              text: "Driving licence or card"
-            },
-            {
-              value: "3",
-              text: "Identity card"
-            },
-            {
-              value: "4",
-              text: "Account, bill or statement"
-            },
-            {
-              value: "5",
-              text: "Certificate"
-            },
-            {
-              value: "6",
-              text: "Document issued by a local authority"
-            }
-          ]
-        }) }}
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="choose-evidence-2" name="choose-evidence" type="radio" value="email" data-aria-controls="conditional-choose-evidence-2">
+                <label class="govuk-label govuk-radios__label" for="choose-evidence-2">
+                  Driving licence or card
+                </label>
+              </div>
+              <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-choose-evidence-2">
+                {% for item in data['testevidence'] %}
+                  {% if item.group == '2' %}
+                    <div class="govuk-radios__item">
+                      <input class="govuk-radios__input" id="{{item.name}}" name="evidence" type="radio" value="{{item.name}}">
+                      <label class="govuk-label govuk-radios__label" for="{{item.name}}">
+                        {{item.name}}
+                      </label>
+                    </div>
+                  {% endif %}
+                {% endfor %}
+              </div>
+
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="choose-evidence-3" name="choose-evidence" type="radio" value="email" data-aria-controls="conditional-choose-evidence-3">
+                <label class="govuk-label govuk-radios__label" for="choose-evidence-3">
+                  Identity card
+                </label>
+              </div>
+              <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-choose-evidence-3">
+                {% for item in data['testevidence'] %}
+                  {% if item.group == '3' %}
+                    <div class="govuk-radios__item">
+                      <input class="govuk-radios__input" id="{{item.name}}" name="evidence" type="radio" value="{{item.name}}">
+                      <label class="govuk-label govuk-radios__label" for="{{item.name}}">
+                        {{item.name}}
+                      </label>
+                    </div>
+                  {% endif %}
+                {% endfor %}
+              </div>
+
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="choose-evidence-4" name="choose-evidence" type="radio" value="email" data-aria-controls="conditional-choose-evidence-4">
+                <label class="govuk-label govuk-radios__label" for="choose-evidence-4">
+                  Account, bill or statement
+                </label>
+              </div>
+              <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-choose-evidence-4">
+                {% for item in data['testevidence'] %}
+                  {% if item.group == '4' %}
+                    <div class="govuk-radios__item">
+                      <input class="govuk-radios__input" id="{{item.name}}" name="evidence" type="radio" value="{{item.name}}">
+                      <label class="govuk-label govuk-radios__label" for="{{item.name}}">
+                        {{item.name}}
+                      </label>
+                    </div>
+                  {% endif %}
+                {% endfor %}
+              </div>
+
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="choose-evidence-5" name="choose-evidence" type="radio" value="email" data-aria-controls="conditional-choose-evidence-5">
+                <label class="govuk-label govuk-radios__label" for="choose-evidence-5">
+                    Certificate
+                </label>
+              </div>
+              <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-choose-evidence-5">
+                {% for item in data['testevidence'] %}
+                  {% if item.group == '5' %}
+                    <div class="govuk-radios__item">
+                      <input class="govuk-radios__input" id="{{item.name}}" name="evidence" type="radio" value="{{item.name}}">
+                      <label class="govuk-label govuk-radios__label" for="{{item.name}}">
+                        {{item.name}}
+                      </label>
+                    </div>
+                  {% endif %}
+                {% endfor %}
+              </div>
+
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="choose-evidence-6" name="choose-evidence" type="radio" value="email" data-aria-controls="conditional-choose-evidence-6">
+                <label class="govuk-label govuk-radios__label" for="choose-evidence-6">
+                  Document issued by a local authority
+                </label>
+              </div>
+              <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-choose-evidence-6">
+                {% for item in data['testevidence'] %}
+                  {% if item.group == '6' %}
+                    <div class="govuk-radios__item">
+                      <input class="govuk-radios__input" id="{{item.name}}" name="evidence" type="radio" value="{{item.name}}">
+                      <label class="govuk-label govuk-radios__label" for="{{item.name}}">
+                        {{item.name}}
+                      </label>
+                    </div>
+                  {% endif %}
+                {% endfor %}
+              </div>
+            </div>
+          </fieldset>
+        </div>
 
         {{ govukButton({
           text: "Continue"
