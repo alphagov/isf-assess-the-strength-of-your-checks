@@ -160,11 +160,6 @@ router.post('/set-choose-evidence-variables', function (req, res) {
 })
 
 router.post('/choose-evidence-group-answer', function (req, res) {
-  res.redirect('evidence/choose-evidence-2')
-})
-
-router.post('/choose-evidence-answer', function (req, res) {
-
   let evidence = req.session.data['evidence']
   let thisEvidence = evidence
   req.session.data['thisEvidence'] = thisEvidence
@@ -175,7 +170,6 @@ router.post('/choose-evidence-answer', function (req, res) {
       req.session.data['evidenceName'] = testevidence[i].shortname
     }
   }
-
 
   if (evidence.includes('other')) {
     res.redirect('overview')

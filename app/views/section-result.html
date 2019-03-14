@@ -33,7 +33,7 @@
       {% if data['section-name'] == "evidence" %}
 
           {% for item in data['testevidence'] %}
-            {% if item.chosen and item.name == data['evidence'] %}
+            {% if item.chosen and item.shortname == data['evidenceName'] %}
               <p>
                  The {{item.shortname}} has a strength score of {{item.strength}} out of 4.
               {% for explanation in data['explanations'] %}
