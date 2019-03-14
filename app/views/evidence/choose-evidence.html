@@ -168,6 +168,24 @@ items: [
                   {% endif %}
                 {% endfor %}
               </div>
+
+              <div class="govuk-radios__divider">or</div>
+
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="choose-evidence-7" name="choose-evidence" type="radio" value="email" data-aria-controls="conditional-choose-evidence-7">
+                <label class="govuk-label govuk-radios__label" for="choose-evidence-7">
+                  Other evidence not listed
+                </label>
+              </div>
+              <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-choose-evidence-7">
+                <div class="govuk-form-group">
+                  <label class="govuk-label" for="choose-evidence-7">
+                    What is the evidence called?
+                  </label>
+                  <input class="govuk-input" id="choose-evidence-7" name="evidence" type="text">
+                </div>
+              </div>
+
             </div>
           </fieldset>
         </div>

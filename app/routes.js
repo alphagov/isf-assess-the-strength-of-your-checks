@@ -174,7 +174,6 @@ router.post('/choose-evidence-group-answer', function (req, res) {
   if (evidence.includes('other')) {
     res.redirect('overview')
   }
-
   else{
     // for each preset, set chosen to true if chosen
     var i;
