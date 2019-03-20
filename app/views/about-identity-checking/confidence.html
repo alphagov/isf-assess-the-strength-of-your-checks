@@ -31,9 +31,105 @@
           How to be confident enough in an identity
         </h1>
 
-        <p>
 
-        </p>
+
+        <p>Each part of the identity checking process will protect you or your service against different identity risks.</p>
+
+        <p>There are a number of ways to combine parts of the identity checking process to meet a level of confidence in an identity. These combinations are known as identity profiles.</p>
+
+        <p>Each identity profile will give you one of the following levels of confidence:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>low confidence</li>
+          <li>medium confidence</li>
+          <li>high confidence</li>
+          <li>very high confidence</li>
+        </ul>
+
+        <p>You can only meet a level of confidence if you meet an identity profile. The higher the level of confidence an identity profile meets, the more protection you or your service will have.</p>
+
+        <p>An identity profile is made up of scores for each part of the identity checking process. To meet an identity profile, you must have all these required scores. You can use a score that's the same or higher than the score needed.</p>
+
+        {% for profile in levelData.results.profileResults %}
+
+          <h2 class="govuk-heading-m govuk-!-margin-bottom-2 govuk-!-margin-top-8">Profile {{ profile.name }}</h2>
+          <table class="govuk-table govuk-!-margin-bottom-7 govuk-!-margin-top-0">
+            <thead class="govuk-table__head">
+              <tr class="govuk-table__row">
+                <th class="govuk-table__header" scope="col">Required evidence</th>
+                <th class="govuk-table__header" scope="col">Strength score</th>
+                <th class="govuk-table__header" scope="col">Validity score</th>
+              </tr>
+            </thead>
+
+            <tbody class="govuk-table__body">
+              {% set evidenceCount = 0 %}
+              {% for evidence in profile.evidence %}
+                {% set evidenceCount = evidenceCount + 1 %}
+
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell" scope="row">
+                    Evidence {{evidenceCount}}
+                  </td>
+                  <td class="govuk-table__cell" scope="row">
+                    {{ evidence.strength }}
+                  </td>
+                  <td class="govuk-table__cell" scope="row">
+                    {{ evidence.validity }}
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+
+          <table class="govuk-table govuk-!-margin-bottom-7 govuk-!-margin-top-0">
+            <thead class="govuk-table__head">
+              <tr class="govuk-table__row">
+                <th class="govuk-table__header" scope="col">Other checks</th>
+                <th class="govuk-table__header" scope="col">Required score</th>
+              </tr>
+            </thead>
+
+            <tbody class="govuk-table__body">
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell" scope="row">
+                  Activity
+                </td>
+                <td class="govuk-table__cell" scope="row">
+                  {% if profile.activityThreshold %}
+                    {{ profile.activityThreshold }}
+                  {% else %}
+                    Not required
+                  {% endif %}
+                </td>
+
+              </tr>
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell" scope="row">
+                  Fraud
+                </td>
+                <td class="govuk-table__cell" scope="row">
+                  {% if profile.fraudThreshold %}
+                    {{ profile.fraudThreshold }}
+                  {% else %}
+                    Not required
+                  {% endif %}
+                </td>
+              </tr>
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell" scope="row">
+                  Verification
+                </td>
+                <td class="govuk-table__cell multi-question" scope="row">
+                  {% if profile.verificationThreshold %}
+                    {{ profile.verificationThreshold }}
+                  {% else %}
+                    Not required
+                  {% endif %}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        {% endfor %}
 
         <p class="govuk-!-margin-top-9">
           <a href="/about-identity-checking/overview">Return to overview</a>
