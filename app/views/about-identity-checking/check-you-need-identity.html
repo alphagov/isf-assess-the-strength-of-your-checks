@@ -1,0 +1,116 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  Identity assurance standards
+{% endblock %}
+
+{% block beforeContent %}
+  {% from "breadcrumbs/macro.njk" import govukBreadcrumbs %}
+
+  {{ govukBreadcrumbs({
+  items: [
+    {
+      text: "Checking identity",
+      href: "/about-identity-checking/overview"
+    },
+    {
+      text: "Find out if you need to check users’ identities"
+    }
+  ]
+  }) }}
+
+{% endblock %}
+
+{% block content %}
+
+<main role="main" id="content" class="html-publication" lang="en">
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-l">
+          Find out if you need to check users’ identities
+        </h1>
+        <p>
+          Checking your users are who they say they are is called identity assurance.
+        </p>
+        <p>
+          Identity assurance is different from authentication, which usually involves asking a user to create and sign into an account. A user can authenticate themselves (by providing a username and password) without proving their identity.
+        </p>
+        <p>
+          For some services, it’s enough to ask users to authenticate themselves without proving their identity. For example, if your service just needs to recognise that someone has used the service before.
+        </p>
+        <h2 class="govuk-heading-m">
+          When you should check a user’s identity
+        </h2>
+        <p>
+          You should check a user’s identity if your service needs to check a user’s identify.
+        </p>
+        <p>
+          Your service might need to do this if it:
+        </p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>
+            shows a user personal information about themselves, such as their driving licence or passport details
+          </li>
+          <li>
+            gives the user something valuable, such as money or benefits
+          </li>
+          <li>
+            replaces a form that needs to be physically signed by a user
+          </li>
+        </ul>
+        <div class="govuk-inset-text">
+          <h2 class="govuk-heading-s">
+            Example
+          </h2>
+          <p>
+            The Department for Work and Pensions (DWP) checks the identities of users who <a href="https://www.gov.uk/universal-credit/how-to-claim">apply for Universal Credit</a>. This is because the service needs to be sure it pays the right person, and that no one else is trying to claim benefits in their name.
+          </p>
+          <p>
+            They check things like a user’s bank account history or passport details. By using it in their service, DWP can be confident its users are who they say they are.
+          </p>
+        </div>
+        <h2 class="govuk-heading-m">
+          When you might not need to check a user’s identity
+        </h2>
+        <p>
+          You might not need to check a user’s identity if your service:
+        </p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>
+            does not give access to any personal information about a user
+          </li>
+          <li>
+            does not give something valuable to a user, such as money or benefits
+          </li>
+          <li>
+            needs a user to physically go somewhere (such as a court or Post Office) to prove their identity
+          </li>
+        </ul>
+        <p>
+          If your service does not need to check a user’s identity but needs to let them access the service again to see or update their information, you can <a href="https://www.gov.uk/service-manual/design/user-accounts">let the user create an account</a> instead.
+        </p>
+        <div class="govuk-inset-text">
+          <h3 class="govuk-heading-s">
+            Example
+          </h3>
+          <p>
+            The Department for Work and Pensions (DWP) lets a user create an account for their <a href="https://www.gov.uk/jobsearch">Find a job</a> service. This is so the user can upload and update their CV and check on any job applications they’ve made.
+          </p>
+          <p>
+            The service does not need to check a user’s identity, because it does not give users anything valuable, or allow them to see any personal information they have not provided themselves.
+          </p>
+        </div>
+        <p>
+          Email <a href="mailto:idasupport@digital.cabinet-office.gov.uk">idasupport@digital.cabinet-office.gov.uk</a> if you need help deciding how to check user’s identity.
+        </p>
+        <p class="govuk-!-margin-top-9">
+          <a href="/about-identity-checking/fraud">Continue to how fraud affects services</a>
+          or
+          <a href="/about-identity-checking/overview">Return to overview</a>
+        </p>
+    </div>
+  </div>
+</main>
+
+{% endblock %}
