@@ -1,0 +1,1929 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Before you start
+{% endblock %}
+
+{% block beforeContent %}
+  {% from "breadcrumbs/macro.njk" import govukBreadcrumbs %}
+
+  {{ govukBreadcrumbs({
+  items: [
+    {
+      text: "Identity standard",
+      href: "/index"
+    },
+    {
+      text: "Assess how your identity service meets the standard"
+    }
+  ]
+  }) }}
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+<h1 class="govuk-heading-xl" class="govuk-heading-l">Identity Proofing and Verification of an Individual</h1>
+
+<p>This is public sector good practice guidance that explains how to check someone's identity. It will be particularly useful if you:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>need to check someone’s identity</li>
+
+<li>provide an identity checking service </li>
+
+<li>want to understand how another individual or organisation checks someone's identity</li>
+
+<li>are an independent auditor checking if an organisation has met its requirements for identity certification</li>
+</ul>
+
+<h2 class="govuk-heading-l" class="govuk-heading-m" id="whatisidentity">What is identity</h2>
+
+<p>An identity is a group of characteristics that are unique to a person.</p>
+
+<p>A single characteristic isn’t enough to tell one person apart from another, but a combination of characteristics (such as their name, date of birth and address) could be.</p>
+
+<h2 class="govuk-heading-l" class="govuk-heading-m" id="howtochecksomeonesidentity">How to check someone's identity</h2>
+
+<p>You'll need some basic information about someone (such as their name, date of birth and address) before you can check their identity. This will tell you who the person is claiming to be (also known as their 'claimed identity').</p>
+
+<p>When you have this, you can find out if they are who they say they are. This process is known as ‘identity checking’. It involves: </p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>getting evidence of the person’s identity (‘strength’)</li>
+
+<li>checking the evidence is genuine or valid (‘validity’)</li>
+
+<li>making sure the identity has existed over time (‘activity’)</li>
+
+<li>checking the identity hasn’t been stolen or used fraudulently (‘identity fraud’)</li>
+
+<li>making sure the identity belongs to the same person that’s claiming it (‘verification’)</li>
+</ul>
+
+<p>How much confidence you have in the identity will depend on how much evidence you collect and how thoroughly you do each part of the identity checking process. This makes up an <a href="#identity-profiles">‘identity profile’</a>.</p>
+
+<p>At the end of the process, you'll get a level of confidence in the person's identity. It will be one of the following:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>low confidence</li>
+
+<li>medium confidence</li>
+
+<li>high confidence</li>
+
+<li>very high confidence</li>
+</ul>
+
+<p>How confident you are in the identity can increase over time, depending on whether you do extra checks or collect more evidence after you’ve checked the person’s identity.</p>
+
+<p>Your confidence can also decrease over time, for example, if you later find out that a piece of evidence you used might have been lost or stolen at the time you checked that person's identity.</p>
+
+<p>Each part of the identity checking process will protect you against different risks. </p>
+
+<p>You don’t have to do all parts of the identity checking process at once. You can do them over any period of time after you have information about a claimed identity. You can also reuse checks that have been done by another organisation.</p>
+
+<h3 class="govuk-heading-m" class="govuk-heading-s" id="workingwithauthoritativesources">Working with authoritative sources</h3>
+
+<p>You might need to check some things with an ‘authoritative’ source to do some parts of the identity checking process. To be authoritative, the source must have data about either: </p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>the identity</li>
+
+<li>the identity evidence</li>
+</ul>
+
+<p>They must have received the data about the evidence from the organisation that issued it, either directly, or from another authoritative source. They’ll need to know enough about the identity or evidence to be able to confirm if the data you have is right. They'll also need to make sure the data is up to date and hasn't been tampered with.</p>
+
+<h3 class="govuk-heading-m" class="govuk-heading-s" id="scores">Scores</h3>
+
+<p>You’ll get a score for each part of the identity checking process you do. The highest score you can get is 4.</p>
+
+<p>Changing how thoroughly you do each part of the identity checking process will give you different scores.</p>
+
+<h2 class="govuk-heading-l" class="govuk-heading-m" id="getevidenceoftheiridentitystrength">Get evidence of their identity ('strength')</h2>
+
+<p>You'll need to get evidence of the person's identity and see how strong that evidence is. You can either: </p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>ask the person to provide evidence of their identity, like an identity document (such as a passport) or an account (which they can prove they own by giving you something like a bill or account number)</li>
+
+<li>find some evidence of their identity yourself, for example by checking existing databases</li>
+</ul>
+
+<p>You must always make sure the person gives you at least one piece of evidence before you look for evidence of their identity yourself.</p>
+
+<p>This was previously known as 'Element A'.</p>
+
+<p>The strength of a piece of evidence does not change over time. If it expires, the score it has will stay the same.</p>
+
+<p>The identity is sometimes shown as a synonym on different pieces of evidence. For example, it might say the person’s name is William on their passport, but Bill on their bank card.</p>
+
+<p>If the names are different for any other reason (for example the person's surname is different on one piece of evidence) you should collect other pieces of evidence and do other checks to make sure both identities belong to the same person.</p>
+
+<h3 class="govuk-heading-m" class="govuk-heading-s" id="score1">Score 1</h3>
+
+<p>The evidence will have a score of 1 if it contains the person’s name and information that's likely to be unique to either the identity or that piece of evidence. This could be:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>their address</li>
+
+<li>their date or place of birth</li>
+
+<li>their photo</li>
+
+<li>a reference number</li>
+</ul>
+
+<p>The evidence should come from an organisation that checked the person's identity when they issued it. </p>
+
+<p>The identity must not be able to influence the organisation that issued the evidence in any way. For example, the evidence can't be issued by a company that the person owns.</p>
+
+<p>Some examples of evidence that will have a score of 1 include:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>a gas or electric bill</li>
+
+<li>a letter from your local authority</li>
+</ul>
+
+<h3 class="govuk-heading-m" class="govuk-heading-s" id="score2">Score 2</h3>
+
+<p>The evidence will have a score of 2 if it has everything it needs to get a score of 1 and:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>it includes the person’s name instead of any pseudonyms or aliases</li>
+
+<li>it includes information that's unique to either the identity or that piece of evidence</li>
+
+<li>the organisation that issued the evidence checked the person’s identity in a way that means they're reasonably sure the person is who they say they are</li>
+
+<li>if it's a physical document, it's protected by physical security features (such as a hologram, specialist inks or printing techniques) which stop it from being reproduced without specialist knowledge or information</li>
+
+<li>if it has digital information, it's protected by cryptographic security features (such as a cryptographic key on a chip)</li>
+
+<li>if it has any cryptographic security features, they're able to correctly identify the organisation that issued it </li>
+</ul>
+
+<p>Some examples of evidence that have a score of 2 include:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>a firearm certificate</li>
+
+<li>a Home Office travel document (convention travel document, stateless person's document, one-way document or certificate of travel)</li>
+
+<li>a birth or adoption certificate</li>
+
+<li>an older person's bus pass</li>
+
+<li>an education certificate from a regulated and recognised educational institution (such as an NVQ, GCSE, A level or degree certificate)</li>
+
+<li>a rental or purchase agreement for a residential property</li>
+
+<li>a proof of age card with a Proof of Age Standards Scheme (PASS) hologram</li>
+
+<li>a Freedom Pass</li>
+
+<li>a marriage certificate</li>
+
+<li>building, contents or vehicle insurance</li>
+</ul>
+
+<h3 class="govuk-heading-m" class="govuk-heading-s" id="score3">Score 3</h3>
+
+<p>The evidence will have a score of 3 if it has everything it needs to get a score of 2 and:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>it includes the person’s full first and middle names instead of their initials</li>
+
+<li>it includes information that's unique to both the identity and that piece of evidence</li>
+
+<li>the organisation that issued the evidence made sure it was received by the same person who applied for it</li>
+
+<li>the organisation that issued the evidence checked the person’s identity in a way that follows the <a href="http://www.legislation.gov.uk/uksi/2017/692/made">Money Laundering Regulations 2017</a> </li>
+
+<li>if it's a physical document, it's protected by physical security features which stop it from being reproduced without specialist knowledge, information and equipment</li>
+</ul>
+
+<p>The evidence must also include one of the following:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>a photo of the person</li>
+
+<li>biometric information that uses cryptographic security features to protect its integrity</li>
+
+<li>cryptographic security features that can be used to identify the person who owns the evidence</li>
+</ul>
+
+<p>Some examples of evidence that will have a score of 3 include:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>passports that meet the <a href="https://www.icao.int/publications/pages/publication.aspx?docnum=9303">International Civil Aviation Organisation (ICAO) specifications for machine-readable travel documents</a> (9303)</li>
+
+<li>identity cards from an EU or European Economic Area (EEA) country that follow the <a href="https://eur-lex.europa.eu/legal-content/EN/ALL/?uri=CELEX%3A32004R2252">Council Regulation (EC) No 2252/2004 standards</a></li>
+
+<li>EU or EEA driving licences that follow the <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=celex%3A32006L0126">European Directive 2006/126/EC</a> </li>
+
+<li>a Northern Ireland electoral identity card</li>
+
+<li>a US passport card</li>
+
+<li>a bank, building society or credit union current account</li>
+
+<li>a student loan account</li>
+
+<li>a credit account</li>
+
+<li>a bank savings account</li>
+
+<li>a mortgage account (including buy to let mortgage accounts)</li>
+
+<li>a <a href="https://www.gov.uk/tachographs">digital tachograph</a> </li>
+
+<li>an armed forces identity card</li>
+
+<li>a proof of age card with a PASS hologram and a unique reference number</li>
+
+<li>a secured loan account (this includes hire purchase accounts)</li>
+</ul>
+
+<h3 class="govuk-heading-m" class="govuk-heading-s" id="score4">Score 4</h3>
+
+<p>The evidence will have a score of 4 if it has everything it needs to get a score of 3 and:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>the evidence contains biometric and personal information that's protected by cryptographic security features</li>
+
+<li>the organisation that issued the evidence proved the person’s identity by comparing and matching the person to an image of the claimed identity from an authoritative source </li>
+</ul>
+
+<p>Some examples of evidence that will have a score of 4 include:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>biometric passports that meet the <a href="https://www.icao.int/publications/pages/publication.aspx?docnum=9303">ICAO specifications for e-passports</a> </li>
+
+<li>identity cards from an EU or EEA country that follow the <a href="https://eur-lex.europa.eu/legal-content/EN/ALL/?uri=CELEX%3A32004R2252">Council Regulation (EC) No 2252/2004 standards</a> and contain biometric information</li>
+
+<li>a <a href="https://www.gov.uk/biometric-residence-permits">biometric residence permit</a> (BRP)</li>
+</ul>
+
+<h2 class="govuk-heading-l" class="govuk-heading-m" id="checktheevidenceisgenuineorvalidvalidity">Check the evidence is genuine or valid ('validity')</h2>
+
+<p>You can check if the evidence is genuine, valid or both. You can do this in person or remotely.</p>
+
+<p>To be valid, the evidence must not have:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>expired</li>
+
+<li>been reported as lost or stolen</li>
+
+<li>been cancelled</li>
+</ul>
+
+<p>This was previously known as 'Element B'.</p>
+
+<h3 class="govuk-heading-m" class="govuk-heading-s" id="score1-1">Score 1</h3>
+
+<p>The evidence will have a score of 1 if you can confirm the physical features of the evidence appear to be genuine. </p>
+
+<p>The document will need to be checked by someone who:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>knows how to use a magnifier</li>
+
+<li>is aware that document fraud takes place</li>
+
+<li>can confirm there are no errors on the document, like wrong paper type, spelling mistakes or missing pages </li>
+
+<li>can confirm the details, layout or alignment of the document look the way they should</li>
+</ul>
+
+<h3 class="govuk-heading-m" class="govuk-heading-s" id="score2-1">Score 2</h3>
+
+<p>The evidence will have a score of 2 if you do one of the following:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>confirm it’s valid</li>
+
+<li>make sure any physical security features are likely to be genuine</li>
+
+<li>make sure any cryptographic security features are genuine</li>
+</ul>
+
+<h4 class="govuk-heading-s" class="govuk-heading-xs" id="checkingtheevidenceisvalid">Checking the evidence is valid</h4>
+
+<p>You can confirm the evidence is valid by making sure the person’s details shown on it match those held by either:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>the organisation that issued it</li>
+
+<li>another authoritative source</li>
+</ul>
+
+<h4 class="govuk-heading-s" class="govuk-heading-xs" id="checkingthephysicalsecurityfeaturesaregenuine">Checking the physical security features are genuine</h4>
+
+<p>The person or system will need to make sure:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>the person has the document at the point it's checked (for example it shouldn't accept scans)</li>
+
+<li>the document has been shared in a way that prevents it from being tampered with</li>
+</ul>
+
+<p>They'll need to check the following features of the document look correct:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>background printing</li>
+
+<li>fonts and alignment</li>
+
+<li>holograms and positioning</li>
+
+<li>the way it's been laminated</li>
+
+<li>any designs printed with optical variable ink (and check they look the way they should at certain angles)</li>
+</ul>
+
+<p>If the document is being checked by a person, they must:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>be trained by the Home Office, National Document Fraud Unit, Centre for the Protection of National Infrastructure (CPNI) or another equivalent specialist trainer in how to detect false documents</li>
+
+<li>refresh their training at least every 3 years</li>
+</ul>
+
+<p>If the document is being checked by a system, you should make sure the system was built following good practice such as the Home Office's <a href="https://www.gov.uk/government/publications/identity-document-validation-technology/identification-document-validation-technology">guidance on identification document validation technology</a>.</p>
+
+<p>It must:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>make use of official templates, such as the <a href="https://www.consilium.europa.eu/prado/en/search-by-document-country.html">Public Register of Authentic travel and identity Documents Online</a> (PRADO)</li>
+
+<li>update those templates at least every 3 years</li>
+
+<li>use an image that's at least 3 megapixels (or 300 DPI) in resolution</li>
+
+<li>use an image that's clear enough for it to examine the security features (the document must take up at least 95% of the image)</li>
+</ul>
+
+<p>If the document is being checked using different light sources (such as ultraviolet light), the person or system will also need to be able to identify if:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>the paper the document is printed on looks the way it should</li>
+
+<li>any fluorescent features on the document look the way they should</li>
+</ul>
+
+<p>If you can't use different light sources (for example because you're using a document capture software), the person or system will also need to be able to identify:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>any 'compound identifiers', such as a Driver and Vehicle Licensing Agency (DVLA) driver number, are formatted correctly</li>
+
+<li>if any photographs have been positioned correctly on the document (they should not have been replaced or edited)</li>
+</ul>
+
+<h4 class="govuk-heading-s" class="govuk-heading-xs" id="checkingthecryptographicsecurityfeaturesaregenuine">Checking the cryptographic security features are genuine</h4>
+
+<p>To make sure the cryptographic security features are genuine, the system that checks the evidence will need to:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>read the encrypted data with a compatible reader or decryption process</li>
+
+<li>provide the required access or decryption key</li>
+
+<li>check the digital signature is correct</li>
+
+<li>check the signing key is the correct type for that evidence</li>
+
+<li>check the signing key has not been revoked</li>
+</ul>
+
+<h3 class="govuk-heading-m" class="govuk-heading-s" id="score3-1">Score 3</h3>
+
+<p>The evidence will have a score of 3 if you check either:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>its physical features are probably genuine</li>
+
+<li>its cryptographic security features are probably genuine</li>
+</ul>
+
+<p>You must also confirm if the evidence is valid. To do this, you should make sure the person’s details shown on it match those held by either:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>the organisation that issued it</li>
+
+<li>another authoritative source</li>
+</ul>
+
+<h4 class="govuk-heading-s" class="govuk-heading-xs" id="checkingthephysicalsecurityfeaturesaregenuine-1">Checking the physical security features are genuine</h4>
+
+<p>The person or system will need to do the same checks needed to get a score of 2. </p>
+
+<p>They'll also need to:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>use evidence that's been shared in a way that prevents it from being 'replayed' (intercepted and reused)</li>
+
+<li>use an image that's at least 6 megapixels (or 600 DPI) in resolution </li>
+
+<li>make sure any shadows or glare do not stop its security features from being examined</li>
+
+<li>make use of official templates, such as those from the PRADO</li>
+
+<li>update these templates every year</li>
+</ul>
+
+<p>If the checks are being done by a person, they'll need to refresh their training in how to detect false documents every year.</p>
+
+<p>They must also need to be able to identify:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>intaglio (raised) ink </li>
+
+<li>laser etching</li>
+
+<li>if features on certain parts of the document are consistent and correct </li>
+</ul>
+
+<p class="govuk-inset-text">
+<strong>Example</strong>
+In a UK passport, there should be a passport number on the page with the person's details on it. You should also check if this number is the same as the number punched on the other pages in the passport.
+$E</p>
+
+<p>To check this, they must use one of the following:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>an ultraviolet desktop light</li>
+
+<li>a magnification tool (such as a magnifier)</li>
+
+<li>other inspection equipment used to identify forged or counterfeit documents</li>
+</ul>
+
+<h4 class="govuk-heading-s" class="govuk-heading-xs" id="checkingthecryptographicsecurityfeaturesaregenuine-1">Checking the cryptographic security features are genuine</h4>
+
+<p>The system will need to do the same checks needed to get a score of 2. </p>
+
+<h3 class="govuk-heading-m" class="govuk-heading-s" id="score4-1">Score 4</h3>
+
+<p>The evidence will have a score of 4 if you can confirm:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>its physical features are genuine</li>
+
+<li>its cryptographic security features are genuine</li>
+</ul>
+
+<p>You must also confirm if the evidence is valid. To do this, you should make sure the person’s details shown on it match those held by either:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>the organisation that issued it</li>
+
+<li>another authoritative source</li>
+</ul>
+
+<h4 class="govuk-heading-s" class="govuk-heading-xs" id="checkingthephysicalsecurityfeaturesaregenuine-2">Checking the physical security features are genuine</h4>
+
+<p>The person or system will need to do the same checks needed to get a score of 3.</p>
+
+<p>They'll also need to:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>be supervised by someone who's trained by the Home Office, National Document Fraud Unit, CPNI or another equivalent specialist trainer when they examine the document</li>
+
+<li>examine the document under 'controlled' light conditions (which means the lights create the best possible environment for examining the document's security features)</li>
+</ul>
+
+<p>The person or system doing the checks will also need to have previously worked with or be used by: </p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>the Home Office</li>
+
+<li>National Document Fraud Unit</li>
+
+<li>the CPNI </li>
+
+<li>another equivalent specialist identity unit to identify genuine documents from forgeries or counterfeits</li>
+</ul>
+
+<p>They'll need to check the following features of the document look correct:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>watermarks</li>
+
+<li>ultraviolet security features</li>
+
+<li>security fibres</li>
+
+<li>consistency across the whole document</li>
+</ul>
+
+<p class="govuk-inset-text">
+<strong>Example</strong>
+In the latest UK passport, there should be a secondary ('ghost') image of the person on the 'observations' page. You should check if the surname and date of birth in the image is the same as the person’s details.
+$E</p>
+
+<p>To check this, they must use:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>an ultraviolet desktop light</li>
+
+<li>a magnification tool (such as a magnifier)</li>
+
+<li>other inspection equipment to identify forged or counterfeit documents</li>
+
+<li>an oblique light</li>
+</ul>
+
+<h4 class="govuk-heading-s" class="govuk-heading-xs" id="checkingthecryptographicsecurityfeaturesaregenuine-2">Checking the cryptographic security features are genuine</h4>
+
+<p>The system will need to do the same checks needed to get a score of 2.</p>
+
+<h2 class="govuk-heading-l" class="govuk-heading-m" id="checktheidentityhasexistedovertimeactivity">Check the identity has existed over time ('activity')</h2>
+
+<p>You should make sure the claimed identity has existed over time. You can do this by checking if:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>it has interacted with other organisations</li>
+
+<li>any records exist that show it's been known by other organisations over time</li>
+</ul>
+
+<p>This was previously known as ‘Element E’.</p>
+
+<p>Some examples of interactions that can prove someone’s identity include:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>credit card transactions</li>
+
+<li>student loan repayments</li>
+
+<li>mortgage payments</li>
+
+<li>gas or electricity account payments</li>
+</ul>
+
+<p>You could also look at their: </p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>health records</li>
+
+<li>employment records</li>
+
+<li>school records</li>
+</ul>
+
+<p>How confident you’ll be that the person is who the say they are depends on whether:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>the organisation the claimed identity interacted with did an identity check</li>
+
+<li>the claimed identity's interactions are what you'd expect them to be</li>
+</ul>
+
+<p>You can expect some people to have more frequent interactions than others. This will usually depend on things like their age, financial situation and what they're doing. For example, a person who’s been working for 20 years is more likely to have things like frequent credit card transactions, mortgage payments and payslips than someone who’s recently graduated from university.</p>
+
+<p>Sometimes the interactions the claimed identity has won't be what you expect them to be. For example, a person might usually take the same train to work every morning and evening for 6 months, but over a year there are some months when they travel only twice a week or not at all. </p>
+
+<p>Over the year this is unexpected behaviour, but over 6 months it is expected behaviour. These interactions will show up on the person's travel history if they use a contactless travelcard and you can use them as part of the check the claimed identity has existed over time.</p>
+
+<h3 class="govuk-heading-m" class="govuk-heading-s" id="score1-2">Score 1</h3>
+
+<p>You will get a score of 1 if you have records of interactions between the claimed identity and an organisation. This organisation must have checked the claimed identity is who they say they are through their own identity checking process.</p>
+
+<p>You’ll also need to have either:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>interactions or records covering the last year that you’d expect the claimed identity to have</li>
+
+<li>interactions or records covering the last 3 years that have not happened in the way you’d expect them to</li>
+</ul>
+
+<p class="govuk-inset-text">
+<strong>Example</strong>
+Posts on some social media websites can have a score of 1. It might look like the claimed identity has written the posts, but you can’t be sure the claimed identity actually created the account. This is because some social media websites do not always check users’ identities when users sign up.</p>
+
+<p>You can check things like their their email address or phone number with an authoritative source that knows this information belongs to the claimed identity. Once you’ve done this you could use the identity’s social media posts to get a score of 1.
+$E</p>
+
+<h3 class="govuk-heading-m" class="govuk-heading-s" id="score2-2">Score 2</h3>
+
+<p>You will get a score of 2 if you have records of interactions between the claimed identity and an organisation. This organisation must have thoroughly checked the claimed identity is who they say they are.</p>
+
+<p>You’ll also need to have either:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>interactions from the last 6 months that you’d expect the claimed identity to have</li>
+
+<li>interactions from the last year that have not happened in the way you’d expect them to</li>
+</ul>
+
+<p class="govuk-inset-text">
+<strong>Example</strong>
+Gas or electricity payments will usually have a score of 2. This is because most gas or electricity suppliers check someone’s identity using a credit check for Direct Debit or post-pay accounts (this might not apply for pre-pay accounts).
+$E</p>
+
+<h3 class="govuk-heading-m" class="govuk-heading-s" id="score3-2">Score 3</h3>
+
+<p>You will get a score of 3 if you have records of interactions between the claimed identity and an organisation. This organisation must have checked the claimed identity is who they say they are in a way that at least meets the requirements in the Money Laundering Regulations 2017. </p>
+
+<p>You’ll also need to have either:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>interactions from the last 3 months that you’d expect the claimed identity to have</li>
+
+<li>interactions from the last 6 months that have not happened in the way you’d expect them to</li>
+</ul>
+
+<p class="govuk-inset-text">
+<strong>Example</strong>
+Mortgage repayments will have a score of 3. This is because mortgage providers check someone’s identity in a way that follows the Money Laundering Regulations 2017 when the person first applies for a mortgage.
+$E</p>
+
+<h3 class="govuk-heading-m" class="govuk-heading-s" id="score4-2">Score 4</h3>
+
+<p>You will get a score of 4 if you have records of interactions between the claimed identity and an organisation. This organisation must have checked the claimed identity is who they say they are in a way that at least meets the requirements in the Money Laundering Regulations 2017. The organisation must have also physically compared the person to an image of the claimed identity from an authoritative source.</p>
+
+<p>You’ll need to find at least one interaction from the last 3 months.</p>
+
+<p class="govuk-inset-text">
+<strong>Example</strong>
+A record of someone taking an international flight will have a score of 4. This is because they must show their passport when they cross an international border. This will be examined to make sure it is genuine, which makes it an authoritative source for the information in it. The person will then be physically compared to the image of their claimed identity from the passport. </p>
+
+<p>When a passport is issued, the organisation that issues it will usually check the applicant's identity very thoroughly.
+$E</p>
+
+<h2 class="govuk-heading-l" class="govuk-heading-m" id="checktheidentityhasntbeenstolenorusedfraudulentlyidentityfraud">Check the identity hasn't been stolen or used fraudulently ('identity fraud')</h2>
+
+<p>You should make sure the claimed identity is not: </p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>at a higher than usual risk of being impersonated</li>
+
+<li>known to be fraudulent</li>
+</ul>
+
+<p>This was previously known as ‘Element D’. </p>
+
+<p>You can do this by checking the details of the claimed identity with authoritative counter-fraud data sources.</p>
+
+<h3 class="govuk-heading-m" class="govuk-heading-s" id="score1-3">Score 1</h3>
+
+<p>The claimed identity will have a score of 1 if you use an authoritative source to prove the person:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>has not had their details stolen (even if those details have not been used fraudulently yet)</li>
+
+<li>has not been reported as having their identity stolen</li>
+
+<li>is not a known 'synthetic' (made up) identity</li>
+</ul>
+
+<h3 class="govuk-heading-m" class="govuk-heading-s" id="score2-3">Score 2</h3>
+
+<p>The claimed identity will have a score of 2 if you use an authoritative source to prove the claimed identity has everything needed to get a score of 1. </p>
+
+<p>You will also need to use an authoritative source to prove the claimed identity:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>does not belong to someone who has died</li>
+
+<li>is known by an organisation that should have a record of that person (for example an Electoral Registration Office in a local authority)</li>
+
+<li>is not at a high risk of being impersonated (for example if they’re a 'politically exposed person', like a politician or a judge)</li>
+</ul>
+
+<h3 class="govuk-heading-m" class="govuk-heading-s" id="score3-3">Score 3</h3>
+
+<p>The claimed identity will have a score of 3 if you use more than one authoritative source to prove it has everything needed to get a score of 2.</p>
+
+<p>The sources must also be ‘independent’, which means they’re either:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>separate from the part of your organisation that checks the person’s identity</li>
+
+<li>part of a different organisation</li>
+</ul>
+
+<h2 class="govuk-heading-l" class="govuk-heading-m" id="checktheyarethepersontheevidencewasissuedtoverification">Check they are the person the evidence was issued to ('verification')</h2>
+
+<p>You must prove the person going through your identity checking process is the identity they’re claiming to be. </p>
+
+<p>This was previously known as 'Element C'.</p>
+
+<h3 class="govuk-heading-m" class="govuk-heading-s" id="score1-4">Score 1</h3>
+
+<p>The identity will have a score of 1 if the person can prove they know information about the claimed identity that does not change over time (known as ‘static’ information).</p>
+
+<p>You can check this by asking the person a series of questions. This process is known as 'knowledge-based verification' (KBV).</p>
+
+<p>The questions you ask should be specific enough to be able to prove that person is who they say they are, but they shouldn't be so difficult that they stop someone from using your service.</p>
+
+<p>How many questions you ask depends on their quality. You'll need to ask:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>2 low quality questions or 4 multiple choice questions</li>
+
+<li>1 medium quality question or 2 multiple choice questions</li>
+
+<li>1 high quality question or multiple choice question</li>
+</ul>
+
+<p>Low quality questions must be:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>about the claimed identity</li>
+
+<li>clear and simple so the person knows exactly what you're asking them </li>
+
+<li>about something the claimed identity can reasonably be expected to know</li>
+
+<li>from a source that makes sure the data the question is based on hasn't been altered or shared </li>
+</ul>
+
+<p>They must not:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>be able to be answered by someone who has stolen the claimed identity's wallet, purse or phone</li>
+
+<li>be able to be answered with information that's available in the public domain (for example in an open dataset or on a website that anyone can access)</li>
+
+<li>be able to be answered using information the person has submitted at another point in the identity checking process</li>
+
+<li>be based on information from a source that can be influenced by the claimed identity</li>
+
+<li>be predictable (the questions and answers should change each time someone goes through your identity checking process)</li>
+
+<li>have answers that can be easily guessed if you're asking multiple choice questions</li>
+
+<li>include information that will give the person the answer to another question</li>
+
+<li>show personal information, unless the person has already submitted that at another point in the identity checking process</li>
+</ul>
+
+<p>Medium quality questions must also:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>come from a source that did its own identity checks on the claimed identity</li>
+
+<li>be shared in a way that means you can be reasonably sure it was given to the claimed identity (if the question involves sending the person a code)</li>
+</ul>
+
+<p>High quality questions must also:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>come from a source that checked the claimed identity in a way that follows the Money Laundering Regulations 2017</li>
+
+<li>come from a source that makes sure the data can't be accessed, modified or created by its employees</li>
+
+<li>come from a source that's separate from your organisation</li>
+
+<li>come from a source that's regulated by a statutory or independent body</li>
+
+<li>be based on data that cannot be known or accessed by anyone apart from the claimed identity and their immediate family (and in doing so will mean someone commits a civil or criminal offence)</li>
+</ul>
+
+<p class="govuk-inset-text">
+<strong>Example</strong>
+You can ask the person how much the claimed identity’s variable rate mortgage payments are each month. For them to get a mortgage, their identity will have been checked in a way that follows the Money Laundering Regulations 2017.</p>
+
+<p>To know how much the payments are, the person will need to have bills that were sent to the claimed identity’s address or sign in to an online account that only the claimed identity can access.
+$E</p>
+
+<h3 class="govuk-heading-m" class="govuk-heading-s" id="score2-4">Score 2</h3>
+
+<p>The identity will have a score of 2 if you do one of the following:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>make sure the person physically matches the photo on the strongest piece of genuine evidence you have (you can do this in person or remotely)</li>
+
+<li>make sure the person's biometric information (such as their face or fingerprints) matches what's on the strongest piece of genuine evidence you have</li>
+
+<li>ask the person to complete multiple 'dynamic' KBV challenges that only the claimed identity will be able to do </li>
+</ul>
+
+<h4 class="govuk-heading-s" class="govuk-heading-xs" id="checkingsomeonematchesaphotoinperson">Checking someone matches a photo in person</h4>
+
+<p>The person doing the match must have:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>been trained in how to detect impostors</li>
+
+<li>either good enough eyesight or wear prescription lenses to make sure they can effectively compare the person to the image on the evidence</li>
+</ul>
+
+<p>When doing the match, you must make sure:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>the person whose identity is being checked is present</li>
+
+<li>the light conditions are good enough to be able to effectively compare the person to the image on the evidence</li>
+</ul>
+
+<p>The person must:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>not have a head covering (unless it’s for religious or medical reasons)</li>
+
+<li>have their eyes open and visible</li>
+
+<li>not have hair in front of their eyes</li>
+
+<li>not have anything covering their face</li>
+
+<li>not have any shadows on their face</li>
+</ul>
+
+<h4 class="govuk-heading-s" class="govuk-heading-xs" id="checkingsomeonematchesaphotoremotely">Checking someone matches a photo remotely</h4>
+
+<p>When doing the match, you must make sure:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>the person whose identity is being checked is present when their image is taken (you shouldn’t use a scan or an upload from a photo feed)</li>
+
+<li>your process has a way to identify if the image has been intercepted and reused ('replayed')</li>
+
+<li>the image has been shared in a way that prevents it from being tampered with (for example a 'man-in-the-middle' attack)</li>
+</ul>
+
+<p>The image taken of the person must:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>be at least 3 megapixels in resolution</li>
+
+<li>be clear and in focus</li>
+
+<li>be in colour</li>
+
+<li>be in clear contrast to the background</li>
+
+<li>not have ‘red eye’</li>
+</ul>
+
+<p>In the image, the person must:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>not have a head covering (unless it’s for religious or medical reasons)</li>
+
+<li>have their eyes open and visible</li>
+
+<li>not have hair in front of their eyes</li>
+
+<li>not have anything covering their face</li>
+
+<li>not have any shadows on their face</li>
+</ul>
+
+<h4 class="govuk-heading-s" class="govuk-heading-xs" id="checkingsomeonematchesbiometricinformation">Checking someone matches biometric information</h4>
+
+<p>By doing a biometric comparison, you're making sure the claimed identity is present. It will help you to know you're dealing with the real identity instead of something like a photograph or scanned image of them.</p>
+
+<p>When doing the match, you must make sure:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>your ‘false match rate’ (how secure your process is) and ‘false non-match rate' (how easy it is to successfully use your process) are appropriate for your service</li>
+
+<li>you match them to a biometric that's known to belong the claimed identity (known as 'one-to-one verification')</li>
+
+<li>the system can identify if the biometric has been intercepted and reused ('replayed')</li>
+
+<li>the biometric has been shared in a way that prevents it from being tampered with</li>
+
+<li>the person can complete a test to confirm they're real (known as a 'liveness' test)</li>
+
+<li>the system can identify if someone's using an artefact to convince the system they're someone else (known as 'spoofing') - this could mean making sure they're not holding up a photo or playing a recording of someone's else's voice if you're checking a facial or vocal biometric</li>
+</ul>
+
+<h4 class="govuk-heading-s" class="govuk-heading-xs" id="askingthepersontocompletedynamickbvchallenges">Asking the person to complete dynamic KBV challenges</h4>
+
+<p>To be ‘dynamic’, the results of the KBV challenge must change over time. This will make it harder for impostors using information from things like data breaches to successfully complete the challenge.</p>
+
+<p>The KBV challenges must follow the same rules KBV questions need to follow to get a score of 1.</p>
+
+<p>How many challenges you ask the person to complete depends on the quality of the challenges. You'll need to ask:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>4 low quality challenges (or 8 challenges with multiple choice questions)</li>
+
+<li>2 medium quality challenges (or 3 challenges with multiple choice questions)</li>
+
+<li>2 high quality challenges (or 2 challenges with multiple choice questions)</li>
+</ul>
+
+<p>The challenges must not be based on data from a single source. For example, an account and a mortgage from the same bank count as different sources if the claimed identity went through a different application process to get each one.</p>
+
+<p class="govuk-inset-text">
+<strong>Example</strong>
+You can ask the person to make a small payment into the claimed identity’s bank account. You can attach a reference number (which changes every time) to the payment. This will show up as a code on the claimed identity’s bank statement.</p>
+
+<p>The person will need to sign in to the claimed identity’s account within a certain amount of time to get the code. If they give you the correct code, it will prove the person you’re dealing with has control of and access to that account. For them to get a bank account, their identity will have been checked in a way that follows the Money Laundering Regulations 2017.
+$E</p>
+
+<h3 class="govuk-heading-m" class="govuk-heading-s" id="score3-4">Score 3</h3>
+
+<p>The identity will have a score of 3 if you either:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>make sure the person physically matches the photo on the strongest piece of genuine evidence you have (you can do this in person or remotely)</li>
+
+<li>make sure the person's biometric information matches what's on the strongest piece of genuine evidence you have</li>
+</ul>
+
+<h4 class="govuk-heading-s" class="govuk-heading-xs" id="checkingsomeonematchesaphotoinpersonorremotely">Checking someone matches a photo in person or remotely</h4>
+
+<p>The person doing the match must have all the skills and training needed to get a score of 2. They must also:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>have been trained by the Home Office, National Document Fraud Unit, CPNI or another equivalent specialist trainer in how to detect impostors</li>
+
+<li>refresh their training at least every 3 years</li>
+</ul>
+
+<p>When doing the match, you must do everything needed to get a score of 2. You must also make sure:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>your process has a way to identify if someone is wearing a mask, make up or prosthetics to look like someone else</li>
+
+<li>if the person is wearing glasses, their eyes are visible without any glare or reflections</li>
+</ul>
+
+<h4 class="govuk-heading-s" class="govuk-heading-xs" id="checkingsomeonematchesbiometricinformation-1">Checking someone matches biometric information</h4>
+
+<p>The system doing the match must do everything needed to get a score of 2. It must also:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>have a false match rate that's lower than its false non-match rate</li>
+
+<li>use a biometric algorithm that's been proven to be effective by testing it against a recognised standard, like the National Institute of Standards Technology's (NIST's) <a href="https://www.nist.gov/programs-projects/face-recognition-vendor-test-frvt-ongoing">face recognition vendor test guidance</a> </li>
+
+<li>make sure the person’s biometric is captured under suitable conditions (things like light, noise, and humidity can impact the success rate for different types of biometric)</li>
+
+<li>be able to identify when someone's spoofing the system using an artefact that's taken time, money and effort to create - this could mean making sure the person isn't using a 3D printed mask of someone's likeness or changing the pitch and adding background noise to a recording if you're checking facial and vocal biometrics</li>
+
+<li>ask the person to complete unpredictable tests to confirm they're real (known as a 'liveness' test)</li>
+</ul>
+
+<p class="govuk-inset-text">
+<strong>Example</strong>
+You can ask the person to take a short video of themselves, during which they do a random sequence of movements, such as nod, wave and move side to side. This helps you make sure there's a real person involved. You can also continually assess small-scale movements of the person’s head while the biometric measurement is taking place.
+$E</p>
+
+<h3 class="govuk-heading-m" class="govuk-heading-s" id="score4-3">Score 4</h3>
+
+<p>The identity will have a score of 4 if you make sure the person's biometric information matches the biometric information on the strongest piece of genuine evidence you have.</p>
+
+<p>To do this, the system must do everything needed to get a score of 3. </p>
+
+<p>It will also:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>need a false match rate that's significantly lower than its false non-match rate - this is to make sure your process is designed to be secure</li>
+
+<li>be able to identify when someone's spoofing the system using a sophisticated artefact that's taken a lot of time, money, effort or criminal activity to create - this could mean making sure the person isn't showing a 3D animated avatar on a computer or device if you're checking a facial biometric</li>
+</ul>
+
+<p>It must also make sure the biometric information on the evidence and the biometric information of the person have been captured under 'controlled conditions'. This means:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>any equipment has been designed in a way that makes it difficult to be tampered with or made to give an incorrect response</li>
+
+<li>the biometric information is captured under the supervision of trained personnel</li>
+
+<li>ask the person to complete a series of unpredictable tests to confirm they're real and not a mannequin or photo (known as a 'liveness' test)</li>
+
+<li>the area and equipment you’re using to capture the biometric information has been designed in a way to stop things affecting how well you can match it to the person</li>
+</ul>
+
+<p class="govuk-inset-text">
+<strong>Example</strong>
+Facial recognition is less accurate in poor lighting conditions so a facial biometric comparison should take place indoors. Lighting should be controlled and adjusted to allow for the person’s face to be captured under the best conditions for the biometric algorithm that's being used.
+$E</p>
+
+<p>If you cannot capture the biometric in controlled conditions, you must also:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>check another, different piece of biometric information (for example if you have a fingerprint biometric, you should also check a facial biometric)</li>
+
+<li>ask the person to complete multiple 'dynamic' challenges that only the claimed identity will be able to do </li>
+</ul>
+
+<h2 class="govuk-heading-l" class="govuk-heading-m" id="identityprofiles">Identity profiles</h2>
+
+<p>{:#identity-profiles}</p>
+
+<p>Find out what combination of scores ('identity profiles') you can use to get the level of confidence in the person's identity you need.</p>
+
+<h2 class="govuk-heading-l" class="govuk-heading-m" id="lowconfidenceinthepersonsidentity">Low confidence in the person’s identity</h2>
+
+<p>Low confidence lowers the risk of you accepting synthetic identities or being targeted by third parties that have stolen other people’s identities.</p>
+
+<h3 class="govuk-heading-m" class="govuk-heading-s" id="ifyouhave1pieceofevidence">If you have 1 piece of evidence</h3>
+
+<p>There are 2 identity profiles you can meet if you collect 1 piece of evidence.</p>
+
+<h4 class="govuk-heading-s" class="govuk-heading-xs" id="profile1">Profile 1</h4>
+
+<p>You'll need these scores to meet this profile.</p>
+
+<p>Check | Score</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>| -
+Strength | 2
+Validity | 2
+Activity | N/A
+Identity fraud | 2
+Verification | 1</li>
+</ul>
+
+<p>By meeting this profile, you will: </p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>know that evidence of the claimed identity exists</li>
+
+<li>know if the evidence is genuine or valid</li>
+
+<li>know that the claimed identity is not known to be fraudulent or at a higher than usual risk of being impersonated</li>
+
+<li>be confident the person knows some things that only the claimed identity should know</li>
+</ul>
+
+<p>This means you'll know that:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>the organisation that issued the evidence did basic checks to make sure the claimed identity exists in the real world (so you won't need to do an activity check)</li>
+
+<li>the claimed identity is not at significant risk of being targeted for identity fraud (so you only need a low score for the verification check)</li>
+</ul>
+
+<h4 class="govuk-heading-s" class="govuk-heading-xs" id="profile2">Profile 2</h4>
+
+<p>You'll need these scores to meet this profile.</p>
+
+<p>Check | Score</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>| -
+Strength | 3
+Validity | 2
+Activity | N/A
+Identity fraud | N/A
+Verification | 3</li>
+</ul>
+
+<p>By meeting this profile, you will: </p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>know that strong evidence of the claimed identity exists</li>
+
+<li>know if the evidence is genuine or valid</li>
+
+<li>be confident the person matches either the photo or biometric information that's shown on the evidence</li>
+</ul>
+
+<p>This means you'll know that:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>the organisation that issued the evidence did multiple checks to make sure the claimed identity exists in the real world (so you won't need to do an activity check)</li>
+
+<li>the person going through the identity checking process has been matched to the claimed identity through a physical or biometric comparison (as it's unlikely they're someone else, you won't need to do an identity fraud check)</li>
+</ul>
+
+<h3 class="govuk-heading-m" class="govuk-heading-s" id="ifyouhave3piecesofevidence">If you have 3 pieces of evidence</h3>
+
+<p>There’s only one identity profile you can meet if you collect 3 pieces of evidence.</p>
+
+<p>You'll need these scores to meet this profile.</p>
+
+<p>Check | Score (first piece of evidence) | Score (second piece of evidence) | Score (third piece of evidence)</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>| - | - | -
+Strength | 1 | 1 | 1
+Validity | 1 | 1 | 1</li>
+</ul>
+
+<p>Check | Score</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>| -
+Activity | 3
+Identity fraud | 2
+Verification | 2</li>
+</ul>
+
+<p>By meeting this profile, you will:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>trust each piece of evidence exists</li>
+
+<li>know each piece of evidence appears to be genuine</li>
+
+<li>be confident that the claimed identity exists in the real world</li>
+
+<li>know that the claimed identity is not known to be fraudulent or at higher than usual risk of being impersonated</li>
+
+<li>have checked the person matches the photo or biometric information that's shown on the evidence, or know they can complete challenges that only the claimed identity should be able to do</li>
+</ul>
+
+<p>This means you'll know that:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>the evidence you have does not have many security features that stop it from being copied (so you’ll need to collect multiple pieces of evidence)</li>
+
+<li>the organisation that issued the evidence didn’t do many checks that the claimed identity exists in the real world (so you’ll also need to do an activity check)</li>
+
+<li>it's unlikely that someone will pretend to be the claimed identity (so you do not have to do a physical or biometric comparison)</li>
+</ul>
+
+<h2 class="govuk-heading-l" class="govuk-heading-m" id="mediumconfidenceinthepersonsidentity">Medium confidence in the person’s identity</h2>
+
+<p>Medium confidence lowers the risk of you: </p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>accepting synthetic identities that have been created using fake evidence</li>
+
+<li>being targeted by people that could know the identity (who are not close friends or family)</li>
+
+<li>being targeted by people who don't look like the identity</li>
+</ul>
+
+<h3 class="govuk-heading-m" class="govuk-heading-s" id="ifyouhave1pieceofevidence-1">If you have 1 piece of evidence</h3>
+
+<p>There are 2 identity profiles you can meet if you collect 1 piece of evidence.</p>
+
+<h4 class="govuk-heading-s" class="govuk-heading-xs" id="profile1-1">Profile 1</h4>
+
+<p>You'll need these scores to meet this profile.</p>
+
+<p>Check | Score</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>| -
+Strength | 4
+Validity | 3
+Activity | 1
+Identity fraud | 1
+Verification | 3</li>
+</ul>
+
+<p>By meeting this profile, you will:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>know that very strong evidence of the claimed identity exists</li>
+
+<li>know the evidence is genuine and valid</li>
+
+<li>have checked the claimed identity exists in the real world</li>
+
+<li>have checked the claimed identity is not known to be fraudulent</li>
+
+<li>be confident the person matches either the photo or biometric information that's shown on the evidence</li>
+</ul>
+
+<p>This means you'll know that:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>the organisation that issued the evidence did multiple thorough checks to make sure the claimed identity exists in the real world (so you'll only need a low score for the activity check) </li>
+
+<li>the person going through the identity checking process has been matched to the claimed identity through a physical or biometric comparison (as it's unlikely they're someone else, you won't need to do an identity fraud check)</li>
+</ul>
+
+<h4 class="govuk-heading-s" class="govuk-heading-xs" id="profile2-1">Profile 2</h4>
+
+<p>You'll need these scores to meet this profile.</p>
+
+<p>Check | Score</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>| -
+Strength | 3
+Validity | 3
+Activity | 2
+Identity fraud | 1
+Verification | 3</li>
+</ul>
+
+<p>By meeting this profile, you will:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>have strong evidence that shows the claimed identity exists</li>
+
+<li>know the evidence is genuine and valid</li>
+
+<li>have records that the claimed identity exists in the real world</li>
+
+<li>have checked the claimed identity is not known to be fraudulent</li>
+
+<li>be confident the person matches either the photo or biometric information that's shown on the evidence</li>
+</ul>
+
+<p>This means you’ll know that:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>the organisation that issued the evidence did multiple checks to make sure the claimed identity exists in the real world (you’ll also need to do an activity check)</li>
+
+<li>the person going through the identity checking process has been matched to the claimed identity through a physical or biometric comparison (as it's unlikely they're someone else, you won't need to do an identity fraud check)</li>
+</ul>
+
+<h3 class="govuk-heading-m" class="govuk-heading-s" id="ifyouhave2piecesofevidence">If you have 2 pieces of evidence</h3>
+
+<p>There are 4 identity profiles you can meet if you collect 2 pieces of evidence.</p>
+
+<h4 class="govuk-heading-s" class="govuk-heading-xs" id="profile1-2">Profile 1</h4>
+
+<p>You'll need these scores to meet this profile.</p>
+
+<p>Check | Score (first piece of evidence) | Score (second piece of evidence)</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>| - | -
+Strength | 2 | 2
+Validity | 2 | 2</li>
+</ul>
+
+<p>Check | Score</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>| -
+Activity | 3
+Identity fraud | 1
+Verification | 3</li>
+</ul>
+
+<p>By meeting this profile, you will:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>have more than one piece of evidence that shows the claimed identity exists</li>
+
+<li>know one piece of evidence is genuine</li>
+
+<li>know the other piece of evidence is genuine or valid</li>
+
+<li>be confident that the claimed identity exists in the real world</li>
+
+<li>have checked the claimed identity is not known to be fraudulent</li>
+
+<li>be confident the person matches either the photo or biometric information that's shown on the genuine evidence</li>
+</ul>
+
+<p>This means you'll know that:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>the organisation that issued the evidence only did basic checks to make sure the claimed identity exists in the real world (so you’ll also need to do an activity check)</li>
+
+<li>the person going through the identity checking process has been matched to the claimed identity through a physical or biometric comparison (as it's unlikely they're someone else, you won't need to do an identity fraud check)</li>
+</ul>
+
+<h4 class="govuk-heading-s" class="govuk-heading-xs" id="profile2-2">Profile 2</h4>
+
+<p>You'll need these scores to meet this profile.</p>
+
+<p>Check | Score (first piece of evidence) | Score (second piece of evidence)</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>| - | -
+Strength | 3 | 2
+Validity | 3 | 2</li>
+</ul>
+
+<p>Check | Score</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>| -
+Activity | 2
+Identity fraud | 2
+Verification | 2</li>
+</ul>
+
+<p>By meeting this profile, you will:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>have strong evidence that shows the claimed identity exists</li>
+
+<li>have another piece of evidence that shows the claimed identity exists</li>
+
+<li>know the evidence is genuine, valid or both</li>
+
+<li>have records that the claimed identity exists in the real world</li>
+
+<li>know that the claimed identity is not known to be fraudulent or or at higher than usual risk of being impersonated</li>
+
+<li>know the person probably matches the photo or biometric information that's shown on the evidence, or know they can complete challenges that only the claimed identity should be able to do</li>
+</ul>
+
+<p>This means you’ll know that:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>the organisation that issued the evidence checked the claimed identity exists in the real world (you’ll also need to do an activity check)</li>
+
+<li>the claimed identity is not at high risk of being targeted for identity fraud (so you only need a low score for the verification check)</li>
+</ul>
+
+<h4 class="govuk-heading-s" class="govuk-heading-xs" id="profile3">Profile 3</h4>
+
+<p>You'll need these scores to meet this profile.</p>
+
+<p>Check | Score (first piece of evidence) | Score (second piece of evidence)</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>| - | -
+Strength | 3 | 2
+Validity | 3 | 2</li>
+</ul>
+
+<p>Check | Score</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>| -
+Activity | 2
+Identity fraud | 1
+Verification | 3</li>
+</ul>
+
+<p>By meeting this profile, you will:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>have strong evidence that shows the claimed identity exists</li>
+
+<li>have another piece of evidence that shows the claimed identity exists</li>
+
+<li>know both pieces of evidence are genuine, valid or both</li>
+
+<li>have checked the claimed identity exists in the real world</li>
+
+<li>have checked the claimed identity is not known to be fraudulent</li>
+
+<li>be confident the person matches either the photo or biometric information that's shown on the evidence</li>
+</ul>
+
+<p>This means you'll know that:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>the organisation that issued the evidence did multiple checks to make sure the claimed identity exists in the real world (you’ll also need to do an activity check)</li>
+
+<li>the person going through the identity checking process has been matched to the claimed identity through a physical or biometric comparison (as it's unlikely they're someone else, you won't need to do an identity fraud check)</li>
+</ul>
+
+<h4 class="govuk-heading-s" class="govuk-heading-xs" id="profile4">Profile 4</h4>
+
+<p>You'll need these scores to meet this profile.</p>
+
+<p>Check | Score (first piece of evidence) | Score (second piece of evidence)</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>| - | -
+Strength | 4 | 2
+Validity | 3 | 2</li>
+</ul>
+
+<p>Check | Score</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>| -
+Activity | 1
+Identity fraud | 2 
+Verification | 2</li>
+</ul>
+
+<p>By meeting this profile, you will:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>have very strong evidence that shows the claimed identity exists</li>
+
+<li>have another piece of evidence that shows the claimed identity exists</li>
+
+<li>know the evidence is genuine, valid or both</li>
+
+<li>have checked the claimed identity exists in the real world</li>
+
+<li>know that the claimed identity is not known to be fraudulent or at higher than usual risk of being impersonated</li>
+
+<li>know the person probably matches the photo or biometric information that's shown on the evidence, or know they can complete challenges that only the claimed identity should be able to do</li>
+</ul>
+
+<p>This means you'll know that:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>the organisation that issued one of the pieces of evidence did multiple thorough checks to make sure the claimed identity exists in the real world</li>
+
+<li>the organisation that issued the other piece of evidence only did basic checks to make sure that the claimed identity exists in the real world (so you'll need to do an activity check)</li>
+
+<li>the claimed identity is not at high risk of being targeted for identity fraud (so you only need a low score for the verification check)</li>
+</ul>
+
+<h3 class="govuk-heading-m" class="govuk-heading-s" id="ifyouhave3piecesofevidence-1">If you have 3 pieces of evidence</h3>
+
+<p>There’s only one identity profile you can meet if you collect 3 pieces of evidence. </p>
+
+<p>You'll need these scores to meet this profile.</p>
+
+<p>Check | Score (first piece of evidence) | Score (second piece of evidence) | Score (third piece of evidence)</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>| - | - | -
+Strength | 2 | 2 | 2
+Validity | 2 | 2 | 2</li>
+</ul>
+
+<p>Check | Score</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>| -
+Activity | 2
+Identity fraud | 2
+Verification | 2</li>
+</ul>
+
+<p>By meeting this profile, you will:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>have multiple pieces of evidence that show the claimed identity exists</li>
+
+<li>know each piece of evidence is genuine or valid</li>
+
+<li>have records that the claimed identity exists in the real world</li>
+
+<li>know that the claimed identity is not known to be fraudulent or at higher than usual risk of being impersonated</li>
+
+<li>know the person probably matches the photo or biometric information that's shown on the evidence, or know they can complete challenges that only the claimed identity should be able to do</li>
+</ul>
+
+<p>This means you'll know that:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>the organisation that issued the evidence only did basic checks to make sure the claimed identity exists in the real world (so you’ll need to do an activity check)</li>
+
+<li>the claimed identity is not at high risk of being targeted for identity fraud (so you only need a low score for the verification check)</li>
+</ul>
+
+<h2 class="govuk-heading-l" class="govuk-heading-m" id="highconfidenceinthepersonsidentity">High confidence in the person’s identity</h2>
+
+<p>High confidence significantly lowers the risk of you:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>accepting synthetic identities</li>
+
+<li>being targeted by people that could know the identity (including close friends or family)</li>
+
+<li>being targeted by people who don’t look like the identity</li>
+</ul>
+
+<h3 class="govuk-heading-m" class="govuk-heading-s" id="ifyouhave1pieceofevidence-2">If you have 1 piece of evidence</h3>
+
+<p>There are 2 identity profiles you can use if the person gives you 1 piece of evidence.</p>
+
+<h4 class="govuk-heading-s" class="govuk-heading-xs" id="profile1-3">Profile 1</h4>
+
+<p>You'll need these scores to meet this profile.</p>
+
+<p>Check | Score</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>| -
+Strength | 4
+Validity | 3
+Activity | N/A
+Identity fraud | 3
+Verification | 3</li>
+</ul>
+
+<p>By meeting this profile, you will:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>have very strong evidence that shows the claimed identity exists</li>
+
+<li>know the evidence is genuine and valid </li>
+
+<li>be very confident the claimed identity is not known to be fraudulent or at higher than usual risk of being impersonated</li>
+
+<li>be confident the person matches either the photo or biometric information that's shown on the evidence</li>
+</ul>
+
+<p>This means you'll know that:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>the organisation that issued the evidence did multiple thorough checks to make sure the claimed identity exists in the real world</li>
+
+<li>the claimed identity is definitely not at high risk of being targeted for identity fraud</li>
+</ul>
+
+<p>You won't need to do an activity check because you know these things.</p>
+
+<h4 class="govuk-heading-s" class="govuk-heading-xs" id="profile2-3">Profile 2</h4>
+
+<p>You'll need these scores to meet this profile.</p>
+
+<p>Check | Score</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>| -
+Strength | 4
+Validity | 4
+Activity | N/A
+Identity fraud | N/A
+Verification | 3</li>
+</ul>
+
+<p>By meeting this profile, you will:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>have very strong evidence that shows the claimed identity exists</li>
+
+<li>know the evidence is genuine and valid</li>
+
+<li>be confident the person matches either the photo or biometric information that's shown on the evidence</li>
+</ul>
+
+<p>This means you'll know that:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>the person going through the identity checking process is unlikely to be someone else because they've been matched to the claimed identity through a physical or biometric comparison</li>
+
+<li>the evidence is also almost definitely genuine and valid </li>
+
+<li>the organisation that issued the evidence did multiple thorough checks to make sure the claimed identity exists in the real world</li>
+</ul>
+
+<p>You won't need to do an activity check or identity fraud check because you know these things.</p>
+
+<h3 class="govuk-heading-m" class="govuk-heading-s" id="ifyouhave2piecesofevidence-1">If you have 2 pieces of evidence</h3>
+
+<p>There are 3 identity evidence profiles you can use if you collect 2 pieces of evidence.</p>
+
+<h4 class="govuk-heading-s" class="govuk-heading-xs" id="profile1-4">Profile 1</h4>
+
+<p>You'll need these scores to meet this profile.</p>
+
+<p>Check | Score (first piece of evidence) | Score (second piece of evidence)</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>| - | -
+Strength | 3 | 3
+Validity | 3 | 3</li>
+</ul>
+
+<p>Check | Score</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>| -
+Activity | 3
+Identity fraud | 2
+Verification | 3</li>
+</ul>
+
+<p>By meeting this profile, you will:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>have more than one piece of strong evidence that shows the claimed identity exists</li>
+
+<li>know both pieces of evidence are genuine and valid</li>
+
+<li>be confident that the claimed identity exists in the real world</li>
+
+<li>know that the claimed identity is not known to be fraudulent or or at higher than usual risk of being impersonated</li>
+
+<li>be confident the person matches either the photo or biometric information that's shown on the evidence</li>
+</ul>
+
+<p>This means you'll know:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>the organisation that issued the evidence did multiple checks to make sure the claimed identity exists in the real world (you’ll also need to do an activity check)</li>
+
+<li>it’s possible the claimed identity could be targeted for identity fraud (so you need more than one piece of evidence)</li>
+</ul>
+
+<h4 class="govuk-heading-s" class="govuk-heading-xs" id="profile2-4">Profile 2</h4>
+
+<p>You'll need these scores to meet this profile.</p>
+
+<p>Check | Score (first piece of evidence) | Score (second piece of evidence)</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>| - | -
+Strength | 4 | 3
+Validity | 3 | 3</li>
+</ul>
+
+<p>Check | Score</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>| -
+Activity | N/A
+Identity fraud | 2
+Verification | 3</li>
+</ul>
+
+<p>By meeting this profile, you will:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>have very strong evidence that shows the claimed identity exists</li>
+
+<li>have another piece of strong evidence that shows the claimed identity exists</li>
+
+<li>know both pieces of evidence are genuine and valid</li>
+
+<li>know that the claimed identity is not known to be fraudulent or at higher than usual risk of being impersonated</li>
+
+<li>be confident the person matches either the photo or biometric information that's shown on the evidence</li>
+</ul>
+
+<p>This means you'll know that:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>the organisation that issued the evidence did multiple thorough checks to make sure the claimed identity exists in the real world (so you do not need to do an activity check) </li>
+
+<li>it’s possible the claimed identity could be targeted for identity fraud (so you need more than one piece of evidence)</li>
+</ul>
+
+<h4 class="govuk-heading-s" class="govuk-heading-xs" id="profile3-1">Profile 3</h4>
+
+<p>You'll need these scores to meet this profile.</p>
+
+<p>Check | Score (first piece of evidence) | Score (second piece of evidence)</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>| - | -
+Strength | 4 | 2
+Validity | 3 | 2</li>
+</ul>
+
+<p>Check | Score</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>| -
+Activity | 3
+Identity fraud | 2
+Verification | 3</li>
+</ul>
+
+<p>By meeting this profile, you will:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>have very strong evidence that shows the claimed identity exists</li>
+
+<li>have another piece of evidence that shows the claimed identity exists</li>
+
+<li>know the evidence is genuine, valid or both</li>
+
+<li>be confident that the claimed identity exists in the real world</li>
+
+<li>know that the claimed identity is not known to be fraudulent or at higher than usual risk of being impersonated</li>
+
+<li>be confident the person matches either the photo or biometric information that's shown on the evidence</li>
+</ul>
+
+<p>This means you'll know that:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>the organisation that issued one of the pieces of evidence did multiple thorough checks to make sure the claimed identity exists in the real world</li>
+
+<li>it’s possible the claimed identity could be targeted for identity fraud (so you need more than one piece of evidence)</li>
+
+<li>the organisation that issued the other piece of evidence only did basic checks to make sure that the claimed identity exists in the real world (so you'll need to do an activity check)</li>
+</ul>
+
+<h3 class="govuk-heading-m" class="govuk-heading-s" id="ifyouhave3piecesofevidence-2">If you have 3 pieces of evidence</h3>
+
+<p>There’s only one identity profile you can meet if you collect 3 pieces of evidence. </p>
+
+<p>You need these scores to meet this profile.</p>
+
+<p>Check | Score (first piece of evidence) | Score (second piece of evidence) | Score (third piece of evidence)</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>| - | - | -
+Strength | 3 | 2 | 2
+Validity | 3 | 2 | 2</li>
+</ul>
+
+<p>Check | Score</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>| -
+Activity | 3
+Identity fraud | 3
+Verification | 3</li>
+</ul>
+
+<p>By meeting this profile, you will:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>have strong evidence that shows the claimed identity exists</li>
+
+<li>have more than one other piece of evidence that shows the claimed identity exists</li>
+
+<li>know the evidence is genuine, valid or both</li>
+
+<li>be confident that the claimed identity exists in the real world</li>
+
+<li>be very confident that the claimed identity is not known to be fraudulent or at higher than usual risk of being impersonated</li>
+
+<li>be confident the person matches either the photo or biometric information that's shown on the evidence</li>
+</ul>
+
+<p>This means you'll know that:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>the organisation that issued one of the pieces of evidence did multiple checks to make sure the claimed identity exists in the real world</li>
+
+<li>the organisation that issued the other pieces of evidence only checked the claimed identity exists in the real world (so you’ll need to do an activity check)</li>
+
+<li>the claimed identity is definitely not at high risk of being targeted for identity fraud (so you can accept weaker types of evidence)</li>
+</ul>
+
+<h2 class="govuk-heading-l" class="govuk-heading-m" id="veryhighconfidenceinthepersonsidentity">Very high confidence in the person’s identity</h2>
+
+<p>Very high confidence means it will be very difficult for someone to:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>use a synthetic identity to access your service</li>
+
+<li>impersonate the person and target your service without committing a criminal offence</li>
+</ul>
+
+<h3 class="govuk-heading-m" class="govuk-heading-s" id="ifyouhave1pieceofevidence-3">If you have 1 piece of evidence</h3>
+
+<p>There’s only one identity profile you can meet if you collect 1 piece of evidence.</p>
+
+<p>You'll need these scores to meet this profile.</p>
+
+<p>Check | Score</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>| -
+Strength | 4
+Validity | 4
+Activity | 4
+Identity fraud | 3
+Verification | 4</li>
+</ul>
+
+<p>By meeting this profile, you will:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>have very strong evidence that shows the claimed identity exists </li>
+
+<li>know the evidence is genuine and valid</li>
+
+<li>be very confident that the claimed identity exists in the real world</li>
+
+<li>be very confident that the claimed identity is not known to be fraudulent or at higher than usual risk of being impersonated</li>
+
+<li>be confident the person's biometric information matches what's shown on the evidence</li>
+</ul>
+
+<p>This means you’ll have been as thorough as possible with all parts of the identity checking process. You won't need to collect any other pieces of evidence.</p>
+
+<h3 class="govuk-heading-m" class="govuk-heading-s" id="ifyouhave2piecesofevidence-2">If you have 2 pieces of evidence</h3>
+
+<p>There are 2 identity evidence profiles you can meet if you collect 2 pieces of evidence.</p>
+
+<h4 class="govuk-heading-s" class="govuk-heading-xs" id="profile1-5">Profile 1</h4>
+
+<p>You'll need these scores to meet this profile.</p>
+
+<p>Check | Score (first piece of evidence) | Score (second piece of evidence)</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>| - | -
+Strength | 4 | 4
+Validity | 4 | 4</li>
+</ul>
+
+<p>Check | Score</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>| -
+Activity | N/A
+Identity fraud | 2
+Verification | 4</li>
+</ul>
+
+<p>By meeting this profile, you will:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>have more than one piece of very strong evidence that shows the claimed identity exists</li>
+
+<li>know the evidence is genuine and valid</li>
+
+<li>know that the claimed identity is not known to be fraudulent or at higher than usual risk of being impersonated</li>
+
+<li>be confident the person's biometric information matches what's shown on the evidence</li>
+</ul>
+
+<p>This means you’ll know that:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>the organisation that issued the evidence did multiple thorough checks to make sure the claimed identity exists in the real world (so you do not need to do an activity check)</li>
+
+<li>the evidence is also almost definitely genuine and valid</li>
+</ul>
+
+<h3 class="govuk-heading-m" class="govuk-heading-s" id="profile2-5">Profile 2</h3>
+
+<p>You'll need these scores to meet this profile.</p>
+
+<p>Check | Score (first piece of evidence) | Score (second piece of evidence)</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>| - | -
+Strength | 4 | 3
+Validity | 4 | 3</li>
+</ul>
+
+<p>Check | Score</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>| -
+Activity | 2
+Identity fraud | 3
+Verification | 4</li>
+</ul>
+
+<p>By meeting this profile, you will:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>have very strong evidence that shows the claimed identity exists</li>
+
+<li>have another piece of strong evidence that shows the claimed identity exists</li>
+
+<li>know the evidence is genuine and valid </li>
+
+<li>have records that the claimed identity exists in the real world</li>
+
+<li>be very confident that the claimed identity is not known to be fraudulent or or at higher than usual risk of being impersonated</li>
+
+<li>be confident the person's biometric information matches what's shown on the evidence</li>
+</ul>
+
+<p>This means you’ll know that:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>the organisation that issued the stronger piece of evidence did multiple thorough checks to make sure the claimed identity exists in the real world</li>
+
+<li>the organisation that issued the weaker piece of evidence only did multiple checks that the identity exists in the real world (so you’ll need to do an activity check)</li>
+
+<li>you have not used the cryptographic security features on the weaker pieces of evidence to check if they're genuine and valid</li>
+</ul>
+
+<h3 class="govuk-heading-m" class="govuk-heading-s" id="ifyouhave3piecesofevidence-3">If you have 3 pieces of evidence</h3>
+
+<p>There’s only one identity evidence profile you can use if you have 3 pieces of evidence.</p>
+
+<p>You'll need these scores to meet this profile.</p>
+
+<p>Check | Score (first piece of evidence) | Score (second piece of evidence) | Score (third piece of evidence)</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>| - | - | -
+Strength | 4 | 3 | 3
+Validity | 4 | 3 | 3</li>
+</ul>
+
+<p>Check | Score</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>| -
+Activity | 1
+Identity fraud | 3
+Verification | 4</li>
+</ul>
+
+<p>By meeting this profile, you will:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>have very strong evidence that shows the claimed identity exists</li>
+
+<li>have more than one other piece of strong evidence that shows the claimed identity exists</li>
+
+<li>know the evidence is genuine and valid</li>
+
+<li>have checked the claimed identity exists in the real world</li>
+
+<li>be very confident that the claimed identity is not known to be fraudulent or at higher than usual risk of being impersonated</li>
+
+<li>be confident the person's biometric information matches what's shown on the evidence</li>
+</ul>
+
+<p>This means you’ll know that:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>the organisation that issued the evidence did multiple thorough checks to make sure the claimed identity exists in the real world</li>
+
+<li>the organisation that issued the weaker pieces of evidence did multiple checks that the claimed identity exists in the real world (so you’ll only need a low score for the activity check)</li>
+
+<li>you have not used the cryptographic security features on the weaker pieces of evidence to check if they're genuine and valid (so you’ll only need to do an identity fraud check)</li>
+</ul>
+
+
+</div>
+</div>
+
+{% endblock %}
