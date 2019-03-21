@@ -208,7 +208,7 @@
                     {% if profile.activityThreshold %}
                       <li>
                         {% if profile.activityResult == false %}
-                          <a href="/gpg-45">increase the strength of your activity checks to {{ profile.activityThreshold }}</a>
+                          <a href="/gpg-45">increase the score for your activity checks to {{ profile.activityThreshold }}</a>
                         {% else %}
                           <a href="/gpg-45#getevidenceoftheiridentitystrength">review the criteria for activity</a>
                         {% endif %}
@@ -218,7 +218,7 @@
                     {% if profile.fraudThreshold %}
                       <li>
                         {% if profile.fraudResult == false %}
-                          <a href="/gpg-45">increase the strength of your fraud checks to {{ profile.fraudThreshold }}</a>
+                          <a href="/gpg-45">increase the score for your fraud checks to {{ profile.fraudThreshold }}</a>
                         {% else %}
                           <a href="/gpg-45">review the criteria for fraud</a>
                         {% endif %}
@@ -228,7 +228,7 @@
                     {% if profile.verificationThreshold %}
                       <li>
                         {% if profile.verificationResult == false %}
-                          <a href="/gpg-45">increase the strength of your verification checks to {{ profile.verificationThreshold }} </a>
+                          <a href="/gpg-45">increase the score for your verification checks to {{ profile.verificationThreshold }}</a>
                         {% else %}
                           <a href="/gpg-45">review the criteria for verification</a>
                         {% endif %}
@@ -398,7 +398,7 @@
               {% if profile.activityThreshold %}
                 <li>
                   {% if profile.activityResult == false %}
-                    <a href="/gpg-45#checktheidentityhasexistedovertimeactivity" target="_blank">increase the strength of your activity checks to {{ profile.activityThreshold }} you currently score {{ data['activityScore'] }}</a>
+                    <a href="/gpg-45#checktheidentityhasexistedovertimeactivity" target="_blank">increase the score for your activity checks from {{ data['activityScore'] }} to {{ profile.activityThreshold }}</a>
                   {% else %}
                     <a href="/gpg-45#checktheidentityhasexistedovertimeactivity" target="_blank">review the criteria for activity</a>
                   {% endif %}
@@ -408,7 +408,7 @@
               {% if profile.fraudThreshold %}
                 <li>
                   {% if profile.fraudResult == false %}
-                    <a href="/gpg-45#checktheidentityhasntbeenstolenorusedfraudulentlyidentityfraud" target="_blank">increase the strength of your fraud checks to {{ profile.fraudThreshold }} you currently score {{ data['fraudScore'] }}</a>
+                    <a href="/gpg-45#checktheidentityhasntbeenstolenorusedfraudulentlyidentityfraud" target="_blank">increase the score for your fraud checks from {{ data['fraudScore'] }} to {{ profile.fraudThreshold }}</a>
                   {% else %}
                     <a href="/gpg-45#checktheidentityhasntbeenstolenorusedfraudulentlyidentityfraud" target="_blank">review the criteria for fraud</a>
                   {% endif %}
@@ -418,7 +418,7 @@
               {% if profile.verificationThreshold %}
                 <li>
                   {% if profile.verificationResult == false %}
-                    <a href="/gpg-45#checktheyarethepersontheevidencewasissuedtoverification" target="_blank">increase the strength of your verification checks to {{ profile.verificationThreshold }} you currently score {{ data['verificationScore'] }}</a>
+                    <a href="/gpg-45#checktheyarethepersontheevidencewasissuedtoverification" target="_blank">increase the score for your verification checks from {{ data['verificationScore'] }} to {{ profile.verificationThreshold }}</a>
                   {% else %}
                     <a href="/gpg-45#checktheyarethepersontheevidencewasissuedtoverification" target="_blank">review the criteria for verification</a>
                   {% endif %}
