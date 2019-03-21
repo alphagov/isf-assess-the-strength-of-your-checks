@@ -276,7 +276,7 @@
             <p>Your checks meet this profile.</p>
           {% endif %}
 
-          {% if profile.evidenceResult == false or profile.activityResult == false or profile.fraudResult == false or profile.verificationThreshold == false %}
+          {% if profile.evidenceResult == false or (profile.activityThreshold and profile.activityResult == false) or (profile.fraudThreshold and profile.fraudResult == false) or (profile.verificationThreshold and profile.verificationThreshold == false) %}
 
             <p>
               To meet this profile you need to:
@@ -306,7 +306,7 @@
             </p>
           {% endif %}
 
-          {% if profile.evidenceResult == true or profile.activityResult == true or profile.fraudResult == true or profile.verificationThreshold == true %}
+          {% if profile.evidenceResult == true or (profile.activityThreshold and profile.activityResult == true) or (profile.fraudThreshold and profile.fraudResult == true) or (profile.verificationThreshold and profile.verificationThreshold == true) %}
             <p>
               You should still review the guidance for how you check:
               <ul class="govuk-list govuk-list--bullet">
