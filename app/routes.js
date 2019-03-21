@@ -1037,7 +1037,7 @@ router.post('/overview-answer', function (req, res) {
 
   })
 
-  res.redirect('/results')
+  res.redirect('/recommendations')
 
 
 
