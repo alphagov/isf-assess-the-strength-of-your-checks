@@ -15,37 +15,46 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-l">
-        Do you check the {{ data['evidenceName'] }} is genuine or valid?
+        Calculate the strength of the {{ data['evidenceName'] }}
       </h1>
-      
-      <p>You should check if the evidence is either:</p>
-      <ul class="govuk-list govuk-list--bullet">
-        <li>genuine (it is not a fake)</li>
-        <li>valid (it has not expired, been cancelled or been reported as lost or stolen)</li>
-      </ul>
 
-      <form action="/validity-0-answer" method="post" novalidate>
+      <p>
+        Use the guidance to calculate the strength score for {{ data['evidenceName'] }}.
+        <br>
+        <a href="#">Guidance for scoring evidence strength (GPG45)</a>.
+      </p>
+
+
+      <form action="/other-evidence-answer" method="post" novalidate>
 
         {% from "radios/macro.njk" import govukRadios %}
 
         {{ govukRadios({
-          idPrefix: "validity-0",
-          name: "validity-0",
+          idPrefix: "other-evidence",
+          name: "other-evidence",
           fieldset: {
             legend: {
-              text: "",
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--l"
+              text: "What’s the strength of this evidence?",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--m"
             }
           },
           items: [
             {
               value: "1",
-              text: "Yes"
+              text: "1"
             },
             {
               value: "2",
-              text: "No"
+              text: "2"
+            },
+            {
+              value: "3",
+              text: "3"
+            },
+            {
+              value: "4",
+              text: "4"
             }
           ]
         }) }}

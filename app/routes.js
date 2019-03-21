@@ -161,6 +161,7 @@ router.post('/set-choose-evidence-variables', function (req, res) {
 
 router.post('/choose-evidence-group-answer', function (req, res) {
   let evidence = req.session.data['evidence']
+  let otherEvidence = req.session.data['other-evidence-name']
   let thisEvidence = evidence
   req.session.data['thisEvidence'] = thisEvidence
 
@@ -172,7 +173,23 @@ router.post('/choose-evidence-group-answer', function (req, res) {
   }
 
   if (evidence.includes('other')) {
-    res.redirect('overview')
+
+    testevidence.push(
+      {'name':otherEvidence,'shortname':otherEvidence,'strength':"0",'validity':"0",'chosen':"true"}
+    );
+
+    req.session.data['testevidence'] = testevidence
+
+    var i;
+    for (i = 0; i < testevidence.length; i++) {
+      if (otherEvidence.includes(testevidence[i].name)) {
+        req.session.data['evidenceName'] = testevidence[i].shortname
+      }
+    }
+
+    req.session.data['thisEvidence'] = otherEvidence
+
+    res.redirect('evidence/other-evidence')
   }
   else{
     // for each preset, set chosen to true if chosen
@@ -184,6 +201,20 @@ router.post('/choose-evidence-group-answer', function (req, res) {
     }
     res.redirect('evidence/validity-start')
   }
+})
+
+router.post('/other-evidence-answer', function (req, res) {
+
+  let answer = req.session.data['other-evidence']
+  let thisEvidence = req.session.data['evidenceName']
+
+  for (i = 0; i < testevidence.length; i++) {
+    if (thisEvidence.includes(testevidence[i].name)) {
+        req.session.data['testevidence'][i].strength = answer
+    }
+  }
+
+  res.redirect('/evidence/validity-start')
 })
 
 router.post('/risk-answer', function (req, res) {
