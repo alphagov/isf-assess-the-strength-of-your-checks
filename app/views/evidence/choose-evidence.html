@@ -31,8 +31,20 @@ items: [
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-l">
-        What type of evidence do you collect?
+        {% for item in data['testevidence'] %}
+          {% if item.chosen %}
+            {% set evidenceExists = "true" %}
+          {% endif %}
+        {% endfor %}
+        {% if evidenceExists == "true" %}
+          What evidence do you collect?
+        {% else %}
+          What’s the first piece of evidence you collect?
+        {% endif %}
       </h1>
+      <p>
+        You might collect 1 or more pieces of evidence, answer questions about the minimum combination of evidence you'd accept from a user.
+      </p>
       <p>
         Some pieces of evidence are stronger than others, which means they will be harder to fake or copy. How strong the evidence is depends on:
       </p>
