@@ -18,7 +18,7 @@
 
       <form action="/verification-3d-answer" method="post" novalidate>
 
-        {% from "checkboxes/macro.njk" import govukCheckboxes %}
+        {% from "_custom_macros/checkboxes/macro.njk" import govukCheckboxes %}
         {% from "radios/macro.njk" import govukRadios %}
 
         {{ govukCheckboxes({
@@ -58,6 +58,9 @@
             {
               value: "6",
               text: "A source that means it cannot be accessed by anyone apart from the person and their immediate family (and if someone else tries they'll be committing a civil or criminal offence)"
+            },
+            {
+              divider: "or"
             },
             {
               value: "7",

@@ -23,10 +23,8 @@
 
       <form action="/verification-11c-answer" method="post" novalidate>
 
-        {% from "checkboxes/macro.njk" import govukCheckboxes %}
+        {% from "_custom_macros/checkboxes/macro.njk" import govukCheckboxes %}
         {% from "radios/macro.njk" import govukRadios %}
-
-        {% from "checkboxes/macro.njk" import govukCheckboxes %}
 
         {{ govukCheckboxes({
           idPrefix: "verification-11c",
@@ -52,6 +50,9 @@
             {
               value: "3",
               text: "The false match rate is significantly lower than its false non-match rate"
+            },
+            {
+              divider: "or"
             },
             {
               value: "4",

@@ -18,7 +18,7 @@
 
       <form action="/fraud-1-answer" method="post" novalidate>
 
-        {% from "checkboxes/macro.njk" import govukCheckboxes %}
+        {% from "_custom_macros/checkboxes/macro.njk" import govukCheckboxes %}
 
         {{ govukCheckboxes({
           idPrefix: "fraud-1",
@@ -52,6 +52,9 @@
             },{
               value: "6",
               text: "The person's details are known by an organisation that should have a record of that person (for example an Electoral Registration Office in a local authority)"
+            },
+            {
+              divider: "or"
             },
             {
               value: "7",

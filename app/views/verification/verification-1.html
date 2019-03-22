@@ -19,7 +19,7 @@
 
       <form action="/verification-1-answer" method="post" novalidate>
 
-        {% from "checkboxes/macro.njk" import govukCheckboxes %}
+        {% from "_custom_macros/checkboxes/macro.njk" import govukCheckboxes %}
         {% from "radios/macro.njk" import govukRadios %}
 
         {{ govukCheckboxes({
@@ -47,7 +47,9 @@
               value: "3",
               text: "Ask them 'knowledge-based verification' (KBV)"
             },
-
+            {
+              divider: "or"
+            },
             {
               value: "4",
               text: "You don't check this"

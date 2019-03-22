@@ -18,7 +18,7 @@
 
       <form action="/verification-3a-answer" method="post" novalidate>
 
-        {% from "checkboxes/macro.njk" import govukCheckboxes %}
+        {% from "_custom_macros/checkboxes/macro.njk" import govukCheckboxes %}
         {% from "radios/macro.njk" import govukRadios %}
 
         {{ govukCheckboxes({
@@ -46,6 +46,9 @@
             {
               value: "3",
               text: "The data the questions are based on comes from a source that makes sure the data has not been altered or shared"
+            },
+            {
+              divider: "or"
             },
             {
               value: "4",
