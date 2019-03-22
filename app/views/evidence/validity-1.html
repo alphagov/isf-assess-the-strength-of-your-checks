@@ -24,7 +24,7 @@
 
       <form action="/validity-1-answer" method="post" novalidate>
 
-        {% from "checkboxes/macro.njk" import govukCheckboxes %}
+        {% from "_custom_macros/checkboxes/macro.njk" import govukCheckboxes %}
 
         {% set checksHTML %}
           {{ govukCheckboxes({
@@ -83,6 +83,9 @@
             {
               value: "4",
               text: "Make sure the evidence has not expired, been cancelled or been reported as lost or stolen by checking it with an authoritative source"
+            },
+            {
+              divider: "or"
             },
             {
               value: "5",
