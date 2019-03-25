@@ -47,8 +47,6 @@
         <p>
           {{data['result-message-content']}}
         </p>
-        <p>
-          <!-- <a href="/recommendations">{{data['result-message-link']}}</a></p> -->
       </div>
     </div>
   </div>
@@ -62,14 +60,8 @@
         These are the identity profiles that will give you the level of confidence you need in someone's identity.
       </p>
       <p>
-        You'll need to do some parts of the identity checking process more thoroughly to meet these profiles.
+        You need to meet one profile to meet the UK government’s identity standards.
       </p>
-      <!-- <p>
-        Based on your scores, there are different ways you can improve your checks to get the confidence you need in an identity.
-      </p>
-      <p>
-        You can choose any option.
-      </p> -->
 
       {% if data['user-risk-level'] == 'dont-know' or data['user-risk-level'] == "none"%}
         <br>

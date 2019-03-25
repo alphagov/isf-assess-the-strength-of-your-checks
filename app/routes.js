@@ -773,76 +773,65 @@ router.post('/overview-answer', function (req, res) {
   if (userRiskLevel == "dont-know" || userRiskLevel == "none") {
     let validationResults = responseValidator.determineHighestConfidenceAchievable(evidence, verificationScore, fraudScore, activityScore)
     req.session.data['result-message'] = validationResults.highestConfidenceAvailable
-      ? "Your checks protect your service with a " + validationResults.highestConfidenceAvailable.level + " level of confidence."
-      : "Your checks do not protect your service with any level of confidence."
+      ? "Your do enough checks to have a " + validationResults.highestConfidenceAvailable.level + " confidence in an identity."
+      : "You don't do enough checks to have confidence in someone’s identity."
     req.session.data['profile-results'] = validationResults.allResults
   } else {
+    let highestValidationResults = responseValidator.determineHighestConfidenceAchievable(evidence, verificationScore, fraudScore, activityScore)
     let validationResults = responseValidator.validateResponse(userRiskLevel, evidence, verificationScore, fraudScore, activityScore)
-    let not = validationResults.validated ? 'do enough' : 'don’t do enough'
-    let content = validationResults.validated ? '' : 'You might need to do some parts of the identity checking process more thoroughly to get the level of confidence you need.'
-    let link = validationResults.validated ? '' : 'Find out how to improve your checks'
-    req.session.data['result-message'] = "You "+ not +" checks to have a "+ userRiskLevel +" confidence in someone’s identity"
+    let content = validationResults.validated ? 'You meet the UK government’s identity standards.' : 'You currently have ' + highestValidationResults.highestConfidenceAvailable.level + ' confidence in someone’s identity. You need to do some parts of the identity checking process more thoroughly to get the level of confidence you need.'
+    req.session.data['result-message'] = validationResults.validated ? 'You do enough checks to have ' + userRiskLevel + ' confidence in someone’s identity' : 'You don’t do enough checks to have ' + userRiskLevel + ' confidence in someone’s identity.'
     req.session.data['result-message-content'] = content
-    req.session.data['result-message-link'] = link
     req.session.data['profile-results'] = validationResults.profileResults
   }
 
-  req.session.data['testevidence'].forEach(evidence => {
-    if (verificationScore >= 4){
-      req.session.data['stolen-evidence-message'] = "very high protection"
-    } else if ((evidence.chosen && evidence.validity >= 2) || fraudScore >= 3 || verificationScore >= 3 ){
-      req.session.data['stolen-evidence-message'] = "high protection"
-    } else if (fraudScore >= 2 || verificationScore >= 2 ){
-      req.session.data['stolen-evidence-message'] = "medium protection"
-    } else if (fraudScore >= 1 ){
-      req.session.data['stolen-evidence-message'] = "low protection"
-    } else {
-      req.session.data['stolen-evidence-message'] = "no protection"
-    }
-
-    if (verificationScore >= 4){
-      req.session.data['stolen-information-message'] = "very high protection"
-    } else if (fraudScore >= 3 || verificationScore >= 3 ){
-      req.session.data['stolen-information-message'] = "high protection"
-    } else if (fraudScore >= 2 || verificationScore >= 2 ){
-      req.session.data['stolen-information-message'] = "medium protection"
-    } else if (fraudScore >= 1 || verificationScore >= 1 ){
-      req.session.data['stolen-information-message'] = "low protection"
-    } else {
-      req.session.data['stolen-information-message'] = "no protection"
-    }
-
-    if ((evidence.chosen && evidence.validity >= 4) || activityScore >= 4){
-      req.session.data['created-evidence-message'] = "very high protection"
-    } else if ((evidence.chosen && evidence.strength >= 3) || (evidence.chosen && evidence.strength >= 3) || fraudScore >= 3 || verificationScore >= 4) {
-      req.session.data['created-evidence-message'] = "high protection"
-    } else if ((evidence.chosen && evidence.validity >= 2) || activityScore >= 2 || fraudScore >= 1){
-      req.session.data['created-evidence-message'] = "medium protection"
-    } else if ((evidence.chosen && evidence.validity >= 1) || activityScore >= 1 || fraudScore >= 1 || verificationScore >= 3){
-      req.session.data['created-evidence-message'] = "low protection"
-    } else {
-      req.session.data['created-evidence-message'] = "no protection"
-    }
-
-    if ((evidence.chosen && evidence.validity >= 4)){
-      req.session.data['tampered-evidence-message'] = "very high protection"
-    } else if ((evidence.chosen && evidence.validity >= 3) || verificationScore >= 4) {
-      req.session.data['tampered-evidence-message'] = "high protection"
-    } else if ((evidence.chosen && evidence.validity >= 2) || verificationScore >= 2){
-      req.session.data['tampered-evidence-message'] = "medium protection"
-    } else if ((evidence.chosen && evidence.validity >= 1) || fraudScore >= 1 || verificationScore >= 1){
-      req.session.data['tampered-evidence-message'] = "low protection"
-    } else {
-      req.session.data['tampered-evidence-message'] = "no protection"
-    }
-
-
-  })
-
   res.redirect('/recommendations')
-
-
-
 })
+
+router.post('/preset-answer', function (req, res) {
+  req.session.data['testevidence'] = testevidence
+  let answer = req.session.data['preset']
+
+  if (answer.includes('1')) {
+    req.session.data['testevidence'].push(
+      {'name':'UK passport','shortname':'UK passport','strength':"4",'validity':"0",'chosen':"true"}
+    );
+    req.session.data['testevidence'] = req.session.data['testevidence']
+    req.session.data['activityScore'] = "2"
+    req.session.data['fraudScore'] = "0"
+    req.session.data['verificationScore'] = "1"
+  }
+  else if (answer.includes('2')) {
+    req.session.data['testevidence'].push(
+      {'name':'UK passport','shortname':'UK passport','strength':"4",'validity':"2",'chosen':"true"}
+    );
+    req.session.data['testevidence'] = req.session.data['testevidence']
+    req.session.data['activityScore'] = "0"
+    req.session.data['fraudScore'] = "2"
+    req.session.data['verificationScore'] = "1"
+  }
+  else if (answer.includes('3')) {
+    req.session.data['testevidence'].push(
+      {'name':'UK passport','shortname':'UK passport','strength':"4",'validity':"2",'chosen':"true"},
+      {'name':'UK driving licence','shortname':'driving licence','strength':"3",'validity':"3",'chosen':"true"},
+      {'name':'armed forces identity card','shortname':'identity card','strength':"2",'validity':"2",'chosen':"true"},
+    );
+    req.session.data['testevidence'] = req.session.data['testevidence']
+    req.session.data['activityScore'] = "3"
+    req.session.data['fraudScore'] = "2"
+    req.session.data['verificationScore'] = "2"
+  }
+  else if (answer.includes('4')) {
+    req.session.data['testevidence'].push(
+      {'name':'UK passport','shortname':'UK passport','strength':"4",'validity':"4",'chosen':"true"}
+    );
+    req.session.data['testevidence'] = req.session.data['testevidence']
+    req.session.data['activityScore'] = "0"
+    req.session.data['fraudScore'] = "0"
+    req.session.data['verificationScore'] = "3"
+  }
+  res.redirect('/your-risk')
+})
+
 
 module.exports = router
