@@ -44,9 +44,12 @@
         <h1>
           {{data['result-message']}}
         </h1>
-        <p>
-          {{data['result-message-content']}}
-        </p>
+        {% if data['user-risk-level'] == 'dont-know' or data['user-risk-level'] == "none"%}
+        {% else %}
+          <p>
+            {{data['result-message-content']}}
+          </p>
+        {% endif %}
       </div>
     </div>
   </div>
@@ -60,198 +63,183 @@
         These are the identity profiles that will give you the level of confidence you need in someone's identity.
       </p>
       <p>
-        You need to meet one profile to meet the UK government’s identity standards.
+        You need to meet a profile to meet the UK government’s identity standards.
       </p>
 
       {% if data['user-risk-level'] == 'dont-know' or data['user-risk-level'] == "none"%}
-        <br>
         {% for levelData in data['profile-results'] | reverse %}
           <details class="govuk-details">
             <summary class="govuk-details__summary">
               <span class="govuk-details__summary-text">
-                Show {{ levelData.level }} confidence profiles
+                {{ levelData.level | capitalize }} confidence profiles
               </span>
             </summary>
             <div class="govuk-details__text">
               {% for profile in levelData.results.profileResults %}
 
-                <h2 class="govuk-heading-m govuk-!-margin-bottom-2 govuk-!-margin-top-8">{{ profile.name }}</h2>
-                {% if not profile.overallResult %}
-                {% else %}
-                  <p>Your checks meet this profile.</p>
-                {% endif %}
-                <table class="govuk-table govuk-!-margin-bottom-7 govuk-!-margin-top-0">
-                  <thead class="govuk-table__head">
-                    <tr class="govuk-table__row">
-                      <th class="govuk-table__header" scope="col">Required evidence</th>
-                      <th class="govuk-table__header" scope="col">Strength score</th>
-                      <th class="govuk-table__header" scope="col">Validity score</th>
-                      <th class="govuk-table__header" scope="col"></th>
-                    </tr>
-                  </thead>
-
-                  <tbody class="govuk-table__body">
-                    {% set evidenceCount = 0 %}
-                    {% for evidence in profile.evidence %}
-                      {% set evidenceCount = evidenceCount + 1 %}
-
-                      <tr class="govuk-table__row">
-                        <td class="govuk-table__cell" scope="row">
-                          Evidence {{evidenceCount}}
-                        </td>
-                        <td class="govuk-table__cell" scope="row">
-                          {{ evidence.strength }}
-                        </td>
-                        <td class="govuk-table__cell" scope="row">
-                          {{ evidence.validity }}
-                        </td>
-                        <td class="govuk-table__cell" scope="row">
-                          {% if profile.evidenceResult == false %}Not met{% else %}Met{% endif %}
-                        </td>
-                      </tr>
-                    {% endfor %}
-                  </tbody>
-                </table>
-
-                <table class="govuk-table govuk-!-margin-bottom-7 govuk-!-margin-top-0">
-                  <thead class="govuk-table__head">
-                    <tr class="govuk-table__row">
-                      <th class="govuk-table__header" scope="col">Other checks</th>
-                      <th class="govuk-table__header" scope="col">Required score</th>
-                      <th class="govuk-table__header" scope="col">Your score</th>
-                      <th class="govuk-table__header" scope="col"></th>
-                    </tr>
-                  </thead>
-
-                  <tbody class="govuk-table__body">
-                    <tr class="govuk-table__row">
-                      <td class="govuk-table__cell" scope="row">
-                        Activity
-                      </td>
-                      <td class="govuk-table__cell" scope="row">
-                        {% if profile.activityThreshold %}
-                          {{ profile.activityThreshold }}
-                        {% else %}
-                          Not required
-                        {% endif %}
-                      </td>
-                      <td class="govuk-table__cell" scope="row">
-                        {{data['activityScore']}}
-                      </td>
-                      <td class="govuk-table__cell" scope="row">
-                        {% if profile.activityThreshold %}
-                          {% if data['activityScore'] >= profile.activityThreshold %}
-                            Met
-                          {% else %}
-                            Not met
-                          {% endif %}
-                        {% else %}
-                          Met
-                        {% endif %}
-                      </td>
-
-                    </tr>
-                    <tr class="govuk-table__row">
-                      <td class="govuk-table__cell" scope="row">
-                        Fraud
-                      </td>
-                      <td class="govuk-table__cell" scope="row">
-                        {% if profile.fraudThreshold %}
-                          {{ profile.fraudThreshold }}
-                        {% else %}
-                          Not required
-                        {% endif %}
-                      </td>
-                      <td class="govuk-table__cell" scope="row">
-                        {{data['fraudScore']}}
-                      </td>
-                      <td class="govuk-table__cell" scope="row">
-                        {% if profile.fraudThreshold %}
-                          {% if data['fraudScore'] >= profile.fraudThreshold %}
-                            Met
-                          {% else %}
-                            Not met
-                          {% endif %}
-                        {% else %}
-                          Met
-                        {% endif %}
-                      </td>
-                    </tr>
-                    <tr class="govuk-table__row">
-                      <td class="govuk-table__cell" scope="row">
-                        Verification
-                      </td>
-                      <td class="govuk-table__cell multi-question" scope="row">
-                        {% if profile.verificationThreshold %}
-                          {{ profile.verificationThreshold }}
-                        {% else %}
-                          Not required
-                        {% endif %}
-                      </td>
-                      <td class="govuk-table__cell multi-question" scope="row">
-                        {{data['verificationScore']}}
-                      </td>
-                      <td class="govuk-table__cell multi-question" scope="row">
-                        {% if profile.verificationThreshold %}
-                          {% if data['verificationScore'] >= profile.verificationThreshold %}
-                            Met
-                          {% else %}
-                            Not met
-                          {% endif %}
-                        {% else %}
-                          Met
-                        {% endif %}
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-
-
+              <h2 class="govuk-heading-m">{{ profile.name }}</h2>
+              {% if not profile.overallResult %}
                 <p>
                   To meet this profile you need to:
                   <ul class="govuk-list govuk-list--bullet">
-                    <li>
                       {% if profile.evidenceResult == false %}
-                        <a href="/gpg-45#getevidenceoftheclaimedidentitystrength">collect {{ profile.humanEvidence }}</a>
-                      {% else %}
-                        <a href="/gpg-45#getevidenceoftheclaimedidentitystrength">review the criteria for evidence strength and validity</a>
+                        <li><a href="/gpg-45#getevidenceoftheclaimedidentitystrength" target="_blank">collect {{ profile.humanEvidence }}</a></li>
                       {% endif %}
-                    </li>
 
                     {% if profile.activityThreshold %}
-                      <li>
                         {% if profile.activityResult == false %}
-                          <a href="/gpg-45">increase the score for your activity checks to {{ profile.activityThreshold }}</a>
-                        {% else %}
-                          <a href="/gpg-45#getevidenceoftheclaimedidentitystrength">review the criteria for activity</a>
+                          <li><a href="/gpg-45#checktheclaimedidentityhasexistedovertimeactivity" target="_blank">increase activity score from {{ data['activityScore'] }} to {{ profile.activityThreshold }}</a></li>
                         {% endif %}
-                      </li>
                     {% endif %}
 
                     {% if profile.fraudThreshold %}
-                      <li>
                         {% if profile.fraudResult == false %}
-                          <a href="/gpg-45">increase the score for your fraud checks to {{ profile.fraudThreshold }}</a>
-                        {% else %}
-                          <a href="/gpg-45">review the criteria for fraud</a>
+                          <li><a href="/gpg-45#checkiftheclaimedidentityisathighriskofidentityfraudidentityfraud" target="_blank">increase fraud score from {{ data['fraudScore'] }} to {{ profile.fraudThreshold }}</a></li>
                         {% endif %}
-                      </li>
                     {% endif %}
 
                     {% if profile.verificationThreshold %}
-                      <li>
                         {% if profile.verificationResult == false %}
-                          <a href="/gpg-45">increase the score for your verification checks to {{ profile.verificationThreshold }}</a>
-                        {% else %}
-                          <a href="/gpg-45">review the criteria for verification</a>
+                          <li><a href="/gpg-45#checkthattheidentitybelongstothepersonwhosclaimingitverification" target="_blank">increase verification score from {{ data['verificationScore'] }} to {{ profile.verificationThreshold }}</a></li>
                         {% endif %}
-                      </li>
                     {% endif %}
-
                   </ul>
                 </p>
+              {% else %}
+                <p>Your checks meet this profile.</p>
+              {% endif %}
+              <details class="govuk-details govuk-!-margin-bottom-7">
+                <summary class="govuk-details__summary">
+                  <span class="govuk-details__summary-text">
+                    Show the full profile
+                  </span>
+                </summary>
+                <div class="govuk-details__text">
 
+                  <table class="govuk-table govuk-!-margin-bottom-7 govuk-!-margin-top-0">
+                    <thead class="govuk-table__head">
+                      <tr class="govuk-table__row">
+                        <th class="govuk-table__header" scope="col">Required evidence</th>
+                        <th class="govuk-table__header" scope="col">Strength score</th>
+                        <th class="govuk-table__header" scope="col">Validity score</th>
+                        <th class="govuk-table__header" scope="col"></th>
+                      </tr>
+                    </thead>
 
+                    <tbody class="govuk-table__body">
+                      {% set evidenceCount = 0 %}
+                      {% for evidence in profile.evidence %}
+                        {% set evidenceCount = evidenceCount + 1 %}
+
+                        <tr class="govuk-table__row">
+                          <td class="govuk-table__cell" scope="row">
+                            Evidence {{evidenceCount}}
+                          </td>
+                          <td class="govuk-table__cell" scope="row">
+                            {{ evidence.strength }}
+                          </td>
+                          <td class="govuk-table__cell" scope="row">
+                            {{ evidence.validity }}
+                          </td>
+                          <td class="govuk-table__cell" scope="row">
+                            {% if profile.evidenceResult == false %}Not met{% else %}Met{% endif %}
+                          </td>
+                        </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+
+                  <table class="govuk-table govuk-!-margin-bottom-7 govuk-!-margin-top-0">
+                    <thead class="govuk-table__head">
+                      <tr class="govuk-table__row">
+                        <th class="govuk-table__header" scope="col">Other checks</th>
+                        <th class="govuk-table__header" scope="col">Score</th>
+                        <th class="govuk-table__header" scope="col"></th>
+                        <th class="govuk-table__header" scope="col"></th>
+                      </tr>
+                    </thead>
+
+                    <tbody class="govuk-table__body">
+                      <tr class="govuk-table__row">
+                        <td class="govuk-table__cell" scope="row">
+                          Activity
+                        </td>
+                        <td class="govuk-table__cell" scope="row">
+                          {% if profile.activityThreshold %}
+                            {{ profile.activityThreshold }}
+                          {% else %}
+                            Not required
+                          {% endif %}
+                        </td>
+                        <td class="govuk-table__cell" scope="row">
+                        </td>
+                        <td class="govuk-table__cell" scope="row">
+                          {% if profile.activityThreshold %}
+                            {% if data['activityScore'] >= profile.activityThreshold %}
+                              Met
+                            {% else %}
+                              Not met
+                            {% endif %}
+                          {% else %}
+                            Met
+                          {% endif %}
+                        </td>
+
+                      </tr>
+                      <tr class="govuk-table__row">
+                        <td class="govuk-table__cell" scope="row">
+                          Fraud
+                        </td>
+                        <td class="govuk-table__cell" scope="row">
+                          {% if profile.fraudThreshold %}
+                            {{ profile.fraudThreshold }}
+                          {% else %}
+                            Not required
+                          {% endif %}
+                        </td>
+                        <td class="govuk-table__cell" scope="row">
+                        </td>
+                        <td class="govuk-table__cell" scope="row">
+                          {% if profile.fraudThreshold %}
+                            {% if data['fraudScore'] >= profile.fraudThreshold %}
+                              Met
+                            {% else %}
+                              Not met
+                            {% endif %}
+                          {% else %}
+                            Met
+                          {% endif %}
+                        </td>
+                      </tr>
+                      <tr class="govuk-table__row">
+                        <td class="govuk-table__cell" scope="row">
+                          Verification
+                        </td>
+                        <td class="govuk-table__cell multi-question" scope="row">
+                          {% if profile.verificationThreshold %}
+                            {{ profile.verificationThreshold }}
+                          {% else %}
+                            Not required
+                          {% endif %}
+                        </td>
+                        <td class="govuk-table__cell multi-question" scope="row">
+                        </td>
+                        <td class="govuk-table__cell multi-question" scope="row">
+                          {% if profile.verificationThreshold %}
+                            {% if data['verificationScore'] >= profile.verificationThreshold %}
+                              Met
+                            {% else %}
+                              Not met
+                            {% endif %}
+                          {% else %}
+                            Met
+                          {% endif %}
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </details>
 
               {% endfor %}
             </div>
@@ -261,15 +249,13 @@
 
       {% else %}
 
-      {% for profile in data['profile-results'] %}
-          <h2 class="govuk-heading-m govuk-!-margin-top-6">{{ profile.name }}</h2>
+        <p>
+          <a href="/all_profiles">You can also view profiles for other confidence levels</a>
+        </p>
+
+        {% for profile in data['profile-results'] %}
+          <h2 class="govuk-heading-m govuk-!-margin-top-7">{{ profile.name }}</h2>
           {% if not profile.overallResult %}
-          {% else %}
-            <p>Your checks meet this profile.</p>
-          {% endif %}
-
-          {% if profile.evidenceResult == false or (profile.activityThreshold and profile.activityResult == false) or (profile.fraudThreshold and profile.fraudResult == false) or (profile.verificationThreshold and profile.verificationThreshold == false) %}
-
             <p>
               To meet this profile you need to:
               <ul class="govuk-list govuk-list--bullet">
@@ -279,56 +265,26 @@
 
                 {% if profile.activityThreshold %}
                     {% if profile.activityResult == false %}
-                      <li><a href="/gpg-45#checktheclaimedidentityhasexistedovertimeactivity" target="_blank">increase the score for your activity checks from {{ data['activityScore'] }} to {{ profile.activityThreshold }}</a></li>
+                      <li><a href="/gpg-45#checktheclaimedidentityhasexistedovertimeactivity" target="_blank">increase activity score from {{ data['activityScore'] }} to {{ profile.activityThreshold }}</a></li>
                     {% endif %}
                 {% endif %}
 
                 {% if profile.fraudThreshold %}
                     {% if profile.fraudResult == false %}
-                      <li><a href="/gpg-45#checkiftheclaimedidentityisathighriskofidentityfraudidentityfraud" target="_blank">increase the score for your fraud checks from {{ data['fraudScore'] }} to {{ profile.fraudThreshold }}</a></li>
+                      <li><a href="/gpg-45#checkiftheclaimedidentityisathighriskofidentityfraudidentityfraud" target="_blank">increase fraud score from {{ data['fraudScore'] }} to {{ profile.fraudThreshold }}</a></li>
                     {% endif %}
                 {% endif %}
 
                 {% if profile.verificationThreshold %}
                     {% if profile.verificationResult == false %}
-                      <li><a href="/gpg-45#checkthattheidentitybelongstothepersonwhosclaimingitverification" target="_blank">increase the score for your verification checks from {{ data['verificationScore'] }} to {{ profile.verificationThreshold }}</a></li>
+                      <li><a href="/gpg-45#checkthattheidentitybelongstothepersonwhosclaimingitverification" target="_blank">increase verification score from {{ data['verificationScore'] }} to {{ profile.verificationThreshold }}</a></li>
                     {% endif %}
                 {% endif %}
               </ul>
             </p>
+          {% else %}
+            <p>Your checks meet this profile.</p>
           {% endif %}
-
-          {% if profile.evidenceResult == true or (profile.activityThreshold and profile.activityResult == true) or (profile.fraudThreshold and profile.fraudResult == true) or (profile.verificationThreshold and profile.verificationThreshold == true) %}
-            <p>
-              You should still review the guidance for how you check:
-              <ul class="govuk-list govuk-list--bullet">
-                  {% if profile.evidenceResult == true %}
-                    <li><a href="/gpg-45#getevidenceoftheclaimedidentitystrength" target="_blank">evidence strength and validity</a></li>
-                  {% endif %}
-
-                {% if profile.activityThreshold %}
-                    {% if profile.activityResult == true %}
-                      <li><a href="/gpg-45#checktheclaimedidentityhasexistedovertimeactivity" target="_blank">activity</a></li>
-                    {% endif %}
-                {% endif %}
-
-                {% if profile.fraudThreshold %}
-                    {% if profile.fraudResult == true %}
-                      <li><a href="/gpg-45#checkiftheclaimedidentityisathighriskofidentityfraudidentityfraud" target="_blank">fraud</a></li>
-                    {% endif %}
-                {% endif %}
-
-                {% if profile.verificationThreshold %}
-                    {% if profile.verificationResult == true %}
-                      <li><a href="/gpg-45#checkthattheidentitybelongstothepersonwhosclaimingitverification" target="_blank">verification</a></li>
-                    {% endif %}
-                {% endif %}
-              </ul>
-            </p>
-          {% endif %}
-
-          <!-- <p class="govuk-!-margin-top-6">These recommendations complete the requirements for identity profile {{ profile.name }}.</p> -->
-
           <details class="govuk-details">
             <summary class="govuk-details__summary">
               <span class="govuk-details__summary-text">
@@ -362,7 +318,7 @@
                       <td class="govuk-table__cell" scope="row">
                         {{ evidence.validity }}
                       </td>
-                      <td class="govuk-table__cell" scope="row">
+                      <td class="govuk-table__cell metnotmet" scope="row">
                         {% if profile.evidenceResult == false %}Not met{% else %}Met{% endif %}
                       </td>
                     </tr>
@@ -392,9 +348,7 @@
                         Not required
                       {% endif %}
                     </td>
-                    <td class="govuk-table__cell" scope="row">
-                    </td>
-                    <td class="govuk-table__cell" scope="row">
+                    <td class="govuk-table__cell metnotmet" scope="row">
                       {% if profile.activityThreshold %}
                         {% if data['activityScore'] >= profile.activityThreshold %}
                           Met
@@ -418,9 +372,7 @@
                         Not required
                       {% endif %}
                     </td>
-                    <td class="govuk-table__cell" scope="row">
-                    </td>
-                    <td class="govuk-table__cell" scope="row">
+                    <td class="govuk-table__cell metnotmet" scope="row">
                       {% if profile.fraudThreshold %}
                         {% if data['fraudScore'] >= profile.fraudThreshold %}
                           Met
@@ -443,9 +395,7 @@
                         Not required
                       {% endif %}
                     </td>
-                    <td class="govuk-table__cell multi-question" scope="row">
-                    </td>
-                    <td class="govuk-table__cell multi-question" scope="row">
+                    <td class="govuk-table__cell metnotmet" scope="row">
                       {% if profile.verificationThreshold %}
                         {% if data['verificationScore'] >= profile.verificationThreshold %}
                           Met
@@ -461,11 +411,9 @@
               </table>
             </div>
           </details>
-
-
-      {% endfor %}
-
+        {% endfor %}
       {% endif %}
+
     </div>
   </div>
 

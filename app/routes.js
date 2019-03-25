@@ -773,7 +773,7 @@ router.post('/overview-answer', function (req, res) {
   if (userRiskLevel == "dont-know" || userRiskLevel == "none") {
     let validationResults = responseValidator.determineHighestConfidenceAchievable(evidence, verificationScore, fraudScore, activityScore)
     req.session.data['result-message'] = validationResults.highestConfidenceAvailable
-      ? "Your do enough checks to have a " + validationResults.highestConfidenceAvailable.level + " confidence in an identity."
+      ? "You do enough checks to have a " + validationResults.highestConfidenceAvailable.level + " confidence in an identity."
       : "You don't do enough checks to have confidence in someone’s identity."
     req.session.data['profile-results'] = validationResults.allResults
   } else {
@@ -783,6 +783,7 @@ router.post('/overview-answer', function (req, res) {
     req.session.data['result-message'] = validationResults.validated ? 'You do enough checks to have ' + userRiskLevel + ' confidence in someone’s identity' : 'You don’t do enough checks to have ' + userRiskLevel + ' confidence in someone’s identity.'
     req.session.data['result-message-content'] = content
     req.session.data['profile-results'] = validationResults.profileResults
+    req.session.data['all-profiles'] = highestValidationResults.allResults
   }
 
   res.redirect('/recommendations')
