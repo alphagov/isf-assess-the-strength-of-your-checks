@@ -789,14 +789,13 @@ router.post('/overview-answer', function (req, res) {
 })
 
 router.post('/preset-answer', function (req, res) {
-  req.session.data['testevidence'] = testevidence
+  req.session.data['testevidence'] = []
   let answer = req.session.data['preset']
 
   if (answer.includes('1')) {
     req.session.data['testevidence'].push(
       {'name':'UK passport','shortname':'UK passport','strength':"4",'validity':"0",'chosen':"true"}
     );
-    req.session.data['testevidence'] = req.session.data['testevidence']
     req.session.data['activityScore'] = "2"
     req.session.data['fraudScore'] = "0"
     req.session.data['verificationScore'] = "1"
@@ -805,7 +804,6 @@ router.post('/preset-answer', function (req, res) {
     req.session.data['testevidence'].push(
       {'name':'UK passport','shortname':'UK passport','strength':"4",'validity':"2",'chosen':"true"}
     );
-    req.session.data['testevidence'] = req.session.data['testevidence']
     req.session.data['activityScore'] = "0"
     req.session.data['fraudScore'] = "2"
     req.session.data['verificationScore'] = "1"
@@ -816,7 +814,6 @@ router.post('/preset-answer', function (req, res) {
       {'name':'UK driving licence','shortname':'driving licence','strength':"3",'validity':"3",'chosen':"true"},
       {'name':'armed forces identity card','shortname':'identity card','strength':"2",'validity':"2",'chosen':"true"},
     );
-    req.session.data['testevidence'] = req.session.data['testevidence']
     req.session.data['activityScore'] = "3"
     req.session.data['fraudScore'] = "2"
     req.session.data['verificationScore'] = "2"
@@ -825,7 +822,6 @@ router.post('/preset-answer', function (req, res) {
     req.session.data['testevidence'].push(
       {'name':'UK passport','shortname':'UK passport','strength':"4",'validity':"4",'chosen':"true"}
     );
-    req.session.data['testevidence'] = req.session.data['testevidence']
     req.session.data['activityScore'] = "0"
     req.session.data['fraudScore'] = "0"
     req.session.data['verificationScore'] = "3"
