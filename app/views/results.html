@@ -64,7 +64,7 @@
         </thead>
 
         <tbody class="govuk-table__body">
-          {% for item in data['testevidence'] %}
+          {% for item in data['presetEvidence'] %}
             {% if item.chosen %}
               <tr class="govuk-table__row">
                 <td class="govuk-table__cell" scope="row">{{item.shortname | capitalize}}</td>

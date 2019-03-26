@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const responseValidator = require('../lib/response_validator.js')
 
-const testevidence =
+const presetEvidence =
   [
     {'name':'UK passport','shortname':'UK passport','group':'1','strength':'4','validity':'0','chosen':false},
     {'name':'A passport that meets the International Civil Aviation Organisation (ICAO) specifications for machine-readable travel documents (9303)','shortname':'passport','group':'1','strength':'3','validity':'0','chosen':false},
@@ -41,121 +41,14 @@ const testevidence =
 
   ]
 
-const explanations =
-  [
-    {'element':'strength','score':'0','text':'It is not strong enough to give you confidence in the person’s identity.'},
-    {'element':'strength','score':'1','text':'It includes some basic information about the person.'},
-    {'element':'strength','score':'2','text':'You know the person needed to prove their identity to get the evidence. You also know that any digital information the evidence contains is protected by cryptographic security features.'},
-    {'element':'strength','score':'3','text':'You know the organisation made sure the evidence was received by the same person who applied for it.'},
-    {'element':'strength','score':'4','text':'You know the organisation made sure the person matches an image they had from a trusted source.'},
-
-    {'element':'validity','score':'0','text':'You don’t check the details of the evidence.'},
-    {'element':'validity','score':'1','text':'You’ve checked the person’s details match the details held by the organisation that issued the evidence.'},
-    {'element':'validity','score':'2','text':'You’ve checked details of the evidence (such as its reference number or expiry date) match the details held by the organisation that issued it.'},
-    {'element':'validity','score':'3','text':'You’ve checked that any security features on the evidence are genuine.'},
-    {'element':'validity','score':'4','text':'You’ve checked the chip on the passport is genuine.'},
-
-    {'element':'activity','score':'0','text':'You don’t check the history of the identity.'},
-    {'element':'activity','score':'1','text':'You know the identity has interacted with other organisations or individuals over the past 3 months.'},
-    {'element':'activity','score':'2','text':'You know the identity has interacted with other organisations or individuals over the past 6 months.'},
-    {'element':'activity','score':'3','text':'You know the identity has interacted with other organisations or individuals over the past 1 year.'},
-    {'element':'activity','score':'4','text':'You know the identity has interacted with other organisations or individuals over the past 3 years.'},
-
-    {'element':'fraud','score':'0','text':'You don’t check if the identity has been stolen or used fraudulently.'},
-    {'element':'fraud','score':'1','text':'You’ve checked with a reliable and authoritative data source that the identity hasn’t been stolen or used fraudulently.'},
-    {'element':'fraud','score':'2','text':'You’ve checked with a reliable and authoritative data source that the identity doesn’t belong to someone who’s died.'},
-    {'element':'fraud','score':'3','text':'You’ve checked with at least one independent, reliable and authoritative data source that the identity hasn’t been stolen or used fraudulently.'},
-    {'element':'fraud','score':'4','text':''},
-
-    {'element':'verification','score':'0','text':"You don’t check if the person is the person they’re claiming to be."},
-    {'element':'verification','score':'1','text':"You’ve checked the person knows some things about the person they’re claiming to be."},
-    {'element':'verification','score':'2','text':"You’ve checked they match the photo or biometric information on the evidence."},
-    {'element':'verification','score':'3','text':"You’ve checked the person can complete tasks that only the person they’re claiming to be can do."},
-    {'element':'verification','score':'4','text':"You’ve checked that their biometric information matches what’s on the evidence."}
-  ]
-
 const thisEvidence = []
 
 const highStrengthScore = []
 
-const benefits = {
-  1: "know that evidence of the claimed identity exists",
-  2: "know if the evidence is genuine or valid",
-  3: "know that the claimed identity is not known to be fraudulent or at a higher than usual risk of being impersonated",
-  4: "be confident the person knows some things that only the claimed identity should know",
-  5: "be confident the person matches either the photo or biometric information that's shown on the evidence",
-  6: "trust each piece of evidence exists",
-  7: "know each piece of evidence appears to be genuine",
-  8: "be confident that the claimed identity exists in the real world",
-  9: "have checked the person matches the photo or biometric information that's shown on the evidence, or know they can complete challenges that only the claimed identity should be able to do",
-  10: "know that very strong evidence of the claimed identity exists",
-  11: "know the evidence is genuine and valid",
-  12: "have checked the claimed identity exists in the real world",
-  13: "have checked the claimed identity is not known to be fraudulent",
-  14: "have strong evidence that shows the claimed identity exists",
-  15: "have records that the claimed identity exists in the real world",
-  16: "have more than one piece of evidence that shows the claimed identity exists",
-  17: "know one piece of evidence is genuine",
-  18: "know the other piece of evidence is genuine or valid",
-  19: "",
-  20: "be confident the person matches either the photo or biometric information that's shown on the genuine evidence",
-  21: "have another piece of evidence that shows the claimed identity exists",
-  22: "know the evidence is genuine, valid or both",
-  23: "know that the claimed identity is not known to be fraudulent or or at higher than usual risk of being impersonated",
-  24: "know the person probably matches the photo or biometric information that's shown on the evidence, or know they can complete challenges that only the claimed identity should be able to do",
-  25: "know both pieces of evidence are genuine, valid or both",
-  26: "have very strong evidence that shows the claimed identity exists",
-  27: "know that the claimed identity is not known to be fraudulent or at higher than usual risk of being impersonated",
-  28: "have multiple pieces of evidence that show the claimed identity exists",
-  29: "know each piece of evidence is genuine or valid",
-  30: "be very confident the claimed identity is not known to be fraudulent or at higher than usual risk of being impersonated",
-  31: "have more than one piece of strong evidence that shows the claimed identity exists",
-  32: "know both pieces of evidence are genuine and valid",
-  33: "have another piece of strong evidence that shows the claimed identity exists",
-  34: "have more than one other piece of evidence that shows the claimed identity exists",
-  35: "be very confident that the claimed identity is not known to be fraudulent or at higher than usual risk of being impersonated",
-  36: "know that strong evidence of the claimed identity exists",
-  37: "know each piece of evidence appears to be genuine",
-  38: "be confident that the claimed identity exists in the real world",
-  39: "",
-  40: ""
-}
-
-const descriptions = {
-  1: "the organisation that issued the evidence did basic checks to make sure the claimed identity exists in the real world (so you won't need to do an activity check)",
-  2: "the claimed identity is not at significant risk of being targeted for identity fraud (so you only need a low score for the verification check)",
-  3: "the person going through the identity checking process has been matched to the claimed identity through a physical or biometric comparison (as it's unlikely they're someone else, you won't need to do an identity fraud check)",
-  4: "the evidence you have does not have many security features that stop it from being copied (so you’ll need to collect multiple pieces of evidence)",
-  5: "the organisation that issued the evidence didn’t do many checks that the claimed identity exists in the real world (so you’ll also need to do an activity check)",
-  6: "it's unlikely that someone will pretend to be the claimed identity (so you do not have to do a physical or biometric comparison)",
-  7: "the organisation that issued the evidence did multiple thorough checks to make sure the claimed identity exists in the real world (so you'll only need a low score for the activity check)",
-  8: "the organisation that issued the evidence did multiple checks to make sure the claimed identity exists in the real world (you’ll also need to do an activity check)",
-  9: "the organisation that issued the evidence only did basic checks to make sure the claimed identity exists in the real world (so you’ll also need to do an activity check)",
-  10: "the organisation that issued the evidence checked the claimed identity exists in the real world (you’ll also need to do an activity check)",
-  11: "the claimed identity is not at high risk of being targeted for identity fraud (so you only need a low score for the verification check)",
-  12: "the organisation that issued one of the pieces of evidence did multiple thorough checks to make sure the claimed identity exists in the real world",
-  13: "the organisation that issued the other piece of evidence only did basic checks to make sure that the claimed identity exists in the real world (so you'll need to do an activity check)",
-  14: "the organisation that issued the evidence only did basic checks to make sure the claimed identity exists in the real world (so you’ll need to do an activity check)",
-  15: "the claimed identity is definitely not at high risk of being targeted for identity fraud",
-  16: "the person going through the identity checking process is unlikely to be someone else because they've been matched to the claimed identity through a physical or biometric comparison",
-  17: "the evidence is also almost definitely genuine and valid",
-  18: "it’s possible the claimed identity could be targeted for identity fraud (so you need more than one piece of evidence)",
-  19: "the organisation that issued the evidence did multiple thorough checks to make sure the claimed identity exists in the real world (so you do not need to do an activity check)",
-  20: "the organisation that issued one of the pieces of evidence did multiple checks to make sure the claimed identity exists in the real world",
-  21: "the organisation that issued the other pieces of evidence only checked the claimed identity exists in the real world (so you’ll need to do an activity check)",
-  22: "the claimed identity is definitely not at high risk of being targeted for identity fraud (so you can accept weaker types of evidence)",
-  23: "the organisation that issued the evidence did multiple checks to make sure the claimed identity exists in the real world (so you won't need to do an activity check)",
-  24: ""
-}
-
 // Add your routes here - above the module.exports line
 
 router.post('/set-choose-evidence-variables', function (req, res) {
-  req.session.data['testevidence'] = testevidence
-  req.session.data['explanations'] = explanations
-  req.session.data['benefits'] = benefits
-  req.session.data['descriptions'] = descriptions
-
+  req.session.data['presetEvidence'] = presetEvidence
   res.redirect('your-risk')
 })
 
@@ -163,11 +56,11 @@ router.post('/choose-evidence-group-answer', function (req, res) {
 
   // if other evidence chosen
   if (req.session.data['choose-evidence'].includes('other')) {
-    // add the other evidence to the testevidence array in session
-    req.session.data['testevidence'].push(
+    // add the other evidence to the presetEvidence array in session
+    req.session.data['presetEvidence'].push(
       {'name':req.session.data['other-evidence-name'],'shortname':req.session.data['other-evidence-name'],'strength':"0",'validity':"0",'chosen':"true"}
     );
-    req.session.data['testevidence'] = req.session.data['testevidence']
+    req.session.data['presetEvidence'] = req.session.data['presetEvidence']
     // add evidence name to session
     req.session.data['evidenceName'] = req.session.data['other-evidence-name']
     // redirect to other evidence score page
@@ -176,16 +69,16 @@ router.post('/choose-evidence-group-answer', function (req, res) {
   else{
     // set thisEvidence as the shortname
     var i;
-    for (i = 0; i < req.session.data['testevidence'].length; i++) {
-      if (req.session.data['evidence'].includes(req.session.data['testevidence'][i].name)) {
-        req.session.data['evidenceName'] = req.session.data['testevidence'][i].shortname
+    for (i = 0; i < req.session.data['presetEvidence'].length; i++) {
+      if (req.session.data['evidence'].includes(req.session.data['presetEvidence'][i].name)) {
+        req.session.data['evidenceName'] = req.session.data['presetEvidence'][i].shortname
       }
     }
     // for each preset, set chosen to true if chosen
     var i;
-    for (i = 0; i < testevidence.length; i++) {
-      if (req.session.data['evidence'].includes(req.session.data['testevidence'][i].name)) {
-        req.session.data['testevidence'][i].chosen = true
+    for (i = 0; i < presetEvidence.length; i++) {
+      if (req.session.data['evidence'].includes(req.session.data['presetEvidence'][i].name)) {
+        req.session.data['presetEvidence'][i].chosen = true
       }
     }
     res.redirect('evidence/validity-start')
@@ -197,9 +90,9 @@ router.post('/other-evidence-answer', function (req, res) {
   let answer = req.session.data['other-evidence']
   // add strength score to other evidence
   var i;
-  for (i = 0; i < req.session.data['testevidence'].length; i++) {
-    if (req.session.data['evidenceName'].includes(req.session.data['testevidence'][i].name)) {
-        req.session.data['testevidence'][i].strength = answer
+  for (i = 0; i < req.session.data['presetEvidence'].length; i++) {
+    if (req.session.data['evidenceName'].includes(req.session.data['presetEvidence'][i].name)) {
+        req.session.data['presetEvidence'][i].strength = answer
     }
   }
 
@@ -259,30 +152,30 @@ router.post('/validity-1-answer', function (req, res) {
   let conditionalAnswer = req.session.data['validity-1b']
 
   var i;
-  for (i = 0; i < req.session.data['testevidence'].length; i++) {
-    if (thisEvidence.includes(req.session.data['testevidence'][i].name)) {
+  for (i = 0; i < req.session.data['presetEvidence'].length; i++) {
+    if (thisEvidence.includes(req.session.data['presetEvidence'][i].name)) {
       if (conditionalAnswer) {
         if (conditionalAnswer.includes('1') && conditionalAnswer.includes('2') && answer.includes('3') && answer.includes('4')) {
-          req.session.data['testevidence'][i].validity = 4
+          req.session.data['presetEvidence'][i].validity = 4
         }
         else if ( (conditionalAnswer.includes('1') && conditionalAnswer.includes('2') && answer.includes('4')) || answer.includes('3') ) {
-          req.session.data['testevidence'][i].validity = 3
+          req.session.data['presetEvidence'][i].validity = 3
         }
         else if (conditionalAnswer.includes('1') || conditionalAnswer.includes('2') || answer.includes('4')) {
-          req.session.data['testevidence'][i].validity = 2
+          req.session.data['presetEvidence'][i].validity = 2
         }
         else if (answer.includes('1')) {
-          req.session.data['testevidence'][i].validity = 1
+          req.session.data['presetEvidence'][i].validity = 1
         }
         else {
-          req.session.data['testevidence'][i].validity = 0
+          req.session.data['presetEvidence'][i].validity = 0
         }
       }
       else{
         var i;
-        for (i = 0; i < req.session.data['testevidence'].length; i++) {
-          if (thisEvidence.includes(req.session.data['testevidence'][i].name)) {
-              req.session.data['testevidence'][i].validity = 0
+        for (i = 0; i < req.session.data['presetEvidence'].length; i++) {
+          if (thisEvidence.includes(req.session.data['presetEvidence'][i].name)) {
+              req.session.data['presetEvidence'][i].validity = 0
           }
         }
       }
@@ -772,7 +665,7 @@ router.post('/verification-12b-answer', function (req, res) {
 
 router.post('/overview-answer', function (req, res) {
   let userRiskLevel = req.session.data['user-risk-level'];
-  let evidence = req.session.data['testevidence'];
+  let evidence = req.session.data['presetEvidence'];
   let verificationScore = req.session.data['verificationScore']
   let fraudScore = req.session.data['fraudScore']
   let activityScore = req.session.data['activityScore']
@@ -811,11 +704,11 @@ router.post('/overview-answer', function (req, res) {
 })
 
 router.post('/preset-answer', function (req, res) {
-  req.session.data['testevidence'] = []
+  req.session.data['presetEvidence'] = []
   let answer = req.session.data['preset']
 
   if (answer.includes('1')) {
-    req.session.data['testevidence'].push(
+    req.session.data['presetEvidence'].push(
       {'name':'UK passport','shortname':'UK passport','strength':"4",'validity':"0",'chosen':"true"}
     );
     req.session.data['activityScore'] = "2"
@@ -823,7 +716,7 @@ router.post('/preset-answer', function (req, res) {
     req.session.data['verificationScore'] = "1"
   }
   else if (answer.includes('2')) {
-    req.session.data['testevidence'].push(
+    req.session.data['presetEvidence'].push(
       {'name':'UK passport','shortname':'UK passport','strength':"4",'validity':"2",'chosen':"true"}
     );
     req.session.data['activityScore'] = "0"
@@ -831,7 +724,7 @@ router.post('/preset-answer', function (req, res) {
     req.session.data['verificationScore'] = "1"
   }
   else if (answer.includes('3')) {
-    req.session.data['testevidence'].push(
+    req.session.data['presetEvidence'].push(
       {'name':'UK passport','shortname':'UK passport','strength':"4",'validity':"2",'chosen':"true"},
       {'name':'UK driving licence','shortname':'driving licence','strength':"3",'validity':"3",'chosen':"true"},
       {'name':'armed forces identity card','shortname':'identity card','strength':"2",'validity':"2",'chosen':"true"},
@@ -841,7 +734,7 @@ router.post('/preset-answer', function (req, res) {
     req.session.data['verificationScore'] = "2"
   }
   else if (answer.includes('4')) {
-    req.session.data['testevidence'].push(
+    req.session.data['presetEvidence'].push(
       {'name':'UK passport','shortname':'UK passport','strength':"4",'validity':"4",'chosen':"true"}
     );
     req.session.data['activityScore'] = "0"

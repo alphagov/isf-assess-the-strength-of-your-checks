@@ -32,57 +32,33 @@
 
       {% if data['section-name'] == "evidence" %}
 
-          {% for item in data['testevidence'] %}
+          {% for item in data['presetEvidence'] %}
             {% if item.chosen and item.shortname == data['evidenceName'] %}
               <p>
-                 The {{item.shortname}} has a strength score of {{item.strength}} out of 4.
-              {% for explanation in data['explanations'] %}
-                {% if explanation.element == "strength" and explanation.score == item.strength %}
-                    {{explanation.text}}
-                  </p>
-                {% endif %}
-              {% endfor %}
-              <p>
-                 The way you check the the {{item.shortname}} achieved a validity score of {{item.validity}}.
-              {% for explanation in data['explanations'] %}
-                {% if explanation.element == "validity" and explanation.score == item.validity %}
-                    {{explanation.text}}
-                  </p>
-                {% endif %}
-              {% endfor %}
+                 The {{item.shortname}} has a strength score of {{item.strength}} out of 4 and a validity score of {{item.validity}}.</br>
             {% endif %}
           {% endfor %}
+          <p>You can <a href='/gpg-45#getevidenceoftheclaimedidentitystrength' target='_blank'>review the guidance for scoring strength and validity (opens in tab)</a>.</p>
+
 
 
       {% elif data['section-name'] == "activity" %}
 
         <p>
-          You achieved a score of {{data['activityScore']}} out of 4 for activity checks.
-          {% for item in data['explanations'] %}
-           {% if item.element == "activity" and item.score == data['activityScore'] %}
-             {{item.text}}
-           {% endif %}
-          {% endfor %}
+          The activity checks scored {{data['activityScore']}} out of 4.
         </p>
+        <p>You can <a href='/checktheclaimedidentityhasexistedovertimeactivity' target='_blank'>review the guidance for scoring activity (opens in tab)</a>.</p>
 
       {% elif data['section-name'] == "fraud" %}
         <p>
-          You achieved a score of {{data['fraudScore']}} out of 3 for your fraud checks.
-          {% for item in data['explanations'] %}
-           {% if item.element == "fraud" and item.score == data['fraudScore'] %}
-             {{item.text}}
-           {% endif %}
-          {% endfor %}
+          The identity fraud checks scored {{data['fraudScore']}} out of 3.
         </p>
+        <p>You can <a href='/gpg-45#checkiftheclaimedidentityisathighriskofidentityfraudidentityfraud' target='_blank'>review the guidance for scoring identity fraud (opens in tab)</a>.</p>
       {% elif data['section-name'] == "verification" %}
         <p>
-          You achieved a score of {{data['verificationScore']}} out of 4 for verification checks.
-          {% for item in data['explanations'] %}
-           {% if item.element == "verification" and item.score == data['verificationScore'] %}
-             {{item.text}}
-           {% endif %}
-          {% endfor %}
+          The verification checks scored {{data['verificationScore']}} out of 4.
         </p>
+        <p>You can <a href='/gpg-45#checkthattheidentitybelongstothepersonwhosclaimingitverification' target='_blank'>review the guidance for scoring verification (opens in tab)</a>.</p>
       {% endif %}
       <br>
       <form action="/overview" method="post" novalidate>
