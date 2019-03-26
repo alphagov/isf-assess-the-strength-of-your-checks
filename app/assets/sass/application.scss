@@ -29,6 +29,10 @@ td.govuk-table__cell:first-child{
   width: 33.33%;
 }
 
+.recommendations td.govuk-table__cell:first-child{
+  width: 50%;
+}
+
 td.govuk-table__cell.edit{
   text-align: right;
 }
@@ -48,23 +52,6 @@ td{
 .hint{
   color:  $govuk-secondary-text-colour;
 }
-
-td.multi-question{
-  .multi-question-heading{
-    display: block;
-    margin-top: 15px;
-  }
-  .multi-question-answer{
-    margin-top: 5px;
-  }
-  span:first-child{
-    margin-top: 0px;
-  }
-}
-
-
-
-
 
 .banner{
   color: #005ea5;
@@ -121,4 +108,9 @@ a:visited{
 .govuk-error-summary .cancel{
   display: inline-block;
   margin: 10px 0 0 15px;
+}
+
+.aside .border{
+  border-top: 5px solid #005ea5;
+  margin-bottom: 20px;
 }

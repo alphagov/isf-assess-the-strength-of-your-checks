@@ -189,7 +189,8 @@ router.post('/activity-0-answer', function (req, res) {
 
   let answer = req.session.data['validity-0']
   req.session.data['section-name'] = "activity"
-
+  req.session.data['overview-error'] = false
+  
   if (answer.includes('1')) {
     res.redirect('/activity/activity-1')
   }
@@ -274,6 +275,7 @@ router.post('/activity-4-answer', function (req, res) {
 router.post('/fraud-0-answer', function (req, res) {
   let answer = req.session.data['fraud-0']
   req.session.data['section-name'] = "fraud"
+  req.session.data['overview-error'] = false
 
   if (answer.includes('1')) {
     res.redirect('/fraud/fraud-1')
@@ -332,7 +334,7 @@ router.post('/fraud-3-answer', function (req, res) {
 router.post('/verification-0-answer', function (req, res) {
   let answer = req.session.data['verification-0']
   req.session.data['section-name'] = "verification"
-
+  req.session.data['overview-error'] = false
   if (answer.includes('1')) {
     req.session.data['verificationScore'] = "0"
     res.redirect('/verification/verification-1')

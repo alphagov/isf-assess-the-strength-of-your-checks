@@ -103,54 +103,64 @@
 
       <h2 class="govuk-heading-m govuk-!-margin-bottom-0 visually-hidden">Evidence you collect</h2>
 
-      <table class="govuk-table govuk-!-margin-bottom-7 govuk-!-margin-top-0">
-        <thead class="govuk-table__head">
-          <tr class="govuk-table__row">
-            {% for item in data['presetEvidence'] %}
-              {% if item.chosen %}
-                {% set evidenceExists = "true" %}
-              {% endif %}
-            {% endfor %}
-            <th class="govuk-table__header" scope="col">Evidence you collect</th>
-            {% if evidenceExists == "true" %}
-              <th class="govuk-table__header" scope="col">Strength score</th>
-              <th class="govuk-table__header" scope="col">Validity score</th>
-            {% endif %}
-            <th class="govuk-table__header" scope="col"></th>
-          </tr>
-        </thead>
+      {% for item in data['presetEvidence'] %}
+        {% if item.chosen %}
+          {% set evidenceExists = "true" %}
+        {% endif %}
+      {% endfor %}
 
-        <tbody class="govuk-table__body">
-          {% for item in data['presetEvidence'] %}
-            {% if item.chosen %}
+      {% if evidenceExists == "true" %}
+        {% for item in data['presetEvidence'] %}
+          {% if item.chosen %}
+            <table class="govuk-table govuk-!-margin-bottom-7 govuk-!-margin-top-0">
+              <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                  <th class="govuk-table__header" scope="col">{{item.shortname}}</th>
+                    <th class="govuk-table__header" scope="col">Score</th>
+                  <th class="govuk-table__header" scope="col"></th>
+                </tr>
+              </thead>
+              <tbody class="govuk-table__body">
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell" scope="row">Strength</td>
+                  <td class="govuk-table__cell" scope="row">
+                    {{item.strength}}
+                  </td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell" scope="row">Validity</td>
+                  <td class="govuk-table__cell" scope="row">
+                    {{item.validity}}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <p class="table-link"><a href="?remove=true&removeEvidence={{item.name}}">Remove</a></p>
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+      {% if evidenceExists == "false" %}
+          <table class="govuk-table govuk-!-margin-bottom-7 govuk-!-margin-top-0">
+            <thead class="govuk-table__head">
               <tr class="govuk-table__row">
-                <td class="govuk-table__cell" scope="row">{{item.name}}</td>
-                <td class="govuk-table__cell" scope="row">
-                  {{item.strength}}
-                </td>
-                <td class="govuk-table__cell" scope="row">
-                  {{item.validity}}
-                </td>
-                <td class="govuk-table__cell edit" scope="row"><a href="?remove=true&removeEvidence={{item.name}}">Remove</a></td>
+                <th class="govuk-table__header" scope="col">Evidence you collect</th>
+                  <th class="govuk-table__header" scope="col"></th>
               </tr>
-            {% endif %}
-          {% endfor %}
-
-          {% if evidenceExists == "false" %}
+            </thead>
+            <tbody class="govuk-table__body">
             <tr class="govuk-table__row">
               <td class="govuk-table__cell hint" scope="row">You haven’t added any evidence yet</td>
               <td class="govuk-table__cell" scope="row">
                 <a href="/evidence/choose-evidence">Add evidence</a>
               </td>
-              <td class="govuk-table__cell" scope="row"></td>
             </tr>
-          {% endif %}
-
-        </tbody>
-      </table>
-      {% if evidenceExists == "true" %}
-        <p class="table-link"><a href="/evidence/choose-evidence">Add evidence</a></p>
+          </tbody>
+        </table>
       {% endif %}
+      {% if evidenceExists == "true" %}
+        <p class="govuk-!-margin-top-6"><a href="/evidence/choose-evidence">Add evidence</a></p>
+      {% endif %}
+
       <h2 class="govuk-heading-m govuk-!-margin-bottom-0 visually-hidden">Other checks</h2>
 
       <table class="govuk-table govuk-!-margin-bottom-7 govuk-!-margin-top-0">
