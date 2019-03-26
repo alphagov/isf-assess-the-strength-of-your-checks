@@ -700,8 +700,19 @@ router.post('/overview-answer', function (req, res) {
     req.session.data['overview-error'] = true
     res.redirect('/overview')
   }
+})
+
+router.post('/remove-item', function (req, res) {
+  var i;
+  for (i = 0; i < req.session.data['presetEvidence'].length; i++) {
+    if (req.session.data['removeEvidence'].includes(req.session.data['presetEvidence'][i].name)) {
+      req.session.data['presetEvidence'][i].chosen = false
+    }
+  }
+  res.redirect('/overview?remove=false&removeEvidence=')
 
 })
+
 
 router.post('/preset-answer', function (req, res) {
   req.session.data['presetEvidence'] = []

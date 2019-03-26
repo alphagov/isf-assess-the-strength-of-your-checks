@@ -112,3 +112,13 @@ td.multi-question{
 a:visited{
   color: #005ea5;
 }
+
+.govuk-error-summary .govuk-button{
+  background-color: #b10e1e;
+  margin-bottom: 0;
+}
+
+.govuk-error-summary .cancel{
+  display: inline-block;
+  margin: 10px 0 0 15px;
+}
