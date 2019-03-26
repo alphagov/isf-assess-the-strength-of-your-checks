@@ -57,10 +57,13 @@
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-      <h2 class="govuk-heading-l">How to improve your checks</h2>
-
+      {% if data['confidence-met'] and data['user-risk-level'] != 'dont-know' and data['user-risk-level'] != 'none'  %}
+        <h2 class="govuk-heading-l">{{ data['user-risk-level'] | capitalize }} confidence identity profiles</h2>
+      {% else %}
+        <h2 class="govuk-heading-l">How to improve your checks</h2>
+      {% endif %}
       <p>
-        These are the identity profiles that will give you the level of confidence you need in someone's identity.
+        These are the identity profiles that give you the level of confidence you need in someone’s identity.
       </p>
       <p>
         You need to meet a profile to meet the UK government’s identity standards.

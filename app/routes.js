@@ -777,13 +777,21 @@ router.post('/overview-answer', function (req, res) {
       : "You don't do enough checks to have confidence in someone’s identity."
     req.session.data['profile-results'] = validationResults.allResults
   } else {
+    // get highest possible result
     let highestValidationResults = responseValidator.determineHighestConfidenceAchievable(evidence, verificationScore, fraudScore, activityScore)
+
+    let confidence = highestValidationResults.highestConfidenceAvailable
+      ? highestValidationResults.highestConfidenceAvailable.level
+      : "no"
+
     let validationResults = responseValidator.validateResponse(userRiskLevel, evidence, verificationScore, fraudScore, activityScore)
-    let content = validationResults.validated ? 'You meet the UK government’s identity standards.' : 'You currently have ' + highestValidationResults.highestConfidenceAvailable.level + ' confidence in someone’s identity. You need to do some parts of the identity checking process more thoroughly to get the level of confidence you need.'
+    let content = validationResults.validated ? 'You meet the UK government’s identity standards with a ' + confidence + ' confidence in someone’s identity.' : 'You currently have ' + confidence + ' confidence in someone’s identity. You need to do some parts of the identity checking process more thoroughly to get the level of confidence you need.'
     req.session.data['result-message'] = validationResults.validated ? 'You do enough checks to have ' + userRiskLevel + ' confidence in someone’s identity' : 'You don’t do enough checks to have ' + userRiskLevel + ' confidence in someone’s identity.'
     req.session.data['result-message-content'] = content
     req.session.data['profile-results'] = validationResults.profileResults
     req.session.data['all-profiles'] = highestValidationResults.allResults
+    req.session.data['confidence-met'] = validationResults.validated
+
   }
 
   res.redirect('/recommendations')
