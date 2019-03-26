@@ -29,6 +29,18 @@
 
 {% set evidenceExists = "false" %}
 
+  {% if data['overview-error'] %}
+    {{ govukErrorSummary({
+      titleText: "There is a problem",
+      errorList: [
+        {
+          text: "You need to answer the questions for checks on the identity",
+          href: "#risk-question-1"
+        }
+      ]
+    }) }}
+  {% endif %}
+
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-l">

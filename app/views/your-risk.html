@@ -27,6 +27,21 @@
 
 {% block content %}
 
+  {% from "error-summary/macro.njk" import govukErrorSummary %}
+
+  {% if data['risk-error'] %}
+    {{ govukErrorSummary({
+      titleText: "There is a problem",
+      errorList: [
+        {
+          text: "You must choose a confidence level",
+          href: "#risk-question-1"
+        }
+      ]
+    }) }}
+  {% endif %}
+
+
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-l">How confident do you need to be that someone is who they say they are?</h1>
