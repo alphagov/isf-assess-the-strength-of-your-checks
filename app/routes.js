@@ -366,6 +366,7 @@ router.post('/verification-3a-answer', function (req, res) {
   let verification1Answer = req.session.data['verification-1']
 
   if (answer.includes('1')) {
+    req.session.data['quality'] = "low"
     res.redirect('/verification/verification-3b')
   }
   else if (verification1Answer.includes('1')) {
@@ -384,6 +385,7 @@ router.post('/verification-3b-answer', function (req, res) {
   let verification1Answer = req.session.data['verification-1']
 
   if (answer.includes('1')) {
+    req.session.data['quality'] = "medium"
     res.redirect('/verification/verification-3c')
   }
   else {
@@ -396,6 +398,7 @@ router.post('/verification-3c-answer', function (req, res) {
   let verification1Answer = req.session.data['verification-1']
 
   if (answer.includes('1')) {
+    req.session.data['quality'] = "high"
     res.redirect('/verification/verification-4')
   }
   else {
@@ -404,8 +407,63 @@ router.post('/verification-3c-answer', function (req, res) {
 })
 
 router.post('/verification-4-answer', function (req, res) {
-  let answer = req.session.data['verification-4']
+  let answerChoice = req.session.data['verification-4a']
+  let answerQuantity = req.session.data['verification-4b']
   let verification1Answer = req.session.data['verification-1']
+  let infoType = req.session.data['verification-2']
+  let quality = req.session.data['quality']
+
+  if ( infoType.includes('1') ) {
+    req.session.data['verificationScore'] = "hi"
+    if ( quality.includes('high') ) {
+      req.session.data['verificationScore'] = "hello"
+      if ( answerChoice.includes('2') && answerQuantity.includes('1') ) {
+        req.session.data['verificationScore'] = "woo"
+      }
+    }
+    else if ( quality.includes('medium') ) {
+      if ( answerChoice.includes('1') && answerQuantity.includes('2') ) {
+        req.session.data['verificationScore'] = "1"
+      }
+      else if ( answerChoice.includes('2') && answerQuantity.includes('1') ) {
+        req.session.data['verificationScore'] = "1"
+      }
+    }
+    else if ( quality.includes('low') ) {
+      if ( answerChoice.includes('1') && answerQuantity.includes('4') ) {
+        req.session.data['verificationScore'] = "1"
+      }
+      else if ( answerChoice.includes('2') && answerQuantity.includes('2') ) {
+        req.session.data['verificationScore'] = "1"
+      }
+    }
+  }
+  else {
+    if ( quality.includes('high') ) {
+      if ( answerChoice.includes('2') && answerQuantity.includes('2') ) {
+        req.session.data['verificationScore'] = "2"
+      }
+      else if ( answerChoice.includes('1') && answerQuantity.includes('2') ) {
+        req.session.data['verificationScore'] = "2"
+      }
+    }
+    else if ( quality.includes('medium') ) {
+      if ( answerChoice.includes('2') && answerQuantity.includes('2') ) {
+        req.session.data['verificationScore'] = "2"
+      }
+      else if ( answerChoice.includes('1') && answerQuantity.includes('3') ) {
+        req.session.data['verificationScore'] = "2"
+      }
+    }
+    else if ( quality.includes('low') ) {
+      if ( answerChoice.includes('2') && answerQuantity.includes('4') ) {
+        req.session.data['verificationScore'] = "2"
+      }
+      else if ( answerChoice.includes('1') && answerQuantity.includes('5') ) {
+        req.session.data['verificationScore'] = "2"
+      }
+    }
+  }
 
   if (verification1Answer.includes('1')) {
     res.redirect('/verification/verification-6')
