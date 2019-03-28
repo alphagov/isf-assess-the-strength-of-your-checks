@@ -16,7 +16,7 @@
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-l">Activity checks</span>
       <h1 class="govuk-heading-l">
-        Did the organisation check the person's identity?
+        Did the organisation check the person’s identity?
       </h1>
       <p>
         A person will sometimes need to prove they are who they say they are before they interact with an organisation.
@@ -24,11 +24,11 @@
 
       <form action="/activity-1-answer" method="post" novalidate>
 
-        {% from "radios/macro.njk" import govukRadios %}
+        {% from "checkboxes/macro.njk" import govukCheckboxes %}
 
 
         {% set conditionalAnswer %}
-        {{ govukRadios({
+        {{ govukCheckboxes({
           idPrefix: "activity-1b",
           name: "activity-1b",
           fieldset: {
@@ -58,6 +58,34 @@
           ]
         }) }}
 
+          <details class="govuk-details govuk-!-margin-top-4">
+            <summary class="govuk-details__summary">
+              <span class="govuk-details__summary-text">
+                How you can tell if a source is authoritative
+              </span>
+            </summary>
+            <div class="govuk-details__text">
+
+              <p>
+                To be authoritative for a particular piece of information, the source must make sure:
+              </p>
+
+                <ul class="govuk-list govuk-list--bullet">
+                  <li>the integrity of the information is protected</li>
+                  <li>the information is up to date</li>
+                </ul>
+
+              <p>
+                The source must also do one of the following:
+              </p>
+
+              <ul class="govuk-list govuk-list--bullet">
+                <li>issue evidence</li>
+                <li>get information from an organisation that issues evidence</li>
+                <li>get information from another authoritative source</li>
+              </ul>
+            </div>
+          </details>
         {% endset -%}
 
         {{ govukRadios({

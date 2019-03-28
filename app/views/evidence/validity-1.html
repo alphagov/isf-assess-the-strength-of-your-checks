@@ -26,32 +26,6 @@
 
         {% from "_custom_macros/checkboxes/macro.njk" import govukCheckboxes %}
 
-        {% set checksHTML %}
-          {{ govukCheckboxes({
-            idPrefix: "validity-1b",
-            name: "validity-1b",
-            fieldset: {
-              legend: {
-                text: "How do you check this?",
-                classes: "govuk-fieldset__legend--s"
-              }
-            },
-            hint: {
-              text: ""
-            },
-            items: [
-              {
-                value: "1",
-                text: "Using normal light"
-              },
-              {
-                value: "2",
-                text: "Using ultraviolet or infrared light"
-              }
-            ]
-          }) }}
-        {% endset -%}
-
         {{ govukCheckboxes({
           idPrefix: "validity-1a",
           name: "validity-1a",
@@ -67,22 +41,27 @@
           items: [
             {
               value: "1",
-              text: "Check its physical features look like they're genuine"
+              text: "Check the physical features on the evidence look genuine"
             },
             {
               value: "2",
-              text: "Make sure its security features (such as holograms or watermarks) are genuine",
-              conditional: {
-                html: checksHTML
-              }
+              text: "Make sure the details match those held by an authoritative source"
             },
             {
               value: "3",
-              text: "Make sure its cryptographic security features (such as cryptographic keys on chips) are genuine"
+              text: "Confirm the visible security features (such as holograms or watermarks) are genuine"
             },
             {
               value: "4",
-              text: "Make sure the evidence has not expired, been cancelled or been reported as lost or stolen by checking it with an authoritative source"
+              text: "Confirm the ultraviolet or infrared security features are genuine"
+            },
+            {
+              value: "5",
+              text: "Confirm the cryptographic security features (such as cryptographic keys on chips) are genuine"
+            },
+            {
+              value: "6",
+              text: " Check the evidence has not been cancelled"
             },
             {
               divider: "or"

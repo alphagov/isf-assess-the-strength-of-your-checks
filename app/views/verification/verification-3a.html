@@ -12,58 +12,70 @@
 
 {% block content %}
 
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      <span class="govuk-caption-l">Verification checks</span>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <span class="govuk-caption-l">Verification checks</span>
+    <h1 class="govuk-heading-l">Do you ask people to complete low quality KBV challenges?</h1>
 
-      <form action="/verification-3a-answer" method="post" novalidate>
+    <p>
+      Low quality KBV challenges must be:
+    </p>
 
-        {% from "_custom_macros/checkboxes/macro.njk" import govukCheckboxes %}
-        {% from "radios/macro.njk" import govukRadios %}
+    <ul class="govuk-list govuk-list--bullet">
+      <li>about the claimed identity
+      <li>clear and simple so the person knows exactly what you're asking them </li>
+      <li>about something the claimed identity can reasonably be expected to know</li>
+      <li>from a source that maintains the integrity of the information the question is based on</li>
+      <li>from a source that makes sure the information cannot be misused by the claimed identity (for example the claimed identity should not be able to create false records)</li>
+    </ul>
 
-        {{ govukCheckboxes({
-          idPrefix: "verification-3a",
-          name: "verification-3a",
-          fieldset: {
-            legend: {
-              text: "Tell us about the KBV questions you ask",
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--l"
-            }
+    <p>
+      Low quality KBV challenges must not:
+    </p>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>be able to be answered with information that's available in the public domain (for example in an open dataset or on a website that anyone can access)</li>
+      <li>be able to be answered using information the person has submitted at another point in the identity checking process</li>
+      <li>be predictable (the questions and answers should change each time someone goes through your identity checking process)</li>
+      <li>have answers that can be easily guessed if you're asking multiple choice questions</li>
+      <li>include information that will give the person the answer to another question</li>
+      <li>show personal information (unless the person has already submitted it at another point during the identity checking process)</li>
+    </ul>
+
+    <form action="/verification-3a-answer" method="post" novalidate>
+
+      {% from "checkboxes/macro.njk" import govukCheckboxes %}
+      {% from "radios/macro.njk" import govukRadios %}
+
+      {{ govukRadios({
+        idPrefix: "verification-3a",
+        name: "verification-3a",
+        fieldset: {
+          legend: {
+            text: "",
+            isPageHeading: false
+          }
+        },
+        hint: {
+          text: ""
+        },
+        items: [
+          {
+            value: "1",
+            text: "Yes"
           },
-          hint: {
-            text: "Select all that apply."
-          },
-          items: [
-            {
-              value: "1",
-              text: "They're written in a clear and simple way"
-            },
-            {
-              value: "2",
-              text: "They're about something whoever the person is claiming to be would reasonably be expected to know"
-            },
-            {
-              value: "3",
-              text: "The data the questions are based on comes from a source that makes sure the data has not been altered or shared"
-            },
-            {
-              divider: "or"
-            },
-            {
-              value: "4",
-              text: "None of the above"
-            }
-          ]
-        }) }}
+          {
+            value: "2",
+            text: "No"
+          }
+        ]
+      }) }}
 
-
-
-        {{ govukButton({
-          text: "Continue"
-        }) }}
-      </form>
-    </div>
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+    </form>
   </div>
+</div>
 
 {% endblock %}

@@ -149,35 +149,27 @@ router.post('/validity-0-answer', function (req, res) {
 router.post('/validity-1-answer', function (req, res) {
   let thisEvidence = req.session.data['evidenceName']
   let answer = req.session.data['validity-1a']
-  let conditionalAnswer = req.session.data['validity-1b']
 
   var i;
   for (i = 0; i < req.session.data['presetEvidence'].length; i++) {
     if (thisEvidence.includes(req.session.data['presetEvidence'][i].name)) {
-      if (conditionalAnswer) {
-        if (conditionalAnswer.includes('1') && conditionalAnswer.includes('2') && answer.includes('3') && answer.includes('4')) {
-          req.session.data['presetEvidence'][i].validity = 4
-        }
-        else if ( (conditionalAnswer.includes('1') && conditionalAnswer.includes('2') && answer.includes('4')) || answer.includes('3') ) {
-          req.session.data['presetEvidence'][i].validity = 3
-        }
-        else if (conditionalAnswer.includes('1') || conditionalAnswer.includes('2') || answer.includes('4')) {
-          req.session.data['presetEvidence'][i].validity = 2
-        }
-        else if (answer.includes('1')) {
-          req.session.data['presetEvidence'][i].validity = 1
-        }
-        else {
-          req.session.data['presetEvidence'][i].validity = 0
-        }
+      if (answer.includes('3') && answer.includes('4') && answer.includes('5') && answer.includes('6')) {
+        req.session.data['presetEvidence'][i].validity = 4
       }
-      else{
-        var i;
-        for (i = 0; i < req.session.data['presetEvidence'].length; i++) {
-          if (thisEvidence.includes(req.session.data['presetEvidence'][i].name)) {
-              req.session.data['presetEvidence'][i].validity = 0
-          }
-        }
+      else if (answer.includes('2') && answer.includes('3') && answer.includes('4')) {
+        req.session.data['presetEvidence'][i].validity = 3
+      }
+      else if ( answer.includes('5') ) {
+        req.session.data['presetEvidence'][i].validity = 3
+      }
+      else if (answer.includes('2') || answer.includes('3') || answer.includes('4')) {
+        req.session.data['presetEvidence'][i].validity = 2
+      }
+      else if (answer.includes('1')) {
+        req.session.data['presetEvidence'][i].validity = 1
+      }
+      else {
+        req.session.data['presetEvidence'][i].validity = 0
       }
     }
   }
@@ -190,7 +182,7 @@ router.post('/activity-0-answer', function (req, res) {
   let answer = req.session.data['validity-0']
   req.session.data['section-name'] = "activity"
   req.session.data['overview-error'] = false
-  
+
   if (answer.includes('1')) {
     res.redirect('/activity/activity-1')
   }
@@ -230,7 +222,7 @@ router.post('/activity-3-answer', function (req, res) {
   let answer = req.session.data['activity-3']
   let activity1Answer = req.session.data['activity-1b']
 
-  if (answer.includes('3') && activity1Answer.includes('4')) {
+  if (answer.includes('3') && activity1Answer.includes('3') && activity1Answer.includes('4')) {
     req.session.data['activityScore'] = "4"
   }
   else if (answer.includes('3') && activity1Answer.includes('3')) {
@@ -255,7 +247,10 @@ router.post('/activity-4-answer', function (req, res) {
   let answer = req.session.data['activity-4']
   let activity1Answer = req.session.data['activity-1b']
 
-  if (answer.includes('3') && activity1Answer.includes('3') ) {
+  if (answer.includes('4') && activity1Answer.includes('3') && activity1Answer.includes('4') ) {
+    req.session.data['activityScore'] = "4"
+  }
+  else if (answer.includes('3') && activity1Answer.includes('3') ) {
     req.session.data['activityScore'] = "3"
   }
   else if (answer.includes('2') && activity1Answer.includes('2')) {
@@ -370,7 +365,7 @@ router.post('/verification-3a-answer', function (req, res) {
   let answer = req.session.data['verification-3a']
   let verification1Answer = req.session.data['verification-1']
 
-  if (answer.includes('1') && answer.includes('2') && answer.includes('3')) {
+  if (answer.includes('1')) {
     res.redirect('/verification/verification-3b')
   }
   else if (verification1Answer.includes('1')) {
@@ -389,10 +384,30 @@ router.post('/verification-3b-answer', function (req, res) {
   let verification1Answer = req.session.data['verification-1']
 
   if (answer.includes('1')) {
-    req.session.data['verificationLevel'] = "low"
     res.redirect('/verification/verification-3c')
   }
-  else if (verification1Answer.includes('1')) {
+  else {
+    res.redirect('/verification/verification-4')
+  }
+})
+
+router.post('/verification-3c-answer', function (req, res) {
+  let answer = req.session.data['verification-3c']
+  let verification1Answer = req.session.data['verification-1']
+
+  if (answer.includes('1')) {
+    res.redirect('/verification/verification-4')
+  }
+  else {
+    res.redirect('/verification/verification-4')
+  }
+})
+
+router.post('/verification-4-answer', function (req, res) {
+  let answer = req.session.data['verification-4']
+  let verification1Answer = req.session.data['verification-1']
+
+  if (verification1Answer.includes('1')) {
     res.redirect('/verification/verification-6')
   }
   else if (verification1Answer.includes('2')) {
@@ -401,65 +416,6 @@ router.post('/verification-3b-answer', function (req, res) {
   else {
     res.redirect('/section-result')
   }
-})
-
-router.post('/verification-3c-answer', function (req, res) {
-  let answer = req.session.data['verification-3ca']
-  let conditionalAnswer = req.session.data['verification-3cb']
-
-  if (answer.includes('1') && conditionalAnswer.includes('1')) {
-    res.redirect('/verification/verification-3d')
-  }
-  else if (answer.includes('1') && conditionalAnswer.includes('2')) {
-    req.session.data['verificationLevel'] = "low"
-    res.redirect('/verification/verification-3d')
-  }
-  else if (answer.includes('2')) {
-    res.redirect('/verification/verification-3d')
-  }
-})
-
-router.post('/verification-3d-answer', function (req, res) {
-  let answer = req.session.data['verification-3d']
-  let verification1Answer = req.session.data['verification-1']
-  let verification4caAnswer = req.session.data['verification-3ca']
-
-  if (answer.includes('1') && answer.includes('2') && answer.includes('3') && answer.includes('4') && answer.includes('5') && answer.includes('6')) {
-    req.session.data['verificationLevel'] = "high"
-  }
-  else if (answer.includes('1') && verification4caAnswer.includes('1')) {
-    req.session.data['verificationLevel'] = "medium"
-  }
-  else if (answer.includes('7')) {
-    req.session.data['verificationLevel'] = "low"
-
-    if (verification1Answer.includes('1')) {
-      res.redirect('/verification/verification-6')
-    }
-    else if (verification1Answer.includes('2')) {
-      res.redirect('/verification/verification-11a')
-    }
-    else {
-      req.session.data['verificationLevel'] = "low"
-      res.redirect('/section-result')
-    }
-  }
-  res.redirect('/verification/verification-4')
-})
-
-
-router.post('/verification-4-answer', function (req, res) {
-  let answer = req.session.data['verification-4a']
-  let conditionalAnswer = req.session.data['verification-4b']
-  let quality = req.session.data['verificationLevel']
-
-  if ( (conditionalAnswer.includes('1') && quality == "low" ) || (conditionalAnswer.includes('7') && quality == "low") || (conditionalAnswer.includes('2') && quality == "medium") || (conditionalAnswer.includes('6') && quality == "medium") || (conditionalAnswer.includes('1') && quality == "high") || (conditionalAnswer.includes('6') && quality == "high")  ) {
-    req.session.data['verificationScore'] = "1"
-  }
-  else if ((conditionalAnswer.includes('5') && quality == "low") || (conditionalAnswer.includes('9') && quality == "low") || (conditionalAnswer.includes('3') && quality == "medium") || (conditionalAnswer.includes('7') && quality == "medium") || (conditionalAnswer.includes('2') && quality == "high") || (conditionalAnswer.includes('7') && quality == "high")  ) {
-    req.session.data['verificationScore'] = "2"
-  }
-  res.redirect('/verification/verification-6')
 })
 
 router.post('/verification-5-answer', function (req, res) {

@@ -12,62 +12,54 @@
 
 {% block content %}
 
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      <span class="govuk-caption-l">Verification checks</span>
-      <h1 class="govuk-heading-l">Do you make sure the KBV questions can only be answered by the person whose identity you're checking?</h1>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <span class="govuk-caption-l">Verification checks</span>
+    <h1 class="govuk-heading-l">Do you ask people to complete medium quality KBV challenges?</h1>
 
-      <p>
-        They must not:
-        <ul class="govuk-list govuk-list--bullet">
-          <li>be able to be answered by someone who has stolen the person’s wallet, purse or phone</li>
-          <li>be able to be answered with information that’s available in the public domain (for example in an open dataset or on a website that anyone can access)</li>
-          <li>be able to be answered using information the person has submitted at another point in the identity checking process</li>
-          <li>be based on information from a source that can be influenced by the person</li>
-          <li>be predictable (the questions and answers should change each time someone goes through your identity checking process)</li>
-          <li>have answers that can be easily guessed if you’re asking multiple choice questions</li>
-          <li>include information that will give the person the answer to another question</li>
-          <li>show personal information, unless the person has already submitted that at another point in the identity checking process</li>
-        </ul>
-      </p>
+    <p>
+      Medium quality KBV challenges must also:
+    </p>
 
+    <ul class="govuk-list govuk-list--bullet">
+      <li>come from a source that did its own identity checks on the claimed identity</li>
+      <li>share codes, like a one-time password sent to the claimed identity’s phone, in a way that means you can be sure they were given to the claimed identity (if you use them)</li>
+    </ul>
 
-      <form action="/verification-3b-answer" method="post" novalidate>
+    <form action="/verification-3b-answer" method="post" novalidate>
 
-        {% from "checkboxes/macro.njk" import govukCheckboxes %}
-        {% from "radios/macro.njk" import govukRadios %}
+      {% from "checkboxes/macro.njk" import govukCheckboxes %}
+      {% from "radios/macro.njk" import govukRadios %}
 
-        {{ govukRadios({
-          idPrefix: "verification-3b",
-          name: "verification-3b",
-          fieldset: {
-            legend: {
-              text: "",
-              isPageHeading: false
-            }
+      {{ govukRadios({
+        idPrefix: "verification-3b",
+        name: "verification-3b",
+        fieldset: {
+          legend: {
+            text: "",
+            isPageHeading: false
+          }
+        },
+        hint: {
+          text: ""
+        },
+        items: [
+          {
+            value: "1",
+            text: "Yes"
           },
-          hint: {
-            text: ""
-          },
-          items: [
-            {
-              value: "1",
-              text: "Yes"
-            },
-            {
-              value: "2",
-              text: "No"
-            }
-          ]
-        }) }}
+          {
+            value: "2",
+            text: "No"
+          }
+        ]
+      }) }}
 
-
-
-        {{ govukButton({
-          text: "Continue"
-        }) }}
-      </form>
-    </div>
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+    </form>
   </div>
+</div>
 
 {% endblock %}

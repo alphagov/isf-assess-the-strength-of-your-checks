@@ -12,78 +12,58 @@
 
 {% block content %}
 
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      <span class="govuk-caption-l">Verification checks</span>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <span class="govuk-caption-l">Verification checks</span>
+    <h1 class="govuk-heading-l">Do you ask people to complete high quality KBV challenges?</h1>
 
-      <form action="/verification-3c-answer" method="post" novalidate>
+    <p>
+      High quality KBV challenges must also:
+    </p>
 
-        {% from "checkboxes/macro.njk" import govukCheckboxes %}
-        {% from "radios/macro.njk" import govukRadios %}
-
-        {% set checksHTML %}
-
-          {{ govukRadios({
-            idPrefix: "verification-3cb",
-            name: "verification-3cb",
-            fieldset: {
-              legend: {
-                text: "Do you check it was sent to the same person whose identity you're checking?",
-                classes: "govuk-fieldset__legend--s"
-              }
-            },
-            hint: {
-              text: ""
-            },
-            items: [
-              {
-                value: "1",
-                text: "Yes"
-              },
-              {
-                value: "2",
-                text: "No"
-              }
-            ]
-          }) }}
-        {% endset -%}
+    <ul class="govuk-list govuk-list--bullet">
+      <li>come from a source that checked the claimed identity was who they said they were in a way that follows the Money Laundering Regulations 2017</li>
+      <li>come from a source that makes sure the information cannot be accessed, modified or created by its employees</li>
+      <li>come from a source that's separate from your organisation</li>
+      <li>come from a source that's regulated by a statutory or independent body</li>
+      <li>be based on information that cannot be known or accessed by anyone apart from the claimed identity and their immediate family without breaking the law (for example information that could be found on the dark web should not be used)</li>
+    </ul>
 
 
-        {{ govukRadios({
-          idPrefix: "verification-3ca",
-          name: "verification-3ca",
-          fieldset: {
-            legend: {
-              text: "Do you need to send the person a code by email or text?",
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--l"
-            }
+    <form action="/verification-3c-answer" method="post" novalidate>
+
+      {% from "checkboxes/macro.njk" import govukCheckboxes %}
+      {% from "radios/macro.njk" import govukRadios %}
+
+      {{ govukRadios({
+        idPrefix: "verification-3c",
+        name: "verification-3c",
+        fieldset: {
+          legend: {
+            text: "",
+            isPageHeading: false
+          }
+        },
+        hint: {
+          text: ""
+        },
+        items: [
+          {
+            value: "1",
+            text: "Yes"
           },
-          hint: {
-            text: ""
-          },
-          items: [
-            {
-              value: "1",
-              text: "Yes",
-              conditional: {
-                html: checksHTML
-              }
-            },
-            {
-              value: "2",
-              text: "No"
-            }
-          ]
-        }) }}
+          {
+            value: "2",
+            text: "No"
+          }
+        ]
+      }) }}
 
-
-
-        {{ govukButton({
-          text: "Continue"
-        }) }}
-      </form>
-    </div>
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+    </form>
   </div>
+</div>
 
 {% endblock %}
