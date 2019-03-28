@@ -414,9 +414,7 @@ router.post('/verification-4-answer', function (req, res) {
   let quality = req.session.data['quality']
 
   if ( infoType.includes('1') ) {
-    req.session.data['verificationScore'] = "hi"
     if ( quality.includes('high') ) {
-      req.session.data['verificationScore'] = "hello"
       if ( answerChoice.includes('2') && answerQuantity.includes('1') ) {
         req.session.data['verificationScore'] = "woo"
       }
@@ -510,7 +508,7 @@ router.post('/verification-7a-answer', function (req, res) {
   let verification1Answer = req.session.data['verification-1']
   let score = req.session.data['verificationScore']
 
-  if (answer.includes('1') && answer.includes('2') && answer.includes('3')) {
+  if (answer.includes('1') && answer.includes('2') && answer.includes('3') && answer.includes('4')) {
     res.redirect('/verification/verification-7b')
   }
   else {
@@ -532,7 +530,7 @@ router.post('/verification-7a-answer', function (req, res) {
 router.post('/verification-7b-answer', function (req, res) {
   let answer = req.session.data['verification-7b']
 
-  if (answer.includes('1') && answer.includes('2') && answer.includes('3') && answer.includes('4') && answer.includes('5') && answer.includes('6') && answer.includes('7') && answer.includes('8')) {
+  if (answer.includes('1') ) {
     req.session.data['verificationScore'] = "2"
     res.redirect('/verification/verification-8')
   }

@@ -15,61 +15,52 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-l">Verification checks</span>
+      <h1 class="govuk-heading-l">Can you properly see the person in the image or video?</h1>
+
+      <p>
+        The image or video should be:
+      </p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>at least 3 megapixels in resolution</li>
+        <li>clear and in focus</li>
+        <li>in colour</li>
+      </ul>
+
+      <p>
+        In the image or video, the person must:
+      </p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>be in clear contrast to the background
+        <li>not have ‘red eye’</li>
+        <li>not wear a head covering (unless it’s for religious or medical reasons)</li>
+        <li>not have their eyes closed</li>
+        <li>not have anything covering their face or eyes (such as shadows or their hair)</li>
+      </ul>
+
 
       <form action="/verification-7b-answer" method="post" novalidate>
 
-        {% from "checkboxes/macro.njk" import govukCheckboxes %}
         {% from "radios/macro.njk" import govukRadios %}
 
-        {{ govukCheckboxes({
+        {{ govukRadios({
           idPrefix: "verification-7b",
           name: "verification-7b",
           fieldset: {
             legend: {
-              text: "Tell us about the image of the person you have",
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--l"
+              text: "",
+              isPageHeading: false
             }
-          },
-          hint: {
-            text: "Select all that apply."
           },
           items: [
             {
               value: "1",
-              text: "It's at least 3 megapixels in resolution"
+              text: "Yes"
             },
             {
               value: "2",
-              text: "It's clear and in focus"
-            },
-            {
-              value: "3",
-              text: "It's in colour"
-            },
-            {
-              value: "4",
-              text: "The person is in clear contrast to the background"
-            },
-            {
-              value: "5",
-              text: "The person does not have 'red eye'"
-            },
-            {
-              value: "6",
-              text: "The person is not wearing a head covering (unless it's for religious or medical reasons)"
-            },
-            {
-              value: "7",
-              text: "The person's eyes are open"
-            },
-            {
-              value: "8",
-              text: "The person does not have anything covering their face or eyes (such as shadows or their hair)"
-            },
-            {
-              value: "9",
-              text: "None of the above"
+              text: "No"
             }
           ]
         }) }}
