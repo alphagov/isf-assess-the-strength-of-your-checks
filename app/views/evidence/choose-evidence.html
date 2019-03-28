@@ -10,10 +10,10 @@
 {{ govukBreadcrumbs({
 items: [
   {
-    text: "Identity standard",
+    text: "Checking identity",
     href: "/index"
   },{
-    text: "Assess how your identity service meets the standard",
+    text: "Assess an identity check",
     href: "/before-you-start"
   },{
     text: "Your scores",
@@ -27,6 +27,7 @@ items: [
 {% endblock %}
 
 {% block content %}
+{% set evidenceExists = "false" %}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
