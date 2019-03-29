@@ -15,13 +15,13 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-l">Verification checks</span>
-      <h1 class="govuk-heading-l">How do you protect your process against 'spoofing' attacks?</h1>
+      <h1 class="govuk-heading-l">How do you protect your process against ‘spoofing’ attacks?</h1>
 
       <p>
-        A 'spoofing' attack is when someone uses false biometric information to pretend to be someone else. They can do this by using things like masks or recordings to sound or look like someone else.
+        A ‘spoofing’ attack is when someone uses false biometric information to pretend to be someone else. They can do this by using things like masks to look like someone else or recordings to sound like someone else.
       </p>
 
-      <form action="/verification-11b-answer" method="post" novalidate>
+      <form action="/verification-biometric-3-answer" method="post" novalidate>
 
         {% from "checkboxes/macro.njk" import govukCheckboxes %}
         {% from "radios/macro.njk" import govukRadios %}
@@ -29,8 +29,8 @@
         {% from "checkboxes/macro.njk" import govukCheckboxes %}
 
         {{ govukCheckboxes({
-          idPrefix: "verification-11b",
-          name: "verification-11b",
+          idPrefix: "verification-biometric-3",
+          name: "verification-biometric-3",
           fieldset: {
             legend: {
               text: "",
@@ -43,15 +43,15 @@
           items: [
             {
               value: "1",
-              text: "You check if someone's using an artefact to pretend to be someone else (for example if they hold up a photo when you check a facial biometric)"
+              text: "The system checks if someone's using an artefact to pretend to be someone else (for example holding up a photo) "
             },
             {
               value: "2",
-              text: "You check if the artefact took time, money and effort to create (for example if the person uses a 3D printed mask of someone's likeness when you check a facial biometric)"
+              text: "The system checks if the artefact took time, money and effort to create (for example if the person uses a 3D printed mask of someone's likeness)"
             },
             {
               value: "3",
-              text: "You check if the artefact is sophisticated and involved criminal activity to create (for example if the person shows a 3D animated avatar on a computer or device when you check a facial biometric)"
+              text: "The system checks if the artefact is sophisticated and needed criminal activity to create (for example if the person shows a 3D animated avatar on a computer or device when you check a facial biometric)"
             }
           ]
         }) }}

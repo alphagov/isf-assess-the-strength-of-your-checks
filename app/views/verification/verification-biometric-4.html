@@ -15,20 +15,23 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-l">Verification checks</span>
-      <h1 class="govuk-heading-l">What's the 'false match rate' and 'false non-match rate' for your process?</h1>
+      <h1 class="govuk-heading-l">How are ‘false matches’ and ‘false non-matches’ handled in your system?</h1>
 
       <p>
-        The 'false match rate' explains how secure your process is. The 'false non-match rate' is about how easy it is for people to successfully use your process.
+        A ‘false match rate’ happens when a person's biometric information appears to be the same as biometric information that belongs to someone else.
+      </p>
+      <p>
+        A ‘false non-match’ happens when someone’s biometric information does not match biometric information that your system has previously collected.
       </p>
 
-      <form action="/verification-11c-answer" method="post" novalidate>
+      <form action="/verification-biometric-4-answer" method="post" novalidate>
 
         {% from "_custom_macros/checkboxes/macro.njk" import govukCheckboxes %}
         {% from "radios/macro.njk" import govukRadios %}
 
         {{ govukCheckboxes({
-          idPrefix: "verification-11c",
-          name: "verification-11c",
+          idPrefix: "verification-biometric-4",
+          name: "verification-biometric-4",
           fieldset: {
             legend: {
               text: "",
@@ -41,22 +44,18 @@
           items: [
             {
               value: "1",
-              text: "The false match rate and false non-match rate are appropriate for your service"
+              text: "The number of false matches and non-matches in your system are appropriate for your security and usability needs"
             },
             {
               value: "2",
-              text: "The false match rate is lower than the false non-match rate"
-            },
-            {
-              value: "3",
-              text: "The false match rate is significantly lower than its false non-match rate"
+              text: "The way your system handles false matches and non-matches was built following industry best practice (like ISO/IEC TR 29156:2015) "
             },
             {
               divider: "or"
             },
             {
-              value: "4",
-              text: "Your service does not have a false match rate"
+              value: "3",
+              text: "Your service does not handle false matches or non-matches"
             }
           ]
         }) }}

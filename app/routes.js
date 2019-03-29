@@ -351,7 +351,7 @@ router.post('/verification-1-answer', function (req, res) {
     res.redirect('/verification/verification-physical-1')
   }
   else if (answer.includes('2')) {
-    res.redirect('/verification/verification-11a')
+    res.redirect('/verification/verification-biometric-1')
   }
   else {
     res.redirect('/section-result')
@@ -374,7 +374,7 @@ router.post('/verification-3a-answer', function (req, res) {
     res.redirect('/verification/verification-physical-1')
   }
   else if (verification1Answer.includes('2')) {
-    res.redirect('/verification/verification-11a')
+    res.redirect('/verification/verification-biometric-1')
   }
   else {
     res.redirect('/section-result')
@@ -468,7 +468,7 @@ router.post('/verification-4-answer', function (req, res) {
     res.redirect('/verification/verification-physical-1')
   }
   else if (verification1Answer.includes('2')) {
-    res.redirect('/verification/verification-11a')
+    res.redirect('/verification/verification-biometric-1')
   }
   else {
     res.redirect('/section-result')
@@ -502,7 +502,7 @@ router.post('/verification-physical-2a-answer', function (req, res) {
       req.session.data['verificationScore'] = "0"
     }
     if (verification1Answer.includes('2')) {
-      res.redirect('/verification/verification-11a')
+      res.redirect('/verification/verification-biometric-1')
     }
     else{
       res.redirect('/section-result')
@@ -525,7 +525,7 @@ router.post('/verification-physical-2b-answer', function (req, res) {
       req.session.data['verificationScore'] = "0"
     }
     if (verification1Answer.includes('2')) {
-      res.redirect('/verification/verification-11a')
+      res.redirect('/verification/verification-biometric-1')
     }
     else{
       res.redirect('/section-result')
@@ -537,21 +537,22 @@ router.post('/verification-physical-2c-answer', function (req, res) {
   let answer = req.session.data['verification-physical-2c']
   let verificationPhysical2bAnswer = req.session.data['verification-physical-2b']
   let verification1Answer = req.session.data['verification-1']
+  let score = req.session.data['verificationScore']
 
-  if (verificationPhysical2bAnswer.includes('1') && answer.includes('1') && answer.includes('2') && answer.includes('3') && answer.includes('4') && answer.includes('5') && answer.includes('6')) {
+  if (score < "3" && verificationPhysical2bAnswer.includes('1') && answer.includes('1') && answer.includes('2') && answer.includes('3') && answer.includes('4') && answer.includes('5') && answer.includes('6')) {
     req.session.data['verificationScore'] = "3"
     res.redirect('/verification/verification-physical-3a')
   }
-  else if (verificationPhysical2bAnswer.includes('2') && answer.includes('1') && answer.includes('2') && answer.includes('3') && answer.includes('4')) {
+  else if (score < "2" && verificationPhysical2bAnswer.includes('2') && answer.includes('1') && answer.includes('2') && answer.includes('3') && answer.includes('4')) {
     req.session.data['verificationScore'] = "2"
     res.redirect('/verification/verification-physical-3a')
   }
-  else if (answer.includes('7')) {
+  else if (score < "1" && answer.includes('7')) {
     req.session.data['verificationScore'] = "1"
     res.redirect('/verification/verification-physical-3a')
   }
   else if (verification1Answer.includes('2')) {
-    res.redirect('/verification/verification-11a')
+    res.redirect('/verification/verification-biometric-1')
   }
   else{
     res.redirect('/section-result')
@@ -573,7 +574,7 @@ router.post('/verification-physical-3a-answer', function (req, res) {
       req.session.data['verificationScore'] = "0"
     }
     if (verification1Answer.includes('2')) {
-      res.redirect('/verification/verification-11a')
+      res.redirect('/verification/verification-biometric-1')
     }
     else{
       res.redirect('/section-result')
@@ -591,10 +592,10 @@ router.post('/verification-physical-3c-answer', function (req, res) {
   let verification1Answer = req.session.data['verification-1']
   let score = req.session.data['verificationScore']
 
-  if (verificationPhysical3bAnswer.includes('1') && verificationPhysical3bAnswer.includes('2') && verificationPhysical3bAnswer.includes('3') && verificationPhysical3bAnswer.includes('4') && verificationPhysical3bAnswer.includes('5') && verificationPhysical3bAnswer.includes('6') && answer.includes('1')){
+  if (score < "3" && verificationPhysical3bAnswer.includes('1') && verificationPhysical3bAnswer.includes('2') && verificationPhysical3bAnswer.includes('3') && verificationPhysical3bAnswer.includes('4') && verificationPhysical3bAnswer.includes('5') && verificationPhysical3bAnswer.includes('6') && answer.includes('1')){
     req.session.data['verificationScore'] = "3"
   }
-  else if (verificationPhysical3bAnswer.includes('1') && verificationPhysical3bAnswer.includes('2') && verificationPhysical3bAnswer.includes('3') && verificationPhysical3bAnswer.includes('4') && answer.includes('1')){
+  else if (score < "2" && verificationPhysical3bAnswer.includes('1') && verificationPhysical3bAnswer.includes('2') && verificationPhysical3bAnswer.includes('3') && verificationPhysical3bAnswer.includes('4') && answer.includes('1')){
     req.session.data['verificationScore'] = "2"
   }
   else {
@@ -604,80 +605,50 @@ router.post('/verification-physical-3c-answer', function (req, res) {
       req.session.data['verificationScore'] = "0"
     }
     if (verification1Answer.includes('2')) {
-      res.redirect('/verification/verification-11a')
+      res.redirect('/verification/verification-biometric-1')
     }
     else{
       res.redirect('/section-result')
     }
   }
   res.redirect('/section-result')
+})
 
+router.post('/verification-biometric-1-answer', function (req, res) {
+  res.redirect('/verification/verification-biometric-2')
+})
+router.post('/verification-biometric-2-answer', function (req, res) {
+  res.redirect('/verification/verification-biometric-3')
+})
+router.post('/verification-biometric-3-answer', function (req, res) {
+  res.redirect('/verification/verification-biometric-4')
+})
+router.post('/verification-biometric-4-answer', function (req, res) {
+  res.redirect('/verification/verification-biometric-5')
 })
 
 
+router.post('/verification-biometric-5-answer', function (req, res) {
+  let biometric1 = req.session.data['verification-biometric-1']
+  let biometric2 = req.session.data['verification-biometric-2']
+  let biometric3 = req.session.data['verification-biometric-3']
+  let biometric4 = req.session.data['verification-biometric-4']
+  let biometric5 = req.session.data['verification-biometric-5']
+  let score = req.session.data['verificationScore']
 
-
-router.post('/verification-11a-answer', function (req, res) {
-  res.redirect('/verification/verification-11b')
-})
-
-router.post('/verification-11b-answer', function (req, res) {
-  let answer = req.session.data['verification-11b']
-  res.redirect('/verification/verification-11c')
-})
-
-router.post('/verification-11c-answer', function (req, res) {
-  let answer = req.session.data['verification-11c']
-  let verification11aAnswer = req.session.data['verification-11aa']
-  let verification11aConditionalAnswer = req.session.data['verification-11ab']
-  let verification11bAnswer = req.session.data['verification-11b']
-
-  if (verification11aAnswer.includes('1') && verification11aAnswer.includes('3') && verification11aConditionalAnswer.includes('1') && verification11bAnswer.includes('1') && answer.includes('1') ) {
+  if (biometric1.includes('1') && biometric1.includes('2') && biometric1.includes('3') && biometric1.includes('4') && biometric1.includes('5') && biometric1.includes('6') && biometric3.includes('3') && biometric4.includes('1') && biometric4.includes('2') && biometric5.includes('1') ) {
+    req.session.data['verificationScore'] = "4"
+  }
+  else if (score <= "3" && biometric1.includes('1') && biometric1.includes('2') && biometric1.includes('3') && biometric1.includes('4') && biometric1.includes('5') && biometric1.includes('6') && biometric2.includes('2') && biometric3.includes('2') && biometric4.includes('1') ) {
+    req.session.data['verificationScore'] = "3"
+  }
+  else if (score <= "2" && biometric1.includes('1') && biometric1.includes('2') && biometric1.includes('3') && biometric1.includes('4') && biometric2.includes('1') && biometric3.includes('1') ) {
     req.session.data['verificationScore'] = "2"
-    res.redirect('/verification/verification-12a')
   }
-  else if (verification11aAnswer.includes('4') && verification11aAnswer.includes('5') && verification11aConditionalAnswer.includes('2') && verification11bAnswer.includes('2') && answer.includes('2') ) {
-    req.session.data['verificationScore'] = "3"
-    res.redirect('/verification/verification-12a')
+  else if (score <= "1" && biometric5.includes('1')){
+    req.session.data['verificationScore'] = "1"
   }
-  else if (answer.includes('3')) {
-    res.redirect('/verification/verification-12a')
-  }
-  else {
-    res.redirect('/section-result')
-  }
-})
 
-
-router.post('/verification-12a-answer', function (req, res) {
-  let answer = req.session.data['verification-12a']
-  let verification11bAnswer = req.session.data['verification-11b']
-  let verification11cAnswer = req.session.data['verification-11c']
-
-  if (answer.includes('1') && verification11bAnswer.includes('1') && verification11bAnswer.includes('2') && verification11cAnswer.includes('3')) {
-    req.session.data['verificationScore'] = "4"
-    res.redirect('/section-result')
-  }
-  else if (answer.includes('2')) {
-    res.redirect('/verification/verification-12b')
-  }
-})
-
-
-router.post('/verification-12b-answer', function (req, res) {
-  let answer = req.session.data['verification-12b']
-  let verification11aConditionalAnswer = req.session.data['verification-11ab']
-  let verification11cAnswer = req.session.data['verification-11c']
-  let verification12aAnswer = req.session.data['verification-12a']
-  let verification12bAnswer = req.session.data['verification-12b']
-
-  if (
-    answer.includes('1') && answer.includes('2') && validity12bAnswer.includes('1') && validity12bAnswer.includes('2') && validity11cAnswer.includes('3') && validity12aAnswer.includes('1')) {
-    req.session.data['verificationScore'] = "4"
-  }
-  else {
-    req.session.data['verificationScore'] = "3"
-  }
   res.redirect('/section-result')
 })
 

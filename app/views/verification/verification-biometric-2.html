@@ -1,0 +1,72 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Overview
+{% endblock %}
+
+{% block beforeContent %}
+
+  <a href="javascript:history.back()" class="govuk-back-link">Back</a>
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">Verification checks</span>
+      <h1 class="govuk-heading-l">How do you check the biometric information?</h1>
+
+      <p>
+        Your system can do a ‘liveness’ check to confirm that the person is real. A ‘basic’ liveness check could be something like using a heart rate sensor to check the person is alive when it takes their fingerprint.
+      </p>
+      <p>
+        Your service will do an ‘enhanced’ liveness check if it uses multiple process or measures to confirm the person is real. This could be something like asking the person to take a short video of themselves, during which they repeat a random sequence of words back to you.
+      </p>
+
+      <form action="/verification-biometric-2-answer" method="post" novalidate>
+
+        {% from "radios/macro.njk" import govukRadios %}
+
+        {{ govukRadios({
+          idPrefix: "verification-biometric-2",
+          name: "verification-biometric-2",
+          fieldset: {
+            legend: {
+              text: "",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            text: "Select all that apply."
+          },
+          items: [
+          {
+            value: "1",
+            text: "Your system does a basic liveness test"
+          },
+          {
+            value: "2",
+            text: "Your system does an enhanced liveness test"
+          },
+          {
+            divider: "or"
+          },
+          {
+            value: "3",
+            text: "Your system does not do any liveness checks"
+          }
+        ]
+      }) }}
+
+
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

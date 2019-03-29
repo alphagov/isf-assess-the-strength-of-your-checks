@@ -1,0 +1,73 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Overview
+{% endblock %}
+
+{% block beforeContent %}
+
+  <a href="javascript:history.back()" class="govuk-back-link">Back</a>
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">Verification checks</span>
+
+      <form action="/verification-biometric-1-answer" method="post" novalidate>
+
+        {% from "checkboxes/macro.njk" import govukCheckboxes %}
+
+        {{ govukCheckboxes({
+          idPrefix: "verification-biometric-1",
+          name: "verification-biometric-1",
+          fieldset: {
+            legend: {
+              text: "How do you check the biometric information?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            text: "Select all that apply."
+          },
+          items: [
+          {
+            value: "1",
+            text: "It matches the person to biometric information that's known to belong to whoever they're claiming to be (known as 'one-to-one verification')"
+          },
+          {
+              value: "2",
+              text: "It makes sure the biometric information has not been tampered with (if it was taken from a piece of evidence)"
+            },
+            {
+              value: "3",
+              text: "It makes sure the biometric information has been shared in a way that prevents it from being tampered with"
+            },
+            {
+              value: "4",
+              text: "It can tell if the person’s biometric information has been intercepted and reused ('replayed')"
+            },
+            {
+              value: "5",
+              text: " It uses a biometric algorithm that's been proven to be effective against a recognised benchmark, like the National Institute of Standards and Technology's (NIST's) face recognition vendor test guidance"
+            },
+            {
+              value: "6",
+              text: "It captures the person’s biometric information under conditions that do not reduce the accuracy of the type of biometric check being used (things like light, noise, and humidity impact the success rates for different biometric modalities and should be adjusted if needed)"
+            }
+          ]
+        }) }}
+
+
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
