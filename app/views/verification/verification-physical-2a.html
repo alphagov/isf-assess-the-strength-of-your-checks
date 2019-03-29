@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Overview
+{% endblock %}
+
+{% block beforeContent %}
+
+  <a href="javascript:history.back()" class="govuk-back-link">Back</a>
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">Verification checks</span>
+      <h1 class="govuk-heading-l">Has the person doing the check been taught how to detect impostors?</h1>
+      <p>
+        They must have been trained by one of the following organisations:
+        <ul class="govuk-list govuk-list--bullet">
+          <li>Home Office</li>
+          <li>National Document Fraud Unit</li>
+          <li>Centre for the Protection of National Infrastructure (CPNI)</li>
+        </ul>
+      </p>
+      <form action="/verification-physical-2a-answer" method="post" novalidate>
+
+        {% from "checkboxes/macro.njk" import govukCheckboxes %}
+        {% from "radios/macro.njk" import govukRadios %}
+
+        {{ govukRadios({
+          idPrefix: "verification-physical-2a",
+          name: "verification-physical-2a",
+          fieldset: {
+            legend: {
+              text: "",
+              isPageHeading: false
+            }
+          },
+          hint: {
+            text: ""
+          },
+          items: [
+            {
+              value: "1",
+              text: "Yes"
+            },
+            {
+              value: "2",
+              text: "No - they were trained by an equivalent specialist trainer"
+            },
+            {
+              divider: "or"
+            },
+            {
+              value: "3",
+              text: "They haven’t had any training"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

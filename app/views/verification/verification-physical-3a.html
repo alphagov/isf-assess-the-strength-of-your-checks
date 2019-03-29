@@ -16,17 +16,16 @@
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-l">Verification checks</span>
 
-      <form action="/verification-6-answer" method="post" novalidate>
+      <form action="/verification-physical-3a-answer" method="post" novalidate>
 
-        {% from "checkboxes/macro.njk" import govukCheckboxes %}
         {% from "radios/macro.njk" import govukRadios %}
 
         {{ govukRadios({
-          idPrefix: "verification-6",
-          name: "verification-6",
+          idPrefix: "verification-physical-3a",
+          name: "verification-physical-3a",
           fieldset: {
             legend: {
-              text: "Is the person physically there when you check if they match the photo?",
+              text: "Does the person use a system?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
@@ -41,7 +40,7 @@
             },
             {
               value: "2",
-              text: "No - you check this remotely"
+              text: "No"
             }
           ]
         }) }}

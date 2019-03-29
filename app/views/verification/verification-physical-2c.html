@@ -16,17 +16,17 @@
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-l">Verification checks</span>
 
-      <form action="/verification-10-answer" method="post" novalidate>
+      <form action="/verification-physical-2c-answer" method="post" novalidate>
 
         {% from "_custom_macros/checkboxes/macro.njk" import govukCheckboxes %}
         {% from "radios/macro.njk" import govukRadios %}
 
         {{ govukCheckboxes({
-          idPrefix: "verification-10",
-          name: "verification-10",
+          idPrefix: "verification-physical-2c",
+          name: "verification-physical-2c",
           fieldset: {
             legend: {
-              text: "How do you make sure you do the check effectively?",
+              text: "How do you make sure you do the check properly?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
@@ -37,21 +37,33 @@
           items: [
             {
               value: "1",
-              text: "You check there's enough light in the room where the check is being done to be able to effectively compare the person to the image on the evidence"
+              text: "Make sure the person whose identity is being checked is present"
             },
             {
               value: "2",
-              text: "You make sure you can tell if someone is wearing a mask, make up or prosthetics to look like someone else in the image"
+              text: "Check the light conditions are good enough to clearly see the person and the image on the evidence"
             },
             {
               value: "3",
-              text: "You make sure you can see the person's eyes if they're wearing glasses in the image (for example they're not hidden by glare or reflections)"
+              text: "Check the photo you're comparing the person to is from a genuine piece of evidence"
+            },
+            {
+              value: "4",
+              text: "Check the photo you're comparing the person to has not been tampered with"
+            },
+            {
+              value: "5",
+              text: "Make sure you can tell if someone is wearing a mask, makeup or prosthetics to look like someone else"
+            },
+            {
+              value: "6",
+              text: "Make sure the person's eyes are not hidden by any glare or reflections (if they're wearing glasses)"
             },
             {
               divider: "or"
             },
             {
-              value: "4",
+              value: "7",
               text: "You don't do any of these things"
             }
           ]

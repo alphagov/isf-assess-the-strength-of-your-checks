@@ -12,7 +12,7 @@
   {{ govukBreadcrumbs({
   items: [
     {
-      text: "Checking identity",
+      text: "Identity standard",
       href: "/index"
     },{
       text: "Assess an identity check",
@@ -115,38 +115,57 @@
                 </summary>
                 <div class="govuk-details__text">
 
-                  <table class="govuk-table govuk-!-margin-bottom-7 govuk-!-margin-top-0">
-                    <thead class="govuk-table__head">
-                      <tr class="govuk-table__row">
-                        <th class="govuk-table__header" scope="col">Required evidence</th>
-                        <th class="govuk-table__header" scope="col">Strength score</th>
-                        <th class="govuk-table__header" scope="col">Validity score</th>
-                        <th class="govuk-table__header" scope="col"></th>
-                      </tr>
-                    </thead>
+                  {% set evidenceCount = 0 %}
+                  {% for evidence in profile.evidence %}
+                    {% set evidenceCount = evidenceCount + 1 %}
 
-                    <tbody class="govuk-table__body">
-                      {% set evidenceCount = 0 %}
-                      {% for evidence in profile.evidence %}
-                        {% set evidenceCount = evidenceCount + 1 %}
+                    {% if "1 piece of evidence" in profile.name %}
+                      {% set evidenceName = "Evidence" %}
+                    {% elif evidenceCount == 1 %}
+                      {% set evidenceName = "First piece of evidence" %}
+                    {% elif evidenceCount == 2 %}
+                      {% set evidenceName = "Second piece of evidence" %}
+                    {% else %}
+                      {% set evidenceName = "Third piece of evidence" %}
+                    {% endif %}
+
+                    <table class="govuk-table govuk-!-margin-bottom-7 govuk-!-margin-top-0">
+                      <thead class="govuk-table__head">
+                        <tr class="govuk-table__row">
+                          <th class="govuk-table__header" scope="col">{{evidenceName}}</th>
+                          <th class="govuk-table__header" scope="col">Score</th>
+                          <th class="govuk-table__header" scope="col"></th>
+                        </tr>
+                      </thead>
+
+                      <tbody class="govuk-table__body">
 
                         <tr class="govuk-table__row">
                           <td class="govuk-table__cell" scope="row">
-                            Evidence {{evidenceCount}}
+                            Strength
                           </td>
                           <td class="govuk-table__cell" scope="row">
                             {{ evidence.strength }}
                           </td>
-                          <td class="govuk-table__cell" scope="row">
-                            {{ evidence.validity }}
-                          </td>
-                          <td class="govuk-table__cell" scope="row">
+                          <td class="govuk-table__cell metnotmet" scope="row">
                             {% if profile.evidenceResult == false %}Not met{% else %}Met{% endif %}
                           </td>
                         </tr>
-                      {% endfor %}
-                    </tbody>
-                  </table>
+
+                        <tr class="govuk-table__row">
+                          <td class="govuk-table__cell" scope="row">
+                            Validity
+                          </td>
+                          <td class="govuk-table__cell" scope="row">
+                            {{ evidence.validity }}
+                          </td>
+                          <td class="govuk-table__cell metnotmet" scope="row">
+                            {% if profile.evidenceResult == false %}Not met{% else %}Met{% endif %}
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  {% endfor %}
 
                   <table class="govuk-table govuk-!-margin-bottom-7 govuk-!-margin-top-0">
                     <thead class="govuk-table__head">
@@ -170,9 +189,7 @@
                             Not required
                           {% endif %}
                         </td>
-                        <td class="govuk-table__cell" scope="row">
-                        </td>
-                        <td class="govuk-table__cell" scope="row">
+                        <td class="govuk-table__cell metnotmet" scope="row">
                           {% if profile.activityThreshold %}
                             {% if data['activityScore'] >= profile.activityThreshold %}
                               Met
@@ -187,7 +204,7 @@
                       </tr>
                       <tr class="govuk-table__row">
                         <td class="govuk-table__cell" scope="row">
-                          Fraud
+                          Identity fraud
                         </td>
                         <td class="govuk-table__cell" scope="row">
                           {% if profile.fraudThreshold %}
@@ -196,9 +213,7 @@
                             Not required
                           {% endif %}
                         </td>
-                        <td class="govuk-table__cell" scope="row">
-                        </td>
-                        <td class="govuk-table__cell" scope="row">
+                        <td class="govuk-table__cell metnotmet" scope="row">
                           {% if profile.fraudThreshold %}
                             {% if data['fraudScore'] >= profile.fraudThreshold %}
                               Met
@@ -221,9 +236,7 @@
                             Not required
                           {% endif %}
                         </td>
-                        <td class="govuk-table__cell multi-question" scope="row">
-                        </td>
-                        <td class="govuk-table__cell multi-question" scope="row">
+                        <td class="govuk-table__cell metnotmet" scope="row">
                           {% if profile.verificationThreshold %}
                             {% if data['verificationScore'] >= profile.verificationThreshold %}
                               Met

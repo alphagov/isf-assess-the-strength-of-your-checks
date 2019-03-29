@@ -1,0 +1,71 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Overview
+{% endblock %}
+
+{% block beforeContent %}
+
+  <a href="javascript:history.back()" class="govuk-back-link">Back</a>
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">Verification checks</span>
+
+      <form action="/verification-physical-3b-answer" method="post" novalidate>
+
+        {% from "checkboxes/macro.njk" import govukCheckboxes %}
+
+        {{ govukCheckboxes({
+          idPrefix: "verification-physical-3b",
+          name: "verification-physical-3b",
+          fieldset: {
+            legend: {
+              text: "What does the system do when it does the checks?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            text: ""
+          },
+          items: [
+            {
+              value: "1",
+              text: "It makes sure the person whose identity is being checked is present when their image or video is captured (you should not use a scan or an upload from a photo or video feed)"
+            },
+            {
+              value: "2",
+              text: "It makes sure the image or video has not been intercepted and reused ('replayed')"
+            },
+            {
+              value: "3",
+              text: "It makes sure it compares the image or video of the person to an image or video of a genuine piece of evidence"
+            },
+            {
+              value: "4",
+              text: "It makes sure the image or video has been shared in a way that prevents it from being tampered with"
+            },
+            {
+              value: "5",
+              text: "It can tell if someone is wearing a mask, makeup or prosthetics to look like someone else "
+            },
+            {
+              value: "6",
+              text: "It makes sure the person's eyes are not hidden by any glare or reflections (if they're wearing glasses)"
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

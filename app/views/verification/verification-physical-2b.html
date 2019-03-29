@@ -16,14 +16,14 @@
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-l">Verification checks</span>
 
-      <form action="/verification-9-answer" method="post" novalidate>
+      <form action="/verification-physical-2b-answer" method="post" novalidate>
 
         {% from "checkboxes/macro.njk" import govukCheckboxes %}
         {% from "radios/macro.njk" import govukRadios %}
 
         {{ govukRadios({
-          idPrefix: "verification-9",
-          name: "verification-9",
+          idPrefix: "verification-physical-2b",
+          name: "verification-physical-2b",
           fieldset: {
             legend: {
               text: "How often do they refresh their training?",
