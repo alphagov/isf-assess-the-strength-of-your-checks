@@ -15,13 +15,15 @@ const presetEvidence =
     {'capName':'Smart card','name':'Digital tachograph driver smart card','shortname':'smart card','group':'2','strength':'3','validity':'0','chosen':false},
 
     {'capName':'Armed forces identity card','name':'Armed forces identity card','shortname':'armed forces identity card','group':'3','strength':'3','validity':'0','chosen':false},
-    {'capName':'Biometric residence permit','name':'Biometric residence permit','shortname':'biometric residence permit','group':'3','strength':'3','validity':'0','chosen':false},
+    {'capName':'Biometric residence permit','name':'Biometric residence permit','shortname':'biometric residence permit','group':'3','strength':'4','validity':'0','chosen':false},
     {'capName':'EU or EEA identity card','name':'An identity card from an EU or European Economic Area (EEA) country that meets the Council Regulation (EC) No 2252/2004 standards','shortname':'EU or EEA identity card','group':'3','strength':'3','validity':'0','chosen':false},
     {'capName':'EU or EEA biometric identity card','name':'An identity card from an EU or EEA country that meets the Council Regulation (EC) No 2252/2004 standards and contains biometric information','shortname':'EU or EEA biometric identity card','group':'3','strength':'4','validity':'0','chosen':false},
-    {'capName':'Proof of age card','name':'Proof of age card with a Proof of Age Standards Scheme (PASS) hologram','shortname':'proof of age card','group':'3','strength':'4','validity':'0','chosen':false},
+    {'capName':'Proof of age card (with reference number)','name':'Proof of age card with a Proof of Age Standards Scheme (PASS)','shortname':'proof of age card (with reference number)','group':'3','strength':'2','validity':'0','chosen':false},
+    {'capName':'Proof of age card','name':'Proof of age card with a Proof of Age Standards Scheme (PASS) with a reference number','shortname':'proof of age card','group':'3','strength':'3','validity':'0','chosen':false},
     {'capName':'NI electoral identity card','name':'Northern Ireland electoral identity card','shortname':'NI electoral identity card','group':'3','strength':'3','validity':'0','chosen':false},
 
     {'capName':'Gas or electric bill','name':'Gas or electric bill','shortname':'gas or electric bill','group':'4','strength':'1', 'validity':'0','chosen':false},
+    {'capName':'Student loan account','name':'Student loan account','shortname':'loan account','group':'4','strength':'3','validity':'0','chosen':false},
     {'capName':'Bank, building society or credit union current account','name':'Bank, building society or credit union current account','shortname':'bank, building society or credit union current account','group':'4','strength':'3','validity':'0','chosen':false},
     {'capName':'Savings account','name':'Bank savings account','shortname':'savings account','group':'4','strength':'3','validity':'0','chosen':false},
     {'capName':'Credit account','name':'Credit account','shortname':'credit account','group':'4','strength':'3','validity':'0','chosen':false},
@@ -53,12 +55,13 @@ router.post('/set-choose-evidence-variables', function (req, res) {
 })
 
 router.post('/choose-evidence-group-answer', function (req, res) {
+  req.session.data['overview-error'] = false
 
   // if other evidence chosen
   if (req.session.data['choose-evidence'].includes('other')) {
     // add the other evidence to the presetEvidence array in session
     req.session.data['presetEvidence'].push(
-      {'name':req.session.data['other-evidence-name'],'shortname':req.session.data['other-evidence-name'],'strength':"0",'validity':"0",'chosen':"true"}
+      {'capName':req.session.data['other-evidence-name'],'name':req.session.data['other-evidence-name'],'shortname':req.session.data['other-evidence-name'],'strength':"0",'validity':"0",'chosen':"true"}
     );
     req.session.data['presetEvidence'] = req.session.data['presetEvidence']
     // add evidence name to session
@@ -154,6 +157,9 @@ router.post('/validity-1-answer', function (req, res) {
   var i;
   for (i = 0; i < req.session.data['presetEvidence'].length; i++) {
     if (thisEvidence.includes(req.session.data['presetEvidence'][i].shortname)) {
+      if (answer.includes('7'))  {
+        req.session.data['presetEvidence'][i].validity = "0"
+      }
       if (answer.includes('3') && answer.includes('4') && answer.includes('5') && answer.includes('6')) {
         req.session.data['presetEvidence'][i].validity = "4"
       }
@@ -710,7 +716,7 @@ router.post('/preset-answer', function (req, res) {
 
   if (answer.includes('1')) {
     req.session.data['presetEvidence'].push(
-      {'name':'UK passport','shortname':'UK passport','strength':"4",'validity':"0",'chosen':"true"}
+      {'capName':'UK passport','name':'UK passport','shortname':'UK passport','strength':"4",'validity':"0",'chosen':"true"}
     );
     req.session.data['activityScore'] = "2"
     req.session.data['fraudScore'] = "0"
@@ -718,7 +724,7 @@ router.post('/preset-answer', function (req, res) {
   }
   else if (answer.includes('2')) {
     req.session.data['presetEvidence'].push(
-      {'name':'UK passport','shortname':'UK passport','strength':"4",'validity':"2",'chosen':"true"}
+      {'capName':'UK passport','name':'UK passport','shortname':'UK passport','strength':"4",'validity':"2",'chosen':"true"}
     );
     req.session.data['activityScore'] = "0"
     req.session.data['fraudScore'] = "2"
@@ -726,9 +732,9 @@ router.post('/preset-answer', function (req, res) {
   }
   else if (answer.includes('3')) {
     req.session.data['presetEvidence'].push(
-      {'name':'UK passport','shortname':'UK passport','strength':"4",'validity':"2",'chosen':"true"},
-      {'name':'UK driving licence','shortname':'driving licence','strength':"3",'validity':"3",'chosen':"true"},
-      {'name':'armed forces identity card','shortname':'identity card','strength':"2",'validity':"2",'chosen':"true"},
+      {'capName':'UK passport','name':'UK passport','shortname':'UK passport','strength':"4",'validity':"2",'chosen':"true"},
+      {'capName':'UK driving licence','name':'UK driving licence','shortname':'driving licence','strength':"3",'validity':"3",'chosen':"true"},
+      {'capName':'Armed forces identity card','name':'armed forces identity card','shortname':'identity card','strength':"2",'validity':"2",'chosen':"true"},
     );
     req.session.data['activityScore'] = "3"
     req.session.data['fraudScore'] = "2"
@@ -736,7 +742,7 @@ router.post('/preset-answer', function (req, res) {
   }
   else if (answer.includes('4')) {
     req.session.data['presetEvidence'].push(
-      {'name':'UK passport','shortname':'UK passport','strength':"4",'validity':"4",'chosen':"true"}
+      {'capName':'UK passport','name':'UK passport','shortname':'UK passport','strength':"4",'validity':"4",'chosen':"true"}
     );
     req.session.data['activityScore'] = "0"
     req.session.data['fraudScore'] = "0"
