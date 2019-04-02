@@ -39,33 +39,33 @@
           {% for item in data['presetEvidence'] %}
             {% if item.chosen and item.shortname == data['evidenceName'] %}
               <p>
-                 The {{item.shortname}} has a:
+                 The {{item.shortname}} has a strength score of {{item.strength}} out of 4.
               </p>
-                <ul class="govuk-list govuk-list--bullet">
-                  <li>a strength score of {{item.strength}} out of 4</li>
-                  <li>a validity score of {{item.validity}} out of 4</li>
-                </ul>
+
+              <p>
+                The way you check if the {{item.shortname}} is real has a validity score of {{item.validity}} out of 4.
+              </p>
             {% endif %}
           {% endfor %}
-          <p>To find out why you got this score, you can <a href='/gpg-45#getevidenceoftheclaimedidentitystrength' target='_blank'>read the guidance about identity proofing and verification <span class="new-tab">(link opens in a new tab)</span></a>.</p>
+          <p>To find out why you got these scores, you can <a href='/gpg-45#getevidenceoftheclaimedidentitystrength' target='_blank'>read the guidance about identity proofing and verification <span class="new-tab">(link opens in a new tab)</span></a>.</p>
 
 
 
       {% elif data['section-name'] == "activity" %}
 
         <p>
-          Your identity checks have an activity score of {{data['activityScore']}} out of 4.
+          The way you check if the identity has existed over time has an activity score of {{data['activityScore']}} out of 4.
         </p>
         <p>To find out why you got this score, you can <a href='/checktheclaimedidentityhasexistedovertimeactivity' target='_blank'>read the guidance about identity proofing and verification <span class="new-tab">(link opens in a new tab)</span></a>.</p>
 
       {% elif data['section-name'] == "fraud" %}
         <p>
-          Your identity checks have an identity fraud score of {{data['fraudScore']}} out of 3.
+          The way you check if the identity has been stolen or used fraudulently has an identity fraud score of {{data['fraudScore']}} out of 3.
         </p>
         <p>To find out why you got this score, you can <a href='/gpg-45#checkiftheclaimedidentityisathighriskofidentityfraudidentityfraud' target='_blank'>read the guidance about identity proofing and verification <span class="new-tab">(link opens in a new tab)</span></a>.</p>
       {% elif data['section-name'] == "verification" %}
         <p>
-          The person has a verification score of {{data['verificationScore']}} out of 4.
+          The way you check if the person is the same person they're claiming to be has a verification score of {{data['verificationScore']}} out of 4.
         </p>
         <p>To find out why you got this score, you can <a href='/gpg-45#checkthattheidentitybelongstothepersonwhosclaimingitverification' target='_blank'>read the guidance about identity proofing and verification <span class="new-tab">(link opens in a new tab)</span></a>.</p>
       {% endif %}
