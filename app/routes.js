@@ -237,11 +237,14 @@ router.post('/activity-3-answer', function (req, res) {
   else if (answer.includes('2') && activity1Answer.includes('2')) {
     req.session.data['activityScore'] = "2"
   }
+  else if (answer.includes('1') && activity1Answer.includes('2')) {
+    req.session.data['activityScore'] = "2"
+  }
   else if (answer.includes('1') && activity1Answer.includes('1')) {
     req.session.data['activityScore'] = "1"
   }
   else {
-    req.session.data['activityScore'] = "1"
+    req.session.data['activityScore'] = "0"
   }
 
   res.redirect('section-result')
@@ -256,17 +259,17 @@ router.post('/activity-4-answer', function (req, res) {
   if (answer.includes('4') && activity1Answer.includes('3') && activity1Answer.includes('4') ) {
     req.session.data['activityScore'] = "4"
   }
-  else if (answer.includes('3') && activity1Answer.includes('3') ) {
+  else if ((answer.includes('1') || answer.includes('2') || answer.includes('3')) && ( activity1Answer.includes('3') || activity1Answer.includes('4')) ) {
     req.session.data['activityScore'] = "3"
   }
   else if (answer.includes('2') && activity1Answer.includes('2')) {
     req.session.data['activityScore'] = "2"
   }
-  else if (answer.includes('1') && activity1Answer.includes('1')) {
+  else if (answer.includes('1') && (activity1Answer.includes('1') || activity1Answer.includes('2') || activity1Answer.includes('3') || activity1Answer.includes('4'))) {
     req.session.data['activityScore'] = "1"
   }
   else {
-    req.session.data['activityScore'] = "1"
+    req.session.data['activityScore'] = "0"
   }
 
   res.redirect('section-result')
@@ -290,15 +293,23 @@ router.post('/fraud-0-answer', function (req, res) {
 router.post('/fraud-1-answer', function (req, res) {
   let answer = req.session.data['fraud-1']
 
-  if (answer.includes('1') && answer.includes('2') && answer.includes('3') && answer.includes('4') && answer.includes('5') && answer.includes('6')) {
+  if (answer.includes('7')){
+    req.session.data['fraudScore'] = "0"
+    res.redirect('section-result')
+  }
+  else if (answer.includes('1') && answer.includes('2') && answer.includes('4') && answer.includes('5') && answer.includes('6')) {
     req.session.data['fraudScore'] = "2"
     res.redirect('fraud/fraud-2')
+  }
+  else if (answer.includes('1') && answer.includes('2') && answer.includes('4') && answer.includes('5')) {
+    req.session.data['fraudScore'] = "2"
+    res.redirect('section-result')
   }
   else if (answer.includes('4') && answer.includes('5') && answer.includes('6')) {
     req.session.data['fraudScore'] = "1"
     res.redirect('section-result')
   }
-  else if (answer.includes('1') && answer.includes('2') && answer.includes('3')) {
+  else if (answer.includes('1') && answer.includes('2')) {
     req.session.data['fraudScore'] = "1"
     res.redirect('/section-result')
   }
@@ -373,17 +384,16 @@ router.post('/verification-3a-answer', function (req, res) {
   let verification1Answer = req.session.data['verification-1']
 
   if (answer.includes('1')) {
-    req.session.data['quality'] = "low"
-    res.redirect('/verification/verification-3b')
+    res.redirect('/verification/verification-3b?quality=low')
   }
   else if (verification1Answer.includes('1')) {
-    res.redirect('/verification/verification-physical-1')
+    res.redirect('/verification/verification-physical-1?quality=none')
   }
   else if (verification1Answer.includes('2')) {
-    res.redirect('/verification/verification-biometric-1')
+    res.redirect('/verification/verification-biometric-1?quality=none')
   }
   else {
-    res.redirect('/section-result')
+    res.redirect('/section-result?quality=none')
   }
 })
 
@@ -392,11 +402,10 @@ router.post('/verification-3b-answer', function (req, res) {
   let verification1Answer = req.session.data['verification-1']
 
   if (answer.includes('1')) {
-    req.session.data['quality'] = "medium"
-    res.redirect('/verification/verification-3c')
+    res.redirect('/verification/verification-3c?quality=medium')
   }
   else {
-    res.redirect('/verification/verification-4')
+    res.redirect('/verification/verification-4?quality=low')
   }
 })
 
@@ -405,11 +414,10 @@ router.post('/verification-3c-answer', function (req, res) {
   let verification1Answer = req.session.data['verification-1']
 
   if (answer.includes('1')) {
-    req.session.data['quality'] = "high"
-    res.redirect('/verification/verification-4')
+    res.redirect('/verification/verification-4?quality=high')
   }
   else {
-    res.redirect('/verification/verification-4')
+    res.redirect('/verification/verification-4?quality=medium')
   }
 })
 
@@ -425,6 +433,9 @@ router.post('/verification-4-answer', function (req, res) {
       if ( answerChoice.includes('2') && answerQuantity.includes('1') ) {
         req.session.data['verificationScore'] = "1"
       }
+      else {
+        req.session.data['verificationScore'] = "0"
+      }
     }
     else if ( quality.includes('medium') ) {
       if ( answerChoice.includes('1') && answerQuantity.includes('2') ) {
@@ -432,6 +443,9 @@ router.post('/verification-4-answer', function (req, res) {
       }
       else if ( answerChoice.includes('2') && answerQuantity.includes('1') ) {
         req.session.data['verificationScore'] = "1"
+      }
+      else {
+        req.session.data['verificationScore'] = "0"
       }
     }
     else if ( quality.includes('low') ) {
@@ -441,23 +455,32 @@ router.post('/verification-4-answer', function (req, res) {
       else if ( answerChoice.includes('2') && answerQuantity.includes('2') ) {
         req.session.data['verificationScore'] = "1"
       }
+      else {
+        req.session.data['verificationScore'] = "0"
+      }
     }
   }
   else {
     if ( quality.includes('high') ) {
-      if ( answerChoice.includes('2') && answerQuantity.includes('2') ) {
+      if ( answerChoice.includes('2') && (answerQuantity.includes('2') || answerQuantity.includes('3') || answerQuantity.includes('4')) ) {
         req.session.data['verificationScore'] = "2"
       }
-      else if ( answerChoice.includes('1') && answerQuantity.includes('2') ) {
+      else if ( answerChoice.includes('1') && (answerQuantity.includes('2') || answerQuantity.includes('3') || answerQuantity.includes('4') || answerQuantity.includes('5')) ) {
         req.session.data['verificationScore'] = "2"
+      }
+      else {
+        req.session.data['verificationScore'] = "0"
       }
     }
     else if ( quality.includes('medium') ) {
-      if ( answerChoice.includes('2') && answerQuantity.includes('2') ) {
+      if ( answerChoice.includes('2') && ( answerQuantity.includes('2') || answerQuantity.includes('3') || answerQuantity.includes('4')) ) {
         req.session.data['verificationScore'] = "2"
       }
-      else if ( answerChoice.includes('1') && answerQuantity.includes('3') ) {
+      else if ( answerChoice.includes('1') && (answerQuantity.includes('3') || answerQuantity.includes('4') || answerQuantity.includes('5')) ) {
         req.session.data['verificationScore'] = "2"
+      }
+      else {
+        req.session.data['verificationScore'] = "0"
       }
     }
     else if ( quality.includes('low') ) {
@@ -466,6 +489,9 @@ router.post('/verification-4-answer', function (req, res) {
       }
       else if ( answerChoice.includes('1') && answerQuantity.includes('5') ) {
         req.session.data['verificationScore'] = "2"
+      }
+      else {
+        req.session.data['verificationScore'] = "0"
       }
     }
   }
