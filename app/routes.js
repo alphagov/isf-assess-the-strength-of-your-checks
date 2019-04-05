@@ -347,7 +347,7 @@ router.post('/verification-0-answer', function (req, res) {
   let answer = req.session.data['verification-0']
   req.session.data['section-name'] = "verification"
   req.session.data['overview-error'] = false
-
+  req.session.data['verificationScore'] = "0"
   if (answer.includes('1')) {
     req.session.data['verificationScore'] = "0"
     res.redirect('/verification/verification-1')
