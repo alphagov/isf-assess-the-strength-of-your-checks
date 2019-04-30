@@ -82,24 +82,24 @@
                   To meet this profile you need to:
                   <ul class="govuk-list govuk-list--bullet">
                       {% if profile.evidenceResult == false %}
-                        <li><a href="/gpg-45#getevidenceoftheclaimedidentitystrength" target="_blank">collect {{ profile.humanEvidence }}</a></li>
+                        <li><a href="https://www.gov.uk/government/publications/identity-proofing-and-verification-of-an-individual/identity-proofing-and-verification-of-an-individual#strength" target="_blank">collect {{ profile.humanEvidence }}</a></li>
                       {% endif %}
 
                     {% if profile.activityThreshold %}
                         {% if profile.activityResult == false %}
-                          <li><a href="/gpg-45#checktheclaimedidentityhasexistedovertimeactivity" target="_blank">increase activity score from {{ data['activityScore'] }} to {{ profile.activityThreshold }}</a></li>
+                          <li><a href="https://www.gov.uk/government/publications/identity-proofing-and-verification-of-an-individual/identity-proofing-and-verification-of-an-individual#activity" target="_blank">increase activity score from {{ data['activityScore'] }} to {{ profile.activityThreshold }}</a></li>
                         {% endif %}
                     {% endif %}
 
                     {% if profile.fraudThreshold %}
                         {% if profile.fraudResult == false %}
-                          <li><a href="/gpg-45#checkiftheclaimedidentityisathighriskofidentityfraudidentityfraud" target="_blank">increase fraud score from {{ data['fraudScore'] }} to {{ profile.fraudThreshold }}</a></li>
+                          <li><a href="https://www.gov.uk/government/publications/identity-proofing-and-verification-of-an-individual/identity-proofing-and-verification-of-an-individual#identity-fraud" target="_blank">increase fraud score from {{ data['fraudScore'] }} to {{ profile.fraudThreshold }}</a></li>
                         {% endif %}
                     {% endif %}
 
                     {% if profile.verificationThreshold %}
                         {% if profile.verificationResult == false %}
-                          <li><a href="/gpg-45#checkthattheidentitybelongstothepersonwhosclaimingitverification" target="_blank">increase verification score from {{ data['verificationScore'] }} to {{ profile.verificationThreshold }}</a></li>
+                          <li><a href="https://www.gov.uk/government/publications/identity-proofing-and-verification-of-an-individual/identity-proofing-and-verification-of-an-individual#verification" target="_blank">increase verification score from {{ data['verificationScore'] }} to {{ profile.verificationThreshold }}</a></li>
                         {% endif %}
                     {% endif %}
                   </ul>
@@ -262,7 +262,7 @@
       {% else %}
 
         <p>
-          You can also <a href="/all_profiles">see profiles for theother confidence levels</a>.
+          You can also <a href="/all_profiles">see profiles for the other confidence levels</a>.
         </p>
 
         {% for profile in data['profile-results'] %}
@@ -272,24 +272,24 @@
               To meet this profile you need to:
               <ul class="govuk-list govuk-list--bullet">
                   {% if profile.evidenceResult == false %}
-                    <li><a href="/gpg-45#getevidenceoftheclaimedidentitystrength" target="_blank">collect {{ profile.humanEvidence }}</a></li>
+                    <li><a href="https://www.gov.uk/government/publications/identity-proofing-and-verification-of-an-individual/identity-proofing-and-verification-of-an-individual#strength" target="_blank">collect {{ profile.humanEvidence }}</a></li>
                   {% endif %}
 
                 {% if profile.activityThreshold %}
                     {% if profile.activityResult == false %}
-                      <li><a href="/gpg-45#checktheclaimedidentityhasexistedovertimeactivity" target="_blank">increase activity score from {{ data['activityScore'] }} to {{ profile.activityThreshold }}</a></li>
+                      <li><a href="https://www.gov.uk/government/publications/identity-proofing-and-verification-of-an-individual/identity-proofing-and-verification-of-an-individual#activity" target="_blank">increase activity score from {{ data['activityScore'] }} to {{ profile.activityThreshold }}</a></li>
                     {% endif %}
                 {% endif %}
 
                 {% if profile.fraudThreshold %}
                     {% if profile.fraudResult == false %}
-                      <li><a href="/gpg-45#checkiftheclaimedidentityisathighriskofidentityfraudidentityfraud" target="_blank">increase fraud score from {{ data['fraudScore'] }} to {{ profile.fraudThreshold }}</a></li>
+                      <li><a href="https://www.gov.uk/government/publications/identity-proofing-and-verification-of-an-individual/identity-proofing-and-verification-of-an-individual#identity-fraud" target="_blank">increase fraud score from {{ data['fraudScore'] }} to {{ profile.fraudThreshold }}</a></li>
                     {% endif %}
                 {% endif %}
 
                 {% if profile.verificationThreshold %}
                     {% if profile.verificationResult == false %}
-                      <li><a href="/gpg-45#checkthattheidentitybelongstothepersonwhosclaimingitverification" target="_blank">increase verification score from {{ data['verificationScore'] }} to {{ profile.verificationThreshold }}</a></li>
+                      <li><a href="https://www.gov.uk/government/publications/identity-proofing-and-verification-of-an-individual/identity-proofing-and-verification-of-an-individual#verification" target="_blank">increase verification score from {{ data['verificationScore'] }} to {{ profile.verificationThreshold }}</a></li>
                     {% endif %}
                 {% endif %}
               </ul>
