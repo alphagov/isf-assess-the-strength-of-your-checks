@@ -25,6 +25,8 @@
       <code class="code govuk-!-margin-bottom-9">
         {% set evidenceExists = "false" %}
 
+        {{data['user-risk-answer'] }},
+
         {% for item in data['presetEvidence'] %}
           {% if item.chosen %}
             {% set evidenceExists = "true" %}
