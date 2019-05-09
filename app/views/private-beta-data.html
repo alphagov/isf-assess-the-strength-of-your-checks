@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  Identity assurance standards
+{% endblock %}
+
+{% block content %}
+
+<main role="main" id="content" class="html-publication" lang="en">
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l  govuk-!-margin-top-6 govuk-!-margin-bottom-6">
+        Give private beta feedback
+      </h1>
+
+      <p>
+        <a href="#">Fill in our survey</a> so that we can understand if this assessment tool meets your needs.
+      </p>
+      <p>
+        You’ll need to copy the code below to share your results with us in the survey.
+      </p>
+
+      <code class="code govuk-!-margin-bottom-9">
+        {% set evidenceExists = "false" %}
+
+        {% for item in data['presetEvidence'] %}
+          {% if item.chosen %}
+            {% set evidenceExists = "true" %}
+          {% endif %}
+        {% endfor %}
+
+        {% if evidenceExists == "true" %}
+          {% for item in data['presetEvidence'] %}
+            {% if item.chosen %}
+              {{item.capName}},
+              strength {{item.strength}},
+              validity {{item.validity}},
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+
+        {% if data['activityScore'] %}
+          activity {{data['activityScore']}}
+        {% endif %}
+        {% if data['fraudScore'] %}
+          fraud {{data['fraudScore']}}
+        {% endif %}
+        {% if data['verificationScore'] %}
+          validity {{data['verificationScore']}}.
+        {% endif %}
+      </code>
+
+      <p class="govuk-!-margin-bottom-1"><a class="govuk-link" href="/prototype-admin/clear-data">Clear data and start another session</a></p>
+      <p class="govuk-!-margin-bottom-1">or</p>
+      <p><a class="govuk-link" href="javascript: window.history.go(-1)">Go back without clearing data</a></p>
+    </div>
+
+  </div>
+</main>
+
+{% endblock %}

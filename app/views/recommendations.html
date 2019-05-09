@@ -444,86 +444,10 @@
           </details>
         {% endfor %}
       {% endif %}
+
+      <a class="govuk-button govuk-!-margin-top-9">Give private beta feedback</a>
+
     </div>
-
-    <!-- <div class="govuk-grid-column-one-third aside">
-      <div class="border">
-
-      </div>
-      <h2 class="govuk-heading-m">Your scores</h2>
-      {% for item in data['presetEvidence'] %}
-        {% if item.chosen %}
-          <table class="govuk-table govuk-!-margin-bottom-7 govuk-!-margin-top-0">
-            <thead class="govuk-table__head">
-              <tr class="govuk-table__row">
-                <th class="govuk-table__header" scope="col">{{item.shortname}}</th>
-                <th class="govuk-table__header" scope="col"></th>
-              </tr>
-            </thead>
-
-            <tbody class="govuk-table__body">
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell" scope="row">Strength</td>
-                <td class="govuk-table__cell" scope="row">
-                  {{item.strength}}
-                </td>
-              </tr>
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell" scope="row">Validity</td>
-                <td class="govuk-table__cell" scope="row">
-                  {{item.validity}}
-                </td>
-              </tr>
-            {% endif %}
-          {% endfor %}
-          {% if evidenceExists == "false" %}
-            <tr class="govuk-table__row">
-              <td class="govuk-table__cell hint" scope="row">You haven’t added any evidence</td>
-              <td class="govuk-table__cell" scope="row"></td>
-              <td class="govuk-table__cell" scope="row"></td>
-            </tr>
-          {% endif %}
-        </tbody>
-      </table>
-
-      <table class="govuk-table govuk-!-margin-bottom-7 govuk-!-margin-top-0">
-        <thead class="govuk-table__head">
-          <tr class="govuk-table__row">
-            <th class="govuk-table__header" scope="col">Other checks</th>
-            <th class="govuk-table__header" scope="col"></th>
-          </tr>
-        </thead>
-
-        <tbody class="govuk-table__body">
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell" scope="row">
-              Activity
-            </td>
-            <td class="govuk-table__cell" scope="row">
-              {{data['activityScore']}}
-            </td>
-
-          </tr>
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell" scope="row">
-              Fraud
-            </td>
-            <td class="govuk-table__cell" scope="row">
-              {{data['fraudScore']}}
-            </td>
-          </tr>
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell" scope="row">
-              Verification
-            </td>
-            <td class="govuk-table__cell multi-question" scope="row">
-              {{data['verificationScore']}}
-            </td>
-          </tr>
-        </tbody>
-      </table>
-
-    </div> -->
 
   </div>
 
