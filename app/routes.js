@@ -33,7 +33,7 @@ const presetEvidence =
 
     {'capName':'Birth or adoption certificate','name':'Birth or adoption certificate','shortname':'birth or adoption certificate','group':'5','strength':'2','validity':'0','chosen':false},
     {'capName':'Marriage certificate','name':'Marriage certificate','shortname':'marriage certificate','group':'5','strength':'2','validity':'0','chosen':false},
-    {'capName':'Education certificate','name':'Education certificate from a regulated and recognised educational institution','shortname':'education certificate','group':'5','strength':'2','validity':'0','chosen':false},
+    {'capName':'Education certificate','name':'Education certificate from an educational institution','shortname':'education certificate','group':'5','strength':'2','validity':'0','chosen':false},
     {'capName':'Firearm certificate','name':'Firearm certificate','shortname':'firearm certificate','group':'5','strength':'2','validity':'0','chosen':false},
 
     {'capName':'Bus pass','name':'Older person’s bus pass','shortname':'bus pass','group':'6','strength':'2','validity':'0','chosen':false},
