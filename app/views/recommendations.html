@@ -265,6 +265,13 @@
           You can also <a href="/all_profiles">see profiles for the other confidence levels</a>.
         </p>
 
+
+
+        <div class="govuk-inset-text">
+          Contact <a href='mailto:isf@digital.cabinet-office.gov.uk'>isf@digital.cabinet-office.gov.uk</a> before you make any changes to your service based on these results.
+        </div>
+
+
         {% for profile in data['profile-results'] %}
           <h2 class="govuk-heading-m govuk-!-margin-top-7">{{ profile.name }}</h2>
           {% if not profile.overallResult %}
