@@ -22,8 +22,8 @@ const presetEvidence =
     {'capName':'Proof of age card','name':'A proof of age card with a PASS hologram','shortname':'proof of age card','group':'3','strength':'2','validity':'0','chosen':false},
     {'capName':'NI electoral identity card','name':'Northern Ireland electoral identity card','shortname':'NI electoral identity card','group':'3','strength':'3','validity':'0','chosen':false},
 
-    {'capName':'Gas or electric bill','name':'Gas or electric bill','shortname':'gas or electric bill','group':'4','strength':'2', 'validity':'0','chosen':false},
-    {'capName':'Student loan account','name':'Student loan account','shortname':'loan account','group':'4','strength':'3','validity':'0','chosen':false},
+    {'capName':'Gas or electric bill','name':'Gas or electric bill (this could be online or a paper statement)','shortname':'gas or electric bill','group':'4','strength':'2', 'validity':'0','chosen':false},
+    {'capName':'Student loan account','name':'Student loan account (if you check the account itself, not a letter or statement)','shortname':'loan account','group':'4','strength':'3','validity':'0','chosen':false},
     {'capName':'Bank, building society or credit union current account','name':'Bank, building society or credit union current account','shortname':'bank, building society or credit union current account','group':'4','strength':'3','validity':'0','chosen':false},
     {'capName':'Credit account','name':'Credit account','shortname':'credit account','group':'4','strength':'3','validity':'0','chosen':false},
     {'capName':'Mortgage account','name':'Mortgage account','shortname':'mortgage account','group':'4','strength':'3','validity':'0','chosen':false},
