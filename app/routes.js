@@ -4,22 +4,22 @@ const responseValidator = require('../lib/response_validator.js')
 
 const presetEvidence =
   [
-    {'capName':'UK passport','name':'UK passport','shortname':'UK passport','group':'1','strength':'4','validity':'0','chosen':false},
-    {'capName':'Passport (ICAO)','name':'A passport that meets the International Civil Aviation Organisation (ICAO) specifications for machine-readable travel documents (9303)','shortname':'passport','group':'1','strength':'3','validity':'0','chosen':false},
-    {'capName':'Biometric passport','name':'Biometric passports that meet the ICAO specifications for e-passports','shortname':'biometric passport','group':'1','strength':'4','validity':'0','chosen':false},
+    {'capName':'Passport','name':'A passport with a biometric symbol on the cover','shortname':'passport','group':'1','strength':'4','validity':'0','chosen':false},
+    {'capName':'Passport','name':'A passport without a biometric symbol on the cover','shortname':'passport','group':'1','strength':'3','validity':'0','chosen':false},
     {'capName':'US passport card','name':'US passport card','shortname':'US passport card','group':'1','strength':'3','validity':'0','chosen':false},
-    {'capName':'Home Office travel document','name':'Home Office travel document','shortname':'Home Office travel document','group':'1','strength':'2','validity':'0','chosen':false},
+    {'capName':'Home Office travel document','name':'Home Office travel document (convention travel document, stateless person’s document, one-way document or certificate of travel)','shortname':'Home Office travel document','group':'1','strength':'2','validity':'0','chosen':false},
 
-    {'capName':'UK driving licence','name':'UK photocard driving licence','shortname':'UK driving licence','group':'2','strength':'3','validity':'0','chosen':false},
-    {'capName':'EU or EEA driving licence','name':'EU or EEA driving licence','shortname':'EU or EEA driving licence','group':'2','strength':'3','validity':'0','chosen':false},
+    {'capName':'UK photocard driving licence','name':'UK photocard driving licence','shortname':'UK photocard driving licence','group':'2','strength':'3','validity':'0','chosen':false},
+    {'capName':'UK paper driving licence','name':'UK paper driving licence','shortname':'UK paper driving licence','group':'2','strength':'2','validity':'0','chosen':false},
+    {'capName':'EU or EEA driving licence','name':'A driving licence from another EU or European Economic Area (EEA) country ','shortname':'EU or EEA driving licence','group':'2','strength':'3','validity':'0','chosen':false},
     {'capName':'Smart card','name':'Digital tachograph driver smart card','shortname':'smart card','group':'2','strength':'3','validity':'0','chosen':false},
 
     {'capName':'Armed forces identity card','name':'Armed forces identity card','shortname':'armed forces identity card','group':'3','strength':'3','validity':'0','chosen':false},
     {'capName':'Biometric residence permit','name':'Biometric residence permit','shortname':'biometric residence permit','group':'3','strength':'4','validity':'0','chosen':false},
-    {'capName':'EU or EEA identity card','name':'An identity card from an EU or European Economic Area (EEA) country that meets the Council Regulation (EC) No 2252/2004 standards','shortname':'EU or EEA identity card','group':'3','strength':'3','validity':'0','chosen':false},
-    {'capName':'EU or EEA biometric identity card','name':'An identity card from an EU or EEA country that meets the Council Regulation (EC) No 2252/2004 standards and contains biometric information','shortname':'EU or EEA biometric identity card','group':'3','strength':'4','validity':'0','chosen':false},
-    {'capName':'Proof of age card','name':'Proof of age card recognised under the Proof of Age Standards Scheme (PASS)','shortname':'proof of age card','group':'3','strength':'2','validity':'0','chosen':false},
-    {'capName':'Proof of age card (with reference number)','name':'Proof of age card with a Proof of Age Standards Scheme (PASS) with a reference number','shortname':'proof of age card (with reference number)','group':'3','strength':'3','validity':'0','chosen':false},
+    {'capName':'EU or EEA biometric identity card','name':'An identity card from an EU or EEA country that contains biometric information','shortname':'EU or EEA identity card','group':'3','strength':'4','validity':'0','chosen':false},
+    {'capName':'EU or EEA identity card','name':'An identity card from an EU or EEA country that does not contain biometric information','shortname':'EU or EEA biometric identity card','group':'3','strength':'3','validity':'0','chosen':false},
+    {'capName':'Proof of age card (with reference number)','name':'A proof of age card that’s recognised under the Proof of Age Standards Scheme (PASS) and has a unique reference number','shortname':'proof of age card','group':'3','strength':'3','validity':'0','chosen':false},
+    {'capName':'Proof of age card','name':'A proof of age card with a PASS hologram','shortname':'proof of age card','group':'3','strength':'2','validity':'0','chosen':false},
     {'capName':'NI electoral identity card','name':'Northern Ireland electoral identity card','shortname':'NI electoral identity card','group':'3','strength':'3','validity':'0','chosen':false},
 
     {'capName':'Gas or electric bill','name':'Gas or electric bill','shortname':'gas or electric bill','group':'4','strength':'2', 'validity':'0','chosen':false},
