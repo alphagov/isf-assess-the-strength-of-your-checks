@@ -256,10 +256,10 @@ router.post('/activity-3-answer', function (req, res) {
   let answer = req.session.data['activity-3']
   let activity1Answer = req.session.data['activity-1b']
 
-  if ((answer.includes('1') || (answer.includes('2') || (answer.includes('3')) && activity1Answer.includes('3') && activity1Answer.includes('4')) {
+  if ((answer.includes('1') || answer.includes('2') || answer.includes('3')) && activity1Answer.includes('3') && activity1Answer.includes('4')) {
     req.session.data['activityScore'] = "4"
   }
-  else if ((answer.includes('1') || (answer.includes('2') || (answer.includes('3')) && (activity1Answer.includes('3')) {
+  else if ((answer.includes('1') || answer.includes('2') || answer.includes('3')) && activity1Answer.includes('3')) {
     req.session.data['activityScore'] = "3"
   }
   else if (answer.includes('2') && activity1Answer.includes('2')) {
@@ -268,7 +268,7 @@ router.post('/activity-3-answer', function (req, res) {
   else if (answer.includes('1') && activity1Answer.includes('2')) {
     req.session.data['activityScore'] = "2"
   }
-  else if ((answer.includes('1') || (answer.includes('2') || (answer.includes('3')) && activity1Answer.includes('1')  {
+  else if ((answer.includes('1') || answer.includes('2') || answer.includes('3')) && activity1Answer.includes('1'))  {
     req.session.data['activityScore'] = "1"
   }
   else {
