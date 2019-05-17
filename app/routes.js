@@ -290,7 +290,7 @@ router.post('/activity-4-answer', function (req, res) {
   else if ((answer.includes('1') || answer.includes('2') || answer.includes('3')) && ( activity1Answer.includes('3') || activity1Answer.includes('4')) ) {
     req.session.data['activityScore'] = "3"
   }
-  else if ((answer.includes('2') || (answer.includes('3') || (answer.includes('4')) && activity1Answer.includes('2')) {
+  else if ((answer.includes('2') || answer.includes('3') || answer.includes('4')) && activity1Answer.includes('2')) {
     req.session.data['activityScore'] = "2"
   }
   else if (answer.includes('1') && (activity1Answer.includes('1') || activity1Answer.includes('2') || activity1Answer.includes('3') || activity1Answer.includes('4'))) {
