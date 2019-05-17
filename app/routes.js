@@ -4,8 +4,8 @@ const responseValidator = require('../lib/response_validator.js')
 
 const presetEvidence =
   [
-    {'capName':'Passport','name':'A passport with a biometric symbol on the cover','shortname':'passport','group':'1','strength':'4','validity':'0','chosen':false},
-    {'capName':'Passport','name':'A passport without a biometric symbol on the cover','shortname':'passport','group':'1','strength':'3','validity':'0','chosen':false},
+    {'capName':'Biometric passport','name':'A passport with a biometric symbol on the cover','shortname':'biometric passport','group':'1','strength':'4','validity':'0','chosen':false},
+    {'capName':'Non-biometric passport','name':'A passport without a biometric symbol on the cover','shortname':'non-biometric passport','group':'1','strength':'3','validity':'0','chosen':false},
     {'capName':'US passport card','name':'US passport card','shortname':'US passport card','group':'1','strength':'3','validity':'0','chosen':false},
     {'capName':'Home Office travel document','name':'Home Office travel document (convention travel document, stateless person’s document, one-way document or certificate of travel)','shortname':'Home Office travel document','group':'1','strength':'2','validity':'0','chosen':false},
 
@@ -223,15 +223,43 @@ router.post('/activity-2-answer', function (req, res) {
 
 })
 
+// router.post('/activity-3-answer', function (req, res) {
+//
+//   let answer = req.session.data['activity-3']
+//   let activity1Answer = req.session.data['activity-1b']
+//
+//   if (answer.includes('3') && activity1Answer.includes('3') && activity1Answer.includes('4')) {
+//     req.session.data['activityScore'] = "4"
+//   }
+//   else if (answer.includes('3') && activity1Answer.includes('3')) {
+//     req.session.data['activityScore'] = "3"
+//   }
+//   else if (answer.includes('2') && activity1Answer.includes('2')) {
+//     req.session.data['activityScore'] = "2"
+//   }
+//   else if (answer.includes('1') && activity1Answer.includes('2')) {
+//     req.session.data['activityScore'] = "2"
+//   }
+//   else if (answer.includes('1') && activity1Answer.includes('1')) {
+//     req.session.data['activityScore'] = "1"
+//   }
+//   else {
+//     req.session.data['activityScore'] = "0"
+//   }
+//
+//   res.redirect('section-result')
+//
+// })
+
 router.post('/activity-3-answer', function (req, res) {
 
   let answer = req.session.data['activity-3']
   let activity1Answer = req.session.data['activity-1b']
 
-  if (answer.includes('3') && activity1Answer.includes('3') && activity1Answer.includes('4')) {
+  if ((answer.includes('1') || (answer.includes('2') || (answer.includes('3')) && activity1Answer.includes('3') && activity1Answer.includes('4')) {
     req.session.data['activityScore'] = "4"
   }
-  else if (answer.includes('3') && activity1Answer.includes('3')) {
+  else if ((answer.includes('1') || (answer.includes('2') || (answer.includes('3')) && (activity1Answer.includes('3')) {
     req.session.data['activityScore'] = "3"
   }
   else if (answer.includes('2') && activity1Answer.includes('2')) {
@@ -240,7 +268,7 @@ router.post('/activity-3-answer', function (req, res) {
   else if (answer.includes('1') && activity1Answer.includes('2')) {
     req.session.data['activityScore'] = "2"
   }
-  else if (answer.includes('1') && activity1Answer.includes('1')) {
+  else if ((answer.includes('1') || (answer.includes('2') || (answer.includes('3')) && activity1Answer.includes('1')  {
     req.session.data['activityScore'] = "1"
   }
   else {
@@ -293,25 +321,17 @@ router.post('/fraud-0-answer', function (req, res) {
 router.post('/fraud-1-answer', function (req, res) {
   let answer = req.session.data['fraud-1']
 
-  if (answer.includes('7')){
+  if (answer.includes('6')){
     req.session.data['fraudScore'] = "0"
     res.redirect('section-result')
   }
-  else if (answer.includes('1') && answer.includes('2') && answer.includes('4') && answer.includes('5') && answer.includes('6')) {
+  else if (answer.includes('1') && answer.includes('2') && answer.includes('3') && answer.includes('4') && answer.includes('5')) {
     req.session.data['fraudScore'] = "2"
     res.redirect('fraud/fraud-2')
   }
-  else if (answer.includes('1') && answer.includes('2') && answer.includes('4') && answer.includes('5')) {
-    req.session.data['fraudScore'] = "2"
-    res.redirect('section-result')
-  }
-  else if (answer.includes('4') && answer.includes('5') && answer.includes('6')) {
-    req.session.data['fraudScore'] = "1"
-    res.redirect('section-result')
-  }
   else if (answer.includes('1') && answer.includes('2')) {
     req.session.data['fraudScore'] = "1"
-    res.redirect('/section-result')
+    res.redirect('section-result')
   }
   else {
     req.session.data['fraudScore'] = "0"
